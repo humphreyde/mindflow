@@ -44,11 +44,13 @@ description: Use when user asks to "read paper", "analyze paper", "summarize pap
 | 源 | 确定性提取方式 | 降级 |
 |---|---|---|
 | arXiv HTML | `node {skill_dir}/scripts/defuddle_parse.mjs "https://arxiv.org/html/{arxiv_id}" -o /tmp/{ShortTitle}/paper.json`，同时生成 `paper.md` | arXiv HTML 失败后可使用经批准且可追溯的 ar5iv fallback：`https://ar5iv.labs.arxiv.org/html/{arxiv_id}`；同时记录原始 arXiv ID/URL、ar5iv URL 和访问日期。仍失败则走 PDF |
-| PDF | `curl -sL "<url>" -o /tmp/{ShortTitle}/paper.pdf && uv run {skill_dir}/scripts/pdf_to_md.py /tmp/{ShortTitle}/paper.pdf` | 下载或解析失败则记录原因，保留其他可用源 |
+| PDF | `curl -fsSL "<url>" -o /tmp/{ShortTitle}/paper.pdf && uv run {skill_dir}/scripts/pdf_to_md.py /tmp/{ShortTitle}/paper.pdf` | HTTP 错误返回非零并显示诊断；下载失败不运行解析器，记录 URL、状态/原因，保留其他可用源 |
 | website | `node {skill_dir}/scripts/defuddle_parse.mjs "<url>" -o /tmp/{ShortTitle}/website.json`，同时生成 `website.md` | 提取失败则用 `curl` 保存 raw HTML 供校验；不能可靠提取正文时标为不可得 |
-| github | `curl -sL "https://raw.githubusercontent.com/<org>/<repo>/main/README.md" -o /tmp/{ShortTitle}/github.md` | `main` 不存在时试 `master` |
+| github | `curl -fsSL "https://raw.githubusercontent.com/<org>/<repo>/main/README.md" -o /tmp/{ShortTitle}/github.md` | `main` 返回 404 时用相同参数试 `master` 一次；仍失败或其他 HTTP 错误则记录诊断，标记该来源不可得 |
 
 记录每类网络来源的原始 URL、访问日期和 `local_path`。用户提供的本地 PDF 记录原始绝对路径和 SHA-256，再复制或读取到任务临时目录；该“原始路径 + SHA-256 + 提取文件位置”是充分 provenance，不需要额外网络来源才能继续。
+
+下载命令失败时，其目标文件不视为可用来源；不得把错误页或不完整文件送入后续正文提取。
 
 #### 2.3 校验提取文件
 

@@ -165,7 +165,7 @@ memory-distill 是 MindFlow 记忆演化体系的基础技能。它定期扫描 
 **示例：指定时间段蒸馏**
 
 ```
-/memory-distill --period "2026-03-20 ~ 2026-03-26"
+$memory-distill --period "2026-03-20 ~ 2026-03-26"
 ```
 
 执行过程：

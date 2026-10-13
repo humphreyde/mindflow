@@ -25,6 +25,7 @@ autoresearch 是 MindFlow 的核心研究循环，实现了 PhD 导师制中 Res
 3. `Workbench/memory/insights.md` — 近期 insight，重点关注近 30 天的 validated 条目。
 4. `Workbench/memory/patterns.md` — 近期 pattern。
 5. 按路径 `Workbench/logs/YYYY-MM-DD.md` 列出并读取最近 3 天的日志，了解近期行动、失败和连续重复，避免无信息增益的重试。
+6. 检查 `Experiments/` 中 `completed` / `failed` 实验的 `## Analysis`，按 Step 2 的实质性 verdict 判据识别尚待分析的目标；目录不存在时记录无实验候选。
 
 若 `focus` 参数指定了某个 direction，优先提取该 direction 的相关状态，但仍读取上述全局状态以识别冲突、Owner override 和停止信号。
 
@@ -65,13 +66,15 @@ autoresearch 是 MindFlow 的核心研究循环，实现了 PhD 导师制中 Res
 | `Ideas/` 中有 `status: raw` 的 idea 待评估 | `idea-evaluate` |
 | `Ideas/` 中有 `status: developing` 的 idea 缺实验方案 | `experiment-design` |
 | `Experiments/` 中有正在运行的实验需要追加进展或结果 | `experiment-track` |
-| `Experiments/` 中有 `status: completed` 且无 `## Analysis` 节 | `result-analysis` |
+| `Experiments/` 中有 `status: completed` 或 `failed`，且 `## Analysis` 尚无实质性 hypothesis verdict | `result-analysis` |
 | 某 direction 已有充足论文、实验和 idea，需要成文 | `draft-section` |
 | 已有文稿需要在 Owner 确认后精修 | `writing-refine` |
 | 最近一次记忆蒸馏距今超过 5 天 | `memory-distill` |
 | 近期有新 validated insight 但 agenda 未反映 | `agenda-evolve` |
 
 `memory-retrieve` 只保留为其他 skill 内部组合使用的 canonical satellite；它不是 autoresearch 可独立选择的顶层行动。用户仍可在 autoresearch 之外显式调用它。
+
+实验的实质性 hypothesis verdict 必须同时包含：一个明确的 `supported` / `refuted` / `inconclusive` 结论（或语义等价的手写结论），以及关联到该实验 Run Entries 的证据说明。失败实验可用具体失败记录和缺失数据原因支持 `inconclusive`，不要求不存在的 metric。缺少 Analysis、空白正文、模板提示“结果说明了什么？假设是否被验证？”，或仅有标题/未填写的 Verdict 字段，均仍待分析；不能仅凭 `## Analysis` 存在就排除。已有实质性手写 verdict 的实验不因缺少生成标记而自动重分析。该资格判断也用于 Step 1.5 的“无行动”判断，但不改变 Owner stop、授权和保护边界的优先级。
 
 判断时依次考虑：
 
@@ -142,6 +145,7 @@ autoresearch 是 MindFlow 的核心研究循环，实现了 PhD 导师制中 Res
 - [ ] `memory-retrieve` 未被选为顶层行动；它只可由其他 skill 内部组合使用，或由用户在 autoresearch 之外显式调用。
 - [ ] 执行依据该 entrypoint 当前的 Steps/Guard/Verify；结果未通过 Verify 时没有记为 success。
 - [ ] 本地多论文比较使用 `literature-survey` 的 `local-set` 模式，输入是可枚举的封闭清单，且没有外部扩展。
+- [ ] 已按实质性 verdict 判据检查 `completed` 和 `failed` 实验；空白/模板 Analysis 未被当作已分析，已有手写结论未被当作缺失，失败缺 metric 未被当作无候选。
 - [ ] 日志包含 state_summary / judgment / action / status / outcome / consecutive_failures，失败也已留下阶段和原因。
 - [ ] 停止条件和卫星 skill 的人类决策边界已执行，没有用自主循环绕过 Owner。
 

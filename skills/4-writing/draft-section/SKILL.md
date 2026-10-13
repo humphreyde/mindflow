@@ -139,7 +139,7 @@ tags: []
 **示例 1：起草 Related Work 章节**
 
 ```
-/draft-section
+$draft-section
   --target "Reports/VLN-Survey-Draft.md"
   --section "Related Work"
   --sources "[[Papers/2301-EAI-Survey]], [[Papers/2410-NavGPT]], [[Papers/2501-MapNav]], [[Topics/VLN-MethodComparison-Analysis]]"

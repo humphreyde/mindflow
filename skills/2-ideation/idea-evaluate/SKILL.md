@@ -117,7 +117,7 @@ idea-evaluate 支持两种输入：
 **示例：从文件路径评估 idea**
 
 ```
-/idea-evaluate --idea "[[Ideas/VLA-GoalConditionedRecovery.md]]"
+$idea-evaluate --idea "[[Ideas/VLA-GoalConditionedRecovery.md]]"
 ```
 
 1. 读取 Idea 文件 → 提取信息

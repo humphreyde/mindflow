@@ -252,7 +252,7 @@ priority 依据：高度相关 Mission 且有强证据支持 → high；与 Miss
 背景：memory-distill 刚产出一条新的 validated insight，Researcher 触发 agenda-evolve 进行复盘。
 
 ```
-/agenda-evolve --trigger "new validated insight from memory-distill"
+$agenda-evolve --trigger "new validated insight from memory-distill"
 ```
 
 执行过程：

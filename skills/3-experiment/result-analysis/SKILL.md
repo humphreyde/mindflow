@@ -2,7 +2,7 @@
 name: result-analysis
 description: >
   当 Owner 说"分析一下实验结果"，
-  或实验 status 变为 completed 后 autoresearch 自动调用，
+  或 completed / failed 实验尚无实质性 hypothesis verdict 时由 autoresearch 调用，
   分析实验数据并判断假设是否成立
 ---
 
@@ -28,6 +28,7 @@ result-analysis 是 MindFlow 实验闭环的最后一环。给定一个实验笔
 
 1. 确认 `Experiments/` 目录存在；若不存在则创建。若目录无法创建，停止执行并告知 Owner。
 2. 读取 `Templates/Experiment.md`，以其 frontmatter 和 section 结构作为 Experiment 笔记的 schema。若模板缺失或无法读取，停止执行，不修改任何实验文件。
+3. 读取 `references/memory-protocol.md`；追加 pattern 时严格使用其中的 canonical 生命周期字段，并先读取现有 `Workbench/memory/patterns.md`。
 
 ### Step 1：读取目标 Experiment 全部 Run Entries
 
@@ -72,7 +73,7 @@ result-analysis 是 MindFlow 实验闭环的最后一环。给定一个实验笔
 - **refuted**：主要 run 的核心 metric 一致地与 hypothesis 相悖，结果方向明确
 - **inconclusive**：数据不足（run 数量少、方差过大）、结果矛盾、或 metric 与 hypothesis 不直接对应
 
-给出 1-3 句证据说明，直接引用 run 数据中的具体数字。禁止在数据不充分时强行判断为 supported 或 refuted。
+给出 1-3 句证据说明：有 metric 时直接引用 run 数据中的具体数字；失败且无 metric 时引用实际失败记录和数据缺失原因，判为 inconclusive。禁止在数据不充分时强行判断为 supported 或 refuted。
 
 #### 4.2 Key Findings
 
@@ -122,6 +123,8 @@ Key Findings 可以包含：意外规律、config 敏感性、数据质量问题
 ```markdown
 ## Analysis
 
+<!-- result-analysis:generated:start -->
+
 **Analysis date**：YYYY-MM-DD
 
 ### Hypothesis Verdict
@@ -155,27 +158,37 @@ Key Findings 可以包含：意外规律、config 敏感性、数据质量问题
 - <启示 1>
 - <启示 2>
 - ...
+
+<!-- result-analysis:generated:end -->
 ```
 
-日期填写今天（`YYYY-MM-DD`），但必须保留 schema 的 canonical `## Analysis` 标题，将日期写在节内。若文件中已存在 `## Analysis` 节，保留标题并覆盖该节正文（保留其他节不变），在日志中注明"覆盖了旧 Analysis 节"。不得修改任何 Run Entry 的原始数据。
+日期填写今天（`YYYY-MM-DD`），保留 canonical `## Analysis` 标题。写入前保存目标原文并确定该节与相邻节的边界，按以下规则最小合并：
+
+- Analysis 不存在时创建该节；存在但没有可确认的生成边界时，保留原正文（包括模板提示、手写结论和批注），在该节末尾追加上述生成块。
+- 有成对 `result-analysis:generated:start/end` 标记，或有先前产物/明确归属可核对的生成内容时，只精确更新能确认归属的生成字段、子节；标记不授权整块覆盖。生成块内外的手写插注、未知归属内容均逐字节保留；不能只凭 `Hypothesis Verdict` 等通用标题推断作者身份。
+- 没有生成边界本身不要求暂停；可安全追加时直接追加。仅当 Analysis 的边界、标记配对或生成/手写归属冲突导致无法安全更新或追加时，保留原文件并向 Owner 说明具体歧义，等待澄清。
+
+写后比对原文，确认所有手写/用户内容、frontmatter、Run Entries 和其他节逐字节不变。在日志中记录 `appended-generated-block` 或 `updated-generated-fields` 及范围；不得记录或执行整节覆盖。
 
 ### Step 6：若有跨实验 pattern，追加到 patterns.md
 
 检查 Step 4 的分析结果，判断是否发现了跨实验规律（cross-experiment pattern）——即：本次发现与 memory-retrieve 返回的历史记忆高度一致，或本次发现可能对多个 Idea/实验具有普适价值。
 
-若存在 cross-experiment pattern，将其追加到 `Workbench/memory/patterns.md`，格式：
+若存在 cross-experiment pattern，先核对各来源的原始实验/日志。把本次观察和 `[[Experiments/xxx]]` 记录在 Step 8 的分析日志中，并在本次执行结束前确认该日志已落盘，使下列 occurrence 可直接解析。将候选追加到 `Workbench/memory/patterns.md`，严格使用 canonical 格式：
 
 ```markdown
 ### [YYYY-MM-DD] <Pattern 标题>
 
-- **Observation**：<一句话描述规律>
-- **Evidence**：[[Experiments/xxx]] + （可选历史来源引用）
-- **Scope**：<适用范围，如 "VLA fine-tuning" 或 "low-data regime">
-- **Confidence**：low / medium / high
-- **Lesson**：<对未来实验设计的指导意义>
+- **observation**: <含适用范围的一句话可证伪规律>
+- **occurrences**: [[Workbench/logs/YYYY-MM-DD]], <其他已核验的独立来源日志 wikilinks>
+- **confidence**: low
+- **needs_verification**: yes
+- **status**: unpromoted
 ```
 
-若无跨实验规律，跳过此步。
+`occurrences` 必须包含具体日志 wikilink；日志的 `input` / `observation` 追溯到具体 Experiment 和 Run Entries。可附加原始 Experiment 引用以定位证据，但同一实验及其分析日志只算一个独立来源，同一来源不因重复分析而增加次数。`confidence` 仅允许 `low` / `medium`，新候选默认 `low`；确有多个独立来源时可为 `medium`，不能为 `high`。
+
+若已有同义 pattern，不重复创建：仅向其 `occurrences` 追加尚未记录的独立来源，保留 observation、既有证据、`needs_verification` 和生命周期状态不变；晋升交给 `memory-distill`。若无跨实验规律，跳过此步。上述产物可直接作为 `memory-distill` 的 pattern 输入，不需要 schema 归一化。
 
 ### Step 7：若 verdict 明确，更新关联 Idea status
 
@@ -198,6 +211,8 @@ Key Findings 可以包含：意外规律、config 敏感性、数据质量问题
 - **input**: [[Experiments/xxx]]
 - **verdict**: supported / refuted / inconclusive
 - **key-finding**: <最重要的一条发现，一句话>
+- **observation**: <候选 pattern 的实际观察与对应 Experiment/Run 引用；无候选时写本次关键观察>
+- **analysis-update**: appended-generated-block / updated-generated-fields（注明精确范围）
 - **idea-status-updated**: yes（[[Ideas/xxx]] → validated/archived）/ no
 - **pattern-added**: yes / no
 - **status**: success
@@ -207,16 +222,18 @@ Key Findings 可以包含：意外规律、config 敏感性、数据质量问题
 
 ## Verify
 
-- [ ] Experiment 文件保留 canonical `## Analysis` 标题，节内含 `**Analysis date**：YYYY-MM-DD` 和全部五个子节
+- [ ] Experiment 文件保留 canonical `## Analysis` 标题，生成块内含 `**Analysis date**：YYYY-MM-DD` 和全部五个子节
 - [ ] 已确认 `Experiments/` 存在，且分析基于 `Templates/Experiment.md` schema 读取的实验笔记
 - [ ] Verdict 为 supported / refuted / inconclusive 三选一
 - [ ] 关联 Idea 的 `status` 已同步更新（若 verdict 非 inconclusive 且 `idea` 或旧版 `idea_ref` 存在）
-- [ ] 若发现跨实验 pattern，已追加到 `Workbench/memory/patterns.md`
+- [ ] 手写/用户内容（包括生成块内的插注）、frontmatter、Run Entries 和其他节与写入前逐字节一致；只追加生成块或窄更新可确认归属的生成字段
+- [ ] 若发现跨实验 pattern，产物含 canonical `observation` / `occurrences` / `confidence` / `needs_verification` / `status`；新候选为 `needs_verification: yes`、`status: unpromoted`，confidence 仅 low/medium
+- [ ] occurrence 日志已落盘且可追溯到实际 Experiment/Run；同一实验的重复日志未当作独立证据，已有 pattern 未重复创建或擅自晋升
 - [ ] 日志已追加到 `Workbench/logs/YYYY-MM-DD.md`
 
 ## Guard
 
-- **verdict 必须基于实际数据**：Hypothesis Verdict 的判断必须引用 Experiment 文件中的具体 run metric。不得根据主观印象或"感觉上"下结论。
+- **verdict 必须基于实际数据**：Hypothesis Verdict 必须引用 Experiment 文件中的具体 run metric；失败导致无 metric 时，引用实际失败记录并说明数据缺失，以 inconclusive 记录，不捏造数值。不得根据主观印象或"感觉上"下结论。
 - **inconclusive 不强行下结论**：数据不充分时（run 数量 < 3、metric 方差过大、结果相互矛盾），必须判为 inconclusive，不得为追求"明确结论"而强行判定 supported 或 refuted。
 - **不修改 Run Entries**：只读取 Run Entry 数据，绝对不修改 Experiment 文件中任何 `### Run [N]` 节的原始内容。分析是独立节，与 run 数据并存；更新 Analysis 时必须保留全部其他 section、frontmatter 与手写内容。
 - **语言规范**：中文正文 + 英文技术术语（模型名、metric 名、benchmark 名、方法名保持英文，不翻译）。
@@ -256,7 +273,7 @@ Key Findings 可以包含：意外规律、config 敏感性、数据质量问题
 
 5. 精确更新 `Experiments/VLN-LoRA-R2R-2026Q1.md` 的 `## Analysis` 节，并在节内写入 `**Analysis date**：2026-03-28`
 
-6. 在 `Workbench/memory/patterns.md` 追加新 pattern："LoRA rank=16 在 VLN R2R fine-tuning 中表现最优，rank 继续增大无收益"（Confidence: medium，因仅有 1 个实验支撑）
+6. 在 `Workbench/memory/patterns.md` 追加候选："本次 VLN R2R 实验中 rank=16 的 SR 最高，rank=32 未继续提高 SR"；使用 canonical 五字段，confidence=low、needs_verification=yes、status=unpromoted，occurrences 指向本次含 Experiment/Run 证据的分析日志
 
 7. 精确更新 `Ideas/VLN-LoRAFinetuning.md` 的 `status: validated`（verdict=supported）
 
