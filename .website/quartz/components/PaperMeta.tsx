@@ -7,29 +7,26 @@ const PaperMeta: QuartzComponent = ({ fileData }: QuartzComponentProps) => {
 
   const fm = fileData.frontmatter as Record<string, any>
   const authors: string[] = fm?.authors ?? []
-  const institute: string[] = fm?.institute ?? []
+  const instituteValue = fm?.institutes ?? fm?.institute ?? []
+  const institutes: string[] = Array.isArray(instituteValue) ? instituteValue : [instituteValue]
   const venue: string = fm?.venue ?? ""
 
-  if (authors.length === 0 && institute.length === 0 && !venue) return <></>
+  if (authors.length === 0 && institutes.length === 0 && !venue) return <></>
 
   const firstAuthor = authors[0] ?? ""
   const hasMore = authors.length > 1
 
   return (
     <div class="paper-meta">
-      {venue && (
-        <span class="paper-venue">
-          {venue}
-        </span>
-      )}
-      {institute.length > 0 && (
+      {venue && <span class="paper-venue">{venue}</span>}
+      {institutes.length > 0 && (
         <span class="paper-institute">
           {venue && <span class="meta-sep">·</span>}
-          {institute.join(", ")}
+          {institutes.join(", ")}
         </span>
       )}
       <span class="paper-authors">
-        {(venue || institute.length > 0) && <span class="meta-sep">·</span>}
+        {(venue || institutes.length > 0) && <span class="meta-sep">·</span>}
         {firstAuthor}
         {hasMore && (
           <>
