@@ -5,213 +5,172 @@ description: Use when user asks to "read paper", "analyze paper", "summarize pap
 
 ## Purpose
 
-给定一篇论文或技术 blog 的来源（URL、PDF 路径、论文标题或者关键词），它自动获取内容、提炼核心信息，生成结构化笔记。
+给定论文或技术 blog 的 URL、本地 PDF、标题或关键词，使用可用的发现能力和现有确定性提取脚本获取来源，生成一份有出处、保留媒体、符合 Obsidian 规范的结构化笔记。
 
-支持两种内容类型：
-- **paper**：学术论文
-- **blog**：所有 blog 类文章（tech blog，product blog 等）
+支持 `paper`（学术论文）和 `blog`（技术或产品文章）。
+
+## Runtime capabilities
+
+- Node.js 18+：运行 `scripts/defuddle_parse.mjs` 提取 HTML。
+- Python 3.12+ 与仓库 `uv` 环境：运行 `scripts/pdf_to_md.py`。
+- `curl`：下载 PDF、HTML、README 和调用公开 API。
+- `gh` 可选：已登录时提高 GitHub API 配额；不可用或未登录时降级为匿名 `curl`。
+- 网页搜索/浏览能力可选：用于发现官方源和 Semantic Scholar 失败后的 Scholar 查询；不可用时使用输入 URL、官方 API 和直接站点 URL，不得假装已经搜索。
+
+先确认依赖。不要在未经授权时安装软件。Node 提取失败时，论文优先降级到 PDF 路线；网页源无法可靠提取时保留 URL 与失败原因，不以搜索摘要代替正文。
 
 ## Steps
 
-### Step 1：Dedup 预检
+### 1. 去重预检
 
-先扫一遍 `Papers/`，避免对一篇已有笔记重复 digest。若找到对应笔记 → **立刻停止**，告知用户已有笔记 [[xxx]]，询问是否需要 覆盖 / 更新 / 取消
+在 `Papers/` 中按 arXiv ID、DOI、规范化标题和文件名查找已有笔记。命中后立即停止写入，向用户返回 `[[已有笔记]]` 并询问取消或显式更新。只有用户明确授权更新时，才先完整读取现有笔记并做最小合并；不得覆盖手写段落、frontmatter 字段或已有 assets。
 
-### Step 2：Fetch
+### 2. 获取来源
 
-#### Step 2.1：寻找官方源
+#### 2.1 发现官方源
 
-一篇内容常有**三类官方源**：
-- **paper**：arXiv 或者 PDF URL，论文的权威文本来源
-- **website**：project page、官方博客文章等
-- **github**：代码仓库的 README
+对三类来源分别尝试发现并验证所有权：
 
-根据输入信息寻找这三类官方源
-**用 WebSearch 兜底，不可跳过**
-综合判断找到的源是否来自于官方，若不是，则丢弃
+- **paper**：arXiv、出版社或作者提供的 PDF/HTML。
+- **website**：project page 或官方 blog。
+- **github**：官方代码仓库及 README。
 
-#### Step 2.2：抓取源、生成源文件
+优先使用输入中的明确 URL、arXiv ID、DOI 和官方页面关系；再使用运行时可用的网页发现能力兜底。没有网页发现能力或某类源不存在时，在 issues 中写明，不得使用未验证的镜像、聚合转载或二手摘要冒充官方源。
 
-对上一步发现的每类源，按下表抓取到 **`/tmp/{ShortTitle}/`** 目录下。先创建目录。
+#### 2.2 提取到任务临时目录
 
-| 源       | 抓取方式                                                                                                                                                                                                                                                                                                                                                                                               |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| paper   | **arxiv**: Bash `node {skill_dir}/scripts/defuddle_parse.mjs <url> -o /tmp/{ShortTitle}/paper.json`（同时写 sibling `paper.md`）。先试 `"https://arxiv.org/html/{arxiv_id}"`，失败则 `"https://ar5iv.labs.arxiv.org/html/{arxiv_id}"`。<br>**PDF**: Bash `curl -sL <url> -o /tmp/{ShortTitle}/paper.pdf && uv run {skill_dir}/scripts/pdf_to_md.py /tmp/{ShortTitle}/paper.pdf` → 输出 `paper.md` + `images/`。 |
-| website | Bash `node {skill_dir}/scripts/defuddle_parse.mjs "<url>" -o /tmp/{ShortTitle}/website.json`（同时写 sibling `website.md`）                                                                                                                                                                                                                                                                                                       |
-| github  | Bash `curl -sL https://raw.githubusercontent.com/<org>/<repo>/main/README.md -o /tmp/{ShortTitle}/github.md`。若 main 分支不存在，试 master。                                                                                                                                                                                                                                                   |
+将 `ShortTitle` 规范化为不含路径分隔符的短名，使用本次任务专属的 `/tmp/{ShortTitle}/` 目录并记录绝对路径。若该目录已存在且归属不明，换用带唯一后缀的目录，不覆盖旧内容。
 
-**记下每类 source 的 `local_path`。**
+| 源 | 确定性提取方式 | 降级 |
+|---|---|---|
+| arXiv HTML | `node {skill_dir}/scripts/defuddle_parse.mjs "https://arxiv.org/html/{arxiv_id}" -o /tmp/{ShortTitle}/paper.json`，同时生成 `paper.md` | arXiv HTML 失败后试 `https://ar5iv.labs.arxiv.org/html/{arxiv_id}`；仍失败则走 PDF |
+| PDF | `curl -sL "<url>" -o /tmp/{ShortTitle}/paper.pdf && uv run {skill_dir}/scripts/pdf_to_md.py /tmp/{ShortTitle}/paper.pdf` | 下载或解析失败则记录原因，保留其他可用源 |
+| website | `node {skill_dir}/scripts/defuddle_parse.mjs "<url>" -o /tmp/{ShortTitle}/website.json`，同时生成 `website.md` | 提取失败则用 `curl` 保存 raw HTML 供校验；不能可靠提取正文时标为不可得 |
+| github | `curl -sL "https://raw.githubusercontent.com/<org>/<repo>/main/README.md" -o /tmp/{ShortTitle}/github.md` | `main` 不存在时试 `master` |
 
-#### Step 2.3：检查生成的源文件
+记录每类来源的原始 URL、访问日期和 `local_path`。本地 PDF 直接复制或读取到任务临时目录，不需要额外网络来源才能继续。
 
-读取生成的源文件，检查是否出现以下问题：
+#### 2.3 校验提取文件
 
-| 问题                                                                                                                                                                                                                                            | 应用源                | 失败处理                                                                                                                            |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| 文件不完整                                                                                                                                                                                                                                         | 全部                 | 返回上一步，重新抓取                                                                                                                      |
-| video 和 figure 的 URL 丢失或者不完整                                                                                                                                                                                                                  | website            | 用 `curl` 抓取 raw HTML，找到完整 URL 后补充到源文件                                                                                           |
-| **多 panel figure 只抓到第一张**：arxiv HTML 把 multi-panel 图包成 `<figure class="ltx_figure"><div class="ltx_flex_figure"><div class="ltx_flex_cell"><img></div>×N</div></figure>`，defuddle 默认只取第一张。逐 figure 检查源里 `ltx_flex_figure` 块的 sub-image 数量是否齐全 | paper (arxiv html) | 用 `curl` 抓 raw HTML 把同 figure 所有 `<img src=...>` URL 补全；嵌入时按 [[references/obsidian-syntax \| obsidian-syntax]] §2.3 的 flex 写法并排 |
+逐个解析生成文件，确认非空、正文完整、标题与目标一致，并检查：
 
-#### Step 2.4：影响力指标
+- website 的 figure/video URL 是否完整；缺失时从 `curl` 保存的 raw HTML 恢复绝对 URL。
+- arXiv HTML 的 multi-panel figure：逐个 `<figure class="ltx_figure">` 检查 `ltx_flex_figure` 中所有 `<img>` 是否齐全；缺失时从 raw HTML 补全。嵌入时遵循 `references/obsidian-syntax.md` §2.3 的 flex 写法。
 
-按源存在性抓取，产 `/tmp/{ShortTitle}/metrics.json`。缺失源对应块 `null`，不省略字段。
+失败只重试对应来源和既定 fallback，不无限循环；仍失败则记录 issues，继续使用其他已验证来源。
 
-**Citation** — Semantic Scholar `/paper/batch` POST 匿名模式（单篇也用 batch，避免 429 累积 IP 惩罚）：
+#### 2.4 影响力指标
+
+输出 `/tmp/{ShortTitle}/metrics.json`。字段始终存在；没有来源或 API 失败的块为 `null`。
+
+Citation 优先调用 Semantic Scholar batch API：
 
 ```bash
 curl -sX POST 'https://api.semanticscholar.org/graph/v1/paper/batch?fields=citationCount,influentialCitationCount,publicationDate' \
   -H 'Content-Type: application/json' -d '{"ids":["arXiv:<arxiv_id>"]}'
 ```
 
-匿名模式共享 IP 配额，偶发 429 正常 —— retry 1 次 + 30s backoff；仍失败则 fallback：WebFetch `https://scholar.google.com/scholar?q=arxiv+<arxiv_id>` 取 top hit 的 "Cited by N"，**单发间隔 ≥30s**（并发必 CAPTCHA），`citation_source="scholar"` + `influential_citations=null`。两路都失败则 `paper` 块置 `null`，不阻塞 digest。批量复核（≥10 篇）时 S2 极易触发 >24h IP 锁定，优先串行 + 每篇间隔 ≥3s，并准备好接受中途降级为 Scholar-only 或 `null`。
+匿名配额出现 429 时只重试一次并等待 30 秒；仍失败且运行时能获取网页时，查询 `https://scholar.google.com/scholar?q=arxiv+<arxiv_id>` 的 top hit “Cited by N”，单次间隔至少 30 秒，写 `citation_source="scholar"`、`influential_citations=null`。两路失败时 `paper=null`，不阻塞 digest。批量复核（≥10 篇）优先串行、每篇至少间隔 3 秒，并接受降级为 Scholar 或 `null`。
 
-**HF upvotes** — `curl -s "https://huggingface.co/api/papers/<arxiv_id>"` 取 `.upvotes`，404 → null。
+其他指标：
 
-**GitHub** — 优先 `gh api "repos/<owner>/<repo>"` + `gh api "repos/<owner>/<repo>/commits?since=<90d ago ISO>&per_page=100"`（5000/hr）；未登录时 fallback `curl https://api.github.com/...`（60/hr，≥30 repo 会 403）。取 `stargazers_count` / `forks_count` / `open_issues_count` / `pushed_at`；commits 数组长度即 90d commits（上限 100 标 `"100+"`）。派生 `pushed_days_ago`，`is_stale = pushed_days_ago > 180 AND commits_last_90d == 0`。
+- HF：`curl -s "https://huggingface.co/api/papers/<arxiv_id>"`，取 `.upvotes`；404 → `null`。
+- GitHub：优先 `gh api "repos/<owner>/<repo>"` 和 `gh api "repos/<owner>/<repo>/commits?since=<90d-ago-ISO>&per_page=100"`；否则用 `curl https://api.github.com/...`。记录 stars、forks、open issues、pushed time 和 90 天 commits；长度 100 标为 `"100+"`。`is_stale = pushed_days_ago > 180 AND commits_last_90d == 0`。
 
-**Schema**：
+Schema：
 
 ```json
 {
   "measured_at": "YYYY-MM-DD",
-  "paper":  {"citation_count": N, "influential_citations": N, "citation_velocity_per_month": N.N, "months_since_publish": N, "citation_source": "s2"|"scholar"},
-  "hf":     {"upvotes": N},
-  "github": {"stars": N, "forks": N, "open_issues": N, "pushed_days_ago": N, "commits_last_90d": "N"|"100+", "is_stale": bool}
+  "paper":  {"citation_count": 0, "influential_citations": 0, "citation_velocity_per_month": 0.0, "months_since_publish": 0, "citation_source": "s2"},
+  "hf":     {"upvotes": 0},
+  "github": {"stars": 0, "forks": 0, "open_issues": 0, "pushed_days_ago": 0, "commits_last_90d": "0", "is_stale": false}
 }
 ```
 
-`citation_velocity_per_month = citationCount / max(months_since_publish, 1)`。单 API 失败 → 对应块 `null`，原因记 Step 5 log 的 `issues`，不阻塞 digest。
+`citation_velocity_per_month = citationCount / max(months_since_publish, 1)`。单个 API 失败只把对应块置 `null`，并记录具体 endpoint、状态和原因。
 
-各 API 单独失败（网络错、404、schema 变化）→ 对应块置 `null` 并把原因记入 Step 5 log 的 `issues`，不因此阻塞整个 digest。
+### 3. 生成并保存笔记
 
----
+完整读取所有成功提取的来源，以及：
 
-### Step 3：笔记生成与保存
+- `{skill_dir}/references/paper-note-template.md`
+- vault 根目录 `references/obsidian-syntax.md`
+- vault 根目录 `references/tags.md`
 
-仔细阅读生成的所有源文件，生成笔记。
+笔记顺序固定为 Frontmatter → `## Summary` → Body → `## 关联工作` → `## 论文点评`。撰写顺序使用 Body → 关联工作 → 论文点评 → Summary → Frontmatter，使判断建立在已读证据之上。
 
-**读取两个参考文件**：
-- **模板**：`{skill_dir}/references/paper-note-template.md`
-- **Syntax 参考**：vault 根目录 `references/obsidian-syntax.md` —— 公式 / 图 / 视频 / 表格的 Obsidian-specific 语法 quirks（全局，写任何笔记都应遵守）
+- Body 保留论文核心结构、方法、实验、ablation、failure case 和 caveat，不机械翻译或过度压缩。
+- 每个事实、数值、公式、表格和媒体都记录到具体来源文件与原文 section/figure/table；有疑问写 `> ❓ ...`。
+- 只嵌入有解释价值的 figure/equation/table/video，并紧邻相关讨论；overview/concept/motivation teaser 可放在 `## Summary`。
+- 不嵌入 OG image、social card、banner、favicon。删除模板中的所有 `%% ... %%` 提示。
+- PDF 图片从任务临时目录复制到 `Papers/assets/{ShortTitle}/`，命名为 `fig{N}-{FigureTitle}.{ext}`，使用 `![](Papers/assets/{ShortTitle}/fig{N}-{FigureTitle}.{ext})`。
 
-#### 笔记结构
+文件名为 `YYMM-ShortTitle.md`：`YYMM` 来自 `date_publish`，`ShortTitle` 是 2-4 个关键词的 CamelCase 缩写。保存到 `Papers/{文件名}.md`。
 
-**模版顺序**：Frontmatter → `## Summary` → **Body**（内容解读） → `## 关联工作` → `## 论文点评`
+### 4. 注入 Wikilink
 
-**撰写顺序**：Body → 关联工作 → 论文点评 → Summary → Frontmatter
+只处理正文，跳过 frontmatter、代码块、现有 wikilink 和路径字符串。候选包括具体论文、方法、数据集和模型；排除宽泛类别词及论文自己的新术语。
 
-**撰写逻辑**：每一步的产出都依赖前面已写的内容，倒序写以保证每个判断都 grounded 在已有内容上，而不是凭印象先填。
-- **Body**：论文本身的解读，不依赖其他段落。
-- **关联工作**：论文在 landscape 中的位置，需先理解论文本身。
-- **论文点评**：价值判断，依赖对论文本身的解读、和关联工作之间的关系、论文影响力指标。
-- **Summary**：笔记全文总结，依赖对论文本身的理解以及其点评。
-- **Frontmatter**：根据笔记内容的简单回填。
+#### 文件名匹配协议
 
-**Body**（内容解读）：
-- **批判性阅读**：综合源文件内容和你自己的理解，生成笔记，不要机械翻译
-- 综合参考源文件的结构确定层级结构，**要保留源内容的核心结构和要素**，不要过于简略和压缩内容
-- 从所有源文件中，按需挑选 figures / equations / tables / videos 嵌入合适位置
-- 加入你自己的理解，标出有疑问的地方：`> ❓ ...`
+把 term 折叠为 CamelCase/常用 ASCII（去空格和连字符，例如 `Flow Matching` → `FlowMatching`、`GEN-1` → `GEN1`、`π0.5` → `Pi05`），再在存在的目录中搜索：
 
-**Teaser 处理**：若某类源文件里存在明确是 overview / concept / motivation 用途的 figure 或 video（通常在 intro / abstract 段），嵌入到笔记 `## Summary` 下。
-
-#### 不变的硬规
-
-- **装饰性图片**：OG image / social card / banner / favicon 一律不嵌入。
-- **模板注释**：模板里的 `%% ... %%` 提示必须全部替换或整块删除，禁止外泄到正文。
-- **PDF 源的 images**：把需要嵌入的图从 `/tmp/{ShortTitle}/images/` 拷到 `Papers/assets/{ShortTitle}/`，**拷贝时重命名为 `fig{N}-{FigureTitle}.{ext}`**——`N` 是图在论文中的编号，`FigureTitle` 是从 caption 提炼的短标题。笔记中用 `![](Papers/assets/{ShortTitle}/fig{N}-{FigureTitle}.{ext})` 引用。
-
-#### 文件名 + Tag + Write
-
-**文件名格式**：`YYMM-ShortTitle.md`
-
-- `YYMM`：取自 `date_publish` 的年份后两位 + 月份，如 `2603`（2026年3月）
-- `ShortTitle`：标题的 CamelCase 缩写，2-4 个关键词，如 `EvoScientist`、`RoboClaw`、`DiffusionPolicy`
-- Blog 同理，如一篇 2026 年 2 月的 blog 关于 scaling laws → `2602-ScalingLaws.md`
-
-**Tag 选择**：阅读 vault 目录下的 `{vault_root}/references/tags.md`，按照规范选择 tag。
-
-**写入文件**：将笔记保存到 `Papers/{笔记文件名}.md`。
-
----
-
-### Step 4：Wikilink 注入
-
-扫描写出的笔记正文，识别技术术语，把能在 vault 找到对应笔记的 term 就地升级成 `[[...|term]]` wikilink。
-
-**⚠️注意**：
-1. **只处理笔记正文**，跳过 frontmatter、代码块
-2. **识别候选术语**：论文（`π0`、`RT-2`），核心方法 / 算法（`Flow Matching`、`FAST tokenizer`、`Action Chunking`）， 数据集（`DROID`），模型（`PaliGemma`、`Gemma-2B`、`SigLIP`）。 **排除**：宽泛类别词（`VLA`、`world model`、`RL`、`transformer`）、论文自己的术语
-3. 对每个候选 term 执行 **Concept Glob 协议**
-4. 把所有**未命中**的 term 汇总成一个 dead-link inventory
-5. **（必须做！！！）检查所有插入的 wikilink，修正所有不合理的情况** 
-
-#### Concept Glob 协议
-
-vault 的笔记命名约定是 `YYMM-CamelCase.md`（如 `2411-WorldModelSurvey.md`、`2410-Pi0.md`、`2604-GEN1.md`），**不是** `2411-World Model Survey.md`。所以朴素的 `Glob Papers/*<term>*.md` 对多词术语**几乎一定漏匹配**。
-
-**匹配规则**：把 term 折叠成 CamelCase（去掉空格和 `-`），然后 Glob 三个可能的目录：
-
-```
-Glob Papers/*<TermCamelCase>*.md
-Glob Concepts/*<TermCamelCase>*.md     # 若目录存在
-Glob DomainMaps/*<TermCamelCase>*.md   # 若目录存在
+```text
+Papers/*<TermCamelCase>*.md
+Concepts/*<TermCamelCase>*.md
+DomainMaps/*<TermCamelCase>*.md
 ```
 
-例：
-- `"Flow Matching"` → `*FlowMatching*.md`
-- `"GEN-1"` → `*GEN1*.md`
-- `"π0.5"` → `*Pi05*.md`（Unicode / 特殊字符按读音或常用 ASCII 折叠）
+可用 `rg --files Papers Concepts DomainMaps` 配合文件名过滤。命中后读取候选 frontmatter 的 `title:` 确认相关性，避免子串 false positive。只有目标文件确实存在时才替换为 `[[文件名|term]]`；未命中的 term 汇总进 dead-link inventory。
 
-任一目录命中即视为存在。命中后 Read 文件 frontmatter 的 `title:` 字段**确认主题相关**再注入——Glob 可能有无关的子串 false positive（如 `*Flow*` 匹配 `SnapFlow`）。
+完成后逐个检查所有 `[[...]]`，修复嵌套、路径污染、短 term 破坏长 alias，以及表格内未转义的 `\|`。
 
----
+### 5. 追加日志
 
-### Step 5：日志记录
+串行追加到 `Workbench/logs/YYYY-MM-DD.md`；不存在时先写 `# YYYY-MM-DD`：
 
-用 Edit（或 Write 若文件不存在）将以下格式的 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`（日期为今天）：
+```markdown
+### [HH:MM] paper-digest
+- **input**: <原始输入>
+- **output**: [[Papers/{笔记文件名}]]
+- **observation**: <一句话核心贡献>
+- **sources**: <source type, official URL, local_path>
+- **extracted**: figures=<N>, tables=<N>, equations=<N>, videos=<N>
+- **embedded**: figures=<N>, tables=<N>, equations=<N>, videos=<N>, wikilinks=<N>
+- **dead_links**: term1, term2, ...
+- **issues**: <依赖、网络、解析、API 或来源缺失；无则 none>
+```
 
-   ```markdown
-   ### [HH:MM] paper-digest
-   - **input**: <source 的原始内容>
-   - **output**: [[Papers/{笔记文件名}]]
-   - **observation**: <一句话描述论文核心贡献>
-   - **extracted**: figures=<N>, tables=<N>, equations=<N>, videos=<N>  # Step 2 所有源文件里各类元素的总数（跨源去重后的 ceiling，即笔记最多能嵌多少）
-   - **embedded**: figures=<N>, tables=<N>, equations=<N>, videos=<N>, wikilinks=<N>  # 最终笔记里实际出现的各类元素条目数
-   - **dead_links**: term1, term2, ...  # Step 4 未命中的 term
-   - **issues**: <执行过程中遇到的问题，如源获取失败、defuddle 解析失败；无问题则写 "none">
-   ```
+## Guard
 
-若日志文件不存在，先创建文件（包含一级标题 `# YYYY-MM-DD`），再追加 entry。
+- 默认不改已有论文笔记或 assets；只有用户明确授权更新时才最小合并，并保留 frontmatter、手写内容和已有链接。
+- 每个 claim、URL、数字、公式、表格和媒体必须追溯到已记录的官方 URL 与本地提取文件位置；搜索摘要和二手转载不能替代原文。
+- 网络、API 或单类来源失败时按既定 fallback 有限重试，随后把对应来源/指标标为 unavailable 或 `null`；不得编造缺失信息，也不得让非关键指标阻塞正文 digest。
+- 临时目录必须专属于本次任务，不覆盖同名旧目录；只清理已确认由本次创建的精确路径，绝不对 `/tmp` 或宽泛路径做递归删除。
+- 只创建或更新本次目标论文的 note、assets 和一条日志；不批量修改其他 paper notes、helper scripts、DomainMaps 或索引。
+- 不安装缺失依赖、不绕过访问控制、不使用非官方镜像，除非用户明确授权且来源身份可验证。
 
 ## Verify
 
-### Step 2 (Fetch) 自检
-- [ ] 三类源（paper / website / github）均已尝试发现；WebSearch 兜底已对每一类跑过（不可跳过）
-- [ ] paper / website 源已通过 defuddle 抓到 `/tmp/{ShortTitle}/paper.json` 或 `website.json`；github 源已通过 `curl` 抓到同目录下的 `github.md`
-- [ ] Step 2.3 两项检查（文件完整性；website 的 video/figure URL 完整性）均已过；未过的已记入 Step 5 log 的 `issues`
-- [ ] Step 2.4 已产出 `/tmp/{ShortTitle}/metrics.json`，含 `measured_at`；存在的源对应 metrics 块非 null；缺失源对应块为 null；API 失败已记入 Step 5 log 的 `issues`
+### Fetch
 
-### Step 3 (Compose & Save) 自检
-- [ ] `Papers/{笔记文件名}.md` 已创建
-- [ ] 笔记中所有 URL / 数字 / 公式 / 表格 **均可在 Step 2 的某类源文件里 grep 到**，无新增
-- [ ] 笔记 body 的 prose（方法名、技术 claim、数值）**均可追溯到主文本源文件对应 section 的原文**，无凭印象补写
-- [ ] 每个 figure / equation / table / video **就近放置**——放在相关讨论的段落附近
-- [ ] Teaser 媒体（若存在）嵌在 `## Summary` 段内
-- [ ] 未嵌入 OG image / social card / banner 等装饰性图片
-- [ ] **每个嵌入元素都有紧邻的描述**，说明这张图/表/视频在展示什么，而不是光秃秃嵌入或重复 section 标题
-- [ ] **每个元素的嵌入位置与其描述在语境上一致**：元素不应被放在会误导读者的上下文（例：一段讲 "zero-shot 失败" 的文字下方不能紧接一个展示成功的视频）。若描述和周围文字冲突，更换嵌入的位置
-- [ ] **Rating 三处一致**：Summary 里的 Rating、frontmatter 的 `rating` 字段、`### Rating` 段的分数完全对应
-- [ ] **Rating 段有 Metrics 行**：`### Rating` 段首行是 `**Metrics** (as of YYYY-MM-DD): ...`，数字来自 `/tmp/{ShortTitle}/metrics.json`，缺失源对应字段写 "N/A（原因）"
+- [ ] 已对 paper/website/github 三类官方源分别尝试发现；没有网页发现能力或来源不存在时已如实记录。
+- [ ] 每个可用源都有官方 URL、访问日期、唯一 `local_path`；生成文件非空且标题匹配目标。
+- [ ] HTML/PDF/README 使用现有 Node/Python/curl 管线；依赖缺失和 fallback 路径已记录，没有修改 helper scripts。
+- [ ] website URL 和 multi-panel figure 完整性已检查；未恢复项已进入 issues。
+- [ ] `metrics.json` 可解析、含 `measured_at` 和三个固定块；可用来源有值，缺失/失败来源为 `null`，计算字段可复算。
 
-### Step 4 (Wikilink 注入) 自检 
+### Compose and save
 
-**Read 最终写入的笔记文件**，肉眼逐个检查每个 `[[...]]` occurrence 是否合法。对每个 wikilink 过一遍下面的问题，任一 "否" 即需修复：
+- [ ] `Papers/{文件名}.md` 已创建；若原笔记存在，只有在显式授权下做最小更新且用户内容仍在。
+- [ ] frontmatter、Summary、Body、关联工作、论文点评符合模板；无 `%%...%%` 或占位符。
+- [ ] 所有 URL、数字、公式、表格、方法 claim 可在记录的本地来源文件中搜索到，并已标明来源位置；没有凭记忆补写。
+- [ ] 媒体与说明紧邻且语境一致；teaser 位置正确；无装饰图；PDF assets 命名和路径符合约定。
+- [ ] Summary、frontmatter `rating` 和 `### Rating` 分数一致；Rating 首行的 Metrics 日期和数值来自 `metrics.json`，缺失字段写 `N/A（原因）`。
 
-- [ ] **结构合法**：是 `[[文件名|显示文本]]` 形式，`[[` 和 `]]` 成对，`|` 恰好一个（表格 cell 内的 alias 分隔符已用 `\|` 转义）
-- [ ] **无嵌套**：`|` 之后到 `]]` 之间是纯文本，不含另一个 `[[` —— 没有 `[[...|[[...|term]]]]` 这种双重嵌套
-- [ ] **未污染路径**：wikilink 没有出现在 `Papers/xxxx-xxx.md` 这类文件路径字符串的中间（即路径里的 term 没有被错误包装成 `Papers/2405-[[2405-Octo|Octo]].md`）
-- [ ] **未污染更长术语**：短 term（如 `π0`）的注入没有破坏更长术语的 alias（如 `[[2504-Pi05|π0.5]]` 里的 `π0` 没有被再次包装）
+### Wikilink and log
 
-### Step 5 (Log) 自检
-- [ ] 日志已追加到 `Workbench/logs/YYYY-MM-DD.md`
+- [ ] 最终笔记中每个 wikilink 成对、无嵌套、目标存在；alias 只有一个分隔符，表格 cell 中已转义；没有污染路径或更长术语。
+- [ ] dead-link inventory 与未命中候选一致，没有为消除 dead link 创建范围外笔记。
+- [ ] 日志只追加一次；sources、extracted、embedded、dead_links、issues 与最终 artifacts 一致。

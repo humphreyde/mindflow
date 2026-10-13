@@ -5,98 +5,136 @@ description: 当用户说"调研""survey""了解研究现状"，或需要系统�
 
 ## Purpose
 
-给定一个研究主题，以 `DomainMaps/` 为认知基线、以近期 survey paper 为文献锚点，批量 digest 相关论文，综合出 `Topics/{Topic}-Survey.md` —— 作为对相关 domain 当前认知的 delta 报告（无对应 DomainMap 时退化为完整领域分析）。
+支持两种互斥模式：
+
+1. **外部主题调研**：以 `DomainMaps/` 为认知基线、以近期 survey 为锚点发现论文，输出 `Topics/{Topic}-Survey.md` 形式的认知 delta。
+2. **显式本地论文集对比**：只比较用户明确提供的本地 PDF、论文笔记或路径清单，形成跨论文结论；不得自动扩展为外部文献搜索。
+
+先根据输入选择模式。用户同时给出 topic 和封闭论文集时，默认本地对比；是否扩展外部资料必须另行获得用户授权。
 
 ## Steps
 
-### 1. 基线建立
-- **认知基线**：读 `DomainMaps/_index.md` 找相关 domain；若有，读对应 `DomainMaps/{Name}.md`
-- **内容基线**：检查 `Topics/{Topic}-Survey.md`；若存在，读取该文件，用 frontmatter 的 `date_updated` 作为截止日期，扫描 body 中形如 `[[YYMM-ShortTitle]]`（如 `[[2510-XVLA]]`、`[[2602-DM0]]`）的 wikilinks 作为已收录论文清单，作为增量调研的起点；若无，本次是新建
+### 1. 建立范围与基线
 
-### 2. Scoping
+两种模式都先读取 `references/tags.md` 和 `references/obsidian-syntax.md`，再读取 `DomainMaps/_index.md`；若 topic 对应已有 domain，读取该 DomainMap，但不直接修改它。
 
-#### 2.1 搜索相关 Survey
-搜索本主题近期新出现的 survey paper（若 Step 1 存在内容基线，优先找其截止日期之后的）。先在已有 `Papers/`里寻找，再结合 WebSearch，挑 1-3 篇最相关的。若本 topic 无专门 survey，退而找**相邻 / 上位 topic 的 survey paper**。
+若目标 `Topics/{Topic}-Survey.md` 已存在，读取其 `date_updated`，并从正文中提取形如 `[[YYMM-ShortTitle]]` 的论文 wikilink，形成已有收录清单。更新时保留仍然有效的旧论据与用户编辑。
 
-为挑选出来的 survey paper 启动 subagent 并行调用 `paper-digest` 生成笔记，主 agent 读取这些 survey paper 的笔记文件。
+#### 外部主题调研范围
 
-#### 2.2 确定候选论文清单
-与 Step 1 已收录清单去重后得到候选论文清单，分两类：
-- **需 digest**：从侦察到的 survey 中提取反复引用的 canonical 论文 → 进入 Step 3
-- **已有笔记**：从 `Papers/` 搜索本 topic 相关笔记 → 无需 digest，直接参与 Step 4 综合
+在搜索前记录 topic、同义词、时间窗口和停止条件。默认先查 vault 中的 `Papers/`，再使用运行时可用的网页发现能力或官方 API/站点查找 1-3 篇最相关的新 survey；若没有专门 survey，再查相邻或上位 topic。达到 3 篇有效锚点，或连续两轮查询没有新增相关锚点时停止，不无限扩展搜索。
 
-### 3. 批量 paper-digest
-为每篇待 digest 的论文启动 subagent 并行调用 `paper-digest` 生成笔记；若 paper-digest 发现论文已有笔记，则跳过（不覆盖、不询问）。等所有 subagent 完成后，进入下一步。
+#### 本地论文集范围
+
+把用户明确提供的路径、PDF 和 wikilink 规范化为封闭清单。按 arXiv ID、DOI、已有笔记路径、规范化标题依次去重。清单之外的论文只可作为已提供论文中的引用背景提及，不得新建笔记或作为比较证据；外部元数据仅可用于确认清单内论文身份与来源。
+
+### 2. 建立候选清单
+
+#### 外部主题调研
+
+读取选中的 survey 来源或现有笔记，提取反复引用且落在既定 topic/时间范围内的 canonical 论文。与已有收录清单及 `Papers/` 中已有笔记去重，分为：
+
+- **需 digest**：范围内 canonical 论文，且无现有笔记。
+- **已有笔记**：范围内且已有笔记，可直接参与综合。
+
+一旦论文进入既定候选清单，不得为了节省时间主观跳过；获取失败记入 issues。
+
+#### 本地论文集对比
+
+已有 `Papers/*.md` 直接进入综合；本地 PDF 或其他尚无笔记的显式输入进入“需 digest”。不得加入清单外论文。若不同路径指向同一论文，保留一个 canonical 条目并记录别名。
+
+### 3. 生成缺失笔记
+
+对“需 digest”逐篇执行 `paper-digest`。已有笔记立即复用，不覆盖、不询问批量更新。
+
+默认顺序执行。只有同时满足以下条件时才可并行：运行时具备并行工作能力；用户明确授权；每篇 digest 相互独立；输出笔记/assets 路径不重叠；不存在并发日志、历史或目标报告等共享写入。共享内容由协调过程串行写入。否则顺序执行是必选后备。
 
 ### 4. 综合写作
 
-**读取笔记**：只读取候选论文清单里 rating >= 2 的论文笔记，作为新增论文（筛 rating 用 Bash 批处理 frontmatter，避免对每篇 Read）
+外部主题调研完整读取候选清单中 `rating >= 2` 的笔记；可用 shell 批量筛 frontmatter，但不得只读摘要或截断正文。本地论文集对比必须完整读取显式清单中的每篇笔记，不以 rating 过滤，因为低评分论文也可能提供关键反例。
 
-**确定 section 结构：**  下列必备元素为骨架；各元素内部的子分类由**已有对应 DomainMap + 已有 `Topics/{Topic}-Survey.md`（增量时） + Step 2.1 新侦察的 survey paper** 综合提炼：
+#### 外部主题调研结构
 
-- **Overview**：一句话定位 + 领域活跃度（时间线 / 参与格局 / 学术产出等） + 整体趋势
-- **Problem & Motivation**：本领域在解决什么核心问题，为什么重要，为什么适合现在做
-- **技术路线对比**：分析各主流路线的核心思路，实际效果，优缺点等，嵌入代表性论文
-- **Datasets & Benchmarks**：整理常用的 Training Datasets，Benchmarks（包含 SOTA methods 和 performance），可以用多个表格方式呈现
-- **Open Problems**：真实的 open，不是教科书式列举
-- **调研日志**：元数据（日期、论文统计、未能获取说明）
+输出或增量更新 `Topics/{Topic}-Survey.md`，包含：
 
-**写作基线**：Survey 定位为 DomainMap 的 delta 报告——已在对应 DomainMap 中 Established 的内容不重述，聚焦窗口内的新技术路线、对既有 claim 的支持/挑战、新 open problems；必要时用 `[[DomainMaps/{Name}#某节]]` 引用基线。无对应 DomainMap 时完整展开所有必备元素。
+- **Overview**：一句话定位、领域活跃度与整体趋势。
+- **Problem & Motivation**：核心问题、重要性与时机。
+- **技术路线对比**：主流路线、实际效果、优缺点及代表性论文。
+- **Datasets & Benchmarks**：training datasets、benchmarks、代表性 SOTA 与 performance。
+- **Open Problems**：由证据和矛盾支持的真实 open problems。
+- **调研日志**：日期、范围、查询/锚点、论文统计、失败与降级。
 
-若调研中发现明显应纳入 DomainMap 的内容，在 `## 调研日志` 之前加 `## DomainMap 更新建议` 节显式列出；无则不加此节。
+对应 DomainMap 已建立的知识不大段复述，优先报告窗口内的新路线、对既有 claim 的支持/挑战和新 open problems；必要时链接 `[[DomainMaps/{Name}#某节]]`。没有对应 DomainMap 时完整展开。若发现值得更新的内容，在调研日志前增加 `## DomainMap 更新建议`，但不直接改 `DomainMaps/`。
 
-**Frontmatter**（新建或更新时写入/刷新）：
+#### 本地论文集对比结构
+
+在用户指定路径写入；未指定时使用 `Topics/{Topic}-Survey.md`，并明确 frontmatter/标题中的 comparison scope。至少包含：
+
+- **Scope**：封闭论文清单、选择依据与不可得项。
+- **Comparison dimensions**：问题设定、核心假设、方法、训练数据、评测、效率与适用边界。
+- **Evidence matrix**：每项结论对应具体论文 wikilink、section/figure/table 或本地页码。
+- **Agreement & contradictions**：一致结论、冲突证据及不可直接比较的原因。
+- **Takeaways & open questions**：跨论文 pattern、仍缺的证据、可证伪问题。
+- **调研日志**：处理统计、失败与降级；注明未做外部发现。
+
+不得因为清单论文没有共同 benchmark 而强行排出名次；先解释 setup 差异和可比性。
+
+新建或更新时使用：
+
 ```yaml
 ---
 title: <Topic 全名>
-description: <一句话描述本 Survey 覆盖的范围与核心发现>
+description: <一句话描述范围与核心发现>
 tags: [...]
 date_updated: YYYY-MM-DD
 year_range: YYYY-YYYY
 ---
 ```
 
-**Tag 选择**：阅读 vault 目录下的 `{vault_root}/references/tags.md`，按照规范选择 tag。
+每个论文事实用已有 `[[论文笔记]]` 追溯；外部网页只作来源补充，并保留 URL 与访问日期。无法验证的信息标成 unknown，不补造引用、年份、作者、数字或结论。
 
-**Obsidian syntax**：写入前参照 `{vault_root}/references/obsidian-syntax.md` Obsidian-specific quirks。
+### 5. 追加日志
 
-新建或增量更新 `Topics/{Topic}-Survey.md`。
-
-### 5. 日志
-追加 log entry 到 `Workbench/logs/YYYY-MM-DD.md`（文件不存在则新建并加一级标题 `# YYYY-MM-DD`）：
+串行追加到 `Workbench/logs/YYYY-MM-DD.md`；不存在时先写 `# YYYY-MM-DD`：
 
 ```markdown
 ### [HH:MM] literature-survey
-- **input**: <topic>
+- **input**: <topic 或本地论文集>
+- **mode**: external-topic | local-set
 - **output**: [[Topics/{Topic}-Survey]]
-- **stats**: 侦察 survey N 篇，新增论文 N 篇
-- **observation**: <一句话领域核心发现>
+- **stats**: 侦察 survey N 篇，新增论文 N 篇，对比论文 N 篇
+- **observation**: <一句话核心发现>
 - **issues**: <未能获取的论文及原因；无则 none>
 ```
 
+## Guard
+
+- 每个事实、数字和引用都必须能回溯到具体论文笔记、原始来源位置或有 URL 的官方来源；不确定就标 unknown，禁止虚构 citation。
+- 外部模式必须遵守预先记录的 topic、时间窗口与停止条件；本地模式必须把显式论文集当作封闭集合，不得静默扩大范围。
+- 以 arXiv ID、DOI、笔记路径和规范化标题去重；不重复 digest、不创建同论文的第二份笔记。
+- 不覆盖已有论文笔记，不删除现有 survey 中仍有效的用户内容，不直接修改 DomainMap 或候选范围外的笔记。
+- 并行仅在运行时支持、用户授权、任务独立且无共享写入时启用；否则顺序执行。
+- 来源无法访问时记录尝试、原因和缺口；不要用搜索摘要或二手转述冒充已读原文。
+
 ## Verify
 
-### Step 1 · 基线建立
-- [ ] 认知基线：已读 `DomainMaps/_index.md`；若 topic 对应某已有 domain，已读对应 DomainMap
-- [ ] 内容基线：若 `Topics/{Topic}-Survey.md` 已存在，已从 frontmatter 读 `date_updated`、从 body wikilinks 重建论文清单
+### 范围与来源
 
-### Step 2 · Scoping
-- [ ] 搜索 survey 的尝试路径已走过（本主题→相邻/上位）；若均无，Survey 调研日志中明示"无参考 survey"
-- [ ] 候选论文清单已对 Step 1 已收录清单去重
+- [ ] 已明确记录 `external-topic` 或 `local-set`；本地模式的输出包含完整封闭清单，且没有清单外新增论文笔记。
+- [ ] 已读取 `DomainMaps/_index.md`；存在相关 DomainMap 时已读取但未修改。
+- [ ] 现有目标文件的 `date_updated`、论文 wikilink 和用户内容已在更新前读取并保留。
+- [ ] 外部模式记录了查询、时间窗口、1-3 个锚点或“无参考 survey”，且停止条件已满足；本地模式注明未做外部发现。
+- [ ] 候选已按稳定标识与已有收录清单去重。
 
-### Step 3 · 批量 paper-digest
-- [ ] "需 digest" bucket 中每篇 canonical 论文均已启动 paper-digest；issues 仅允许记录 paper-digest 实际失败（PDF 不可得 / API 错误等），不允许为控时长 / 规模而主观跳过
+### 笔记与综合
 
-### Step 4 · 综合写作
-- [ ] 所有新增论文（候选论文清单中 rating >= 2） 的笔记已**全部完整读取，无跳过，无截断**
-- [ ] 6 条必备元素（Overview / Problem & Motivation / 技术路线对比 / Datasets & Benchmarks / Open Problems / 调研日志）全部出现
-- [ ] 若 Step 2.1 有 survey 输出，本次笔记的 section 结构可追溯到其 taxonomy
-- [ ] 技术路线对比有分析深度——不止罗列 method 是什么，还说清楚各自的实际效果与优缺点
-- [ ] 若有对应 DomainMap，Survey 未大段重述其 Established Knowledge
-- [ ] Survey 中每篇引用都用 `[[wikilink]]`，且 vault 中存在对应笔记（未能获取的论文在调研日志中明示）
-- [ ] Survey 中无遗留的 `%%...%%` 注释或占位符
-- [ ] 若 `{Topic}-Survey.md` 已存在：新内容与旧内容已 merge，未无故删除仍然有效的旧论据
-- [ ] 有 DomainMap 更新建议时已作为独立 section 列出；未直接修改 `DomainMaps/` 下任何文件
+- [ ] “需 digest”中的每篇都已执行 `paper-digest` 或记录实际获取失败；没有为控时长主观跳过。
+- [ ] 外部模式中所有纳入综合且 `rating >= 2` 的笔记均已完整读取；本地模式已完整读取显式清单中的每篇笔记，不按 rating 跳过；每个 claim 可追溯到来源。
+- [ ] 外部模式包含 Overview、Problem & Motivation、技术路线对比、Datasets & Benchmarks、Open Problems、调研日志；结构与新 survey taxonomy 的关系可解释。
+- [ ] 本地模式包含 Scope、Comparison dimensions、Evidence matrix、Agreement & contradictions、Takeaways & open questions、调研日志；比较结论没有跨不兼容 setup 强排。
+- [ ] 所有论文引用使用存在的 `[[wikilink]]`；不可得项只出现在 issues/调研日志；没有伪造 citation、残留 `%%...%%` 或占位符。
+- [ ] 增量更新没有无故删除旧论据；DomainMap 更新仅作为建议，没有直接修改 DomainMap。
 
-### Step 5 · 日志
-- [ ] 日志 entry 已追加到 `Workbench/logs/YYYY-MM-DD.md`，失败论文已记入 issues
+### 日志
+
+- [ ] 日志只追加一次，mode、统计、失败项与最终报告一致。
