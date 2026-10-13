@@ -14,7 +14,7 @@ autoresearch 是 MindFlow 的核心研究循环，实现了 PhD 导师制中 Res
 
 ## Steps
 
-每轮严格执行 4 步，然后根据停止条件决定是否进入下一轮。
+正常行动轮严格执行 4 步，然后根据停止条件决定是否进入下一轮。若执行前终止门命中，则本轮在状态重读和终止日志后立即结束，不进入 JUDGE 或 ACT。
 
 ### Step 1：READ STATE
 
@@ -26,7 +26,30 @@ autoresearch 是 MindFlow 的核心研究循环，实现了 PhD 导师制中 Res
 4. `Workbench/memory/patterns.md` — 近期 pattern。
 5. 按路径 `Workbench/logs/YYYY-MM-DD.md` 列出并读取最近 3 天的日志，了解近期行动、失败和连续重复，避免无信息增益的重试。
 
-若 `focus` 参数指定了某个 direction，优先提取该 direction 的相关状态，但仍读取上述全局状态以识别冲突、Owner override 和停止信号。开始判断前先检查 Owner 是否要求暂停或停止。
+若 `focus` 参数指定了某个 direction，优先提取该 direction 的相关状态，但仍读取上述全局状态以识别冲突、Owner override 和停止信号。
+
+### Step 1.5：PRE-ACTION TERMINAL GATE
+
+状态重读完成后、进入 Step 2 前，先检查以下终止条件：
+
+- Owner 已要求暂停或停止。
+- 当前状态没有证据支持任何卫星行动。
+- 所有可能行动都缺少必须由 Owner 提供的输入、授权或选择，因而当前没有 authorized action。
+- 已知 Guard 或用户内容保护边界明确禁止当前候选行动。
+
+命中任一条件时，不选择、不读取也不执行卫星 skill。先向 `Workbench/logs/YYYY-MM-DD.md` 串行追加终止轮记录；文件不存在时先创建并写一级标题 `# YYYY-MM-DD`：
+
+```markdown
+### [HH:MM] autoresearch — round N (terminal)
+- **state_summary**: <本轮重新读取到的关键状态，1-2 句>
+- **judgment**: <命中的执行前终止条件和证据>
+- **action**: none
+- **status**: stopped | blocked
+- **outcome**: <暂停原因，以及需要 Owner 提供的输入/授权/选择；无则写 none>
+- **consecutive_failures**: unchanged
+```
+
+日志写入后立即暂停循环并等待 Owner；不得继续 Step 2、Step 3 或普通 Step 4。终止轮没有顶层卫星行动，也不增加失败计数。
 
 ### Step 2：JUDGE
 
@@ -48,7 +71,7 @@ autoresearch 是 MindFlow 的核心研究循环，实现了 PhD 导师制中 Res
 | 最近一次记忆蒸馏距今超过 5 天 | `memory-distill` |
 | 近期有新 validated insight 但 agenda 未反映 | `agenda-evolve` |
 
-`memory-retrieve` 是其他 skill 可按其当前接口使用的只读卫星；只有状态明确要求一次独立记忆检索时，才把它作为本轮唯一行动。
+`memory-retrieve` 只保留为其他 skill 内部组合使用的 canonical satellite；它不是 autoresearch 可独立选择的顶层行动。用户仍可在 autoresearch 之外显式调用它。
 
 判断时依次考虑：
 
@@ -61,23 +84,23 @@ autoresearch 是 MindFlow 的核心研究循环，实现了 PhD 导师制中 Res
 
 ### Step 3：ACT
 
-从仓库根目录的 canonical registry 精确解析目标 skill；不得从兼容链接、隐藏目录或记忆中的旧路径执行：
+从仓库根目录的 canonical registry 精确解析目标 skill；不得从兼容链接、隐藏目录或记忆中的旧路径执行。Registry 同时记录顶层候选和 internal-only 卫星，但 autoresearch 只能选择 `top-level` 条目：
 
-| Skill | Canonical entrypoint |
-|:------|:---------------------|
-| `daily-papers` | `skills/1-literature/daily-papers/SKILL.md` |
-| `paper-digest` | `skills/1-literature/paper-digest/SKILL.md` |
-| `literature-survey` | `skills/1-literature/literature-survey/SKILL.md` |
-| `idea-generate` | `skills/2-ideation/idea-generate/SKILL.md` |
-| `idea-evaluate` | `skills/2-ideation/idea-evaluate/SKILL.md` |
-| `experiment-design` | `skills/3-experiment/experiment-design/SKILL.md` |
-| `experiment-track` | `skills/3-experiment/experiment-track/SKILL.md` |
-| `result-analysis` | `skills/3-experiment/result-analysis/SKILL.md` |
-| `draft-section` | `skills/4-writing/draft-section/SKILL.md` |
-| `writing-refine` | `skills/4-writing/writing-refine/SKILL.md` |
-| `agenda-evolve` | `skills/5-evolution/agenda-evolve/SKILL.md` |
-| `memory-distill` | `skills/5-evolution/memory-distill/SKILL.md` |
-| `memory-retrieve` | `skills/5-evolution/memory-retrieve/SKILL.md` |
+| Skill | Canonical entrypoint | Role |
+|:------|:---------------------|:-----|
+| `daily-papers` | `skills/1-literature/daily-papers/SKILL.md` | top-level |
+| `paper-digest` | `skills/1-literature/paper-digest/SKILL.md` | top-level |
+| `literature-survey` | `skills/1-literature/literature-survey/SKILL.md` | top-level |
+| `idea-generate` | `skills/2-ideation/idea-generate/SKILL.md` | top-level |
+| `idea-evaluate` | `skills/2-ideation/idea-evaluate/SKILL.md` | top-level |
+| `experiment-design` | `skills/3-experiment/experiment-design/SKILL.md` | top-level |
+| `experiment-track` | `skills/3-experiment/experiment-track/SKILL.md` | top-level |
+| `result-analysis` | `skills/3-experiment/result-analysis/SKILL.md` | top-level |
+| `draft-section` | `skills/4-writing/draft-section/SKILL.md` | top-level |
+| `writing-refine` | `skills/4-writing/writing-refine/SKILL.md` | top-level |
+| `agenda-evolve` | `skills/5-evolution/agenda-evolve/SKILL.md` | top-level |
+| `memory-distill` | `skills/5-evolution/memory-distill/SKILL.md` | top-level |
+| `memory-retrieve` | `skills/5-evolution/memory-retrieve/SKILL.md` | internal-only |
 
 执行顺序：
 
@@ -102,10 +125,8 @@ autoresearch 是 MindFlow 的核心研究循环，实现了 PhD 导师制中 Res
 - **consecutive_failures**: <同一 skill + 同一目标的连续失败次数>
 ```
 
-失败、部分完成或等待授权也必须记录，且计入同一 skill + 同一目标的连续失败次数；成功后该目标的失败计数归零。日志完成后检查以下停止条件：
+失败、部分完成或等待授权也必须记录，且计入同一 skill + 同一目标的连续失败次数；成功后该目标的失败计数归零。日志完成后检查以下行动后停止条件：
 
-- Owner 已要求暂停或停止。
-- 没有证据支持任何行动，或下一步缺少必须由 Owner 提供的输入、授权或选择。
 - 连续 3 轮判断指向同一 skill + 同一目标，或该组合连续失败 3 次。此时只在 `agenda.md` 的 Discussion Topics 追加一个包含证据和已尝试行动的问题，然后暂停等待 Owner。
 - 目标 skill 的 Guard 或人类确认边界要求暂停；不得把 autoresearch 的启动视为对发布、外部通讯、覆盖用户内容或其他受保护操作的授权。
 
@@ -116,7 +137,9 @@ autoresearch 是 MindFlow 的核心研究循环，实现了 PhD 导师制中 Res
 每轮结束时检查：
 
 - [ ] 本轮状态来自本轮重新读取的 agenda、queue、memory 和最近日志，而非上一轮缓存。
-- [ ] 恰好选择并执行或尝试执行了一个顶层卫星 skill；canonical entrypoint 存在且 `name` 匹配。
+- [ ] 若执行前终止门命中，本轮在任何卫星读取或执行前记录 `action: none` 和 stopped/blocked 原因并暂停；终止轮不要求卫星行动。
+- [ ] 若执行前终止门未命中，本轮恰好选择并执行或尝试执行了一个 `top-level` 卫星 skill；canonical entrypoint 存在且 `name` 匹配。
+- [ ] `memory-retrieve` 未被选为顶层行动；它只可由其他 skill 内部组合使用，或由用户在 autoresearch 之外显式调用。
 - [ ] 执行依据该 entrypoint 当前的 Steps/Guard/Verify；结果未通过 Verify 时没有记为 success。
 - [ ] 本地多论文比较使用 `literature-survey` 的 `local-set` 模式，输入是可枚举的封闭清单，且没有外部扩展。
 - [ ] 日志包含 state_summary / judgment / action / status / outcome / consecutive_failures，失败也已留下阶段和原因。
@@ -127,6 +150,8 @@ autoresearch 是 MindFlow 的核心研究循环，实现了 PhD 导师制中 Res
 - **原子性**：一轮只执行一个顶层卫星 skill；失败后先记录，不在同一轮改调其他 skill。
 - **状态刷新**：每轮必须重新读取最新状态，因为上一轮行动、Owner 编辑或外部进展可能已经改变 vault。
 - **Canonical source**：只从 registry 中的 `skills/<category>/<name>/SKILL.md` 解析卫星；每次都重读当前 Steps、Guard、Verify，不凭记忆执行。
+- **执行前终止**：Owner stop、无 authorized action 或已知保护边界在 Step 1.5 立即终止；不得为了满足“一轮一个行动”而执行额外卫星。
+- **内部卫星边界**：`memory-retrieve` 保留在 canonical registry 供 skill 内部组合，但 autoresearch 不得将其选为独立顶层行动。
 - **Mission 只读**：不修改 `agenda.md` 的 Mission 节；Mission 只能由 Owner 决定，`agenda-evolve` 也只能在自身边界内处理议程。
 - **人类决策优先**：保留每个卫星 skill 的确认、授权、歧义处理和用户内容保护要求。遇到这些边界时标记 blocked、记录并暂停，不代替 Owner 作决定。
 - **封闭集不外扩**：`literature-survey local-set` 只能消费本轮记录的 `local_set_paths`；外部发现必须作为另一轮 `external-topic` 行动，并具有独立依据或授权。
