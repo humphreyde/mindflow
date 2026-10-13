@@ -16,8 +16,8 @@ description: >
 
 ### Step 2：读取 DomainMaps，锚定领域已知边界
 
-1. 用 Read 读取 `DomainMaps/_index.md`，找到相关的 domain（如 VLA、VLN、RL 等）。
-2. 用 Read 读取对应的 `DomainMaps/{Name}.md`，重点关注：
+1. 读取 `DomainMaps/_index.md`，找到相关的 domain（如 VLA、VLN、RL 等）。
+2. 读取对应的 `DomainMaps/{Name}.md`，重点关注：
    - `## Established Knowledge`：已有共识，生成 idea 时可以利用，但不应作为 contribution 点（除非有明确突破）。
    - `## Active Debates`：领域内仍有争议的问题，是生成 idea 的高价值区域——可以针对某个 debate 设计决定性实验或提出新框架。
    - `## Open Questions`：领域显式列出的未解决问题，可直接对应生成 idea。
@@ -63,12 +63,12 @@ description: >
 1. 读取 `Templates/Idea.md`，了解模板字段结构（frontmatter + sections）。
 2. 为每个候选 idea 创建独立的 `Ideas/` 文件：
    - **文件名**：用描述性 CamelCase 名称，2-4 个关键词，体现 idea 的核心主张，如 `Cross-Domain-VLA-Transfer.md`、`FewShot-VLA-LoRA.md`。避免用 `Idea1.md` 此类无意义命名。
-   - **去重检查**：用 Glob 扫描 `Ideas/` 目录，若已存在内容相近的文件（文件名或标题高度重叠），停止创建该 idea 并告知 Human，不覆盖已有文件。
-   - 用 Write 将每个 idea 按模版保存到文件中。
+   - **去重检查**：列出 `Ideas/` 目录中的现有笔记，并检索文件名和标题；若已存在内容相近的文件（文件名或标题高度重叠），停止创建该 idea 并告知 Human，不覆盖已有文件。
+   - 确认目标路径尚不存在后，将每个 idea 按模板创建为新文件。
 
 ### Step 7：追加日志
 
-用 Edit（若文件不存在则用 Write）将以下格式的 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`（日期为今天）：
+将以下格式的 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`（日期为今天）；若日志文件不存在，先以当天日期为一级标题创建，再追加：
 
 ```markdown
 ### [HH:MM] idea-generate
@@ -98,8 +98,8 @@ description: >
 
 执行过程摘要：
 
-1. **Step 1**：解析意图 → 任务=VLN，方向=unseen environment generalization；Grep `Papers/` 搜索 `VLN`、`generalization`、`unseen`，了解已有论文覆盖
-2. **Step 2**：Read DomainMaps/VLN.md → Established Knowledge（预训练 vision-language 特征有效）、Active Debates（topological vs. metric map）、Open Questions（zero-shot transfer 到新环境）
+1. **Step 1**：解析意图 → 任务=VLN，方向=unseen environment generalization；在 `Papers/` 全文检索 `VLN`、`generalization`、`unseen`，了解已有论文覆盖
+2. **Step 2**：读取 `DomainMaps/VLN.md` → Established Knowledge（预训练 vision-language 特征有效）、Active Debates（topological vs. metric map）、Open Questions（zero-shot transfer 到新环境）
 3. **Step 3**：生成 10 个候选 idea（每个含 Hypothesis / Motivation / Approach sketch / Expected outcome / Risk），覆盖 environment augmentation、world model imagination、topological pre-training、cross-environment retrieval 等路径
 4. **Step 4 粗筛**：排除需要大规模 3D 数据采集的方向，剩余 5 个
 5. **Step 5 深度验证**：对 5 个 idea 调用 idea-evaluate，获取 Novelty 评分和 closest works，选出 top 3

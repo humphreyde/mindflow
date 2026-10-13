@@ -14,11 +14,18 @@ experiment-track 是 MindFlow 实验执行循环的记录层。每当一轮实�
 
 ## Steps
 
+### Step 0：确认实验输出入口与 schema
+
+在产生任何实验输出前：
+
+1. 确认 `Experiments/` 目录存在；若不存在则创建。若目录无法创建，停止执行并告知 Owner。
+2. 读取 `Templates/Experiment.md`，以其 frontmatter 和 section 结构作为 Experiment 笔记的 schema。若模板缺失或无法读取，停止执行，不修改任何实验文件。
+
 ### Step 1：读取目标 Experiment 笔记
 
-用 Read 打开 `experiment` 参数指向的 `Experiments/xxx.md` 文件。重点提取以下字段：
+读取 `experiment` 参数指向的 `Experiments/xxx.md` 文件。重点提取以下字段：
 
-- `status`：当前实验状态（`planning` / `running` / `completed` / `failed`）
+- `status`：当前实验状态（按 `Templates/Experiment.md` 为 `planned` / `running` / `completed` / `failed`）
 - `variables`：实验变量（用于核对 Run Entry 中的 config 是否合理）
 - `metrics`：评估指标（用于核对 result 中上报的指标是否对齐）
 - 正文中已有的 `### Run [N]` 标题列表（用于计算新 Run 编号）
@@ -37,7 +44,7 @@ experiment-track 是 MindFlow 实验执行循环的记录层。每当一轮实�
 
 ### Step 3：追加 Run Entry
 
-用 Edit 将 Run Entry 插入 Experiment 笔记，位置规则：
+对 Experiment 笔记做精确追加，将 Run Entry 插入以下位置：
 
 - 若存在 `## Analysis` 节，将 Run Entry 追加在 `## Analysis` **之前**
 - 若不存在 `## Analysis` 节，追加到文件末尾
@@ -57,11 +64,11 @@ Run Entry 格式如下：
 
 ### Step 4：更新 frontmatter status
 
-用 Edit 修改 Experiment 笔记 frontmatter 中的 `status` 字段，按如下规则映射：
+仅精确更新 Experiment 笔记 frontmatter 中的 `status` 字段，按如下规则映射：
 
 | 当前 status | next 字段内容 | 新 status |
 | :--- | :--- | :--- |
-| `planning` | 任意 | `running` |
+| `planned` | 任意 | `running` |
 | `running` | 非停止性描述（继续调参、新 ablation 等） | `running`（保持不变） |
 | `running` | 停止性描述（实验达标、终止实验、结论确认等） | `completed` 或 `failed` |
 | `completed` / `failed` | 任意 | 保持不变（不得回退已终止状态） |
@@ -72,7 +79,7 @@ Run Entry 格式如下：
 
 ### Step 5：追加日志
 
-用 Edit（若文件不存在则先 Write）将以下 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`：
+将以下 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`：
 
 ```markdown
 ### [HH:MM] experiment-track
@@ -88,6 +95,7 @@ Run Entry 格式如下：
 ## Verify
 
 - [ ] Run Entry 已追加到 Experiment 笔记，编号连续且正确
+- [ ] 已确认 `Experiments/` 存在，且目标笔记遵循 `Templates/Experiment.md` schema
 - [ ] `result` 字段非空（有具体数值或"待补充"说明）
 - [ ] `config` 字段对照 variables 有实质内容
 - [ ] `observation` 和 `next` 字段均已填写
@@ -99,7 +107,7 @@ Run Entry 格式如下：
 - **append-only**：不得修改或删除已有的任何 `### Run [N]` Entry。已记录的实验结果是不可变的历史记录。
 - **不修改设计字段**：`variables`、`baseline`、`metrics` 等由 experiment-design 写入的字段一律不得修改。
 - **result 必须非空**：若 Owner 未提供量化结果，在 `result` 字段注明"待补充"，但不得完全省略该字段。
-- **不回退终止状态**：`status` 为 `completed` 或 `failed` 时，不得改回 `running` 或 `planning`。
+- **不回退终止状态**：`status` 为 `completed` 或 `failed` 时，不得改回 `running` 或 `planned`。
 - **语言规范**：中文正文 + 英文技术术语（模型名、方法名、benchmark 名、超参数名保持英文，不翻译）。
 
 ## Examples
@@ -112,11 +120,11 @@ Owner 说："实验跑完了，Run 3 用 lr=1e-4、BEV resolution=0.5m，SR 61.2
 
 执行过程：
 
-1. Read `Experiments/VLN-BEVFusion-Ablation.md` — 确认文件存在，status=`running`，已有 Run 1、Run 2，metrics 含 SR 和 SPL，存在 `## Analysis` 节。
+1. 确认 `Experiments/` 存在并读取 `Templates/Experiment.md`，再读取 `Experiments/VLN-BEVFusion-Ablation.md` — 确认文件存在，status=`running`，已有 Run 1、Run 2，metrics 含 SR 和 SPL，存在 `## Analysis` 节。
 
 2. 计算新 Run 编号：max(1, 2) + 1 = **Run 3**。
 
-3. Edit `Experiments/VLN-BEVFusion-Ablation.md`，在 `## Analysis` 之前追加：
+3. 在 `Experiments/VLN-BEVFusion-Ablation.md` 的 `## Analysis` 之前精确追加：
 
    ```markdown
    ### Run 3 — 2026-03-28
@@ -127,9 +135,9 @@ Owner 说："实验跑完了，Run 3 用 lr=1e-4、BEV resolution=0.5m，SR 61.2
    - **next**: 进一步将 BEV resolution 降至 0.3m，验证 resolution 收益是否持续递增，同时观察推理速度变化
    ```
 
-4. Edit frontmatter：`next` 描述为"进一步调参"，非停止性 → status 保持 `running` 不变。
+4. 精确更新 frontmatter：`next` 描述为"进一步调参"，非停止性 → status 保持 `running` 不变。
 
-5. Edit `Workbench/logs/2026-03-28.md`，追加：
+5. 在 `Workbench/logs/2026-03-28.md` 追加：
 
    ```markdown
    ### [14:32] experiment-track

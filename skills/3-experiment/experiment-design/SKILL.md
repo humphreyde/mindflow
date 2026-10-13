@@ -24,9 +24,16 @@ experiment-design 是 MindFlow 从 idea 到实验的桥接技能。给定一个 
 
 ## Steps
 
+### Step 0：确认实验输出入口与 schema
+
+在产生任何实验输出前：
+
+1. 检查 `Experiments/` 目录是否存在；若不存在，记录需要创建，但在 Step 1 的 status 校验通过前不执行写入。通过所有前置校验后、创建实验文件前，创建该目录；若创建失败，停止执行并告知 Owner。
+2. 读取 `Templates/Experiment.md`，将其 frontmatter 和 section 结构作为实验笔记的 schema。若模板缺失或无法读取，停止执行，不创建实验文件。
+
 ### Step 1：读取目标 Idea 笔记，验证 status
 
-用 Read 打开 `idea` 参数指向的 `Ideas/xxx.md` 文件。重点提取以下字段：
+读取 `idea` 参数指向的 `Ideas/xxx.md` 文件。重点提取以下字段：
 
 - `title`：idea 标题
 - `hypothesis`：核心假设（实验围绕此展开）
@@ -94,9 +101,11 @@ experiment-design 是 MindFlow 从 idea 到实验的桥接技能。给定一个 
 
 ### Step 4：按模板创建实验文件
 
-读取 `Templates/Experiment.md`，以其格式为基础，在 `Experiments/` 目录下创建新文件。
+依据 Step 0 读取的 `Templates/Experiment.md` schema，确认或创建 `Experiments/` 目录后再创建新文件。
 
 文件命名规则：`Experiments/YYYY-MM-DD-<IdeaTitle>.md`（日期为今天，IdeaTitle 取 idea 的 `title` 字段，去除空格和特殊字符）。
+
+创建前再次确认目标路径不存在；若同名实验文件已经存在，停止并告知 Owner，不覆盖、不清空、不追加到该文件。
 
 Frontmatter 字段填写：
 - `title`：实验标题（可与 idea title 相同或更具体）
@@ -118,7 +127,7 @@ Frontmatter 字段填写：
 
 ### Step 5：在 Idea 笔记中追加实验链接
 
-用 Edit 在源 Idea 文件（`Ideas/xxx.md`）末尾追加以下格式的链接节：
+在源 Idea 文件（`Ideas/xxx.md`）末尾精确追加以下格式的链接节：
 
 ```markdown
 ## Experiments
@@ -130,7 +139,7 @@ Frontmatter 字段填写：
 
 ### Step 6：追加日志
 
-用 Edit（若文件不存在则先 Write）将以下 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`：
+将以下 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`：
 
 ```markdown
 ### [HH:MM] experiment-design
@@ -147,6 +156,7 @@ Frontmatter 字段填写：
 ## Verify
 
 - [ ] `Experiments/YYYY-MM-DD-<IdeaTitle>.md` 已创建，frontmatter status 为 `planned`
+- [ ] 实验文件遵循 `Templates/Experiment.md` 的 frontmatter 和 section schema，且没有覆盖同名已有文件
 - [ ] Variables（自变量 / 因变量 / 控制变量）均非空
 - [ ] Baseline 列举了至少 2 个对比方法
 - [ ] Metrics 均为可量化指标（有具体数值定义）
@@ -159,6 +169,7 @@ Frontmatter 字段填写：
 - **Metrics 必须可量化**：任何无法直接计算数值的指标必须被拒绝或转化。若无法为某个 hypothesis 找到可量化的 metric，停止执行并告知 Owner。
 - **不修改源 Idea hypothesis**：`hypothesis` 字段属于 idea-generate / idea-evaluate 的职责范围，experiment-design 只读取，绝不修改。
 - **status 校验为硬性前置条件**：若 idea 的 status 不是 `developing` 或 `validated`，立即停止，不执行任何写入操作。告知 Owner 当前 status 及建议（如先执行 idea-evaluate）。
+- **不覆盖已有 Experiment**：目标实验文件已存在时立即停止；不得覆盖、清空或把新设计追加到已有实验文件。
 - **不伪造历史记忆**：Step 2 的记忆检索若无结果，如实说明，不编造相关历史经验。
 - **语言规范**：中文正文 + 英文技术术语（模型名、数据集名、benchmark 名、metric 名保持英文，不翻译）。
 
@@ -173,7 +184,7 @@ Frontmatter 字段填写：
 
 执行过程：
 
-1. Read `Ideas/VLA-GoalConditionedRecovery.md` — 确认 status=`developing`，提取 hypothesis 和 approach sketch（在 OpenVLA 基础上增加一个轻量 recovery head，输入 current state + goal image，输出 recovery action sequence）
+1. 读取 `Ideas/VLA-GoalConditionedRecovery.md` — 确认 status=`developing`，提取 hypothesis 和 approach sketch（在 OpenVLA 基础上增加一个轻量 recovery head，输入 current state + goal image，输出 recovery action sequence）
 
 2. 执行 memory-retrieve（scope: effective-methods + failed-directions）— 检索到一条 effective-methods 条目："reward shaping 在 manipulation task 上比直接 BC 收敛更稳定"；检索到一条 failed-directions 条目："直接 fine-tune 整个 VLA 做 recovery 导致 catastrophic forgetting"
 
@@ -208,12 +219,12 @@ Frontmatter 字段填写：
    - 风险 2：OOD test set 与 training distribution 差距过大，base VLA 本身失败率过高掩盖 recovery 效果（medium）→ 分层分析：分别报告 mild / severe OOD 扰动下的指标
    - 风险 3：recovery head 增加推理延迟超出实时控制要求（low）→ 提前 profile latency；若超标改用 distillation 压缩 head
 
-4. Read `Templates/Experiment.md` → Write `Experiments/2026-03-28-VLA-GoalConditionedRecovery.md`，填入上述方案，status=`planned`
+4. 确认 `Experiments/` 存在并读取 `Templates/Experiment.md`；确认目标路径不存在后创建 `Experiments/2026-03-28-VLA-GoalConditionedRecovery.md`，填入上述方案，status=`planned`
 
-5. Edit `Ideas/VLA-GoalConditionedRecovery.md` — 追加：
+5. 在 `Ideas/VLA-GoalConditionedRecovery.md` 精确追加：
    ```markdown
    ## Experiments
    - [[Experiments/2026-03-28-VLA-GoalConditionedRecovery]] — 验证 goal-conditioned recovery module 在 OOD 扰动下的 task success rate 提升
    ```
 
-6. Edit `Workbench/logs/2026-03-28.md` — 追加 log entry，primary-metric: task success rate on OOD test set，key-risk: recovery training set 规模不足导致过拟合
+6. 在 `Workbench/logs/2026-03-28.md` 追加 log entry，primary-metric: task success rate on OOD test set，key-risk: recovery training set 规模不足导致过拟合

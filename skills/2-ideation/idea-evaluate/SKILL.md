@@ -23,7 +23,7 @@ description: >
 
 idea-evaluate 支持两种输入：
 
-1. **文件路径**: 如`[[Ideas/xxx.md]]`，用 Read 打开文件，提取信息。
+1. **文件路径**: 如`[[Ideas/xxx.md]]`，读取文件并提取信息。
 2. **结构化文本**：候选 idea 描述。
 
 ## Steps
@@ -31,8 +31,8 @@ idea-evaluate 支持两种输入：
 ### Step 1：读取相关 Paper 笔记
 
 根据输入类型获取相关论文：
-- 若输入为文件路径，从提取Related Work的wikilinks，逐一 Read 对应的 Paper 笔记。
-- 若输入为结构化文本，根据 idea描述 中的关键词，用 Grep 在 `Papers/` 中搜索最相关的 2-4 篇笔记并读取。
+- 若输入为文件路径，从 Related Work 提取 wikilinks，逐一读取对应的 Paper 笔记。
+- 若输入为结构化文本，根据 idea 描述中的关键词，在 `Papers/` 中全文检索并读取最相关的 2-4 篇笔记。
 
 从每篇笔记中提取：
 
@@ -41,17 +41,22 @@ idea-evaluate 支持两种输入：
 - **Key Results**：主要实验结果（判断 idea 的 Novelty 和 Evidence）
 - **Strengths & Weaknesses**：先前工作的局限（判断 idea 的 Feasibility 和 Impact）
 
-### Step 2：WebSearch 补充外部证据
+### Step 2：补充外部证据（网络可用时）
 
-用 WebSearch 搜索与 idea 核心假设相关的最新工作（vault 外的论文、博客、技术报告）：
+若运行环境允许访问网络，检索与 idea 核心假设相关的最新工作（vault 外的论文、博客、技术报告）：
 - 搜索关键词从 hypothesis 和 approach sketch 中提取
 - 重点关注：是否已有非常相似的工作（影响 Novelty）、是否有新的实验证据支持或反驳假设（影响 Evidence 和 Risk）
-- 将发现整合到后续评分中，若发现高度相似的已有工作需在 Novelty 说明中注明
+- 记录可追溯的标题、链接与关键结论，将发现整合到后续评分中；若发现高度相似的已有工作，需在 Novelty 说明中注明
+
+若网络访问不可用、检索失败或来源内容无法核验：
+- 明确记录“外部证据不可用，本次仅基于 vault 内证据评估”，并继续后续步骤
+- 不得编造外部来源、链接或结论，也不得把“未能联网检索”表述为“未发现相关工作”
+- Novelty 和 Evidence 仅依据 vault 内可追溯证据保守评分，并在相应说明及 Reasoning 中标注证据覆盖范围和不确定性
 
 ### Step 3：读取 DomainMaps 上下文
 
-1. 用 Read 打开 `DomainMaps/_index.md`，定位与该 idea 相关的 domain（依据 tags 或 hypothesis 中的关键词）。
-2. 用 Read 打开对应的 `DomainMaps/{Name}.md`，重点阅读：
+1. 读取 `DomainMaps/_index.md`，定位与该 idea 相关的 domain（依据 tags 或 hypothesis 中的关键词）。
+2. 读取对应的 `DomainMaps/{Name}.md`，重点阅读：
    - **Active Debates**：领域当前争议（判断 Novelty 和 Impact）
    - **Open Questions**：未解决问题（判断 Impact 和 Evidence）
    - **Key Methods / Baselines**：主流方法（判断 Feasibility）
@@ -98,11 +103,13 @@ idea-evaluate 支持两种输入：
 - [ ] Novelty line 已按格式输出（`**Novelty**: X/5 — closest works: ...`），closest works 引用指向 vault 中已有的 Paper 笔记
 - [ ] 总分已计算
 - [ ] Reasoning 已给出（2-4 句话）
+- [ ] 外部证据来源可追溯；若网络不可用或检索失败，已明确记录降级范围且未把缺失检索结果当作否定证据
 
 ## Guard
 
 - **不修改 hypothesis**：`hypothesis` 是 idea-generate 的职责范围，idea-evaluate 只读取不修改。
 - **评估必须基于可追溯证据**：每个维度的说明必须能对应到 vault 中的具体笔记（Paper、DomainMaps、已有 Idea）。禁止凭空判断——若无足够证据支撑某维度评分，在说明中注明"证据不足，保守估计"。
+- **不得伪造外部证据**：仅使用实际访问并核验过的外部来源。网络不可用或检索失败时必须按 Step 2 降级，不能声称已完成外部查重，也不能据此断言不存在相似工作。
 - **语言规范**：中文正文 + 英文技术术语（模型名、方法名、benchmark 名保持英文，不翻译）。
 
 ## Examples
@@ -113,10 +120,10 @@ idea-evaluate 支持两种输入：
 /idea-evaluate --idea "[[Ideas/VLA-GoalConditionedRecovery.md]]"
 ```
 
-1. Read Idea 文件 → 提取信息
-2. Read 相关 Paper 笔记 → 确认 OpenVLA 和 RT-2 均无 recovery mechanism
-3. WebSearch "VLA goal-conditioned recovery" → 未发现高度相似工作，有 classical robotics recovery 文献佐证
-4. Read DomainMaps/VLA.md → Active Debates 包含 OOD 鲁棒性
+1. 读取 Idea 文件 → 提取信息
+2. 读取相关 Paper 笔记 → 确认 OpenVLA 和 RT-2 笔记均未记录 recovery mechanism
+3. 网络可用时检索 "VLA goal-conditioned recovery" 并记录实际核验的来源；网络不可用时明确降级为仅基于 vault 证据，不对外部相似工作作否定性判断
+4. 读取 `DomainMaps/VLA.md` → Active Debates 包含 OOD 鲁棒性
 5. 五维评分：Novelty 4 + Feasibility 3 + Impact 4 + Risk 3 + Evidence 3 = **17/25**
 6. Novelty line：`**Novelty**: 4/5 — closest works: [[Papers/2403-OpenVLA]], [[Papers/2312-RT2]]`
 7. Reasoning：方向有价值，Novelty 和 Impact 强，短板在 Feasibility（需构建 failure detection dataset）和 Evidence（VLA 场景无直接先验）
