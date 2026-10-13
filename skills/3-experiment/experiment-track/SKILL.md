@@ -4,8 +4,6 @@ description: >
   当 Owner 说"记录一下实验结果""实验跑完了"，
   或 Researcher 完成一轮实验需要记录时，
   在 Experiment 笔记中追加 Run Entry 并更新状态
-argument-hint: "<experiment> <result>"
-allowed-tools: Read, Edit, Glob
 ---
 
 ## Purpose

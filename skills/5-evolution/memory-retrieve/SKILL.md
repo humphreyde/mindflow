@@ -4,9 +4,6 @@ description: >
   被其他 skill 内部调用，从 Workbench/memory/ 中检索与当前任务相关的历史经验。
   当 idea-generate 需要查失败方向、experiment-design 需要查有效方法、
   或任何 skill 需要历史上下文时调用
-argument-hint: "<query> [scope]"
-user-invocable: false
-allowed-tools: Read, Glob, Grep
 ---
 
 ## Purpose

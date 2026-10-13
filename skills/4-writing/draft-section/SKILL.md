@@ -4,8 +4,6 @@ description: >
   当 Owner 说"写一下 introduction""起草 related work"，
   或 autoresearch 判断某 direction 已积累足够素材需要成文时，
   起草论文或报告的指定章节
-argument-hint: "<target> <section> <sources>"
-allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 ## Purpose

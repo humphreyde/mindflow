@@ -1,8 +1,6 @@
 ---
 name: literature-survey
 description: 当用户说"调研""survey""了解研究现状"，或需要系统了解某主题的文献全貌时，以 DomainMap 为认知基线、近期 survey paper 为文献锚点，批量 digest 后综合生成调研报告
-argument-hint: <topic>
-allowed-tools: Read, Write, Edit, Glob, Grep, Task, WebSearch, WebFetch
 ---
 
 ## Purpose

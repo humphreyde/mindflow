@@ -1,8 +1,6 @@
 ---
 name: daily-papers
 description: 每日论文总结。抓取 HuggingFace Daily/Trending + arXiv 最新论文，按研究方向打分筛选， 生成论文笔记后基于深度阅读写出有态度的总结锐评。 触发词："今日论文总结""过去3天论文总结""过去一周论文总结""看看最近有什么论文"
-argument-hint: "[今日 / 过去N天 / 过去一周]"
-allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 ---
 
 ## Purpose

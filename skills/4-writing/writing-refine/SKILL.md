@@ -4,8 +4,6 @@ description: >
   当 Owner 说"打磨一下""改改这段""逻辑不通顺"，
   或 autoresearch 在写作阶段自检时，
   从结构/清晰度/论据三个维度打磨已有文稿
-argument-hint: "<target> [section] [focus]"
-allowed-tools: Read, Edit, Glob, Grep
 ---
 
 ## Purpose

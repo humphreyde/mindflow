@@ -3,8 +3,6 @@ name: idea-evaluate
 description: >
   当用户说"评估一下这个 idea""这个可行吗"，
   从 novelty/feasibility/impact/risk/evidence 五维评估研究 idea
-argument-hint: "<idea> [criteria]"
-allowed-tools: Read, Edit, Glob, Grep, WebSearch
 ---
 
 ## Purpose

@@ -4,8 +4,6 @@ description: >
   当积累了新的 validated insight、实验结果改变了方向判断、
   或 Owner 说"更新研究方向""复盘 agenda"时，
   根据记忆和发现演化研究议程
-argument-hint: "[trigger]"
-allowed-tools: Read, Edit, Glob, Grep
 ---
 
 ## Purpose

@@ -4,8 +4,6 @@ description: >
   当 Owner 说"分析一下实验结果"，
   或实验 status 变为 completed 后 autoresearch 自动调用，
   分析实验数据并判断假设是否成立
-argument-hint: "<experiment>"
-allowed-tools: Read, Edit, Glob, Grep
 ---
 
 ## Purpose

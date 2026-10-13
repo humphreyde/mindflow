@@ -4,8 +4,6 @@ description: >
   当 Owner 说"设计个实验""怎么验证这个 idea"，
   或 autoresearch 判断某个 developing/validated idea 需要实验验证时，
   为 idea 设计完整实验方案
-argument-hint: "<idea> [constraints]"
-allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 ## Purpose

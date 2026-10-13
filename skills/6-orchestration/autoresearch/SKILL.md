@@ -4,8 +4,6 @@ description: >
   MindFlow 的核心研究循环。当 Owner 说"自己干活吧""开始研究"，
   或系统需要自主推进研究时启动。
   持续运行：读取当前状态 → 判断最高价值行动 → 调用卫星 skill → 记录 → 循环
-argument-hint: "[focus]"
-allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
 ---
 
 ## Purpose

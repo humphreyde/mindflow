@@ -1,8 +1,6 @@
 ---
 name: paper-digest
 description: Use when user asks to "read paper", "analyze paper", "summarize paper", "读论文", "分析文献", "帮我看一下这篇paper", "论文笔记", or provides a PDF file that appears to be an academic paper.
-argument-hint: "[URL / PDF path / title]"
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch
 ---
 
 ## Purpose

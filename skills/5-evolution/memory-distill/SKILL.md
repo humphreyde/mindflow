@@ -2,8 +2,6 @@
 name: memory-distill
 description: >
   当积累了多天工作日志、或 Owner 说"整理记忆""蒸馏"时，从日志中提取 pattern 和 insight 到记忆库。也可被 autoresearch 在合适时机自动调用
-argument-hint: "[period]"
-allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 ## Purpose

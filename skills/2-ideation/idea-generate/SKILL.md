@@ -2,8 +2,6 @@
 name: idea-generate
 description: >
    Generate and rank research ideas given a broad direction. Use when user says "找idea", "brainstorm ideas", "generate research ideas", or "what can we work on".
-argument-hint: "<source> [constraints]"
-allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 ## Purpose
