@@ -1,5 +1,15 @@
 # AGENTS.md
 
+## Codex Repository Contract
+
+- **Purpose and canonical paths**: MindFlow is an Obsidian research vault for a human-AI research workflow. User knowledge lives in `Papers/`, `DomainMaps/`, `Topics/`, `Ideas/`, `Projects/`, `Reports/`, `Meetings/`, and `Workbench/`; reusable schemas live in `Templates/` and protocols in `references/`. `skills/` is the single canonical skill tree, while `.website/` contains the separate Quartz publisher.
+- **Skill discovery**: Codex discovers all repository skills through `.agents/skills -> ../skills`. Invoke one explicitly as `$skill-name`, then read its complete `SKILL.md` and required referenced files before acting. Do not duplicate or move the canonical `skills/` tree.
+- **Read before write**: Before changing the vault, read the relevant file in `references/`, the matching file in `Templates/` when one exists, and the current target note. Follow their schema and local conventions instead of inventing a parallel format.
+- **Protect user content**: Preserve existing notes, frontmatter, and handwritten edits. Do not overwrite, delete, rename, or batch-rewrite user content unless the user has explicitly authorized that exact scope; make the smallest compatible change.
+- **Obsidian syntax**: Follow `references/obsidian-syntax.md` for formulas, tables, embeds, wikilinks and aliases, literal characters, and pipes inside table cells. Keep valid Obsidian links and YAML frontmatter intact.
+- **Editing and validation**: Prefer `rg` for search and precise patches for edits. Stage only task-owned paths, never broad unrelated changes. Validate in proportion to the change: inspect the diff, run `git diff --check`, and run the relevant script, schema, or build checks for executable changes.
+- **Runtime boundaries**: Use Python 3.12+ and the root `pyproject.toml`/`uv.lock` via `uv` for Python helpers; do not install into the system interpreter. Use Node.js/npm only for Node helpers and the Quartz workspace; paper HTML extraction requires Node 18+, while `.website/` requires Node 20+ and its own lockfile. Run Quartz/npm commands from `.website/` (for example `npm ci`, then `npx quartz build --directory ../ --output dist`) so vault content and website dependencies remain separate.
+
 本文件描述本工作区的 **Owner**，供所有 agent 共享参考——理解他是谁、研究什么、看重什么，以及这个 notebook 如何组织。各 agent 自身的身份与职责由各自的 instruction / 项目级 CLAUDE.md 定义，本文件不覆盖那些。
 
 ## Owner
