@@ -20,7 +20,7 @@ draft-section 是 MindFlow 的基础写作技能。给定目标文件、章节�
 
 根据 `sources` 参数读取所有引用笔记：
 
-- 用 Glob 确认文件存在，再用 Read 逐一读取每个引用文件的完整内容。
+- 按路径模式搜索并确认文件存在，再逐一读取每个引用文件的完整内容。
 - 涵盖范围：`[[Papers/...]]`（论文笔记）、`[[Experiments/...]]`（实验记录）、`[[Ideas/...]]`（研究想法）、`[[Topics/...]]`（跨论文分析）。
 - 对于每份素材，重点提取：核心论点、关键数据、方法细节、引用文献（如 frontmatter 中的 `title`/`authors`/`venue`）。
 
@@ -30,17 +30,17 @@ draft-section 是 MindFlow 的基础写作技能。给定目标文件、章节�
 
 若 `target` 文件已存在：
 
-1. 用 Read 读取完整内容，了解：
+1. 读取完整内容，了解：
    - 已有章节结构（标题层级）
    - 已有内容风格（语言风格、术语习惯、引用格式）
    - `section` 参数指定的章节是否已有占位符或草稿
 2. 确定插入位置：若目标章节已有标题但无内容，插入标题之后；若无对应标题，在文件末尾追加新章节。
 
-若 `target` 不存在，则计划在 Step 5 用 Write 创建新文件。
+若 `target` 不存在，则计划在 Step 5 创建新文件。
 
 ### Step 3：读取 DomainMaps
 
-用 Read 读取 `DomainMaps/_index.md`，找到与 `section` 和 `sources` 相关的 domain，再读取对应的 `DomainMaps/{Name}.md`。
+读取 `DomainMaps/_index.md`，找到与 `section` 和 `sources` 相关的 domain，再读取对应的 `DomainMaps/{Name}.md`。
 
 重点关注：
 - **Established Knowledge**：用于在 Related Work / Introduction 中准确描述领域背景，避免描述过时或已被推翻的"共识"。
@@ -79,7 +79,7 @@ draft-section 是 MindFlow 的基础写作技能。给定目标文件、章节�
 根据 `target` 是否已存在选择操作：
 
 **若 `target` 不存在**：
-用 Write 创建新文件，文件内容为：
+创建新文件，文件内容为：
 ```markdown
 ---
 date: YYYY-MM-DD
@@ -93,7 +93,7 @@ tags: []
 ```
 
 **若 `target` 已存在**：
-用 Edit 将起草内容插入目标位置（Step 2 确定的位置）：
+对目标文件做精确更新，将起草内容插入 Step 2 确定的位置：
 - 若目标章节标题已存在但内容为空，在标题之后插入。
 - 若目标章节标题不存在，在文件末尾追加：
   ```markdown
@@ -106,7 +106,7 @@ tags: []
 
 ### Step 6：追加日志
 
-用 Edit（若文件不存在则用 Write）将以下格式的 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`（日期为今天）：
+将以下格式的 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`（日期为今天）；若文件不存在则先创建：
 
 ```markdown
 ### [HH:MM] draft-section
@@ -129,7 +129,7 @@ tags: []
 
 ## Guard
 
-- **不修改其他章节**：Edit 操作只针对指定的 `section`，严禁修改目标文件中其他章节的任何内容。如不确定插入边界，停止并告知 Human。
+- **不修改其他章节**：文件更新只针对指定的 `section`，严禁修改目标文件中其他章节的任何内容。如不确定插入边界，停止并告知 Human。
 - **不捏造引用**：所有 `[[wikilink]]` 必须指向 vault 中实际存在的文件。若 claim 无来源，标注 `[需引用]`，不得编造笔记文件名或论文信息。
 - **语言规范**：正文用中文撰写；技术术语（模型名、方法名、benchmark 名）保持英文，不做翻译；不使用非正式口语。
 - **不覆盖完整章节**：若目标章节已有实质性内容（>100 字），不直接覆盖，停止执行并告知 Human，建议以 writing-refine 技能进行修订。
@@ -147,19 +147,19 @@ tags: []
 
 执行过程：
 
-1. Glob + Read 读取四份素材：
+1. 按路径模式搜索后读取四份素材：
    - `Papers/2301-EAI-Survey.md`：了解 Embodied AI 整体背景和近年进展
    - `Papers/2410-NavGPT.md`：了解 LLM-based navigation 方法
    - `Papers/2501-MapNav.md`：了解 map-augmented navigation 方法
    - `Topics/VLN-MethodComparison-Analysis.md`：读取已有跨论文分析，获取共识与争议
-2. Read `Reports/VLN-Survey-Draft.md`，确认 Related Work 节已有标题但无内容，确定插入位置
-3. Read `DomainMaps/_index.md` → `DomainMaps/VLN.md`，了解 Established Knowledge 和 Active Debates
+2. 读取 `Reports/VLN-Survey-Draft.md`，确认 Related Work 节已有标题但无内容，确定插入位置
+3. 读取 `DomainMaps/_index.md` → `DomainMaps/VLN.md`，了解 Established Knowledge 和 Active Debates
 4. 起草 Related Work，分三个子主题组织：
    - **经典 VLN 方法**：基于 Seq2Seq 和 cross-modal attention 的早期工作 [[2301-EAI-Survey]]
    - **LLM-based Navigation**：利用大语言模型作为 zero-shot 规划器的新范式 [[2410-NavGPT]]
    - **Map-augmented 方法**：结合拓扑地图或语义地图提升长程导航能力 [[2501-MapNav]]
    - 每组末尾说明与本综述的关系，点出 [[Topics/VLN-MethodComparison-Analysis]] 揭示的知识空白
-5. Edit `Reports/VLN-Survey-Draft.md`，将起草内容插入 `## Related Work` 标题之后；不触碰其他章节
+5. 精确更新 `Reports/VLN-Survey-Draft.md`，将起草内容插入 `## Related Work` 标题之后；不触碰其他章节
 6. 追加日志到 `Workbench/logs/2026-03-28.md`
 
 输出：`Reports/VLN-Survey-Draft.md` 中的 Related Work 节已完成，约 600 字，所有 claim 附 `[[wikilink]]`。

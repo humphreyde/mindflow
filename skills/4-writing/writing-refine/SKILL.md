@@ -25,7 +25,7 @@ description: >
 读取 `target` 文件。如果指定了 `section`，定位到对应章节（通过标题匹配）。
 
 ```
-Read(target)
+读取 target 的完整内容
 # 若 section 非空，截取对应章节文本
 ```
 
@@ -57,7 +57,7 @@ Read(target)
 **evidence 审视要点：**
 - 每个"XX 方法表现更好/更差"等比较性 claim 是否有 `[[paper]]` 引用？
 - 每个背景陈述（"现有方法普遍存在 X 问题"）是否有文献支撑？
-- 已有 `[[wikilink]]` 是否指向实际存在的笔记（可用 Glob 验证）？
+- 已有 `[[wikilink]]` 是否指向实际存在的笔记（可通过按路径搜索并匹配候选文件验证）？
 - 是否有孤立 claim（无任何引用支撑）？
 
 ### Step 3 — 生成修改建议列表
@@ -97,12 +97,12 @@ Read(target)
 
 ### Step 4 — Copilot 确认流程
 
-**默认行为**：输出建议列表后，等待 Owner 确认。不主动执行 Edit。
+**默认行为**：输出建议列表后，等待 Owner 确认。确认前不主动修改文稿。
 
 询问 Owner：
 > "以上 N 条修改建议，请确认哪些执行？可回复：全部执行 / 执行 #1 #3 #5 / 跳过全部"
 
-收到确认后，逐条使用 `Edit` 执行。每次 Edit 后在建议前标记 `[✓]`。
+收到确认后，逐条对已确认的句子或段落做精确更新。每次更新后在建议前标记 `[✓]`。若指定了 `section`，任何更新都必须位于该章节的标题边界内；边界不明时停止并请 Owner 确认。
 
 ### Step 5 — 追加日志
 
@@ -124,15 +124,15 @@ Read(target)
 
 执行完成后确认以下三点：
 
-1. **无新 [TODO] 占位符**：Edit 引入的文本中不含 `[TODO]`、`[待补充]` 等占位符。
-2. **[[wikilink]] 仍有效**：被修改段落中的所有 `[[wikilink]]` 仍指向实际存在的文件（用 Glob 抽查）。
+1. **无新 [TODO] 占位符**：新引入的文本中不含 `[TODO]`、`[待补充]` 等占位符。
+2. **[[wikilink]] 仍有效**：被修改段落中的所有 `[[wikilink]]` 仍指向实际存在的文件（按路径搜索抽查）。
 3. **日志已追加**：`Workbench/logs/YYYY-MM-DD.md` 包含本次操作记录。
 
 ---
 
 ## Guard
 
-- **默认先确认再修改**：不经 Owner 确认不执行 Edit。
+- **默认先确认再修改**：不经 Owner 确认不修改文稿。
 - **不改变核心论点**：只调整表达和结构，不替换或删除作者的核心主张。
 - **不增删章节**：不新增标题层级，不删除现有段落（除非 Owner 明确指示）。
 - **语言规范**：遵循文稿原有语言风格（中英混用 / 纯英文 / 纯中文），不擅自切换。
@@ -151,8 +151,8 @@ Read(target)
 **Researcher 执行流程**：
 
 ```
-Read(".claude/skills/4-writing/writing-refine/SKILL.md")  # 重新读取 SKILL
-Read("Papers/drafts/survey-draft.md")                      # Step 1
+从规范技能路径读取 `skills/4-writing/writing-refine/SKILL.md`  # 重新读取 SKILL
+读取 `Papers/drafts/survey-draft.md`                              # Step 1
 # section = "Related Work", focus = "evidence"
 ```
 
@@ -177,4 +177,4 @@ Read("Papers/drafts/survey-draft.md")                      # Step 1
 - evidence: 3 条
 ```
 
-**Researcher 等待 Owner 确认后，逐条执行 Edit。**
+**Researcher 等待 Owner 确认后，逐条对已确认的文本做精确更新。**

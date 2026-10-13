@@ -18,18 +18,18 @@ agenda-evolve 是 MindFlow 研究议程的演化引擎。它定期审视 `Workbe
 
 ### Step 1：读取当前 Agenda
 
-用 Read 读取 `Workbench/agenda.md` 的完整内容，记录：
+读取 `Workbench/agenda.md` 的完整内容，记录：
 
 - 所有 Active Directions 的名称、priority、status、hypothesis、evidence、next_action、confidence
 - 所有 Paused Directions 的名称及 resume_condition
 - 所有 Abandoned Directions 的名称（用于避免重复引入已被废弃的方向）
 - Mission 节的完整文本（后续步骤中不得修改 Mission）
 
-若文件不存在，用 Edit 按照 `references/agenda-protocol.md` 的模板创建初始 agenda.md，填写 Mission 留空占位符，Active/Paused/Abandoned Directions 留空，frontmatter 中 `last_updated` 填今天日期，`updated_by: agenda-evolve`。然后继续执行后续步骤。
+若文件不存在，按照 `references/agenda-protocol.md` 的模板创建初始 agenda.md，填写 Mission 留空占位符，Active/Paused/Abandoned Directions 留空，frontmatter 中 `last_updated` 填今天日期，`updated_by: agenda-evolve`。然后继续执行后续步骤。
 
 ### Step 2：读取近期 Validated Insights
 
-用 Read 读取 `Workbench/memory/insights.md`，筛选出满足以下任一条件的 insight 条目：
+读取 `Workbench/memory/insights.md`，筛选出满足以下任一条件的 insight 条目：
 
 1. `status: validated`，且条目日期在今天往前 30 天以内
 2. `status: validated`，且 `confidence: high`（即使超过 30 天，高置信度 insight 仍有价值）
@@ -43,7 +43,7 @@ agenda-evolve 是 MindFlow 研究议程的演化引擎。它定期审视 `Workbe
 
 ### Step 3：读取 Failed Directions
 
-用 Read 读取 `Workbench/memory/failed-directions.md`（若存在）。记录其中每条已废弃方向的核心 reason 和 lesson，用于：
+读取 `Workbench/memory/failed-directions.md`（若存在）。记录其中每条已废弃方向的核心 reason 和 lesson，用于：
 
 - 防止在后续步骤中重新引入已被证明无效的方向
 - 为新增方向提供"前车之鉴"参照
@@ -52,7 +52,7 @@ agenda-evolve 是 MindFlow 研究议程的演化引擎。它定期审视 `Workbe
 
 ### Step 4：读取 Queue 中的 Questions 和 Review 条目
 
-用 Read 读取 `Workbench/queue.md`，提取两类条目：
+读取 `Workbench/queue.md`，提取两类条目：
 
 1. **Questions 部分**：Researcher 自问的悬而未决的研究问题。若某个问题已经积累了足够多的答案线索（在 insights 或论文中出现相关回答），该 question 可能触发一个新方向的诞生。
 2. **Review 部分**：已完成某类积累、等待 Researcher 决策的条目。特别关注"建议晋升至 DomainMaps"类条目，这类条目说明某个 validated insight 已足够成熟，可能值得围绕其开辟或强化一个研究方向。
@@ -61,9 +61,9 @@ agenda-evolve 是 MindFlow 研究议程的演化引擎。它定期审视 `Workbe
 
 ### Step 5：扫描高置信度 Ideas
 
-用 Grep 在 `Ideas/` 目录中搜索包含 `status: developing` 或 `status: validated` 的 Idea 文件，获取匹配文件路径列表。
+在 `Ideas/` 目录中做文本内容搜索，找出包含 `status: developing` 或 `status: validated` 的 Idea 文件，获取匹配文件路径列表。
 
-对每个匹配文件，用 Read 读取其内容，提取：
+对每个匹配文件，读取其内容，提取：
 - `hypothesis` 字段（该 Idea 的核心假设）
 - 评估结论（支持或否定 hypothesis 的证据摘要）
 - `confidence` 字段（若有）
@@ -85,7 +85,7 @@ agenda-evolve 是 MindFlow 研究议程的演化引擎。它定期审视 `Workbe
 - Step 4 中有一个 question 已在 insights 或论文中找到足够的答案线索，形成可证伪的 hypothesis
 - Step 5 中有一个 `status: validated` 的 Idea，其 hypothesis 尚未被现有 direction 覆盖
 
-执行：用 Edit 在 `Workbench/agenda.md` 的 `## Active Directions` 节末尾追加新方向，格式严格遵循 `references/agenda-protocol.md`：
+执行：在 `Workbench/agenda.md` 的 `## Active Directions` 节末尾精确追加新方向，格式严格遵循 `references/agenda-protocol.md`：
 
 ```markdown
 ### [Direction Name]
@@ -113,7 +113,7 @@ priority 依据：高度相关 Mission 且有强证据支持 → high；与 Miss
 - 多项独立证据指向同一结论 → 将 `status` 升为 `consolidating`，confidence 可升至 0.7-0.9
 - 原有 `next_action` 已完成或已过时 → 更新为更具体的下一步
 
-执行：用 Edit 修改 `Workbench/agenda.md` 中对应 direction 条目的相关字段行。每次只修改有变更的字段，保留其余字段原文不变。
+执行：精确更新 `Workbench/agenda.md` 中对应 direction 条目的相关字段行。每次只修改有变更的字段，保留其余字段原文不变。
 
 ---
 
@@ -125,7 +125,7 @@ priority 依据：高度相关 Mission 且有强证据支持 → high；与 Miss
 - 该 direction 的 hypothesis 在短期内无法被验证（如需等待实验数据、等待 Owner 反馈）
 
 执行：
-1. 用 Edit 将该 direction 从 `## Active Directions` 节剪切，移入 `## Paused Directions` 节
+1. 将该 direction 从 `## Active Directions` 节精确移入 `## Paused Directions` 节
 2. 在条目中添加 `pause_reason` 和 `resume_condition` 字段，格式：
    ```
    - **pause_reason**: <一句话说明暂停原因>
@@ -145,7 +145,7 @@ priority 依据：高度相关 Mission 且有强证据支持 → high；与 Miss
 - 且 `resume_condition` 不存在或在可预期时间内无法满足
 
 执行：
-1. 用 Edit 将该 direction 从 `## Active Directions` 或 `## Paused Directions` 节移入 `## Abandoned Directions` 节，格式：
+1. 将该 direction 从 `## Active Directions` 或 `## Paused Directions` 节精确移入 `## Abandoned Directions` 节，格式：
    ```markdown
    ### [Direction Name]
 
@@ -155,7 +155,7 @@ priority 依据：高度相关 Mission 且有强证据支持 → high；与 Miss
    - **lesson**: <一句话可复用的教训>
    - **memory_ref**: [[Workbench/memory/failed-directions.md#<heading>]]
    ```
-2. 同步写入 `Workbench/memory/failed-directions.md`，追加以下格式条目（若文件不存在，先用 Edit 创建并加一级标题 `# Failed Directions`）：
+2. 同步写入 `Workbench/memory/failed-directions.md`，追加以下格式条目（若文件不存在，先创建并加一级标题 `# Failed Directions`）：
    ```markdown
    ### [YYYY-MM-DD] <Direction Name>
 
@@ -173,7 +173,7 @@ priority 依据：高度相关 Mission 且有强证据支持 → high；与 Miss
 - 两个方向的 hypothesis 存在逻辑冲突，需要 Owner 决定优先级
 - 某个方向按现有证据应废弃，但它是 supervisor-assigned 来源，需确认
 
-执行：用 Edit 在 `Workbench/agenda.md` 的 `## Discussion Topics` 节末尾追加：
+执行：在 `Workbench/agenda.md` 的 `## Discussion Topics` 节末尾精确追加：
 
 ```markdown
 ### [Topic title] — [今天日期]
@@ -190,13 +190,13 @@ priority 依据：高度相关 Mission 且有强证据支持 → high；与 Miss
 
 ### Step 7：更新 Agenda Frontmatter
 
-用 Edit 修改 `Workbench/agenda.md` 开头的 frontmatter，将：
+精确更新 `Workbench/agenda.md` 开头的 frontmatter，将：
 - `last_updated` 更新为今天日期（格式 `YYYY-MM-DD`）
 - `updated_by` 更新为 `agenda-evolve`
 
 ### Step 8：追加 Changelog 条目
 
-用 Edit 将以下格式的条目 append 到 `Workbench/evolution/changelog.md` 末尾（若文件不存在，先用 Edit 创建并加一级标题 `# Evolution Changelog`）：
+将以下格式的条目追加到 `Workbench/evolution/changelog.md` 末尾（若文件不存在，先创建并加一级标题 `# Evolution Changelog`）：
 
 ```markdown
 ### [YYYY-MM-DD] agenda-evolve
@@ -212,7 +212,7 @@ priority 依据：高度相关 Mission 且有强证据支持 → high；与 Miss
 
 ### Step 9：追加工作日志
 
-用 Edit（或 Write 若文件不存在）将以下格式的 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`（日期为今天）：
+将以下格式的 log entry 追加到 `Workbench/logs/YYYY-MM-DD.md`（日期为今天）；若文件不存在则先创建：
 
 ```markdown
 ### [HH:MM] agenda-evolve
@@ -237,6 +237,7 @@ priority 依据：高度相关 Mission 且有强证据支持 → high；与 Miss
 ## Guard
 
 - **严格遵循格式**：所有 agenda 条目的字段和格式必须符合 `references/agenda-protocol.md` 的规范，不得自定义字段名或省略必填字段。
+- **Owner 状态优先**：当前 `Workbench/agenda.md` 中的 Owner 手动编辑和 override 立即生效且无条件优先。后续执行必须以当前文件为权威状态，不得用旧的 Researcher 推断覆盖 Owner 变更。
 - **不删除 Owner 方向**：`origin: supervisor-assigned` 的 direction 不得被废弃，只可暂停，并在 `pause_reason` 中注明"supervisor-assigned，需 Owner 确认后方可废弃"，同时在 Discussion Topics 中提出讨论。
 - **变更必须有推理记录**：每次变更在 `evolution/changelog.md` 的 `reasoning` 字段中必须说明决策依据，不得只记录"变更了 X 方向"而不说明为何。
 - **不修改 Mission 节**：`## Mission` 节的内容只有 Owner 可以直接修改，Researcher 可在 Discussion Topics 中提出 Mission 演化建议，但不得直接改写 Mission 正文。
@@ -256,31 +257,31 @@ priority 依据：高度相关 Mission 且有强证据支持 → high；与 Miss
 
 执行过程：
 
-1. Read `Workbench/agenda.md`，记录当前 3 个 Active Directions：
+1. 读取 `Workbench/agenda.md`，记录当前 3 个 Active Directions：
    - "VLN Generalization"（validating，confidence: 0.6）
    - "Reward Shaping for Sparse Environments"（exploring，confidence: 0.3）
    - "Cross-Modal Attention Fusion"（exploring，confidence: 0.2）
 
-2. Read `Workbench/memory/insights.md`，发现 2 条近期 validated insight：
+2. 读取 `Workbench/memory/insights.md`，发现 2 条近期 validated insight：
    - Insight A（validated，high confidence）：claim 为"waypoint prediction 辅助监督显著提升 VLN agent 在 unseen environment 中的泛化能力"，impact 指向 "VLN Generalization"
    - Insight B（validated，medium confidence）：claim 为"基于 diffusion 的策略对 action chunk size 高度敏感，chunk size=8 在连续控制任务中最优"，impact 指向"尚无对应方向"
 
-3. Read `Workbench/memory/failed-directions.md`，发现历史上"End-to-End Waypoint Regression"曾被废弃（原因：训练不稳定，与 Insight A 无直接冲突）。
+3. 读取 `Workbench/memory/failed-directions.md`，发现历史上"End-to-End Waypoint Regression"曾被废弃（原因：训练不稳定，与 Insight A 无直接冲突）。
 
-4. Read `Workbench/queue.md` Review 部分，发现一条"建议晋升至 DomainMaps"的条目，指向 Insight A，suggested_map 为 `DomainMaps/VLN.md`。
+4. 读取 `Workbench/queue.md` Review 部分，发现一条"建议晋升至 DomainMaps"的条目，指向 Insight A，suggested_map 为 `DomainMaps/VLN.md`。
 
-5. Glob + Read `Ideas/`，发现一个 `status: developing` 的 Idea "DiffusionPolicyTuning"，hypothesis 为"调整 action chunk size 可在操控任务上提升 10% 性能"，与 Insight B 高度吻合。
+5. 搜索并读取 `Ideas/` 中的匹配文件，发现一个 `status: developing` 的 Idea "DiffusionPolicyTuning"，hypothesis 为"调整 action chunk size 可在操控任务上提升 10% 性能"，与 Insight B 高度吻合。
 
 6. 判断变更：
    - **更新** "VLN Generalization"：Insight A 为其提供强证据，status 从 `validating` 升为 `consolidating`，confidence 从 0.6 升为 0.8，evidence 追加 Insight A 的链接，next_action 更新为"整理 waypoint prediction 方法对比，准备写综述段落"
    - **新增** "Diffusion Policy Chunk Size Optimization"：基于 Insight B + Idea "DiffusionPolicyTuning"，origin: researcher-discovered，status: exploring，confidence: 0.45，next_action: "复现 chunk size ablation 实验，验证 size=8 结论在 RoboMimic 数据集上是否成立"
    - "Reward Shaping for Sparse Environments" 和 "Cross-Modal Attention Fusion" 无新证据，保持不变
 
-7. Edit `Workbench/agenda.md`：更新 "VLN Generalization" 的 status/confidence/evidence/next_action，追加新方向 "Diffusion Policy Chunk Size Optimization"，更新 frontmatter。
+7. 精确更新 `Workbench/agenda.md`：更新 "VLN Generalization" 的 status/confidence/evidence/next_action，追加新方向 "Diffusion Policy Chunk Size Optimization"，更新 frontmatter。
 
-8. Edit `Workbench/evolution/changelog.md` 追加变更记录，reasoning 说明：Insight A 将 VLN Generalization 推进至 consolidating 阶段；Insight B 结合 developing idea 开辟新方向。
+8. 向 `Workbench/evolution/changelog.md` 追加变更记录，reasoning 说明：Insight A 将 VLN Generalization 推进至 consolidating 阶段；Insight B 结合 developing idea 开辟新方向。
 
-9. Edit `Workbench/logs/2026-03-28.md` 追加日志条目。
+9. 向 `Workbench/logs/2026-03-28.md` 追加日志条目。
 
 最终输出摘要：
 

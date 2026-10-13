@@ -12,6 +12,14 @@ memory-retrieve 是 MindFlow 记忆系统的检索接口。它被其他 skill �
 
 这是 Layer 1 的轻量实现——纯 Markdown 文件读取 + LLM 语义匹配，零外部依赖。未来 Layer 2 可用向量检索替换，接口不变。
 
+## Input
+
+输入为一个结构化请求：
+
+- `query`（必填）：用自然语言描述当前任务、问题或主题的字符串。
+- `scope`（可选，默认 `all`）：`patterns` / `insights` / `effective-methods` / `failed-directions` / `all`。
+- `top_k`（可选，默认 `5`）：返回的最大条目数，必须为正整数。
+
 ## Steps
 
 ### Step 1：确定检索范围
@@ -28,7 +36,7 @@ memory-retrieve 是 MindFlow 记忆系统的检索接口。它被其他 skill �
 
 ### Step 2：读取记忆文件
 
-用 Read 读取 scope 对应的记忆文件。若文件不存在或为空，返回空结果并告知调用方"该记忆类别暂无条目"。
+读取 scope 对应的记忆文件。若文件不存在或为空，返回空结果并告知调用方"该记忆类别暂无条目"。
 
 ### Step 3：语义匹配
 
@@ -49,6 +57,6 @@ memory-retrieve 是 MindFlow 记忆系统的检索接口。它被其他 skill �
 
 ## Guard
 
-- **只读**：不修改任何记忆文件，不修改任何 vault 文件
+- **严格只读**：只允许列出、搜索和读取文件；不得创建、修改、追加、移动或删除任何记忆文件或其他 vault 文件
 - **原文保真**：返回结果必须包含条目原文和 `[[wikilink]]` 来源引用，不做概括性改写
 - **诚实返回**：若无相关条目，返回空结果，不编造记忆内容

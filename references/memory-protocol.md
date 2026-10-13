@@ -17,7 +17,7 @@ Workbench/
     failed-directions.md   # Abandoned research directions and the reasons why
   logs/                    # Raw session logs (Level 0 input to memory)
   evolution/
-    changelog.md           # Record of every DomainMaps update
+    changelog.md           # Record of promotions and material lifecycle changes
 ```
 
 | File | Purpose | Key Fields |
@@ -31,7 +31,7 @@ Workbench/
 
 ## Entry Format
 
-All memory files use the same heading-and-bullet structure. Entries are **append-only** — never edit past entries; add a new entry to supersede.
+All memory files use the same heading-and-bullet structure. An entry's claim and history are immutable: never delete an entry, remove prior evidence, or silently rewrite its substantive text. Add a new cross-referenced entry when a claim must be corrected or superseded.
 
 ```markdown
 ### [YYYY-MM-DD] Entry title
@@ -45,6 +45,7 @@ Each file's specific fields are listed in the table above. Common rules:
 - Use Obsidian `[[wikilinks]]` for all evidence references.
 - Claims and hypotheses must be falsifiable and specific.
 - `confidence` in `patterns.md` is capped at `medium` — validated patterns belong in `insights.md`.
+- Existing memory entries may only receive appended `occurrences` / `evidence` references and narrow lifecycle updates to `status` / `confidence`. These changes preserve the original claim and prior history.
 
 ---
 
@@ -78,9 +79,11 @@ Level 0  Raw Log              Workbench/logs/
 
 ## Update Rules
 
-1. **Append-only**: Never edit or delete existing entries. To supersede, append a new entry with updated date.
+1. **Immutable records**: `Workbench/logs/` entries, experiment Run Entries, and `Workbench/evolution/changelog.md` entries are append-only. Never delete, reorder, or rewrite an earlier log, run, or changelog record.
 
-2. **DomainMaps logging**: Every L4 promotion must be logged to `Workbench/evolution/changelog.md`:
+2. **Memory mutation boundary**: Memory claims and history are never deleted or silently rewritten. New memory entries are appended. Within an existing entry, the only permitted in-place changes are appending `occurrences` / `evidence` references and narrowly updating `status` / `confidence` as evidence changes. Corrections to the claim itself require a new dated entry that links to the superseded entry.
+
+3. **Lifecycle logging**: Every promotion and every material lifecycle change—including a `status` transition or a material `confidence` change—must be appended to `Workbench/evolution/changelog.md`. L4 promotions use this format:
 
    ```markdown
    ### [YYYY-MM-DD] Domain Map updated: <map name>
@@ -89,6 +92,6 @@ Level 0  Raw Log              Workbench/logs/
    - **promoted_by**: <skill name or "human">
    ```
 
-3. **Owner writes**: Owner may write directly to any memory file at any time without restrictions.
+4. **Owner writes**: Owner may write directly to any memory file, but the same history-preservation boundary applies: append new claims or evidence and use explicit lifecycle updates rather than deleting or silently rewriting prior history.
 
-4. **Conflict handling**: If a new insight contradicts an existing validated one, create a new `provisional` entry noting the contradiction. Do not modify the old entry.
+5. **Conflict handling**: If a new insight contradicts an existing validated one, create a new `provisional` entry noting the contradiction. Do not modify the old claim or remove its history.
