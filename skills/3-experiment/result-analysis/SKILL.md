@@ -33,7 +33,7 @@ result-analysis 是 MindFlow 实验闭环的最后一环。给定一个实验笔
 
 读取 `experiment` 参数指向的 `Experiments/xxx.md` 文件。若文件不存在，停止并告知 Owner，不创建替代笔记。提取以下字段：
 
-- `status`：确认为 `running` 或 `completed`（若为 `planned`，停止并告知 Owner"实验尚未运行，暂无数据可分析"）
+- `status`：按 `Templates/Experiment.md` 读取；`running`、`completed`、`failed` 均可继续分析（`failed` 是重要的负面证据），仅当 status 为 `planned` 时停止并告知 Owner"实验尚未运行，暂无数据可分析"
 - `hypothesis`（若直接记录在 Experiment 文件中）或 `idea`（`Templates/Experiment.md` 中指向关联 Idea 的字段；兼容读取旧笔记中的 `idea_ref`）
 - 所有 `### Run [N]` 节或 Run Entries 表格：记录每个 run 的 config、metrics、observations
 - `baseline`：对照指标或对照组描述
@@ -120,7 +120,9 @@ Key Findings 可以包含：意外规律、config 敏感性、数据质量问题
 在目标 Experiment 文件（`Experiments/xxx.md`）中精确更新 `## Analysis` 节，格式如下：
 
 ```markdown
-## Analysis — YYYY-MM-DD
+## Analysis
+
+**Analysis date**：YYYY-MM-DD
 
 ### Hypothesis Verdict
 
@@ -155,7 +157,7 @@ Key Findings 可以包含：意外规律、config 敏感性、数据质量问题
 - ...
 ```
 
-日期填写今天（`YYYY-MM-DD`）。若文件中已存在 `## Analysis` 节，覆盖整节内容（保留其他节不变），并在日志中注明"覆盖了旧 Analysis 节"。不得修改任何 Run Entry 的原始数据。
+日期填写今天（`YYYY-MM-DD`），但必须保留 schema 的 canonical `## Analysis` 标题，将日期写在节内。若文件中已存在 `## Analysis` 节，保留标题并覆盖该节正文（保留其他节不变），在日志中注明"覆盖了旧 Analysis 节"。不得修改任何 Run Entry 的原始数据。
 
 ### Step 6：若有跨实验 pattern，追加到 patterns.md
 
@@ -205,7 +207,7 @@ Key Findings 可以包含：意外规律、config 敏感性、数据质量问题
 
 ## Verify
 
-- [ ] Experiment 文件已写入 `## Analysis — YYYY-MM-DD` 节，包含全部五个子节
+- [ ] Experiment 文件保留 canonical `## Analysis` 标题，节内含 `**Analysis date**：YYYY-MM-DD` 和全部五个子节
 - [ ] 已确认 `Experiments/` 存在，且分析基于 `Templates/Experiment.md` schema 读取的实验笔记
 - [ ] Verdict 为 supported / refuted / inconclusive 三选一
 - [ ] 关联 Idea 的 `status` 已同步更新（若 verdict 非 inconclusive 且 `idea` 或旧版 `idea_ref` 存在）
@@ -252,7 +254,7 @@ Key Findings 可以包含：意外规律、config 敏感性、数据质量问题
    - **Limitations**：仅测试 rank ∈ {8, 16, 32}，未覆盖更大范围；仅在 val-unseen 验证，未测 test set
    - **Implications**：可将 rank=16 作为 VLN LoRA 的推荐默认值；可进一步探索 LoRA + data augmentation 的组合
 
-5. 精确更新 `Experiments/VLN-LoRA-R2R-2026Q1.md` 的 `## Analysis — 2026-03-28` 节
+5. 精确更新 `Experiments/VLN-LoRA-R2R-2026Q1.md` 的 `## Analysis` 节，并在节内写入 `**Analysis date**：2026-03-28`
 
 6. 在 `Workbench/memory/patterns.md` 追加新 pattern："LoRA rank=16 在 VLN R2R fine-tuning 中表现最优，rank 继续增大无收益"（Confidence: medium，因仅有 1 个实验支撑）
 
