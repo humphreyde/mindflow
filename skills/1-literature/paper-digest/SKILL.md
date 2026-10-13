@@ -43,12 +43,12 @@ description: Use when user asks to "read paper", "analyze paper", "summarize pap
 
 | 源 | 确定性提取方式 | 降级 |
 |---|---|---|
-| arXiv HTML | `node {skill_dir}/scripts/defuddle_parse.mjs "https://arxiv.org/html/{arxiv_id}" -o /tmp/{ShortTitle}/paper.json`，同时生成 `paper.md` | arXiv HTML 失败后试 `https://ar5iv.labs.arxiv.org/html/{arxiv_id}`；仍失败则走 PDF |
+| arXiv HTML | `node {skill_dir}/scripts/defuddle_parse.mjs "https://arxiv.org/html/{arxiv_id}" -o /tmp/{ShortTitle}/paper.json`，同时生成 `paper.md` | arXiv HTML 失败后可使用经批准且可追溯的 ar5iv fallback：`https://ar5iv.labs.arxiv.org/html/{arxiv_id}`；同时记录原始 arXiv ID/URL、ar5iv URL 和访问日期。仍失败则走 PDF |
 | PDF | `curl -sL "<url>" -o /tmp/{ShortTitle}/paper.pdf && uv run {skill_dir}/scripts/pdf_to_md.py /tmp/{ShortTitle}/paper.pdf` | 下载或解析失败则记录原因，保留其他可用源 |
 | website | `node {skill_dir}/scripts/defuddle_parse.mjs "<url>" -o /tmp/{ShortTitle}/website.json`，同时生成 `website.md` | 提取失败则用 `curl` 保存 raw HTML 供校验；不能可靠提取正文时标为不可得 |
 | github | `curl -sL "https://raw.githubusercontent.com/<org>/<repo>/main/README.md" -o /tmp/{ShortTitle}/github.md` | `main` 不存在时试 `master` |
 
-记录每类来源的原始 URL、访问日期和 `local_path`。本地 PDF 直接复制或读取到任务临时目录，不需要额外网络来源才能继续。
+记录每类网络来源的原始 URL、访问日期和 `local_path`。用户提供的本地 PDF 记录原始绝对路径和 SHA-256，再复制或读取到任务临时目录；该“原始路径 + SHA-256 + 提取文件位置”是充分 provenance，不需要额外网络来源才能继续。
 
 #### 2.3 校验提取文件
 
@@ -135,7 +135,7 @@ DomainMaps/*<TermCamelCase>*.md
 - **input**: <原始输入>
 - **output**: [[Papers/{笔记文件名}]]
 - **observation**: <一句话核心贡献>
-- **sources**: <source type, official URL, local_path>
+- **sources**: <source type, official URL；或 user-supplied local path + SHA-256；以及 extracted local_path>
 - **extracted**: figures=<N>, tables=<N>, equations=<N>, videos=<N>
 - **embedded**: figures=<N>, tables=<N>, equations=<N>, videos=<N>, wikilinks=<N>
 - **dead_links**: term1, term2, ...
@@ -145,18 +145,18 @@ DomainMaps/*<TermCamelCase>*.md
 ## Guard
 
 - 默认不改已有论文笔记或 assets；只有用户明确授权更新时才最小合并，并保留 frontmatter、手写内容和已有链接。
-- 每个 claim、URL、数字、公式、表格和媒体必须追溯到已记录的官方 URL 与本地提取文件位置；搜索摘要和二手转载不能替代原文。
+- 每个 claim、URL、数字、公式、表格和媒体必须追溯到具体来源位置。网络来源记录官方 URL 与本地提取文件位置；用户提供的本地文件以原始绝对路径、SHA-256 和提取文件位置作为充分 provenance。搜索摘要和二手转载不能替代原文。
 - 网络、API 或单类来源失败时按既定 fallback 有限重试，随后把对应来源/指标标为 unavailable 或 `null`；不得编造缺失信息，也不得让非关键指标阻塞正文 digest。
 - 临时目录必须专属于本次任务，不覆盖同名旧目录；只清理已确认由本次创建的精确路径，绝不对 `/tmp` 或宽泛路径做递归删除。
 - 只创建或更新本次目标论文的 note、assets 和一条日志；不批量修改其他 paper notes、helper scripts、DomainMaps 或索引。
-- 不安装缺失依赖、不绕过访问控制、不使用非官方镜像，除非用户明确授权且来源身份可验证。
+- ar5iv 是 arXiv HTML 失败时唯一预先批准的非官方镜像 fallback，必须保留原始 arXiv ID/URL 和实际 ar5iv URL 以便追溯。其他非官方镜像只有在用户明确授权且来源身份可验证时才可使用；不得安装缺失依赖或绕过访问控制。
 
 ## Verify
 
 ### Fetch
 
 - [ ] 已对 paper/website/github 三类官方源分别尝试发现；没有网页发现能力或来源不存在时已如实记录。
-- [ ] 每个可用源都有官方 URL、访问日期、唯一 `local_path`；生成文件非空且标题匹配目标。
+- [ ] 每个网络源都有官方 URL、访问日期和唯一 `local_path`；ar5iv fallback 同时记录原始 arXiv ID/URL 与实际镜像 URL。用户提供的本地文件有原始绝对路径、SHA-256 和提取文件位置。生成文件非空且标题匹配目标。
 - [ ] HTML/PDF/README 使用现有 Node/Python/curl 管线；依赖缺失和 fallback 路径已记录，没有修改 helper scripts。
 - [ ] website URL 和 multi-panel figure 完整性已检查；未恢复项已进入 issues。
 - [ ] `metrics.json` 可解析、含 `measured_at` 和三个固定块；可用来源有值，缺失/失败来源为 `null`，计算字段可复算。
