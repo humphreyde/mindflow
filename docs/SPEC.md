@@ -2,7 +2,7 @@
 
 > 本文件是 MindFlow 的 **single source of truth**，记录系统的当前设计和约定。
 
-**Last updated**: 2026-04-01
+**Last updated**: 2026-10-13
 
 ---
 
@@ -36,7 +36,7 @@ Markdown — 一切皆文件，一切可读，一切有版本控制。
 │  Agent Bridge                                    │
 ├─────────────────────────────────────────────────┤
 │  Layer 1: Skill Protocol (core) ✅ Implemented   │
-│  skills/*.md · Workbench/ · Templates/           │
+│  skills/*/*/SKILL.md · Workbench/ · Templates/   │
 │  Zero dependency, any agent can execute          │
 ├─────────────────────────────────────────────────┤
 │  Obsidian Vault (Markdown)                       │
@@ -57,7 +57,7 @@ Researcher 默认独立工作。Supervisor 随时可以 drop in 给指令或讨�
 
 Vault 中的内容分为两类：
 
-- **Knowledge Assets**（`Papers/`、`Topics/`、`Ideas/`、`Projects/`、`Reports/`）：完成的产出物，Supervisor-Researcher 共享
+- **Knowledge Assets**（`Papers/`、`Topics/`、`Ideas/`、`Projects/`、`Reports/`、`Experiments/`）：完成或由 skill 生成的产出物，Supervisor-Researcher 共享
 - **Researcher Working State**（`Workbench/`）：过程产物——议程、记忆、队列、日志
 
 ```
@@ -68,6 +68,7 @@ MindFlow/
 ├── Projects/            # 项目追踪（status: planning → active → paused → completed）
 ├── Topics/              # 文献调研 / 跨论文分析报告
 ├── Reports/             # Researcher 生成的报告
+├── Experiments/         # 实验设计、运行记录与结果（由 skill 按需生成）
 ├── Meetings/            # 会议记录（YYYY-MM-DD-Description.md）
 │
 ├── DomainMaps/          # 核心认知地图（按 domain 拆分）
@@ -84,6 +85,9 @@ MindFlow/
 │   ├── 5-evolution/     #   进化技能
 │   └── 6-orchestration/ #   编排技能
 │
+├── .agents/
+│   └── skills -> ../skills # Codex repo-scoped skill discovery
+│
 ├── references/          # 协议文档
 │   ├── skill-protocol.md
 │   ├── memory-protocol.md
@@ -97,10 +101,13 @@ MindFlow/
 │   ├── logs/            #   每日操作日志（YYYY-MM-DD.md）
 │   └── evolution/       #   演化记录（changelog.md）
 │
+├── .website/            # 独立的 Quartz publisher（Node 20+ workspace）
 ├── docs/SPEC.md         # ★ 本文件
-├── AGENTS.md            # Researcher 身份与操作指令（CLAUDE.md 为其 symlink）
+├── AGENTS.md            # Codex 仓库执行契约 + Researcher/Owner context
 └── .obsidian/           # Obsidian 配置
 ```
+
+Codex 是默认 runtime：从仓库根目录启动时读取 `AGENTS.md`，并通过 `.agents/skills` 发现 canonical `skills/`。可选的其他 agent compatibility 不改变这两个默认入口。
 
 ## 4. Key Concepts
 
@@ -119,6 +126,7 @@ MindFlow/
 | 文献调研 | `Topics/` | `{Topic}-Survey.md` | （无固定模板；结构由 `literature-survey` skill 根据侦察到的 survey paper 提炼） |
 | 会议 | `Meetings/` | `YYYY-MM-DD-Description.md` | `Templates/Meeting.md` |
 | 报告 | `Reports/` | 描述性名称 | `Templates/Report.md` |
+| 实验 | `Experiments/` | 描述性名称 | `Templates/Experiment.md` |
 
 ### 4.2 Domain Map
 
@@ -137,7 +145,7 @@ Researcher 自由维护 Domain Map。
 
 ### 4.3 Skills
 
-Skill 是 MindFlow 的自动化核心——定义在 `skills/<category>/<name>/SKILL.md` 中的可执行能力单元。
+Skill 是 MindFlow 的自动化核心——定义在 `skills/<category>/<name>/SKILL.md` 中的可执行能力单元。`skills/` 是唯一源码目录，Codex 通过 `.agents/skills -> ../skills` 发现它们，用户可用 `$skill-name` 显式调用。
 
 **格式**：YAML frontmatter（元数据）+ Purpose + Steps + Guard + Verify + Examples。
 
@@ -158,10 +166,11 @@ Skill 是 MindFlow 的自动化核心——定义在 `skills/<category>/<name>/S
                   5-evolution → 更新 Workbench/ → 下一轮
 ```
 
-**完整 skill 清单**（13 个）：
+**完整 skill 清单**（14 个）：
 
 | Category | Skill | Level | 功能 | 状态 |
 |:---------|:------|:------|:-----|:-----|
+| `1-literature` | `daily-papers` | L1 | 获取、筛选并点评近期论文，衔接论文笔记流程 | ✅ |
 | `1-literature` | `paper-digest` | L0 | 消化单篇论文 → Paper 笔记 | ✅ |
 | | `literature-survey` | L1 | 主题级调研（搜索 + 批量 digest + 综合） | ✅ |
 | `2-ideation` | `idea-generate` | L0 | 从知识空白生成研究 idea | ✅ |
@@ -246,7 +255,7 @@ L4: Domain Map      DomainMaps/{Name}.md             持久领域知识
 | Phase | 内容 | 状态 |
 |:------|:-----|:-----|
 | 1. Skeleton | 仓库结构、协议文档、paper-digest / memory-distill / literature-survey | ✅ Done |
-| 1.5 Protocol | skill-protocol 改造（pushy description、Verify 节、budget 字段）+ 现有 skill 改造 | 🔮 |
+| 1.5 Protocol | Codex / Agent Skills protocol（portable frontmatter、Guard、Verify、progressive disclosure） | ✅ Done |
 | 2. Core Loop | memory-retrieve、idea-generate、idea-evaluate、agenda-evolve | ✅ Done |
 | 3. Experiment | experiment-design、experiment-track、result-analysis | ✅ Done |
 | 4. Writing | draft-section、writing-refine | ✅ Done |
@@ -257,6 +266,7 @@ L4: Domain Map      DomainMaps/{Name}.md             持久领域知识
 
 | 日期 | 变更 |
 |:-----|:-----|
+| 2026-10-13 | Codex 成为默认 runtime；通过 `.agents/skills` 暴露 14 个 canonical skills；恢复 `Experiments/` 作为按需生成的实验输出区，并更新公开安装与 skill protocol。 |
 | 2026-04-01 | 移除 Daily/ 和 Experiments/ 目录；移除 cross-paper-analysis skill；CLAUDE.md 改为 AGENTS.md 的 symlink，身份信息集中到 AGENTS.md；精简 paper-digest 和 literature-survey；Paper 模板移除 Connections 章节 |
 | 2026-03-28 | Skill System Design：14 skill 全景图（核心循环 + 卫星架构）、protocol 改造（Verify/pushy desc/budget）、Roadmap 重排 Phase 1.5-6 |
 | 2026-03-27 | Spec 精简至 ~250 行；补全目录结构（dist/docs/examples/website）、笔记类型表（Report）；明确 skill 编号约定；移除未定义缩写 |

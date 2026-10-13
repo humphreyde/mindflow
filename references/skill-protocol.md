@@ -1,198 +1,166 @@
 # Skill Protocol
 
-This document defines the SKILL.md format used by MindFlow skills. Every skill — whether atomic or orchestrating — must include a SKILL.md at its root. This file serves as the single source of truth for what a skill does, how it behaves, what it requires, and what it produces.
+This document defines the portable Agent Skills format used by MindFlow. Every skill — atomic or orchestrating — has a `SKILL.md` at its root. `skills/` is the canonical tree; Codex discovers the same files through `.agents/skills -> ../skills`.
+
+MindFlow follows the [Codex skills guide](https://developers.openai.com/codex/skills) and the portable [Agent Skills specification](https://agentskills.io/specification).
 
 ---
 
+## Discovery and Invocation
+
+Codex reads the lightweight `name` and `description` metadata during discovery. When a skill matches the request, it reads the complete `SKILL.md`; it loads linked references, scripts, or assets only when execution needs them. This progressive-disclosure model keeps discovery concise while preserving detailed workflows close to the skill.
+
+Users can invoke a skill explicitly with `$skill-name`:
+
+```text
+$paper-digest arXiv:2410.24164
+$daily-papers 过去 3 天
+$experiment-design Ideas/example.md
+```
+
+The `description` can also cause a compatible agent to select a skill implicitly. Explicit invocation is preferred when the user needs a specific workflow.
+
 ## Frontmatter Specification
 
-Each SKILL.md begins with YAML frontmatter enclosed by `---` delimiters. MindFlow frontmatter 遵循 [Claude Code 官方 skill 规范](https://code.claude.com/docs/en/skills)，仅使用框架实际解析的字段。
-
-### Fields
+Each `SKILL.md` begins with YAML frontmatter enclosed by `---` delimiters. MindFlow requires the portable discovery fields below; runtime permissions are controlled by the agent environment rather than by a platform-specific tool allowlist.
 
 | Field | Required | Type | Description |
-|---|---|---|---|
-| `name` | Yes | string (kebab-case) | Unique identifier, must match directory name. Lowercase letters, numbers, hyphens only (max 64 chars). |
-| `description` | Yes | string | Pushy trigger description (see below). Front-load key use case; truncated at 250 chars in skill listing. |
-| `allowed-tools` | Yes | string (comma-separated) | Claude Code tools this skill may invoke, e.g. `Read, Write, Glob` |
-| `argument-hint` | Recommended | string | Hint shown during autocomplete, e.g. `[source] [constraints]`. Use `<required>` and `[optional]` notation. |
-| `disable-model-invocation` | No | boolean | Set `true` to prevent Claude from auto-triggering. Use for high-impact skills (e.g. agenda-evolve). Default: `false`. |
-| `user-invocable` | No | boolean | Set `false` to hide from `/` menu. Use for internal-only skills (e.g. memory-retrieve). Default: `true`. |
-
-**`description` — Pushy Trigger Principle:**
-
-Description 应积极触发（"pushy"）——明确描述**触发场景**，降低 under-triggering 风险。不要只写"做什么"，要写"什么情况下该用我"。
-
-| Bad | Good |
-|-----|------|
-| `消化一篇论文，生成结构化笔记` | `当 Owner 给出论文 URL/标题/PDF/DOI，或阅读队列中有待处理论文时，消化论文并生成结构化笔记到 Papers/` |
-
-**`allowed-tools` values** (Claude Code tool names):
-
-`Read`, `Write`, `Edit`, `Glob`, `Grep`, `Bash`, `WebSearch`, `WebFetch`
+|:------|:---------|:-----|:------------|
+| `name` | Yes | string (kebab-case) | Unique identifier; must match the skill directory name. Lowercase letters, numbers, and hyphens only; maximum 64 characters. |
+| `description` | Yes | string | State what the skill does, when it should trigger, and important boundaries; maximum 1024 characters. |
 
 ### Example Frontmatter
 
 ```yaml
 ---
 name: paper-digest
-description: >
-  当 Owner 给出论文 URL/标题/PDF/DOI，或阅读队列中有待处理论文时，消化论文并生成结构化笔记到 Papers/
-argument-hint: "[arXiv URL / PDF path / title / DOI]"
-allowed-tools: Read, Write, Edit, Glob, Grep, WebSearch, WebFetch
+description: 当用户给出论文 URL、标题、PDF 或 DOI，或阅读队列中有待处理论文时，消化论文并生成结构化笔记到 Papers/；已有笔记需要先检查并保护用户编辑。
 ---
+```
+
+### Inputs belong in the body
+
+Document inputs immediately after the frontmatter rather than encoding them in framework-specific metadata. State required and optional values, accepted forms, defaults, and what to do when an input is missing or ambiguous.
+
+```markdown
+## Inputs
+
+- Required: one paper URL, local PDF path, DOI, or unambiguous title.
+- Optional: target domain and user-provided reading questions.
+- If the source is ambiguous, present candidates and ask the user to choose before writing.
 ```
 
 ## Body Sections
 
-Every SKILL.md body must include the following sections. Sections are written as Markdown headings (`##` or `###`).
+Every `SKILL.md` body must include the required sections below. `Inputs`, `Verify`, and `Examples` are strongly recommended; a skill may omit one only when it genuinely has no corresponding contract.
 
 | Section | Required | Purpose |
-|---|---|---|
-| `## Purpose` | Yes | What problem this skill solves and why it exists |
-| `## Steps` | Yes | Numbered, step-by-step execution instructions for the Researcher |
-| `## Guard` | Yes | Preconditions, invariants, and prohibited actions (during execution) |
-| `## Verify` | Recommended | Post-execution quality checklist — mechanical checks on output quality |
-| `## Examples` | Recommended | Concrete input/output examples or usage scenarios |
+|:--------|:---------|:--------|
+| `## Purpose` | Yes | The workflow goal, its place in MindFlow, and its output |
+| `## Inputs` | Recommended | Required/optional inputs, accepted forms, defaults, and ambiguity handling |
+| `## Steps` | Yes | Ordered, capability-oriented execution instructions |
+| `## Guard` | Yes | Preconditions, invariants, protected content, and prohibited actions |
+| `## Verify` | Recommended | Objective checks proving the output meets the contract |
+| `## Examples` | Recommended | Representative `$skill-name` invocations and expected outputs |
 
 ### Purpose
 
-Explain the skill's goal in 2-5 sentences. Include:
-- The research workflow it fits into
-- What inputs it consumes
-- What outputs or effects it produces
+Explain in 2–5 sentences what problem the skill solves, where it fits in the research workflow, and which durable output or state change it produces.
 
-### Steps
+### Steps: describe capabilities, not one runtime's tools
 
-A numbered list of executable instructions. Each step should be unambiguous enough for the Researcher to follow without clarification. Use sub-steps where needed. Reference other skills using their kebab-case names.
+Write numbered instructions in terms of intent and observable results. For example:
 
-```markdown
-## Steps
+- Write “读取目标 note 和相关 template”，not a proprietary file-read tool name.
+- Write “在 `Papers/` 中搜索重复项”，not a proprietary glob or grep call.
+- Write “精确更新目标段落并保留其他内容”，not a proprietary edit primitive.
+- Write “使用当前环境可用的联网搜索与网页读取能力”，not a vendor-specific web command.
 
-1. Receive `paper_url` or `paper_title` from the user.
-2. If `paper_url` is provided, fetch the page with WebFetch.
-3. Extract title, authors, abstract, and publication date.
-4. Look up any existing note in `Papers/` using Glob to avoid duplicates.
-5. Populate the `Templates/Paper.md` template with extracted metadata.
-6. Save the completed note to `Papers/YYMM-ShortTitle.md`.
-7. Append a provisional insight entry to `Workbench/memory/insights.md` if a novel claim is found.
-```
+Shell, Python, and Node commands may be included when they are executable implementation details. State their prerequisite, input, output, and failure fallback; follow the runtime boundaries in root `AGENTS.md`.
 
 ### Guard
 
-A bulleted list of rules the skill must never violate. These act as hard constraints during execution.
+Guard constrains behavior during execution. It must define write scope and protect user content, source integrity, and irreversible actions.
 
 ```markdown
 ## Guard
 
-- Never overwrite an existing paper note without explicit user confirmation.
-- Never modify `agenda.md` Mission section.
-- Do not mark an insight as `validated` without ≥2 independent evidence sources.
-- Copilot mode: produce a draft only — output to conversation for Owner review before writing files.
+- Never overwrite an existing paper note without explicit user authorization.
+- Preserve frontmatter, wikilinks, and handwritten sections outside the requested scope.
+- Do not present an unverified claim as sourced fact.
+- If network retrieval fails, report the missing evidence instead of fabricating it.
 ```
 
 ### Verify
 
-A checklist of mechanical assertions to run after execution completes. Each item must be objectively verifiable (no subjective judgments).
-
-**Verify vs Guard**: Guard constrains behavior _during_ execution ("don't do X"). Verify checks output quality _after_ execution ("did the output meet the bar?").
+Verify runs after execution and contains mechanical, objectively checkable assertions. It is evidence that the workflow met its output contract, not a restatement of Guard.
 
 ```markdown
 ## Verify
 
-- [ ] Output file exists and is non-empty
-- [ ] Frontmatter required fields are all populated
-- [ ] No `[TODO]` or `[TBD]` placeholders remain
-- [ ] All paper references use `[[wikilink]]` format
+- [ ] Output file exists and is non-empty.
+- [ ] Required frontmatter fields are populated.
+- [ ] No `[TODO]` or `[TBD]` placeholders remain.
+- [ ] Every cited paper has a resolvable source or existing vault note.
 ```
 
-### Examples
+## Progressive Disclosure
 
-Optional but strongly recommended. Show representative invocations and expected outputs. Use fenced code blocks or Markdown tables.
+Keep the main `SKILL.md` concise enough to discover and execute:
 
----
+1. `name` and `description` provide discovery metadata.
+2. The body provides the complete core workflow, Guard, and Verify contract.
+3. Detailed schemas, lookup tables, and extended examples live under the skill's `references/` directory and are linked from `SKILL.md`.
+4. Deterministic helpers live under `scripts/`; reusable static material lives under `assets/` when needed.
+5. Read only the linked resources needed for the current request, but read each selected instruction file completely before acting.
 
-## Complex Skills: The `references/` Subdirectory Pattern
+Reference files are plain Markdown and do not define nested skills. `SKILL.md` remains the authoritative entry point.
 
-When a skill's SKILL.md exceeds approximately 200 lines, or when it requires supporting reference material (schemas, lookup tables, extended examples), split the content using a `references/` subdirectory inside the skill directory.
+## Orchestration
 
-**Structure:**
+An orchestration skill coordinates other skills by name without assuming a proprietary “call skill” tool:
 
-```
-skills/
-  paper-ingest/
-    SKILL.md              # Frontmatter + concise Steps + Guard
-    references/
-      field-mapping.md    # Detailed mapping of paper fields to frontmatter keys
-      venue-list.md       # Canonical venue abbreviations
-      example-note.md     # Full worked example of an output note
-```
+1. Locate the target skill in `.agents/skills` / canonical `skills/`.
+2. Read its complete `SKILL.md` and the referenced material required for the current input.
+3. Execute its Steps while honoring its Guard.
+4. Run its Verify checks before consuming the output in the next stage.
 
-**Rules for the `references/` pattern:**
-
-- SKILL.md remains the authoritative entry point. It must be self-contained enough to execute; `references/` files are supplementary detail.
-- Reference files are linked from SKILL.md using relative Markdown links, e.g. `[field mapping](references/field-mapping.md)`.
-- Reference files do not have their own frontmatter — they are plain Markdown.
-- The `references/` directory may not contain nested skill directories (no sub-skills here; use orchestration instead).
-
----
+Parallel execution is optional. Use it only when the runtime supports it, subtasks are independent, and they do not share writes; otherwise run the same sequence serially. The orchestration skill owns the final cross-stage verification and reports partial failures explicitly.
 
 ## Skill Levels
 
-Skills are organized into three levels based on scope and composition.
-
-### Level 0 — Atomic
-
-A single-purpose skill that calls Claude Code tools directly. It does not invoke other skills.
-
-- Typically < 150 lines
-- Lives in a leaf category directory (e.g. `1-literature/`, `2-ideation/`)
-- Example: `paper-digest`, `idea-evaluate`, `experiment-track`
-
-### Level 1 — Orchestration
-
-A skill that sequences or conditions other skills to accomplish a compound goal. It calls Level 0 skills by name.
-
-- Lives in `6-orchestration/` or similar
-- Steps reference other skills explicitly: "Run `paper-digest` for each URL."
-- Example: `literature-survey`, `autoresearch`
-
-### Level 2 — Global
-
-A skill that operates across the entire vault or research state. It may invoke multiple Level 1 skills, modify `agenda.md`, update memory files, or trigger cross-cutting evolution.
-
-- Typically run on a schedule or by explicit Owner command
-- Broad `allowed-tools` and strict `## Guard` section
-- Example: `memory-distill`, `agenda-evolve`
-
----
+| Level | Scope | Examples |
+|:------|:------|:---------|
+| L0 — Atomic | One focused research capability; does not orchestrate other skills | `paper-digest`, `idea-evaluate`, `experiment-track` |
+| L1 — Workflow | Sequences or conditions multiple capabilities for a compound result | `daily-papers`, `literature-survey` |
+| L2 — Global | Operates across vault-wide research state or the full research loop | `memory-distill`, `agenda-evolve`, `autoresearch` |
 
 ## Naming Conventions
 
 | Element | Convention | Example |
-|---|---|---|
+|:--------|:-----------|:--------|
 | Skill directory name | kebab-case | `paper-digest/` |
 | Category directory name | numbered prefix + kebab-case | `1-literature/` |
-| Skill entrypoint filename | Always uppercase | `SKILL.md` |
-| `name` field in frontmatter | Must match directory name exactly | `paper-digest` |
+| Skill entrypoint filename | Uppercase, exact | `SKILL.md` |
+| `name` frontmatter field | Must match directory name exactly | `paper-digest` |
 
-**Rationale for numbered category prefixes:** Obsidian and most file explorers sort directories alphabetically. Numbered prefixes (`01-`, `02-`, ...) enforce a logical reading order that mirrors the research workflow (literature → ideation → experiment → analysis → writing → evolution).
+Numbered category prefixes preserve the research workflow order in Obsidian and file explorers.
 
-**Example directory layout:**
+## Current Skill Tree（14 个 skills）
 
-```
+```text
 skills/
   1-literature/
-    paper-digest/
-      SKILL.md
-    cross-paper-analysis/
+    daily-papers/
       SKILL.md
     literature-survey/
       SKILL.md
-  2-ideation/
-    idea-generate/
+    paper-digest/
       SKILL.md
+  2-ideation/
     idea-evaluate/
+      SKILL.md
+    idea-generate/
       SKILL.md
   3-experiment/
     experiment-design/
@@ -207,9 +175,9 @@ skills/
     writing-refine/
       SKILL.md
   5-evolution/
-    memory-distill/
-      SKILL.md
     agenda-evolve/
+      SKILL.md
+    memory-distill/
       SKILL.md
     memory-retrieve/
       SKILL.md
@@ -217,5 +185,4 @@ skills/
     autoresearch/
       SKILL.md
       references/
-        judge-heuristics.md
 ```

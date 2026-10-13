@@ -25,14 +25,14 @@ An Obsidian-based research workspace for building a **human-AI collaborative res
 - **Domain Maps** — 按研究领域构建的认知地图（VLM、CUA、VLA 等）
 - **Research Ideas** — 灵感记录与评估，双向链接到相关论文
 - **Literature Survey** — 按主题系统调研，多篇论文对比分析
-- **AI Skills** — 13 个 AI 技能覆盖完整研究流程（阅读→构思→实验→写作→反思）
+- **AI Skills** — 14 个 AI 技能覆盖完整研究流程（阅读→构思→实验→写作→反思）
 - **Workbench** — 研究状态追踪（agenda、日志、记忆库）
 - **Project & Meeting Tracking** — 项目进展与会议记录
 - **Published Website** — 基于 Quartz v4 的知识库站点
 
 ## Getting Started
 
-See [INSTALL.md](docs/INSTALL.md) for detailed installation instructions. You can follow the steps manually, or simply copy the following instruction into your CLI agent:
+Codex CLI / desktop 是 MindFlow 的默认 agent 入口；Obsidian 用于浏览和编辑 vault。详细安装步骤见 [INSTALL.md](docs/INSTALL.md)。你可以手动执行，也可以将以下指令交给 Codex：
 ```
 Install MindFlow from: https://github.com/liqing-ustc/mindflow/blob/main/docs/INSTALL.md
 ```
@@ -47,9 +47,11 @@ Install MindFlow from: https://github.com/liqing-ustc/mindflow/blob/main/docs/IN
 | `Topics/` | 文献调研与分析报告 | 主题名称 |
 | `Projects/` | 项目追踪 | 项目名称 |
 | `Reports/` | 生成的报告 | — |
+| `Experiments/` | 实验设计、运行记录与结果（由 skill 按需生成） | — |
 | `Meetings/` | 会议记录 | `YYYY-MM-DD-Description.md` |
 | `Workbench/` | 研究工作状态（agenda、日志、记忆） | — |
-| `skills/` | AI 研究技能库 | — |
+| `skills/` | 14 个 AI 研究技能的唯一源码目录 | — |
+| `.agents/skills` | Codex repo-scoped skill 发现入口（指向 `../skills`） | symlink |
 | `Templates/` | Obsidian 模板 | — |
 | `references/` | 协议文档（tag taxonomy 等） | — |
 
@@ -70,26 +72,33 @@ Install MindFlow from: https://github.com/liqing-ustc/mindflow/blob/main/docs/IN
 
 ## AI Research Skills
 
-MindFlow 内置了 13 个 AI 技能，按研究流程分为 6 层：
+MindFlow 内置了 14 个 AI 技能，按研究流程分为 6 层：
 
 | Layer | Skills | Purpose |
 |-------|--------|---------|
-| 1. Literature | `paper-digest`, `literature-survey` | 论文阅读与文献调研 |
+| 1. Literature | `daily-papers`, `paper-digest`, `literature-survey` | 每日论文推荐、论文阅读与文献调研 |
 | 2. Ideation | `idea-generate`, `idea-evaluate` | 研究 idea 生成与评估 |
 | 3. Experiment | `experiment-design`, `experiment-track`, `result-analysis` | 实验设计、跟踪与分析 |
 | 4. Writing | `draft-section`, `writing-refine` | 论文写作与打磨 |
 | 5. Evolution | `memory-retrieve`, `memory-distill`, `agenda-evolve` | 记忆管理与方向演化 |
 | 6. Orchestration | `autoresearch` | 自主研究循环 |
 
-### Quick Start with Claude Code
+### Quick Start with Codex
 
+从仓库根目录启动 Codex，然后显式调用 skill：
+
+```text
+$daily-papers 过去 3 天          # 筛选并点评近期论文
+$paper-digest arXiv:2410.24164  # 抓取、总结并生成论文笔记
+$literature-survey GUI Agent    # 系统文献调研
+$idea-generate                  # 基于知识库生成 research idea
+$idea-evaluate Ideas/example.md # 评估已有 idea
+$experiment-design Ideas/example.md # 生成实验方案到 Experiments/
 ```
-总结论文 pi0                    # AI 自动抓取、总结、存储论文笔记
-找 idea                        # 基于知识库生成研究 idea
-评估一下这个 idea               # 五维评估研究 idea
-调研 GUI Agent                  # 系统文献调研
-设计个实验                      # 为 idea 设计实验方案
-```
+
+#### Optional compatibility: Claude Code
+
+Claude Code 仍可使用同一套 `skills/`；兼容链接的配置方法见 [INSTALL.md](docs/INSTALL.md#optional-compatibility-claude-code)。Codex discovery 仍以 `.agents/skills` 为默认入口。
 
 ## Tags
 

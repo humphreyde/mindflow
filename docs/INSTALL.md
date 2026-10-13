@@ -1,11 +1,17 @@
 # Installation Guide
 
+Codex CLI / desktop 是 MindFlow 的默认 agent 入口；Obsidian 是 vault 的浏览与编辑界面。仓库内的 14 个 skills 已通过 `.agents/skills` 暴露给 Codex，无需复制或全局安装。
+
 ## Prerequisites
 
-- [Obsidian](https://obsidian.md/)
-- CLI agents, such as [Claude Code](https://claude.ai/code)
-- [Git](https://git-scm.com/) (for version control)
-
+| Dependency | Requirement | Used for |
+|:-----------|:------------|:---------|
+| [Codex](https://developers.openai.com/codex/) | Codex CLI，或支持 repo-scoped skills 的 Codex desktop environment | 默认 agent runtime |
+| [Git](https://git-scm.com/) | Required | Clone、版本控制与 Quartz 的修改时间 |
+| [Obsidian](https://obsidian.md/) | Recommended | Vault UI；不影响 Codex 在 Markdown 上执行 skills |
+| [Python](https://www.python.org/) + [uv](https://docs.astral.sh/uv/) | Python 3.12+；通过根目录 `pyproject.toml` / `uv.lock` 使用 `uv` | PDF 提取和 Python helpers；不要安装到 system Python |
+| [Node.js](https://nodejs.org/) + npm | Paper HTML 提取需要 Node 18+；`.website/` Quartz workspace 需要 Node 20+ | HTML 提取与网站构建 |
+| [GitHub CLI](https://cli.github.com/) | Optional | GitHub metadata；缺失时 skill 可回退到公开 API |
 
 ## Step 1: Clone the Repository
 
@@ -14,64 +20,69 @@ git clone https://github.com/liqing-ustc/MindFlow.git
 cd MindFlow
 ```
 
-## Step 2: Install Agent Skills
+后续命令都从仓库根目录执行，除非命令明确进入 `.website/`。
 
-MindFlow ships with a set of research skills in `skills/`. These need to be linked into `.claude/skills/` so Claude Code can discover them, along with two external skill plugins.
+## Step 2: Verify Codex Skill Discovery
 
-### 2a. Vault skills
-
-Symlink every skill under `skills/` into `.claude/skills/`:
+`skills/` 是唯一的 skill 源码目录；版本库内的 `.agents/skills -> ../skills` 是 Codex discovery link。验证 symlink 和 14 个入口：
 
 ```bash
-# From vault root
-for skill in skills/*/*; do
-  [ -d "$skill" ] && ln -sfn "../../$skill" ".claude/skills/$(basename $skill)"
-done
+test -L .agents/skills
+test "$(readlink .agents/skills)" = "../skills"
+find -H .agents/skills -mindepth 3 -maxdepth 3 -name SKILL.md | wc -l
+# Expected: 14
 ```
 
-Verify the links:
+若 symlink 在不保留链接的下载或复制过程中丢失，请重新使用 `git clone`；不要在 `.agents/skills` 下维护第二份 skill 副本。
+
+## Step 3: Start Codex and Verify a Skill
+
+从 MindFlow 根目录启动 Codex，使根 `AGENTS.md` 与 `.agents/skills` 同时生效：
 
 ```bash
-ls -l .claude/skills/
-# Should show symlinks for the vault skills under the folder skills/
+codex
 ```
 
-### 2b. External Skills (Recommended)
+在 Codex 中显式调用任一 skill，例如：
 
-Install the following skills under this folder:
+```text
+$paper-digest arXiv:2410.24164
+$daily-papers 过去 3 天
+$literature-survey GUI Agent
+```
 
-| Skill                                                        | Purpose                                                                        |
-| ------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| [superpowers](https://github.com/obra/superpowers)           | Development workflow skills (brainstorming, TDD, debugging, code review, etc.) |
-| [obsidian-skills](https://github.com/kepano/obsidian-skills) | Obsidian vault management skills (markdown, bases, canvas, CLI)                |
+Codex 应先读取对应 `SKILL.md`，再按其中的 Steps、Guard 和 Verify 执行。完整 skill 清单见 [README](../README.md#ai-research-skills)。
 
-## Step 3: Install Obsidian Plugins
+## Step 4: Open the Obsidian Vault
 
-The following obsidian plugins are recommended:
+1. Open Obsidian.
+2. Click **Open folder as vault**.
+3. Select the cloned `MindFlow` directory.
+4. Trust the vault when prompted if you want to enable community plugins.
 
-| Plugin                                                    | Purpose                                             |
-| --------------------------------------------------------- | --------------------------------------------------- |
-| [Claudian](https://github.com/YishenTu/claudian)          | CLI agent integration (Claude Code inside Obsidian) |
-| [Obsidian-Git](https://github.com/Vinzent03/obsidian-git) | View source control for your vault                  |
-
-
-## Step 4: Open as Obsidian Vault
-
-1. Open Obsidian
-2. Click **"Open folder as vault"**
-3. Select the cloned `MindFlow` directory
-4. Trust the vault when prompted (to enable community plugins)
-
-Obsidian settings (templates, attachments, link format) are pre-configured in `.obsidian/`.
+Templates、attachments 和 link format 已在 `.obsidian/` 中预配置。[Obsidian Git](https://github.com/Vinzent03/obsidian-git) 可选，用于在 UI 中查看版本控制状态。
 
 ## Optional: Published Website (Quartz)
 
-MindFlow supports publishing as a static site via [Quartz v4](https://quartz.jzhao.xyz/):
+Quartz 是独立的 Node 20+ workspace。不要在 vault 根目录安装其依赖：
 
 ```bash
-# Install Quartz (if not already)
-npx quartz create
-
-# Build and preview
-npx quartz build --serve
+cd .website
+npm ci
+npx quartz build --directory ../ --output dist
+# Local preview:
+npx quartz build --directory ../ --serve
 ```
+
+## Optional compatibility: Claude Code
+
+Claude Code 不是默认入口，但可通过兼容链接复用 canonical `skills/`。仅在需要该 runtime 时，从仓库根目录执行：
+
+```bash
+mkdir -p .claude/skills
+for skill in skills/*/*; do
+  [ -d "$skill" ] && ln -sfn "../../$skill" ".claude/skills/$(basename "$skill")"
+done
+```
+
+验证 `.claude/skills/` 中的链接后，从仓库根目录启动 Claude Code。不要修改 `skills/` 之外的链接副本。
