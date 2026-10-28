@@ -1,8 +1,16 @@
 ---
 title:
 tags: []
-status: planning  # planning / active / paused / completed
+type: project
+repo_key:
+repo_roots: []
+aliases: []
+domains: []
+entrypoints: []
+keywords: []
+status: planning
 date_started: "{{date}}"
+verified_at:
 ---
 ## Goal
 这个项目要达成什么？
