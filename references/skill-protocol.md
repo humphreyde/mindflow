@@ -146,7 +146,7 @@ Parallel execution is optional. Use it only when the runtime supports it, subtas
 
 Numbered category prefixes preserve the research workflow order in Obsidian and file explorers.
 
-## Current Skill Tree（14 个 skills）
+## Current Skill Tree（15 个 skills）
 
 ```text
 skills/
@@ -185,4 +185,10 @@ skills/
     autoresearch/
       SKILL.md
       references/
+    mindflow-context/
+      SKILL.md
+      references/
+        smoke-tests.md
+      scripts/
+        validate_profiles.py
 ```

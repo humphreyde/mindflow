@@ -2,7 +2,7 @@
 
 > 本文件是 MindFlow 的 **single source of truth**，记录系统的当前设计和约定。
 
-**Last updated**: 2026-10-13
+**Last updated**: 2026-10-28
 
 ---
 
@@ -55,17 +55,18 @@ Researcher 默认独立工作。Supervisor 随时可以 drop in 给指令或讨�
 
 ## 3. Directory Structure
 
-Vault 中的内容分为两类：
+MindFlow 中的内容分为三类：
 
-- **Knowledge Assets**（`Papers/`、`Topics/`、`Ideas/`、`Projects/`、`Reports/`、`Experiments/`）：完成或由 skill 生成的产出物，Supervisor-Researcher 共享
-- **Researcher Working State**（`Workbench/`）：过程产物——议程、记忆、队列、日志
+- **Knowledge Assets**（`Papers/`、`Topics/`、`Ideas/`、`Reports/`、`Experiments/`）：完成或由 skill 生成的产出物，Supervisor-Researcher 共享
+- **Code Repositories**（`Projects/`）：独立版本管理的代码仓库，不纳入 vault 发布与索引
+- **Researcher Working State**（`Workbench/`）：过程产物——议程、记忆、队列、日志，以及 `PARA/Projects/` 中的项目研究 profile 与状态页
 
 ```
 MindFlow/
 │
 ├── Papers/              # 论文笔记（YYMM-ShortTitle.md）
 ├── Ideas/               # 研究 idea（status: raw → developing → validated → archived）
-├── Projects/            # 项目追踪（status: planning → active → paused → completed）
+├── Projects/            # 独立版本管理的代码仓库（不纳入 vault 发布与索引）
 ├── Topics/              # 文献调研 / 跨论文分析报告
 ├── Reports/             # Researcher 生成的报告
 ├── Experiments/         # 实验设计、运行记录与结果（由 skill 按需生成）
@@ -97,6 +98,7 @@ MindFlow/
 ├── Workbench/           # Researcher 工作状态（Supervisor 可随时查看和编辑）
 │   ├── agenda.md        #   研究议程
 │   ├── memory/          #   蒸馏后的记忆（patterns, insights, ...）
+│   ├── PARA/Projects/   #   项目研究 profile 与状态页（{repo_key}.md）
 │   ├── queue.md         #   待办队列（Reading, Review, Questions, Experiments）
 │   ├── logs/            #   每日操作日志（YYYY-MM-DD.md）
 │   └── evolution/       #   演化记录（changelog.md）
@@ -108,6 +110,8 @@ MindFlow/
 ```
 
 Codex 是默认 runtime：从仓库根目录启动时读取 `AGENTS.md`，并通过 `.agents/skills` 发现 canonical `skills/`。可选的其他 agent compatibility 不改变这两个默认入口。
+
+`Projects/` 中每个代码仓库都是独立 Git root，不能假设 MindFlow 的父级 instructions 会跨越 nested Git root 自动生效。当前 `Projects/CLAUDE.md` convention 与直接代码仓库根布局冲突；在迁移第一个仓库之前，必须由另一个明确批准的任务添加 Codex-first `Projects/AGENTS.md`、修订 Claude compatibility，并更新 narrow shared-file exception。MVP 保持 `pi` 为外部仓库，相关共享兼容文件推迟到首次迁移处理。
 
 ## 4. Key Concepts
 
@@ -122,7 +126,7 @@ Codex 是默认 runtime：从仓库根目录启动时读取 `AGENTS.md`，并通
 |:-----|:-----|:---------|:-----|
 | 论文笔记 | `Papers/` | `YYMM-ShortTitle.md`（YYMM 取自 date_publish） | `Templates/Paper.md` |
 | 研究 Idea | `Ideas/` | 描述性名称 | `Templates/Idea.md` |
-| 项目 | `Projects/` | 描述性名称 | `Templates/Project.md` |
+| 项目研究 profile / 状态页 | `Workbench/PARA/Projects/` | `{repo_key}.md` | （profile schema 由 `mindflow-context` 校验） |
 | 文献调研 | `Topics/` | `{Topic}-Survey.md` | （无固定模板；结构由 `literature-survey` skill 根据侦察到的 survey paper 提炼） |
 | 会议 | `Meetings/` | `YYYY-MM-DD-Description.md` | `Templates/Meeting.md` |
 | 报告 | `Reports/` | 描述性名称 | `Templates/Report.md` |
@@ -153,6 +157,8 @@ Skill 是 MindFlow 的自动化核心——定义在 `skills/<category>/<name>/S
 
 **架构**：核心循环 + 卫星 skill。`autoresearch`（L2 编排）读取 agenda/memory/queue 状态，判断下一个最高价值行动，调用对应卫星 skill。每个卫星 skill 也可被 Supervisor 自然语言直接触发。
 
+`mindflow-context` 是通过 user/repository discovery 全局可用的 L1 检索编排：它按项目 profile 在 MindFlow 中获取有界研究上下文，同时保持源码与知识证据通道分离。它不属于 `autoresearch` 的自主 action registry，也不会扩展自主研究循环的可执行动作集合。
+
 ```
                ┌─── autoresearch (L2) ───┐
                │   读状态 → 判断 → 执行    │
@@ -166,7 +172,7 @@ Skill 是 MindFlow 的自动化核心——定义在 `skills/<category>/<name>/S
                   5-evolution → 更新 Workbench/ → 下一轮
 ```
 
-**完整 skill 清单**（14 个）：
+**完整 skill 清单**（15 个）：
 
 | Category | Skill | Level | 功能 | 状态 |
 |:---------|:------|:------|:-----|:-----|
@@ -184,6 +190,7 @@ Skill 是 MindFlow 的自动化核心——定义在 `skills/<category>/<name>/S
 | | `agenda-evolve` | L2 | 演化研究议程 | ✅ |
 | | `memory-retrieve` | L0 | 从记忆库检索相关经验 | ✅ |
 | `6-orchestration` | `autoresearch` | L2 | 核心研究循环（读状态→判断→执行→积累） | ✅ |
+| `6-orchestration` | `mindflow-context` | L1 | 按项目 profile 编排跨仓库研究上下文检索 | ✅ |
 
 详细设计 → `docs/superpowers/specs/2026-03-28-skill-system-design.md`
 
@@ -266,6 +273,7 @@ L4: Domain Map      DomainMaps/{Name}.md             持久领域知识
 
 | 日期 | 变更 |
 |:-----|:-----|
+| 2026-10-28 | 新增 profile-driven 跨仓库研究层：`mindflow-context` 按项目 profile 有界检索 MindFlow，保持外部代码仓库、研究状态页与 canonical skill discovery 的边界。 |
 | 2026-10-13 | Codex 成为默认 runtime；通过 `.agents/skills` 暴露 14 个 canonical skills；恢复 `Experiments/` 作为按需生成的实验输出区，并更新公开安装与 skill protocol。 |
 | 2026-04-01 | 移除 Daily/ 和 Experiments/ 目录；移除 cross-paper-analysis skill；CLAUDE.md 改为 AGENTS.md 的 symlink，身份信息集中到 AGENTS.md；精简 paper-digest 和 literature-survey；Paper 模板移除 Connections 章节 |
 | 2026-03-28 | Skill System Design：14 skill 全景图（核心循环 + 卫星架构）、protocol 改造（Verify/pushy desc/budget）、Roadmap 重排 Phase 1.5-6 |

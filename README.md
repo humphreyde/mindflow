@@ -25,7 +25,7 @@ An Obsidian-based research workspace for building a **human-AI collaborative res
 - **Domain Maps** — 按研究领域构建的认知地图（VLM、CUA、VLA 等）
 - **Research Ideas** — 灵感记录与评估，双向链接到相关论文
 - **Literature Survey** — 按主题系统调研，多篇论文对比分析
-- **AI Skills** — 14 个 AI 技能覆盖完整研究流程（阅读→构思→实验→写作→反思）
+- **AI Skills** — 15 个 AI 技能覆盖完整研究流程（阅读→构思→实验→写作→反思）
 - **Workbench** — 研究状态追踪（agenda、日志、记忆库）
 - **Project & Meeting Tracking** — 项目进展与会议记录
 - **Published Website** — 基于 Quartz v4 的知识库站点
@@ -45,12 +45,13 @@ Install MindFlow from: https://github.com/liqing-ustc/mindflow/blob/main/docs/IN
 | `DomainMaps/` | 核心认知地图，每个 domain 一个文件 | `_index.md` 为索引 |
 | `Ideas/` | 研究灵感与评估 | 自由命名 |
 | `Topics/` | 文献调研与分析报告 | 主题名称 |
-| `Projects/` | 项目追踪 | 项目名称 |
+| `Projects/` | 独立版本管理的代码仓库；不纳入 vault 发布与索引 | repository name |
 | `Reports/` | 生成的报告 | — |
 | `Experiments/` | 实验设计、运行记录与结果（由 skill 按需生成） | — |
 | `Meetings/` | 会议记录 | `YYYY-MM-DD-Description.md` |
 | `Workbench/` | 研究工作状态（agenda、日志、记忆） | — |
-| `skills/` | 14 个 AI 研究技能的唯一源码目录 | — |
+| `Workbench/PARA/Projects/` | 项目研究 profile 与状态页 | `{repo_key}.md` |
+| `skills/` | 15 个 AI 研究技能的唯一源码目录 | — |
 | `.agents/skills` | Codex repo-scoped skill 发现入口（指向 `../skills`） | symlink |
 | `Templates/` | Obsidian 模板 | — |
 | `references/` | 协议文档（tag taxonomy 等） | — |
@@ -72,7 +73,7 @@ Install MindFlow from: https://github.com/liqing-ustc/mindflow/blob/main/docs/IN
 
 ## AI Research Skills
 
-MindFlow 内置了 14 个 AI 技能，按研究流程分为 6 层：
+MindFlow 内置了 15 个 AI 技能，按研究流程分为 6 层：
 
 | Layer | Skills | Purpose |
 |-------|--------|---------|
@@ -81,7 +82,7 @@ MindFlow 内置了 14 个 AI 技能，按研究流程分为 6 层：
 | 3. Experiment | `experiment-design`, `experiment-track`, `result-analysis` | 实验设计、跟踪与分析 |
 | 4. Writing | `draft-section`, `writing-refine` | 论文写作与打磨 |
 | 5. Evolution | `memory-retrieve`, `memory-distill`, `agenda-evolve` | 记忆管理与方向演化 |
-| 6. Orchestration | `autoresearch` | 自主研究循环 |
+| 6. Orchestration | `autoresearch`, `mindflow-context` | 自主研究循环；按项目 profile 检索跨仓库研究上下文 |
 
 ### Quick Start with Codex
 
@@ -94,6 +95,7 @@ $literature-survey GUI Agent    # 系统文献调研
 $idea-generate                  # 基于知识库生成 research idea
 $idea-evaluate Ideas/example.md # 评估已有 idea
 $experiment-design Ideas/example.md # 生成实验方案到 Experiments/
+$mindflow-context 分析当前项目的 action chunking 设计
 ```
 
 #### Optional compatibility: Claude Code

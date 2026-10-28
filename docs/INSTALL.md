@@ -1,6 +1,6 @@
 # Installation Guide
 
-Codex CLI / desktop 是 MindFlow 的默认 agent 入口；Obsidian 是 vault 的浏览与编辑界面。仓库内的 14 个 skills 已通过 `.agents/skills` 暴露给 Codex，无需复制或全局安装。
+Codex CLI / desktop 是 MindFlow 的默认 agent 入口；Obsidian 是 vault 的浏览与编辑界面。仓库内的 15 个 skills 已通过 `.agents/skills` 暴露给 Codex，无需复制或全局安装。
 
 ## Prerequisites
 
@@ -24,16 +24,48 @@ cd MindFlow
 
 ## Step 2: Verify Codex Skill Discovery
 
-`skills/` 是唯一的 skill 源码目录；版本库内的 `.agents/skills -> ../skills` 是 Codex discovery link。验证 symlink 和 14 个入口：
+`skills/` 是唯一的 skill 源码目录；版本库内的 `.agents/skills -> ../skills` 是 Codex discovery link。验证 symlink 和 15 个入口：
 
 ```bash
 test -L .agents/skills
 test "$(readlink .agents/skills)" = "../skills"
 find -H .agents/skills -mindepth 3 -maxdepth 3 -name SKILL.md | wc -l
-# Expected: 14
+# Expected: 15
 ```
 
 若 symlink 在不保留链接的下载或复制过程中丢失，请重新使用 `git clone`；不要在 `.agents/skills` 下维护第二份 skill 副本。
+
+## Optional: Cross-repository MindFlow context
+
+外部代码仓库不会继承 MindFlow 父目录的 `AGENTS.md`。若要让 Codex 在这些仓库的研究、架构、实验设计、方法选择、论文到代码映射或历史决策任务中使用 MindFlow，可安装一个 user-level discovery link：
+
+```bash
+canonical=/Users/limx/mindflow/skills/6-orchestration/mindflow-context
+global_link=/Users/limx/.codex/skills/mindflow-context
+
+test -d "$canonical"
+test ! -e "$global_link"
+test ! -L "$global_link"
+ln -s "$canonical" "$global_link"
+test "$(realpath "$global_link")" = "$(realpath "$canonical")"
+```
+
+这里只允许这一条指向 canonical skill 目录的 symlink；canonical `skills/` tree 永远不复制，也不整体链接到另一个 discovery root。安装前应保存 `/Users/limx/.codex/AGENTS.md` 的原始内容，然后只追加一次以下最小全局 trigger：
+
+```markdown
+## MindFlow research context
+
+- For research, architecture, experiment design, method selection, paper-to-code mapping, historical-decision work, or an explicit request to use MindFlow, use `$mindflow-context`.
+- Profile or `MindFlow/Projects/` membership selects project retrieval versus generic fallback; it does not decide whether a research task triggers.
+- Do not invoke MindFlow for mechanical formatting, ordinary local test fixes, or unrelated code changes.
+- This rule controls research-knowledge retrieval only; source code remains readable whenever the task requires it.
+```
+
+重启 Codex 或使用 fresh isolated sessions，分别从外部仓库（MVP 使用 `/Users/limx/project/pi`）和 MindFlow 根目录检查 selector/catalog。两个环境都必须恰好只有一个可选的 `mindflow-context`，并加载 `/Users/limx/mindflow/skills/6-orchestration/mindflow-context/SKILL.md`；其他路径下不得存在复制的 entrypoint。
+
+若任一环境出现零个或多个条目、非 canonical realpath 或复制的 entrypoint，先确认 user-level path 仍是上面创建的精确 symlink，再删除该 symlink、把全局 `AGENTS.md` 恢复为安装前的原始内容并停止；不得继续使用未经验证的 discovery 布局。
+
+MVP 中 `pi` 仍位于 MindFlow 外部。`Projects/` 下的共享兼容文件刻意推迟到第一个代码仓库迁移时再由单独批准的任务处理。
 
 ## Step 3: Start Codex and Verify a Skill
 
