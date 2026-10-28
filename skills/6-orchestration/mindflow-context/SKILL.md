@@ -63,7 +63,7 @@ description: 当任务涉及研究、架构、实验设计、方法选择、论�
   理由: <为何值得沉淀>
   ```
 
-- 用户批准后，先重新读取当前 repository 的 `AGENTS.md`、适用 reference/template 和目标 note，再做最小兼容写入。单篇论文结论进入 `Papers/`；跨论文综合进入 `Topics/` 或 `DomainMaps/`；hypothesis 进入 `Ideas/`；实验计划/结果进入 `Experiments/`；工程或研究进展进入 project profile。跨项目可复用 workflow 只有在另一次明确授权后才能进入 `skills/`。
+- 用户批准后，先解析 canonical `<resolved vault_root>`，重新读取 `<resolved vault_root>/AGENTS.md`（若存在）、目标路径层级适用的 target-vault instructions、适用 references/templates 和 destination note，再做最小兼容写入。当前 source repository 的 `AGENTS.md` 只约束 source lane，不能替代 target-vault rules。单篇论文结论进入 `Papers/`；跨论文综合进入 `Topics/` 或 `DomainMaps/`；hypothesis 进入 `Ideas/`；实验计划/结果进入 `Experiments/`；工程或研究进展进入 project profile。跨项目可复用 workflow 只有在另一次明确授权后才能进入 `skills/`。
 - 写回批准不授权 commit 或 push，也不授权修改批准目标之外的文件。
 - 不向 MindFlow 写入 credentials、tokens、private addresses、camera serial numbers、large logs、checkpoints 或未经筛选的 runtime output。
 - branch、commit、host、service、checkpoint 和 experiment-state 等易漂移事实必须附带本轮当前验证；旧笔记不能代替 runtime verification。
@@ -77,7 +77,7 @@ description: 当任务涉及研究、架构、实验设计、方法选择、论�
 - [ ] 每个 MindFlow 引用包含绝对路径与 heading，结论使用四类 evidence labels。
 - [ ] 没有证据时使用固定 no-evidence 声明，且没有伪造来源。
 - [ ] 未经明确批准没有写回；获批写回仅修改批准目标并保留原有手写内容。
-- [ ] 维护者做运行时行为验证时，读取并执行 [references/smoke-tests.md](references/smoke-tests.md) 的九案例矩阵。
+- [ ] 维护者做运行时行为验证时，读取并执行 [references/smoke-tests.md](references/smoke-tests.md) 的十案例矩阵。
 
 ## Examples
 

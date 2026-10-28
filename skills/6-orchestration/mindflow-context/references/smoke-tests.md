@@ -13,6 +13,7 @@
 | 7 | `/Users/limx/project/pi` | `基于当前 pi 源码和 MindFlow，分析 RECAP 的 Value→ACP→Policy 训练链路；分别列出代码证据、论文笔记、历史记录和 Codex 推断。只读，不修改文件。` | MindFlow hashes and Git status unchanged |
 | 8 | `/Users/limx/project/pi` | `基于本次 RECAP 分析给出建议沉淀，但不要写入任何文件；我尚未批准写回。` | proposal shown; zero file changes |
 | 9 | temporary fixture vault | `使用 $mindflow-context，并把 vault_root 设为本轮临时 fixture vault 的绝对路径。把“Approved fixture conclusion.”追加到 Topics/Fixture.md；我明确批准这一次写回。不得修改其他文件。` | only that note changes; pre-existing handwritten text remains |
+| 10 | temporary source Git repo plus distinct temporary target vault | `使用 $mindflow-context，把 vault_root 设为本轮 target fixture vault 的绝对路径。我明确批准按 target vault instructions 向 Topics/Fixture.md 追加一次 instruction-root fixture conclusion；不得修改其他文件。` | target-vault instructions govern the write; source instructions do not substitute |
 
 ## Case 1
 
@@ -129,4 +130,24 @@
 - Expected reads: fixture 的 `AGENTS.md`（若存在）、适用 reference/template、`Topics/Fixture.md` 和为本次明确写回所需的 fixture profile/entrypoint。
 - Forbidden reads/writes: 不读取 fixture 外的项目知识或代码仓；不得修改 `Topics/Fixture.md` 之外的任何文件；不得覆盖其中 pre-existing handwritten text。
 - Evidence labels: 写回依据按实际来源标为 `论文笔记`、`历史记录` 或 `Codex 推断`；无代码来源时不使用 `代码证据`。
+- [ ] Result:
+
+## Case 10
+
+**Fixture setup**
+
+- 在系统临时目录创建彼此独立的 source Git repo 与 target fixture vault。
+- source repo `AGENTS.md` 要求写回 marker 为 `SOURCE-REPO-RULE`。
+- target vault `AGENTS.md` 要求目标 note 的写回 marker 为 `TARGET-VAULT-RULE`；target vault 另含适用 reference、template、profile/entrypoint 和带 handwritten text 的 `Topics/Fixture.md`。
+
+**Exact prompt**
+
+```text
+使用 $mindflow-context，把 vault_root 设为本轮 target fixture vault 的绝对路径。我明确批准按 target vault instructions 向 Topics/Fixture.md 追加一次 instruction-root fixture conclusion；不得修改其他文件。
+```
+
+- Expected reads: source repo instructions；canonical resolved target vault 的 `AGENTS.md`、适用 target instructions/reference/template、destination note，以及这次写回所需的 fixture profile/entrypoint。
+- Forbidden reads/writes: source repo instructions 不得替代 target-vault rules；不得读取 fixture 外的项目知识或代码仓；不得修改 destination note 之外的文件；不得覆盖 handwritten text。
+- Pass condition: destination note 恰好新增一次 `TARGET-VAULT-RULE` 并保留 handwritten text；不得出现 `SOURCE-REPO-RULE`；source repo、target instructions/reference/template/profile/entrypoint 均保持 byte-identical。
+- Evidence labels: 按实际来源标记；结果必须点名本次写回遵循的是 resolved target vault instructions，而不是 current source repository instructions。
 - [ ] Result:

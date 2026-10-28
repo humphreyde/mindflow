@@ -21,6 +21,7 @@ REQUIRED_FIELDS = (
     "verified_at",
 )
 LIST_FIELDS = {"repo_roots", "aliases", "domains", "entrypoints", "keywords"}
+PATH_ERRORS = (OSError, RuntimeError, ValueError)
 
 
 @dataclass(frozen=True)
@@ -144,8 +145,11 @@ def load_profile(path: Path, vault: Path) -> tuple[Profile | None, list[str]]:
     errors: list[str] = []
     try:
         data = parse_frontmatter(path)
-    except (OSError, ValueError) as exc:
-        return None, [str(exc)]
+    except PATH_ERRORS as exc:
+        message = str(exc)
+        if not message.startswith(f"{path}:"):
+            message = f"{path}: cannot read or parse profile: {exc}"
+        return None, [message]
 
     for field in REQUIRED_FIELDS:
         if field not in data:
@@ -179,21 +183,30 @@ def load_profile(path: Path, vault: Path) -> tuple[Profile | None, list[str]]:
     for value in list_values.get("repo_roots", []):
         try:
             root = resolve_repo_root(vault, value)
-        except (OSError, RuntimeError) as exc:
+        except PATH_ERRORS as exc:
             errors.append(f"{path}: cannot resolve repo root {value!r}: {exc}")
             continue
         resolved_roots.append(root)
-        if not root.is_dir():
+        try:
+            root_is_directory = root.is_dir()
+        except PATH_ERRORS as exc:
+            errors.append(f"{path}: cannot inspect repo root {root}: {exc}")
+            continue
+        if not root_is_directory:
             errors.append(f"{path}: repo root does not exist: {root}")
 
     try:
         resolved_vault = vault.resolve()
-    except (OSError, RuntimeError) as exc:
+    except PATH_ERRORS as exc:
         errors.append(f"{path}: cannot resolve vault root {vault}: {exc}")
         resolved_vault = None
     resolved_entrypoints: list[Path] = []
     for value in list_values.get("entrypoints", []):
-        entrypoint = Path(value)
+        try:
+            entrypoint = Path(value)
+        except PATH_ERRORS as exc:
+            errors.append(f"{path}: cannot interpret entrypoint {value!r}: {exc}")
+            continue
         if entrypoint.is_absolute() or ".." in entrypoint.parts:
             errors.append(f"{path}: entrypoint must be a vault-relative path without '..': {value}")
             continue
@@ -201,14 +214,19 @@ def load_profile(path: Path, vault: Path) -> tuple[Profile | None, list[str]]:
             continue
         try:
             resolved = (resolved_vault / entrypoint).resolve()
-        except (OSError, RuntimeError) as exc:
+        except PATH_ERRORS as exc:
             errors.append(f"{path}: cannot resolve entrypoint {value!r}: {exc}")
             continue
         if not resolved.is_relative_to(resolved_vault):
             errors.append(f"{path}: entrypoint escapes the vault: {value}")
             continue
         resolved_entrypoints.append(resolved)
-        if not resolved.is_file():
+        try:
+            entrypoint_is_file = resolved.is_file()
+        except PATH_ERRORS as exc:
+            errors.append(f"{path}: cannot inspect entrypoint {value!r}: {exc}")
+            continue
+        if not entrypoint_is_file:
             errors.append(f"{path}: entrypoint does not exist: {resolved}")
 
     verified_at_value = data.get("verified_at")
@@ -243,15 +261,26 @@ def load_profile(path: Path, vault: Path) -> tuple[Profile | None, list[str]]:
 def validate_vault(vault: Path) -> tuple[list[Profile], list[str]]:
     try:
         vault = vault.resolve()
-    except (OSError, RuntimeError) as exc:
+    except PATH_ERRORS as exc:
         return [], [f"{vault}: cannot resolve vault root: {exc}"]
     profile_directory = vault / "Workbench/PARA/Projects"
-    if not profile_directory.is_dir():
+    try:
+        profile_directory_is_directory = profile_directory.is_dir()
+    except PATH_ERRORS as exc:
+        return [], [f"{profile_directory}: cannot inspect profile directory: {exc}"]
+    if not profile_directory_is_directory:
         return [], [f"{profile_directory}: profile directory does not exist"]
+
+    try:
+        profile_paths = sorted(
+            path for path in profile_directory.iterdir() if path.match("*.md")
+        )
+    except PATH_ERRORS as exc:
+        return [], [f"{profile_directory}: cannot list profile directory: {exc}"]
 
     profiles: list[Profile] = []
     errors: list[str] = []
-    for path in sorted(profile_directory.glob("*.md")):
+    for path in profile_paths:
         profile, profile_errors = load_profile(path, vault)
         errors.extend(profile_errors)
         if profile is not None:

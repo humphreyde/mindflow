@@ -40,17 +40,24 @@ find -H .agents/skills -mindepth 3 -maxdepth 3 -name SKILL.md | wc -l
 外部代码仓库不会继承 MindFlow 父目录的 `AGENTS.md`。若要让 Codex 在这些仓库的研究、架构、实验设计、方法选择、论文到代码映射或历史决策任务中使用 MindFlow，可安装一个 user-level discovery link：
 
 ```bash
-canonical=/Users/limx/mindflow/skills/6-orchestration/mindflow-context
-global_link=/Users/limx/.codex/skills/mindflow-context
+: "${canonical:=/Users/limx/mindflow/skills/6-orchestration/mindflow-context}"
+: "${global_link:=/Users/limx/.codex/skills/mindflow-context}"
 
-test -d "$canonical"
-test ! -e "$global_link"
-test ! -L "$global_link"
-ln -s "$canonical" "$global_link"
-test "$(realpath "$global_link")" = "$(realpath "$canonical")"
+(
+  test -d "$canonical" || {
+    printf 'canonical skill directory is missing: %s\n' "$canonical" >&2
+    exit 1
+  }
+  if test -e "$global_link" || test -L "$global_link"; then
+    printf 'refusing existing discovery path: %s\n' "$global_link" >&2
+    exit 1
+  fi
+  ln -s "$canonical" "$global_link" || exit 1
+  test "$(realpath "$global_link")" = "$(realpath "$canonical")"
+)
 ```
 
-这里只允许这一条指向 canonical skill 目录的 symlink；canonical `skills/` tree 永远不复制，也不整体链接到另一个 discovery root。安装前应保存 `/Users/limx/.codex/AGENTS.md` 的原始内容，然后只追加一次以下最小全局 trigger：
+这里只允许这一条指向 canonical skill 目录的 symlink；canonical `skills/` tree 永远不复制，也不整体链接到另一个 discovery root。片段会拒绝任何已经存在的普通文件、目录、有效 symlink 或 broken symlink，不会覆盖、跟随或改写现有路径；重复安装前必须先按下方 rollback 明确移除旧链接。安装前应保存 `/Users/limx/.codex/AGENTS.md` 的原始内容，然后只追加一次以下最小全局 trigger：
 
 ```markdown
 ## MindFlow research context
