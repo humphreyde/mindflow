@@ -1,0 +1,17 @@
+export const ignorePatterns = [
+  "Templates/**",
+  ".obsidian/**",
+  "docs/**",
+  ".website/**",
+  "Private/**",
+  "private",
+  "*.canvas",
+  "CLAUDE.md",
+  "AGENTS.md",
+  "README.md",
+  "skills/**",
+  "references/**",
+  "Workbench/**",
+  "Meetings/**",
+  "Projects/**",
+]

@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import { ignorePatterns } from "./quartz.ignore"
 
 /**
  * Quartz 4 Configuration
@@ -17,7 +18,7 @@ const config: QuartzConfig = {
     },
     locale: "en-US",
     baseUrl: "liqing.io/mindflow",
-    ignorePatterns: ["Templates/**", ".obsidian/**", "docs/**", ".website/**", "Private/**", "private", "*.canvas", "CLAUDE.md", "AGENTS.md", "README.md", "skills/**", "references/**", "Workbench/**", "Meetings/**"],
+    ignorePatterns,
     defaultDateType: "published",
     theme: {
       fontOrigin: "googleFonts",
