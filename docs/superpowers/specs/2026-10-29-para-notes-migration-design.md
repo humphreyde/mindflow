@@ -2,7 +2,7 @@
 
 > **Date**: 2026-10-29
 > **Status**: Approved direction; pending written-spec review
-> **Decision**: 将 MindFlow 建成个人 PARA 研究工作区；PARA 管行动与生命周期，typed knowledge assets 管长期知识；旧 `notes` 选择性迁移，Zotero 保持独立
+> **Decision**: 将 MindFlow 建成个人 PARA 研究工作区；每个 project workspace 使用独立 notes-repo wrapper，代码仓统一位于 `Projects/<project>/code/`；旧 `notes` 选择性迁移，Zotero 保持独立
 > **Source vault**: `/Users/limx/notes`
 > **Target vault**: `/Users/limx/mindflow`
 
@@ -45,7 +45,7 @@ MindFlow/
 ├── Ideas/                   # hypothesis / research idea
 ├── Experiments/             # 实验计划、运行记录、结果
 ├── Reports/                 # 输出型报告
-├── Projects/                # 独立 Git 代码仓；不进入知识索引/发布
+├── Projects/                # 独立 project notes repos；代码位于各自 code/
 │
 └── Workbench/
     ├── RepositoryProfiles/  # 稳定 repo identity 与检索入口
@@ -65,13 +65,35 @@ Typed knowledge assets 继续使用现有顶层路径。`Workbench/PARA/Resource
 
 ### 3.2 Repository profiles and Projects
 
-- `Projects/<repo>` 默认直接是独立代码 Git 根；多仓项目才使用 wrapper。
-- `Workbench/RepositoryProfiles/<repo_key>.md` 保存 `repo_key/repo_roots/aliases/domains/entrypoints/keywords/verified_at`，供 `mindflow-context` 匹配仓库。
-- `Workbench/PARA/Projects/<project_key>.md` 描述明确 outcome、完成条件和生命周期，通过 `repo_refs` 引用一个或多个 repository profile。
+- `Projects/<project>/` 始终是独立 project notes repo，不是代码仓根；单 repo 项目也使用 wrapper。
+- 每个 wrapper 至少包含 `AGENTS.md`、`CLAUDE.md -> AGENTS.md`、`main.md`、`engineering.md`、`experiments/`、`discussions/`、`worklog/` 和 `code/`。
+- `code/<repo>` 是独立 Git root。新项目默认直接 clone 到这里；已有外部代码仓优先使用绝对 symlink 接入，确认路径依赖已迁移后才另行批准物理移动。
+- project notes repo 自己的 `.gitignore` 排除 `code/` 与 `worklog/`；外层 MindFlow Git 继续忽略 `Projects/*`。
+- `Workbench/RepositoryProfiles/<repo_key>.md` 保存 `repo_key/repo_roots/aliases/domains/entrypoints/keywords/verified_at`，并可用 `workspace_root` 指向默认 wrapper、用 `workspace_entrypoints` 声明额外项目笔记，供 `mindflow-context` 匹配仓库和有界读取项目笔记。
+- `Workbench/PARA/Projects/<project_key>.md` 是 vault 内的轻量 registry/control note，描述明确 outcome、完成条件、wrapper path 和生命周期，通过 `repo_refs` 引用一个或多个 repository profile；详细研究主线保存在 wrapper 的 `main.md`，两处不复制正文。
 - Project 使用 `planning | active | paused | completed`；同一 repo 可以被多个 Project 复用，同一 Project 也可以引用多个 repo。
 - Project 完成时，先写 final outcome 与代码 provenance，再把 Project control note 移至 `Workbench/PARA/Archives/Projects/`。
 - 移动 Project note 不移动 repository profile，也不自动移动或删除代码仓；代码仓归档是独立授权动作。
-- `pi` 继续位于 `/Users/limx/project/pi`，本阶段不移动。
+- `pi` 继续位于 `/Users/limx/project/pi`。Plan A 创建 `Projects/pi/code/pi -> /Users/limx/project/pi` 的绝对 symlink，不物理移动 repo；任何脚本、服务或 remote path 仍使用原 canonical path，直到另一次明确批准的迁移。
+- 截至 2026-10-29，`Projects/` 内只有共享 `CLAUDE.md`，没有 direct-root code repo，因此当前没有需要搬移的 project code tree。
+
+推荐 wrapper：
+
+```text
+Projects/<project>/          # 独立 project notes Git repo
+├── AGENTS.md                # Codex-first project contract
+├── CLAUDE.md -> AGENTS.md   # Claude compatibility
+├── main.md                  # Goal / Baselines / Experiments / Next Steps
+├── engineering.md           # 项目级跨 repo 工程约定
+├── experiments/
+├── discussions/
+├── worklog/                 # 本机任务记录，不进 project notes Git
+└── code/                    # 不进 project notes Git
+    ├── <repo-a>/            # clone 或到 canonical repo 的 symlink
+    └── <repo-b>/
+```
+
+外层 `Projects/AGENTS.md` 是创建新 project wrapper 时使用的共享 scaffold，不宣称能穿透 nested Git root 自动继承。现有规则内容迁到 `Projects/AGENTS.md`，`Projects/CLAUDE.md` 改为指向它的 compatibility symlink；每个 project wrapper 必须拥有或链接自己的 `AGENTS.md`。
 
 Repository profile 最小 schema：
 
@@ -81,6 +103,8 @@ type: repository-profile
 repo_key: pi
 repo_roots:
   - /Users/limx/project/pi
+workspace_root: Projects/pi
+workspace_entrypoints: []
 aliases: [openpi, pi07]
 domains: [VLA, RECAP, TRON2]
 entrypoints:
@@ -89,6 +113,8 @@ keywords: [ACP, RTC, pi0]
 verified_at: 2026-10-29
 ---
 ```
+
+Repository profile 与 PARA Project 中的 `workspace_root` 使用同一约束：必须是 vault-relative、规范化为 `Projects/<project>` 的现存真实目录，不能是 absolute path、包含 `..`、目录 symlink 或 canonical realpath 越出 vault 的 `Projects/`。`entrypoints` 与 `workspace_entrypoints` 是两条不同路径通道：前者始终相对 vault root，指向 `DomainMaps/`、`Topics/` 等共享知识；后者始终相对验证后的 `workspace_root`，只允许显式 Markdown 文件。project context 默认读取 `main.md` 和 `engineering.md`，再读取 `workspace_entrypoints`。解析时拒绝 absolute path、`..`、不存在的文件、canonical target 越出 wrapper 的 symlink，以及 `code/`、`worklog/`、`.git/` 下的任何目标；不递归扫描目录。
 
 PARA Project 最小 schema：
 
@@ -100,13 +126,14 @@ outcome:
 completion_criteria: []
 status: planning
 target_date:
+workspace_root:
 repo_refs: []
 area_refs: []
 knowledge_entrypoints: []
 ---
 ```
 
-现有 `Workbench/PARA/Projects/pi.md` 先迁为 `Workbench/RepositoryProfiles/pi.md`。不把“维护 pi 仓库”伪造为一个无结束条件的 PARA Project；首个真实 Project 在有明确 outcome 时创建。
+现有 `Workbench/PARA/Projects/pi.md` 中的 repo identity 字段先迁为 `Workbench/RepositoryProfiles/pi.md`，并用 `workspace_root: Projects/pi` 关联 wrapper。Plan A 创建 `Projects/pi/`，但不在没有明确 outcome 和 completion criteria 时强行创建同名 PARA Project control note；wrapper 的存在不等于一个 PARA Project。未来出现明确成果目标后，再创建 `Workbench/PARA/Projects/<project_key>.md`，通过 `workspace_root` 与 `repo_refs` 关联 wrapper 和 repository profile。
 
 ### 3.3 Areas
 
@@ -348,7 +375,9 @@ Manifest 先以 dry-run 生成。存在 ambiguous identity、目标路径冲突�
 
 ### Plan A: PARA and Paper Schema Foundation
 
-- 将 repository profile 从 PARA Project 中拆出，迁移 `pi` profile，并更新 `mindflow-context` 与 validator 的 canonical profile path。
+- 将 repository profile 从 PARA Project 中拆出，迁移 `pi` profile，并更新 `mindflow-context` 与 validator 的 canonical profile path。先验证 `workspace_root` 是 vault 内 `Projects/<project>` 的现存真实目录，再有界读取 wrapper 的 `main.md`、`engineering.md` 和 `workspace_entrypoints`；拒绝 absolute、`..`、目录 symlink、越界 symlink 和禁止目录，不递归扫描 `code/`。
+- 将共享项目规范迁到 Codex-first `Projects/AGENTS.md`，把 `Projects/CLAUDE.md` 改为 compatibility symlink，并更新外层 `.gitignore` 的窄例外。
+- 创建 `Projects/pi/` wrapper notes repo scaffold，以 `code/pi -> /Users/limx/project/pi` 接入现有代码，不物理移动 `pi`。
 - 建立完整 `Workbench/PARA/{Projects,Areas,Resources,Archives}` 控制层和初始 index/Area notes。
 - 新增 `Templates/RepositoryProfile.md`，将 `Templates/Project.md` 收敛为真正的 outcome-driven Project template，并新增 Area/Resource 模板、Paper Base、Paper schema/taxonomy/validator。
 - 将新 Paper rating label 的 `Archived` 改为 `Peripheral`，旧笔记保持兼容、按触达渐进迁移。
@@ -388,11 +417,17 @@ Authors/concepts 图谱和其他 notes 目录属于后续设计，不与 Plan A/
 
 ### 9.3 PARA behavior
 
-- Repository profile 仍能被 `mindflow-context` 唯一解析。
+- 从 `/Users/limx/project/pi` 和 `Projects/pi/code/pi` 两个入口解析 canonical realpath 时，`mindflow-context` 都唯一命中同一个 `pi` repository profile。
+- Repository profile 与 PARA Project 的 `workspace_root` 都只接受 vault 内现存、非 symlink 的 `Projects/<project>` 目录；absolute path、`..`、不存在、非目录、目录 symlink 和 canonical escape 均有失败测试。
+- `entrypoints` 只按 vault root 解析，`workspace_entrypoints` 只按 canonical `workspace_root` 解析；absolute path、`..`、越界 symlink、`code/`、`worklog/`、`.git/` 和目录型 entrypoint 均有失败测试。
 - Repository profile 与 PARA Project schema 分离；Project 通过 `repo_refs` 引用 profile。
 - Area 不复制 DomainMap 内容；Resource 不复制 Paper 内容；Archive 不改变 Paper rating 语义。
-- `Projects/**` 继续不进入 Quartz、Obsidian 知识索引或 MindFlow knowledge search。
-- `pi` 外部路径保持不变。
+- Quartz 继续排除整个 `Projects/**`，避免发布私有项目记录和代码。
+- Obsidian 只索引 project notes；窄规则至少排除 `Projects/*/code/`、`Projects/*/worklog/` 和 `Projects/*/.git/`，同时实际验证 `main.md` 与 `engineering.md` 可搜索。当前 broad `Projects/` exclusion 必须替换为经过验证的窄规则。
+- MindFlow 通用知识搜索继续排除 `Projects/**`；repository profile 的 `workspace_root` 或 selected PARA Project 指向的 `main.md`、`engineering.md` 和显式 project entrypoints 由 project context 单独读取，不扫描 code tree。
+- `Projects/AGENTS.md` 与每个 wrapper 自身的 `AGENTS.md` 均不依赖跨 nested Git root 的隐式继承。
+- `git -C Projects/pi rev-parse --show-toplevel` 的 canonical 结果等于 `Projects/pi`，证明 wrapper 是独立 notes Git root；wrapper 内 `main.md`、`engineering.md` 可跟踪，`code/` 与 `worklog/` 被其 `.gitignore` 排除，外层 vault 仍忽略 `Projects/pi/`。
+- `/Users/limx/project/pi` canonical path 保持不变；`test -L Projects/pi/code/pi` 成功，且 `readlink Projects/pi/code/pi` 精确返回绝对路径 `/Users/limx/project/pi`。
 
 ### 9.4 Zotero safety
 
@@ -411,18 +446,19 @@ Authors/concepts 图谱和其他 notes 目录属于后续设计，不与 Plan A/
 
 ## 10. Rollout and Recovery
 
-1. 先完成 Plan A，确认 PARA/dashboard/schema/Base 不改变现有知识路径。
+1. 先完成 Plan A，确认 wrapper layout、PARA/dashboard/schema/Base 不改变现有知识路径或 `/Users/limx/project/pi` canonical path。
 2. 对现有 Papers 运行只读 audit；人工确认 ambiguous 列表后才允许确定性 backfill。
 3. Plan B 先生成 dry-run manifest，再逐批执行 overlaps、old-only notes、assets。
 4. 每批独立 commit、验证和 review；范围内本地 commit 无需逐个请求用户批准。
 5. 迁移完成后，旧 notes 保持原位并进入只读观察期；不删除、不改 remote、不自动归档。
-6. merge、push、旧 notes 删除、全局 skill cutover 和代码仓移动仍是独立授权边界。
+6. merge、push、旧 notes 删除、全局 skill cutover 和代码仓物理移动仍是独立授权边界；已明确批准的 `pi` symlink scaffold 不等于物理移动。
 
 若某批验证失败，回退目标分支对应 commit 即可；源仓从未修改，不需要恢复源内容。
 
 ## 11. Success Criteria
 
 - MindFlow 明确区分 repository profile 与 outcome-driven Project，并实现 Projects、Areas、Resources、Archives 四个 PARA 维度，同时保持 typed knowledge assets 的单一真源。
+- 所有 project workspace 遵循 `Projects/<project>/code/<repo>` wrapper；现有外部 repo 可通过可验证 symlink 接入，未来新 repo 直接 clone 到 `code/`。
 - VLA、WAM 等分类无需物理子目录即可通过 metadata、Topic、DomainMap 和 Base 稳定访问。
 - 旧 PaperNotes 的 7 个重合身份得到内容保护合并，26 个仅旧身份得到明确路由，不复制自动 MOC 或未引用 assets。
 - Zotero 能作为可选本地 source 使用，但不成为 MindFlow taxonomy 或写入自动化的控制面。
@@ -432,7 +468,8 @@ Authors/concepts 图谱和其他 notes 目录属于后续设计，不与 Plan A/
 ## 12. Evidence Used
 
 - `docs/SPEC.md`：当前 typed knowledge assets、code repositories 和 Workbench 三分结构。
-- `docs/superpowers/specs/2026-10-28-cross-repo-mindflow-context-design.md`：Projects direct-root、profile、read-only knowledge lane 和 Zotero independent 边界。
+- `Projects/CLAUDE.md`：project notes repo、`code/<repo>`、worklog 与三层 Git 的既有推荐；本设计保留其布局并迁为 Codex-first instructions。
+- `docs/superpowers/specs/2026-10-28-cross-repo-mindflow-context-design.md`：profile、read-only knowledge lane 和 Zotero independent 边界；其中 direct-root 决策由本设计的 wrapper 决策取代。
 - `references/tags.md`：现有 canonical tag taxonomy。
 - `skills/1-literature/paper-digest/SKILL.md` 与 `references/paper-note-template.md`：当前扁平 Paper 路径、schema、去重和写入规则。
 - `DomainMaps/VLA.md`、`DomainMaps/WorldModel.md`、`Topics/WorldActionModel-Survey.md`：WAM 跨 VLA/World Model 的知识证据。
