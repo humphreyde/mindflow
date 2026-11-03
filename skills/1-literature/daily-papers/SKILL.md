@@ -15,15 +15,20 @@ description: 每日论文总结。抓取 HuggingFace Daily/Trending + arXiv 最�
 
 ### 1. 抓取与评分
 
-运行现有脚本；不要修改脚本或其打分规则：
+从本 SKILL 的 canonical 目录运行脚本；脚本通过自身 resolved path 定位
+MindFlow，不依赖当前工作目录。无法找到 `AGENTS.md`、`skills/`、`Papers/` 和
+`Workbench/` 四个 sentinel 时停止，不猜测 vault：
 
 ```bash
-python3 skills/1-literature/daily-papers/fetch_and_score.py \
+uv run --project "{vault_root}" --frozen python -B "{skill_dir}/fetch_and_score.py" \
   --days {DAYS} \
   --output Workbench/daily/.candidates.json
 ```
 
-解析 `Workbench/daily/.candidates.json`，确认它是有效 JSON 数组，并保留 stderr 作为失败诊断。空数组时区分“范围内确无新论文”（例如周末 arXiv 无更新）和网络/上游失败；后者不得伪装成“无论文”。
+解析 resolved MindFlow 下的 `Workbench/daily/.candidates.json`，确认它是有效
+JSON 数组，并保留 stderr 作为失败诊断。所有后续 `Papers/`、`Workbench/daily/`
+和 `Workbench/logs/` 路径也相对同一个 resolved vault。空数组时区分“范围内确无
+新论文”（例如周末 arXiv 无更新）和网络/上游失败；后者不得伪装成“无论文”。
 
 脚本在相同目录维护 `.history.json`：单天模式按 30 天窗口过滤已总结论文，多天模式不应用该过滤；不要绕过、重置或手工重写历史状态。
 
@@ -40,9 +45,9 @@ python3 skills/1-literature/daily-papers/fetch_and_score.py \
 
 对每篇“要精读”论文执行 `paper-digest`；若已存在论文笔记，只读取并使用该笔记，不覆盖。点评必须基于完整笔记正文，而不是只依据摘要。
 
-在 MindFlow 内使用本仓库 `skills/1-literature/paper-digest`；只有用户明确指定旧
-`/Users/limx/notes` vault 或旧工作流时，才路由到全局 legacy `paper-reader`。
-这是仓库内路由，不代表全局同名 `daily-papers` 已切换或冲突已解决。
+使用同一 resolved MindFlow 中的 canonical `paper-digest`，不得路由到旧 vault
+或 legacy `paper-reader`。若 canonical skill 缺失则停止并报告，不在运行时安装、
+复制或修补全局 skill。
 
 默认顺序处理。仅当运行时提供并行工作能力、用户授权并行、论文任务彼此独立、各任务写入不同的笔记和 assets，且不会并发写日志/历史/日报等共享文件时，才可并行。共享日志由协调过程串行追加；任一条件不满足就顺序执行。
 

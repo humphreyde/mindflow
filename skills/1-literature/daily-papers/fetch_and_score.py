@@ -21,10 +21,19 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from urllib.request import Request, urlopen
 
+VAULT_PACKAGE_ROOT = Path(__file__).resolve().parents[3]
+if str(VAULT_PACKAGE_ROOT) not in sys.path:
+    sys.path.insert(0, str(VAULT_PACKAGE_ROOT))
+
+from scripts.mindflow_paths import resolve_output, resolve_vault_root
+
 # ── 加载配置 ──────────────────────────────────────────────────────────────
 
 CONFIG_PATH = Path(__file__).resolve().parent / "config.json"
-DEFAULT_HISTORY_PATH = Path(__file__).resolve().parent / ".history.json"
+VAULT_ROOT = resolve_vault_root(Path(__file__))
+DEFAULT_HISTORY_PATH = resolve_output(
+    VAULT_ROOT, "Workbench/daily/.history.json"
+)
 
 def load_config() -> dict:
     with open(CONFIG_PATH, "r", encoding="utf-8") as f:
@@ -342,7 +351,13 @@ def main():
     parser.add_argument("--date", help="Target date YYYY-MM-DD (default: today)")
     parser.add_argument("--days", type=int, default=1, help="Number of days to fetch")
     parser.add_argument("--output", "-o", help="Output file path (default: stdout)")
+    parser.add_argument("--vault", type=Path, help=argparse.SUPPRESS)
     args = parser.parse_args()
+
+    vault = resolve_vault_root(args.vault or Path(__file__))
+    if args.vault is not None and vault != args.vault.resolve():
+        raise ValueError(f"vault override is not a MindFlow root: {args.vault}")
+    output_path = resolve_output(vault, args.output) if args.output else None
 
     target_date = (
         datetime.strptime(args.date, "%Y-%m-%d").date()
@@ -361,8 +376,8 @@ def main():
     )
 
     # history 路径：与 output 同目录，或默认位置
-    if args.output:
-        history_path = Path(args.output).parent / ".history.json"
+    if output_path:
+        history_path = output_path.parent / ".history.json"
     else:
         history_path = DEFAULT_HISTORY_PATH
 
@@ -374,10 +389,10 @@ def main():
     save_history(top, target_date, history_path)
 
     output = json.dumps(top, ensure_ascii=False, indent=2) + "\n"
-    if args.output:
-        Path(args.output).parent.mkdir(parents=True, exist_ok=True)
-        Path(args.output).write_text(output, encoding="utf-8")
-        print(f"  Output written to {args.output}", file=sys.stderr)
+    if output_path:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(output, encoding="utf-8")
+        print(f"  Output written to {output_path}", file=sys.stderr)
     else:
         sys.stdout.write(output)
         sys.stdout.flush()

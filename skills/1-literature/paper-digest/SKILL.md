@@ -9,10 +9,11 @@ description: Use when user asks to "read paper", "analyze paper", "summarize pap
 
 支持 `paper`（学术论文）和 `blog`（技术或产品文章）。
 
-在 MindFlow 内，单篇论文阅读与笔记生成统一使用本仓库的
-`skills/1-literature/paper-digest`。只有用户明确指定旧 `/Users/limx/notes`
-vault 或旧工作流时，才使用全局 legacy `paper-reader`。此路由仅约束
-MindFlow 仓库内行为，不安装、禁用或改写任何全局 skill。
+单篇论文阅读与笔记生成统一使用本 skill。开始时从当前 `SKILL.md` 的 resolved
+canonical path 向上查找 `AGENTS.md`、`skills/`、`Papers/` 和 `Workbench/`，将首个
+完整命中的目录作为 `vault_root`；找不到时停止。不得用 cwd、旧
+`/Users/limx/notes` 或全局 discovery symlink 的未解析路径猜测 vault。后文所有
+`Papers/`、`references/` 和 `Workbench/logs/` 都相对该 `vault_root`。
 
 ## Runtime capabilities
 
@@ -28,9 +29,9 @@ MindFlow 仓库内行为，不安装、禁用或改写任何全局 skill。
 
 ### 1. 去重预检
 
-先读取 vault 根目录 `references/paper-schema.md`，并使用
+先读取 `{vault_root}/references/paper-schema.md`，并使用
 `scripts/paper_schema.py` 按 arXiv ID、DOI、官方 URL + 规范化标题检查
-`Papers/`。强 identity 重复或任何 identity 歧义都阻止写入；命中已有笔记时
+`{vault_root}/Papers/`。强 identity 重复或任何 identity 歧义都阻止写入；命中已有笔记时
 返回 `[[已有笔记]]` 并询问取消或显式更新。只有用户明确授权更新时，才先
 完整读取现有笔记并做最小合并；不得覆盖手写段落、frontmatter 字段或已有
 assets。
@@ -128,9 +129,9 @@ Schema：
 完整读取所有成功提取的来源，以及：
 
 - `{skill_dir}/references/paper-note-template.md`
-- vault 根目录 `references/obsidian-syntax.md`
-- vault 根目录 `references/tags.md`
-- vault 根目录 `references/paper-schema.md`
+- `{vault_root}/references/obsidian-syntax.md`
+- `{vault_root}/references/tags.md`
+- `{vault_root}/references/paper-schema.md`
 
 笔记顺序固定为 Frontmatter → `## Summary` → Body → `## 关联工作` → `## 论文点评`。撰写顺序使用 Body → 关联工作 → 论文点评 → Summary → Frontmatter，使判断建立在已读证据之上。
 
@@ -140,7 +141,7 @@ Schema：
 - 不嵌入 OG image、social card、banner、favicon。删除模板中的所有 `%% ... %%` 提示。
 - PDF 图片从任务临时目录复制到 `Papers/assets/{ShortTitle}/`，命名为 `fig{N}-{FigureTitle}.{ext}`，使用 `![](Papers/assets/{ShortTitle}/fig{N}-{FigureTitle}.{ext})`。
 
-文件名为 `YYMM-ShortTitle.md`：`YYMM` 来自 `date_publish`，`ShortTitle` 是 2-4 个关键词的 CamelCase 缩写。保存到 `Papers/{文件名}.md`。
+文件名为 `YYMM-ShortTitle.md`：`YYMM` 来自 `date_publish`，`ShortTitle` 是 2-4 个关键词的 CamelCase 缩写。保存到 `{vault_root}/Papers/{文件名}.md`。
 
 写入前再次运行 identity/duplicate 检查；任何歧义都阻止写入。完成草稿后使用
 `paper_schema.validate_paper(..., mode="strict")` 验证 canonical fields、domain、
@@ -167,7 +168,7 @@ DomainMaps/*<TermCamelCase>*.md
 
 ### 5. 追加日志
 
-串行追加到 `Workbench/logs/YYYY-MM-DD.md`；不存在时先写 `# YYYY-MM-DD`：
+串行追加到 `{vault_root}/Workbench/logs/YYYY-MM-DD.md`；不存在时先写 `# YYYY-MM-DD`：
 
 ```markdown
 ### [HH:MM] paper-digest
