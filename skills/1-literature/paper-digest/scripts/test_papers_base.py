@@ -74,11 +74,11 @@ class PapersBaseTests(unittest.TestCase):
         self.assertEqual(
             counts,
             {
-                "All Papers": 182,
+                "All Papers": 204,
                 "VLA": 70,
-                "WAM": 11,
+                "WAM": 16,
                 "Foundation": 45,
-                "Needs Review": 182,
+                "Needs Review": 204,
             },
         )
 
