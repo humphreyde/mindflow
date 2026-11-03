@@ -1,7 +1,7 @@
 ---
 title: OpenPI
 tags: []
-type: project
+type: repository-profile
 repo_key: pi
 repo_roots:
   - /Users/limx/project/pi
@@ -18,8 +18,6 @@ keywords:
   - ACP
   - RTC
   - pi0
-status: active
-date_started: 2026-10-28
 verified_at: 2026-10-28
 ---
 ## Goal

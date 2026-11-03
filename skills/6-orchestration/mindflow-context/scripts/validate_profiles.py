@@ -11,7 +11,11 @@ from datetime import date
 from pathlib import Path
 
 
+PROFILE_DIRECTORY = Path("Workbench/RepositoryProfiles")
+PROJECT_DIRECTORY = Path("Workbench/PARA/Projects")
+REPOSITORY_PROFILE_TYPE = "repository-profile"
 REQUIRED_FIELDS = (
+    "type",
     "repo_key",
     "repo_roots",
     "aliases",
@@ -155,6 +159,10 @@ def load_profile(path: Path, vault: Path) -> tuple[Profile | None, list[str]]:
         if field not in data:
             errors.append(f"{path}: missing required field {field!r}")
 
+    profile_type = data.get("type")
+    if profile_type is not None and profile_type != REPOSITORY_PROFILE_TYPE:
+        errors.append(f"{path}: type must be {REPOSITORY_PROFILE_TYPE!r}")
+
     repo_key_value = data.get("repo_key")
     repo_key = repo_key_value if isinstance(repo_key_value, str) else ""
     if repo_key_value is not None and (
@@ -263,7 +271,7 @@ def validate_vault(vault: Path) -> tuple[list[Profile], list[str]]:
         vault = vault.resolve()
     except PATH_ERRORS as exc:
         return [], [f"{vault}: cannot resolve vault root: {exc}"]
-    profile_directory = vault / "Workbench/PARA/Projects"
+    profile_directory = vault / PROFILE_DIRECTORY
     try:
         profile_directory_is_directory = profile_directory.is_dir()
     except PATH_ERRORS as exc:
@@ -321,13 +329,15 @@ def _write_fixture_profile(
     repo_root: str,
     entrypoint: str = "DomainMaps/VLA.md",
     include_keywords: bool = True,
+    profile_type: str = REPOSITORY_PROFILE_TYPE,
 ) -> Path:
-    profile_directory = vault / "Workbench/PARA/Projects"
+    profile_directory = vault / PROFILE_DIRECTORY
     profile_directory.mkdir(parents=True, exist_ok=True)
     keywords = "keywords:\n  - ACP\n" if include_keywords else ""
     profile = profile_directory / filename
     profile.write_text(
         "---\n"
+        f"type: {profile_type}\n"
         f"repo_key: {repo_key}\n"
         "repo_roots:\n"
         f"  - {repo_root}\n"
