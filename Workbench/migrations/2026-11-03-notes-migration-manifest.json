@@ -470,6 +470,7 @@
     {
       "decision": "merge-paper",
       "destination_path": "Papers/2503-GR00TN1.md",
+      "destination_post_sha256": "f5d816b31e5dcd765de6effc8387be61e01074a11fc7a5255d80f6a5d72b272a",
       "duplicate_group": null,
       "identity": {
         "arxiv_id": "2503.14734",
@@ -574,12 +575,22 @@
           "VLA"
         ]
       ],
+      "merged_sections": [
+        "Legacy Notes Addendum: complete pre-training scale",
+        "Legacy Notes Addendum: low-data scaling boundary",
+        "Legacy Notes Addendum: neural-trajectory evidence boundary"
+      ],
+      "omitted_sections": [
+        "duplicate metadata and summary",
+        "method and evaluation already covered by canonical note",
+        "duplicate critique, related work, and rating"
+      ],
       "reason": "high-confidence identity match",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/GR00T N1.md",
       "source_sha256": "89cca9a1aa847eb88182495d49f1baf8ecc9092a613646ff31c6361723ec10ce",
-      "status": "ready"
+      "status": "merged"
     },
     {
       "decision": "import-topic",
@@ -660,6 +671,7 @@
     {
       "decision": "merge-paper",
       "destination_path": "Papers/2502-HiRobot.md",
+      "destination_post_sha256": "b28eab55f407bdc9e8cd44bca9207ff64b83ee7765117eadea812e6e5a8968ed",
       "duplicate_group": null,
       "identity": {
         "arxiv_id": "2502.19417",
@@ -671,12 +683,21 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
+      "merged_sections": [
+        "Legacy Notes Addendum: blinded IA and TP evaluation protocol",
+        "Legacy Notes Addendum: task-specific high-level policy limitation"
+      ],
+      "omitted_sections": [
+        "duplicate figures, formulas, and latency tables",
+        "duplicate method narrative and critique",
+        "duplicate related work and quick-reference card"
+      ],
       "reason": "high-confidence identity match",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/HiRobot.md",
       "source_sha256": "76b079a04223bcd61ac51c875f4331b7328b97fe19c8f700cda9074685e95efc",
-      "status": "ready"
+      "status": "merged"
     },
     {
       "decision": "import-paper",
@@ -702,6 +723,7 @@
     {
       "decision": "merge-paper",
       "destination_path": "Papers/2603-MEM.md",
+      "destination_post_sha256": "1ff648a9441725696a30583bc7ebdceb4634bd8124411a19c0ac8259ad62b615",
       "duplicate_group": null,
       "identity": {
         "arxiv_id": null,
@@ -713,12 +735,21 @@
       },
       "identity_confidence": "review",
       "link_rewrites": [],
+      "merged_sections": [
+        "Legacy Notes Addendum: measured video-encoder latency",
+        "Legacy Notes Addendum: in-context failure adaptation gains"
+      ],
+      "omitted_sections": [
+        "duplicate memory factorization and architecture",
+        "duplicate main experiments and causal-confusion discussion",
+        "duplicate critique and rating"
+      ],
       "reason": "exact official URL and normalized title match",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/MEM.md",
       "source_sha256": "37672bc9bd2bea7e0b3b2ad036ada82fe192c7bddff83cda260a254680f520f5",
-      "status": "ready"
+      "status": "merged"
     },
     {
       "decision": "import-paper",
@@ -822,6 +853,7 @@
     {
       "decision": "merge-paper",
       "destination_path": "Papers/2410-Pi0.md",
+      "destination_post_sha256": "10e5fa947c7edf6a80cd8c13d48199f07de6860764f0aa544391664f9f9bd364",
       "duplicate_group": "arxiv:2410.24164",
       "identity": {
         "arxiv_id": "2410.24164",
@@ -833,16 +865,26 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
+      "merged_sections": [
+        "Legacy Notes Addendum: staged evaluation rubric",
+        "Legacy Notes Addendum: timestep-sampling evidence location"
+      ],
+      "omitted_sections": [
+        "duplicate architecture, equations, datasets, and results",
+        "duplicate critique and related work",
+        "duplicate rating"
+      ],
       "reason": "high-confidence identity match",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/Pi0.md",
       "source_sha256": "05203b8a0de9d2fbb87b6db6f23c2fed9da0226f7a1fef35fcac53452b1cbb6a",
-      "status": "ready"
+      "status": "merged"
     },
     {
       "decision": "merge-paper",
       "destination_path": "Papers/2504-Pi05.md",
+      "destination_post_sha256": "202bb8535586bfedec810e8f51902953d69d7bd048a0939e7a4d897ea4e3ecc1",
       "duplicate_group": null,
       "identity": {
         "arxiv_id": "2504.16054",
@@ -854,12 +896,21 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
+      "merged_sections": [
+        "Legacy Notes Addendum: per-task appendix ablations",
+        "Legacy Notes Addendum: FAST and flow action-token isolation"
+      ],
+      "omitted_sections": [
+        "duplicate training recipe and main experiments",
+        "duplicate formulas and deployment details",
+        "duplicate critique, related work, and rating"
+      ],
       "reason": "high-confidence identity match",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/Pi05.md",
       "source_sha256": "c7ff57b08fec519664541a807997fa6053979356b6a6a269148384596fc7b545",
-      "status": "ready"
+      "status": "merged"
     },
     {
       "decision": "blocked",
@@ -885,6 +936,7 @@
     {
       "decision": "merge-paper",
       "destination_path": "Papers/2511-PiStar06.md",
+      "destination_post_sha256": "d131ce023b319ebaec581a5b33c3c984e039727b3bd960b6012c041142dcde1d",
       "duplicate_group": null,
       "identity": {
         "arxiv_id": "2511.14759",
@@ -896,16 +948,26 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
+      "merged_sections": [
+        "Legacy Notes Addendum: multi-task value-function appendix evidence",
+        "Legacy Notes Addendum: fixed-checkpoint iteration protocol"
+      ],
+      "omitted_sections": [
+        "duplicate Recap equations and Algorithm 1",
+        "duplicate experiment curves and failure-mode analysis",
+        "duplicate critique, research mapping, and rating"
+      ],
       "reason": "high-confidence identity match",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/Pi06.md",
       "source_sha256": "e20ded06753077059c89e6420fecd6042ffcb93b862e955988786311e3a83557",
-      "status": "ready"
+      "status": "merged"
     },
     {
       "decision": "merge-paper",
       "destination_path": "Papers/2604-Pi07.md",
+      "destination_post_sha256": "9844f2682428d0180fd3624641fab40013917470b4730af589ece0b83f72ecf0",
       "duplicate_group": null,
       "identity": {
         "arxiv_id": null,
@@ -998,12 +1060,21 @@
           "Vedant Choudhary"
         ]
       ],
+      "merged_sections": [
+        "Legacy Notes Addendum: joint-space versus end-effector control",
+        "Legacy Notes Addendum: human-study controls"
+      ],
+      "omitted_sections": [
+        "duplicate prompt-expansion method and main experiments",
+        "duplicate deployment-cost and generalization critique",
+        "duplicate related work and rating"
+      ],
       "reason": "exact official URL and normalized title match",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/Pi07.md",
       "source_sha256": "f2ec2a003ec224c41d4499081580eb4620cba95d67e7e819804a4d4bebd64c82",
-      "status": "ready"
+      "status": "merged"
     },
     {
       "decision": "import-paper",
@@ -1370,6 +1441,7 @@
     {
       "decision": "merge-paper",
       "destination_path": "Papers/2410-Pi0.md",
+      "destination_post_sha256": "10e5fa947c7edf6a80cd8c13d48199f07de6860764f0aa544391664f9f9bd364",
       "duplicate_group": "arxiv:2410.24164",
       "identity": {
         "arxiv_id": "2410.24164",
@@ -1381,12 +1453,16 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
+      "merged_sections": [],
+      "omitted_sections": [
+        "inbox note contains only duplicate metadata and links"
+      ],
       "reason": "high-confidence identity match",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/_inbox/Pi0.md",
       "source_sha256": "de2a01768860fb1174d08ed37f32b18300bb61bd0fe997d441e942c9b4d43028",
-      "status": "ready"
+      "status": "merged"
     },
     {
       "decision": "import-paper",

@@ -269,3 +269,11 @@ Action chunking 让有效控制频率到 50 Hz；high-level 1 Hz 完全够用。
 
 **分数**：2 - Frontier
 **理由**：方法上 hierarchical VLM + VLA 的拆分和 synthetic interaction data pipeline 是 instruction-following 方向目前的代表做法（Strengths 1-3），且跨三种 embodiment 验证（Strengths 4），在 situated grounding 上压 GPT-4o（Strengths 5），属于 Physical Intelligence 路线里必须比较的 baseline。但尚未达到 Foundation 档：代码/权重/合成数据 pipeline 细节均未公开（Artifact 可获取性全部未发布），且该工作已被同团队后续 [[2504-Pi05|π0.5]] 整合覆盖，社区更多被 π0 / π0.5 作为 baseline 引用而非 Hi Robot 本身——Hi Robot 更像 PI 技术路线的中间产物，未形成独立标准。2026-04 复核：citation=165 / velocity=11.87/mo、influential 比例 9.1%（接近典型 ~10%）证明被后续工作合理引用但继承性不算特别强，且无独立代码仓库使其无法像 π0 / π0.5 那样形成 de facto baseline，维持 Frontier。
+
+## Legacy Notes Addendum
+
+> [!info] 迁移来源
+> 从旧笔记 `PaperNotes/VLA/HiRobot.md` 合并；主体方法、八张 Figure、延迟表和已有批判性分析在 canonical 笔记中已覆盖。
+
+- **评测控制（旧笔记“评测协议”）**：每种方法、每个任务运行 20 次 trial，评测员对方法名盲评；Instruction Accuracy 衡量高层指令是否同时符合用户意图与当前观测，Task Progress 衡量正确放置物体数占应放置总数的比例。双指标把高层推理错误与低层执行失败部分解耦。
+- **尚未验证的泛化维度（旧笔记“局限性”）**：benchmark 为每个任务分别训练 high-level policy，未验证把多个任务的合成交互数据合并后能否得到单一 multi-task high-level policy。
