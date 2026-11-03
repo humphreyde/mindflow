@@ -4,11 +4,13 @@ updated_by: researcher
 ---
 ## Mission
 
-[在此定义长期研究使命。Researcher 可提议演化，Supervisor 可直接编辑。例如："探索 Embodied AI 中 VLA 模型在 mobile manipulation 场景下的 scaling law 与 sample efficiency"]
+探索 Embodied AI 前沿科研边界，推动AI赋能机器人在真实场景中落地应用
 
 ## Active Directions
 
-_尚无活跃方向。在此添加第一个研究方向，或让 Researcher 基于 Papers/ 和 Ideas/ 自动发现。_
+- VLA
+- VLA+RL
+- WAM
 
 ## Paused Directions
 

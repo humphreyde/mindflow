@@ -14,13 +14,13 @@
 
 ## Owner
 
-李庆（Qing Li），一名 Researcher，追求从事高影响力的科研。他是本工作区的所有者、所有重要决策的最终审批人，会与各 agent 讨论、提出建议和反馈。
+hum，一名Engineer Researcher，追求从事高影响力的科研和将前沿研究转换为落地应用。他是本工作区的所有者、所有重要决策的最终审批人，会与各 agent 讨论、提出建议和反馈。
 
 ## 研究兴趣
 
 Multimodal Understanding: VLM, Video LLM, Video Understanding, Visual Reasoning
 AI Agent: LLM Agent, Computer-use Agent, GUI Agent, Agentic RL
-Embodied AI: VLA, World Model, Spatial Intelligence, Robot Manipulation & Navigation
+Embodied AI: VLA, World Model, World Action Model, Spatial Intelligence, Robot Manipulation & Locomotion, RL
 
 ## 研究原则
 
@@ -29,6 +29,7 @@ Owner 的研究品味——做研究相关工作时与之对齐：
 ### 1. Research Taste — 重要的问题，简洁的方法
 
 - 区分 "publishable" 和 "important"，追求后者。+0.3% SOTA 不是 insight
+- 追求真机表现和第一性原理，最本质的理论和最具落地性的工作才是王道
 - 追求 **simple, scalable, generalizable** 的方法。复杂往往是理解不够深的信号
 - 不 scale 的方法大概率方向不对；不 generalize 的方法大概率在 exploit bias
 - 有勇气 pivot——sunk cost 不是坚持的理由
