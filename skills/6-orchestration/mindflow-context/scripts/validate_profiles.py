@@ -24,8 +24,16 @@ REQUIRED_FIELDS = (
     "keywords",
     "verified_at",
 )
-LIST_FIELDS = {"repo_roots", "aliases", "domains", "entrypoints", "keywords"}
+LIST_FIELDS = {
+    "repo_roots",
+    "aliases",
+    "domains",
+    "entrypoints",
+    "keywords",
+    "workspace_entrypoints",
+}
 PATH_ERRORS = (OSError, RuntimeError, ValueError)
+FORBIDDEN_WORKSPACE_PARTS = {"code", "worklog", ".git"}
 
 
 @dataclass(frozen=True)
@@ -38,6 +46,8 @@ class Profile:
     entrypoints: tuple[Path, ...]
     keywords: tuple[str, ...]
     verified_at: str
+    workspace_root: Path | None
+    workspace_entrypoint_values: tuple[str, ...]
 
 
 def _error(path: Path, message: str) -> ValueError:
@@ -145,6 +155,63 @@ def resolve_repo_root(vault: Path, value: str) -> Path:
     return expanded.resolve()
 
 
+def resolve_workspace_root(vault: Path, value: str) -> Path:
+    raw = Path(value)
+    if (
+        raw.is_absolute()
+        or ".." in raw.parts
+        or len(raw.parts) != 2
+        or raw.parts[0] != "Projects"
+    ):
+        raise ValueError("workspace_root must be Projects/<workspace>")
+    resolved_vault = vault.resolve()
+    projects_path = vault / "Projects"
+    if projects_path.is_symlink():
+        raise ValueError("Projects must not be a symlink")
+    candidate = vault / raw
+    if candidate.is_symlink():
+        raise ValueError("workspace_root must not be a symlink")
+    if not candidate.is_dir():
+        raise ValueError("workspace_root must be an existing directory")
+    projects_root = projects_path.resolve()
+    resolved = candidate.resolve()
+    if not projects_root.is_relative_to(resolved_vault):
+        raise ValueError("Projects escapes the vault")
+    if not resolved.is_relative_to(projects_root):
+        raise ValueError("workspace_root escapes Projects")
+    return resolved
+
+
+def resolve_workspace_entrypoint(workspace_root: Path, value: str) -> Path:
+    raw = Path(value)
+    if raw.is_absolute() or ".." in raw.parts or raw.suffix != ".md":
+        raise ValueError("workspace entrypoint must be a relative Markdown file")
+    if any(part in FORBIDDEN_WORKSPACE_PARTS for part in raw.parts):
+        raise ValueError("workspace entrypoint enters a forbidden directory")
+    candidate = workspace_root / raw
+    if candidate.is_symlink():
+        raise ValueError("workspace entrypoint must not be a symlink")
+    resolved = candidate.resolve()
+    if not resolved.is_relative_to(workspace_root):
+        raise ValueError("workspace entrypoint escapes workspace_root")
+    if not resolved.is_file():
+        raise ValueError("workspace entrypoint does not exist")
+    relative = resolved.relative_to(workspace_root)
+    if any(part in FORBIDDEN_WORKSPACE_PARTS for part in relative.parts):
+        raise ValueError("workspace entrypoint resolves into a forbidden directory")
+    return resolved
+
+
+def workspace_context_paths(profile: Profile) -> tuple[Path, ...]:
+    if profile.workspace_root is None:
+        return ()
+    values = ("main.md", "engineering.md", *profile.workspace_entrypoint_values)
+    resolved = tuple(
+        resolve_workspace_entrypoint(profile.workspace_root, value) for value in values
+    )
+    return tuple(dict.fromkeys(resolved))
+
+
 def load_profile(path: Path, vault: Path) -> tuple[Profile | None, list[str]]:
     errors: list[str] = []
     try:
@@ -248,22 +315,41 @@ def load_profile(path: Path, vault: Path) -> tuple[Profile | None, list[str]]:
             except ValueError:
                 errors.append(f"{path}: verified_at must be an ISO date")
 
+    workspace_root_value = data.get("workspace_root")
+    workspace_root: Path | None = None
+    if workspace_root_value not in (None, ""):
+        if not isinstance(workspace_root_value, str):
+            errors.append(f"{path}: workspace_root must be a string")
+        else:
+            try:
+                workspace_root = resolve_workspace_root(vault, workspace_root_value)
+            except PATH_ERRORS as exc:
+                errors.append(f"{path}: invalid workspace_root: {exc}")
+
+    workspace_entrypoint_values = tuple(list_values.get("workspace_entrypoints", []))
+    if workspace_entrypoint_values and workspace_root_value in (None, ""):
+        errors.append(f"{path}: workspace_entrypoints requires workspace_root")
+
     if errors:
         return None, errors
 
-    return (
-        Profile(
-            path=path,
-            repo_key=repo_key,
-            repo_roots=tuple(resolved_roots),
-            aliases=tuple(list_values["aliases"]),
-            domains=tuple(list_values["domains"]),
-            entrypoints=tuple(resolved_entrypoints),
-            keywords=tuple(list_values["keywords"]),
-            verified_at=verified_at,
-        ),
-        [],
+    profile = Profile(
+        path=path,
+        repo_key=repo_key,
+        repo_roots=tuple(resolved_roots),
+        aliases=tuple(list_values["aliases"]),
+        domains=tuple(list_values["domains"]),
+        entrypoints=tuple(resolved_entrypoints),
+        keywords=tuple(list_values["keywords"]),
+        verified_at=verified_at,
+        workspace_root=workspace_root,
+        workspace_entrypoint_values=workspace_entrypoint_values,
     )
+    try:
+        workspace_context_paths(profile)
+    except PATH_ERRORS as exc:
+        return None, [f"{path}: invalid workspace context: {exc}"]
+    return profile, []
 
 
 def validate_vault(vault: Path) -> tuple[list[Profile], list[str]]:
