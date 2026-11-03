@@ -23,8 +23,8 @@
 - `PaperNotes/VLA/FAST.md` → `Papers/2501-FAST.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/VLA/FLARE.md` → `Papers/2505-FLARE.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/VLA/FLASH.md` → `Papers/2605-FLASH.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/VLA/GR00T N1.5.md` → `Papers/lega-GR00TN15.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/VLA/GR00T N1.6.md` → `Papers/lega-GR00TN16.md`: **import-paper/ready** — old-only paper candidate
+- `PaperNotes/VLA/GR00T N1.5.md` → `Papers/2506-GR00TN15.md`: **import-paper/ready** — old-only paper candidate
+- `PaperNotes/VLA/GR00T N1.6.md` → `Papers/2512-GR00TN16.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/VLA/GR00T N1.md` → `Papers/2503-GR00TN1.md`: **merge-paper/ready** — high-confidence identity match
 - `PaperNotes/VLA/GR00T-Series-Survey.md` → `Topics/GR00T-Series-Survey.md`: **import-topic/ready** — approved series survey
 - `PaperNotes/VLA/HIL-SERL.md` → `Papers/2410-HILSERL.md`: **import-paper/ready** — old-only paper candidate
@@ -38,7 +38,7 @@
 - `PaperNotes/VLA/Pi06 Base Model.md` → `-`: **blocked/blocked** — misfiled concept requires semantic absorption
 - `PaperNotes/VLA/Pi06.md` → `Papers/2511-PiStar06.md`: **merge-paper/ready** — high-confidence identity match
 - `PaperNotes/VLA/Pi07.md` → `Papers/2604-Pi07.md`: **merge-paper/ready** — exact official URL and normalized title match
-- `PaperNotes/VLA/RLT.md` → `Papers/lega-RLT.md`: **import-paper/ready** — old-only paper candidate
+- `PaperNotes/VLA/RLT.md` → `Papers/2603-RLT.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/VLA/STEAM.md` → `Papers/2606-STEAM.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/VLA/Workhorse.md` → `Papers/2610-Workhorse.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/_inbox/HEISD.md` → `Papers/2603-HEISD.md`: **import-paper/ready** — old-only paper candidate
@@ -46,7 +46,7 @@
 - `PaperNotes/_inbox/Mean Flow VLA.md` → `Papers/2603-MeanFlowVLA.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/_inbox/One-step Diffusion Policy.md` → `Papers/2410-OnestepDiffusionPolicy.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/_inbox/Pi0.md` → `Papers/2410-Pi0.md`: **merge-paper/ready** — high-confidence identity match
-- `PaperNotes/_inbox/Spec-VLA.md` → `Papers/lega-SpecVLA.md`: **import-paper/blocked** — missing paper identity
+- `PaperNotes/_inbox/Spec-VLA.md` → `-`: **import-paper/blocked** — missing paper identity
 - `PaperNotes/_inbox/Triton-Pi0.md` → `Papers/2510-TritonPi0.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/world model/DiT4DiT.md` → `Papers/2603-DiT4DiT.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/world model/Dyna-2.1.md` → `Papers/2604-Dyna21.md`: **import-paper/ready** — old-only paper candidate

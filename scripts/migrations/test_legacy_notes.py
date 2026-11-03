@@ -45,6 +45,12 @@ class LegacyNotesPlannerTests(unittest.TestCase):
             "[PDF](https://example.org/report.pdf)\n",
             encoding="utf-8",
         )
+        (self.source / "PaperNotes/VLA/URLOnly.md").write_text(
+            "---\ntitle: URL Only\nyear: 2026\n---\n"
+            "| 日期 | March 9, 2026 |\n"
+            "[PDF](https://example.org/url-only.pdf)\n",
+            encoding="utf-8",
+        )
         (self.target / "Papers/2601-ExistingReport.md").write_text(
             "---\ntype: paper\ntitle: Existing Report\n"
             "paper: https://example.org/report.pdf\n---\nTarget\n",
@@ -138,6 +144,14 @@ class LegacyNotesPlannerTests(unittest.TestCase):
         self.assertEqual(item.identity_confidence, "review")
         self.assertEqual(item.decision, "merge-paper")
         self.assertEqual(item.destination_path, "Papers/2601-ExistingReport.md")
+
+    def test_url_only_paper_uses_explicit_publication_month(self) -> None:
+        item = next(
+            item
+            for item in build_manifest(self.source, self.target).items
+            if item.source_path.endswith("URLOnly.md")
+        )
+        self.assertEqual(item.destination_path, "Papers/2603-URLOnly.md")
 
     def test_apply_rejects_source_hash_drift(self) -> None:
         manifest, receipt = self.freeze_manifest()

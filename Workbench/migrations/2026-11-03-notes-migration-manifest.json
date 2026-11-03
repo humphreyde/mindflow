@@ -229,7 +229,7 @@
     },
     {
       "decision": "import-paper",
-      "destination_path": "Papers/lega-GR00TN15.md",
+      "destination_path": "Papers/2506-GR00TN15.md",
       "duplicate_group": null,
       "identity": {
         "arxiv_id": null,
@@ -251,7 +251,7 @@
         ],
         [
           "PaperNotes/VLA/GR00T N1.6",
-          "Papers/lega-GR00TN16"
+          "Papers/2512-GR00TN16"
         ],
         [
           "PaperNotes/VLA/GR00T-Series-Survey",
@@ -351,7 +351,7 @@
     },
     {
       "decision": "import-paper",
-      "destination_path": "Papers/lega-GR00TN16.md",
+      "destination_path": "Papers/2512-GR00TN16.md",
       "duplicate_group": null,
       "identity": {
         "arxiv_id": null,
@@ -369,7 +369,7 @@
         ],
         [
           "PaperNotes/VLA/GR00T N1.5",
-          "Papers/lega-GR00TN15"
+          "Papers/2506-GR00TN15"
         ],
         [
           "PaperNotes/VLA/GR00T-Series-Survey",
@@ -605,11 +605,11 @@
         ],
         [
           "PaperNotes/VLA/GR00T N1.5",
-          "Papers/lega-GR00TN15"
+          "Papers/2506-GR00TN15"
         ],
         [
           "PaperNotes/VLA/GR00T N1.6",
-          "Papers/lega-GR00TN16"
+          "Papers/2512-GR00TN16"
         ]
       ],
       "reason": "approved series survey",
@@ -1007,7 +1007,7 @@
     },
     {
       "decision": "import-paper",
-      "destination_path": "Papers/lega-RLT.md",
+      "destination_path": "Papers/2603-RLT.md",
       "duplicate_group": null,
       "identity": {
         "arxiv_id": null,
@@ -1021,39 +1021,39 @@
       "link_rewrites": [
         [
           "rlt_fig1_overview.png",
-          "Papers/assets/lega-RLT/rlt_fig1_overview.png"
+          "Papers/assets/RLT/rlt_fig1_overview.png"
         ],
         [
           "rlt_fig2_rl_token.png",
-          "Papers/assets/lega-RLT/rlt_fig2_rl_token.png"
+          "Papers/assets/RLT/rlt_fig2_rl_token.png"
         ],
         [
           "rlt_fig3_tasks.png",
-          "Papers/assets/lega-RLT/rlt_fig3_tasks.png"
+          "Papers/assets/RLT/rlt_fig3_tasks.png"
         ],
         [
           "rlt_fig4_throughput.png",
-          "Papers/assets/lega-RLT/rlt_fig4_throughput.png"
+          "Papers/assets/RLT/rlt_fig4_throughput.png"
         ],
         [
           "rlt_fig5_success.png",
-          "Papers/assets/lega-RLT/rlt_fig5_success.png"
+          "Papers/assets/RLT/rlt_fig5_success.png"
         ],
         [
           "rlt_fig6_vs_others.png",
-          "Papers/assets/lega-RLT/rlt_fig6_vs_others.png"
+          "Papers/assets/RLT/rlt_fig6_vs_others.png"
         ],
         [
           "rlt_fig7_train_throughput.png",
-          "Papers/assets/lega-RLT/rlt_fig7_train_throughput.png"
+          "Papers/assets/RLT/rlt_fig7_train_throughput.png"
         ],
         [
           "rlt_fig8_train_success.png",
-          "Papers/assets/lega-RLT/rlt_fig8_train_success.png"
+          "Papers/assets/RLT/rlt_fig8_train_success.png"
         ],
         [
           "rlt_fig9_speed_hist.png",
-          "Papers/assets/lega-RLT/rlt_fig9_speed_hist.png"
+          "Papers/assets/RLT/rlt_fig9_speed_hist.png"
         ]
       ],
       "reason": "old-only paper candidate",
@@ -1390,7 +1390,7 @@
     },
     {
       "decision": "import-paper",
-      "destination_path": "Papers/lega-SpecVLA.md",
+      "destination_path": null,
       "duplicate_group": null,
       "identity": {
         "arxiv_id": null,
@@ -1454,7 +1454,7 @@
         ],
         [
           "PaperNotes/VLA/GR00T N1.5",
-          "Papers/lega-GR00TN15"
+          "Papers/2506-GR00TN15"
         ],
         [
           "PaperNotes/VLA/Pi0",

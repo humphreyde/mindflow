@@ -366,8 +366,37 @@ def _safe_stem(value: str) -> str:
     return "".join(words) or "LegacyPaper"
 
 
+def _publication_prefix(path: Path, identity: Mapping[str, str | None]) -> str:
+    arxiv_id = identity.get("arxiv_id")
+    if arxiv_id:
+        return arxiv_id[:4]
+    text = path.read_text(encoding="utf-8", errors="replace")
+    date_row = re.search(r"\|\s*日期\s*\|([^|]+)\|", text)
+    date_text = date_row.group(1).strip() if date_row else ""
+    numeric = re.search(r"(20\d{2})[-/](\d{1,2})", date_text)
+    if numeric:
+        return f"{int(numeric.group(1)) % 100:02d}{int(numeric.group(2)):02d}"
+    month_names = {
+        name.casefold(): index
+        for index, name in enumerate(
+            (
+                "January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December",
+            ),
+            start=1,
+        )
+    }
+    english = re.search(r"([A-Za-z]+)\s+\d{1,2},\s*(20\d{2})", date_text)
+    if english and english.group(1).casefold() in month_names:
+        return (
+            f"{int(english.group(2)) % 100:02d}"
+            f"{month_names[english.group(1).casefold()]:02d}"
+        )
+    raise ValueError(f"cannot derive YYMM publication prefix for {path}")
+
+
 def _paper_destination(path: Path, identity: Mapping[str, str | None]) -> str:
-    prefix = (identity.get("arxiv_id") or "legacy")[:4]
+    prefix = _publication_prefix(path, identity)
     return f"Papers/{prefix}-{_safe_stem(path.stem)}.md"
 
 
@@ -477,6 +506,8 @@ def build_manifest(source: Path, target: Path) -> MigrationManifest:
         else:
             identity = _source_identity(path)
             key = identity.get("key")
+            if identity["kind"] == "missing":
+                continue
             destination = target_identities.get(key or "") or _paper_destination(
                 path, identity
             )
@@ -532,7 +563,12 @@ def build_manifest(source: Path, target: Path) -> MigrationManifest:
             confidence = "high" if identity["kind"] in {"arxiv", "doi"} else "review"
             if key and duplicate_counts.get(key, 0) > 1:
                 duplicate_group = key
-            if key in target_identities:
+            if identity["kind"] == "missing":
+                decision = "import-paper"
+                destination = None
+                status = "blocked"
+                reason = "missing paper identity"
+            elif key in target_identities:
                 decision = "merge-paper"
                 destination = target_identities[key]
                 status = "ready"
@@ -544,10 +580,7 @@ def build_manifest(source: Path, target: Path) -> MigrationManifest:
             else:
                 decision = "import-paper"
                 destination = _paper_destination(path, identity)
-                if identity["kind"] == "missing":
-                    status = "blocked"
-                    reason = "missing paper identity"
-                elif (target / destination).exists():
+                if (target / destination).exists():
                     status = "blocked"
                     reason = "target exists without high-confidence identity match"
                 else:
