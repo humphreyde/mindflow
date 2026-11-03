@@ -1,7 +1,7 @@
 # MindFlow PARA Notes Migration Design
 
 > **Date**: 2026-10-29
-> **Status**: Approved direction; pending written-spec review
+> **Status**: Plan A approved 2026-11-03 and split into A1/A2; Plan B pending a separate implementation plan
 > **Decision**: 将 MindFlow 建成个人 PARA 研究工作区；每个 project workspace 使用独立 notes-repo wrapper，代码仓统一位于 `Projects/<project>/code/`；旧 `notes` 选择性迁移，Zotero 保持独立
 > **Source vault**: `/Users/limx/notes`
 > **Target vault**: `/Users/limx/mindflow`
@@ -71,7 +71,7 @@ Typed knowledge assets 继续使用现有顶层路径。`Workbench/PARA/Resource
 - project notes repo 自己的 `.gitignore` 排除 `code/` 与 `worklog/`；外层 MindFlow Git 继续忽略 `Projects/*`。
 - `Workbench/RepositoryProfiles/<repo_key>.md` 保存 `repo_key/repo_roots/aliases/domains/entrypoints/keywords/verified_at`，并可用 `workspace_root` 指向默认 wrapper、用 `workspace_entrypoints` 声明额外项目笔记，供 `mindflow-context` 匹配仓库和有界读取项目笔记。
 - `Workbench/PARA/Projects/<project_key>.md` 是 vault 内的轻量 registry/control note，描述明确 outcome、完成条件、wrapper path 和生命周期，通过 `repo_refs` 引用一个或多个 repository profile；详细研究主线保存在 wrapper 的 `main.md`，两处不复制正文。
-- Project 使用 `planning | active | paused | completed`；同一 repo 可以被多个 Project 复用，同一 Project 也可以引用多个 repo。
+- Project 使用 `planning | active | paused | completed | cancelled`；同一 repo 可以被多个 Project 复用，同一 Project 也可以引用多个 repo。
 - Project 完成时，先写 final outcome 与代码 provenance，再把 Project control note 移至 `Workbench/PARA/Archives/Projects/`。
 - 移动 Project note 不移动 repository profile，也不自动移动或删除代码仓；代码仓归档是独立授权动作。
 - `pi` 继续位于 `/Users/limx/project/pi`。Plan A 创建 `Projects/pi/code/pi -> /Users/limx/project/pi` 的绝对 symlink，不物理移动 repo；任何脚本、服务或 remote path 仍使用原 canonical path，直到另一次明确批准的迁移。
@@ -424,7 +424,7 @@ Authors/concepts 图谱和其他 notes 目录属于后续设计，不与 Plan A/
 - Area 不复制 DomainMap 内容；Resource 不复制 Paper 内容；Archive 不改变 Paper rating 语义。
 - Quartz 继续排除整个 `Projects/**`，避免发布私有项目记录和代码。
 - Obsidian 只索引 project notes；窄规则至少排除 `Projects/*/code/`、`Projects/*/worklog/` 和 `Projects/*/.git/`，同时实际验证 `main.md` 与 `engineering.md` 可搜索。当前 broad `Projects/` exclusion 必须替换为经过验证的窄规则。
-- MindFlow 通用知识搜索继续排除 `Projects/**`；repository profile 的 `workspace_root` 或 selected PARA Project 指向的 `main.md`、`engineering.md` 和显式 project entrypoints 由 project context 单独读取，不扫描 code tree。
+- MindFlow 通用知识搜索继续排除 `Projects/**`。匹配到的 repository profile 单独提供 vault `entrypoints`，以及由 profile `workspace_root` 解析的 `main.md`、`engineering.md` 和 profile `workspace_entrypoints`；selected PARA Project 另行提供单个 control-note path、由 Project `workspace_root` 解析且仅含 `main.md`/`engineering.md` 的 defaults channel，以及 vault-root `knowledge_entrypoints`。这些通道保持分离，Project 不继承 profile explicit workspace files，也不扫描 code tree。
 - `Projects/AGENTS.md` 与每个 wrapper 自身的 `AGENTS.md` 均不依赖跨 nested Git root 的隐式继承。
 - `git -C Projects/pi rev-parse --show-toplevel` 的 canonical 结果等于 `Projects/pi`，证明 wrapper 是独立 notes Git root；wrapper 内 `main.md`、`engineering.md` 可跟踪，`code/` 与 `worklog/` 被其 `.gitignore` 排除，外层 vault 仍忽略 `Projects/pi/`。
 - `/Users/limx/project/pi` canonical path 保持不变；`test -L Projects/pi/code/pi` 成功，且 `readlink Projects/pi/code/pi` 精确返回绝对路径 `/Users/limx/project/pi`。
