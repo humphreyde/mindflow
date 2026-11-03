@@ -101,7 +101,7 @@ $mindflow-context 分析当前项目的 action chunking 设计
 
 ### Canonical Codex skill links
 
-在新电脑上，先把 MindFlow clone 到长期使用的主检出路径。推荐把 uv-managed Python 安装在 vault 内，使从嵌套 code repository 启动的 Codex 沙箱也能读取完整 Python 3.12 环境；不要把临时 worktree 当作全局 skill 目标：
+在新电脑上，先把 MindFlow clone 到长期使用的主检出路径。推荐把 uv-managed Python 安装在 vault 内，避免依赖机器级 Python 安装位置；不要把临时 worktree 当作全局 skill 目标：
 
 ```bash
 UV_PYTHON_INSTALL_DIR="$PWD/.python" uv python install 3.12 --no-bin

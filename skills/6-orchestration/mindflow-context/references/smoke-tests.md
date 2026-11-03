@@ -19,7 +19,7 @@
 | 13 | fixture with two active pi Projects | `使用 MindFlow 分析当前 pi 研究上下文，只读。` | both Project keys reported; neither Project note read |
 | 14 | same fixture with explicit Project key | `使用 MindFlow 和 project_key=pi-recap 分析当前项目，只读。` | profile and three Project channels remain separate |
 | 15 | `/Users/limx/project/pi` | `只修复一个普通本地单测，不检索研究知识。` | profiled repository does not itself trigger MindFlow |
-| 16 | `/home/limx/mindflow/Projects/pi/code/pi` | `使用 $mindflow-context 做只读路由验证；报告 profile_key、workspace_context、vault_root 和 SKILL.md 路径。` | vault resolves from canonical skill path to `/home/limx/mindflow`; vault Python runs validator through stdin; profile is `pi` |
+| 16 | `/home/limx/mindflow/Projects/pi/code/pi` | `使用 $mindflow-context 做只读路由验证；报告 profile_key、workspace_context、vault_root 和 SKILL.md 路径。` | vault resolves from canonical skill path to `/home/limx/mindflow`; validator runs through stdin using vault Python or the verified read-only fallback; profile is `pi` |
 
 ## Case 1
 
@@ -165,5 +165,5 @@
 - Case 13：两个 active Projects 都引用 `pi`，未提供 `project_key`；返回 `project_selection_required` 和两个 keys，`project_path`、`project_workspace_context`、`project_knowledge_entrypoints` 均为空。
 - Case 14：显式选择 `pi-recap`；JSON 分别包含 `project_path`、profile `workspace_context`、defaults-only `project_workspace_context` 与 `project_knowledge_entrypoints`，profile explicit workspace file 不得进入 Project workspace channel。
 - Case 15：普通本地测试修复不符合研究触发条件；不得读取 profile、wrapper 或 MindFlow 知识目录。
-- Case 16：从 my3090 的实际 code root 启动 fresh Codex；默认 vault 必须从 canonical skill path 解析，不得使用 macOS 路径或 cwd 猜测；validator 使用 vault 的 Python 3.12 环境通过 stdin 执行，且只返回 `pi` profile 与两个 wrapper context 文件。
+- Case 16：从 my3090 的实际 code root 启动 fresh Codex；默认 vault 必须从 canonical skill path 解析，不得使用 macOS 路径或 cwd 猜测；validator 通过 stdin 执行，优先使用 vault Python 3.12，仅在沙箱明确阻断时使用已验证的 system Python 3.10+ fallback，且只返回 `pi` profile 与两个 wrapper context 文件。
 - [ ] Result:
