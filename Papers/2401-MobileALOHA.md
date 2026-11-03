@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2401.02117
 title: "Mobile ALOHA: Learning Bimanual Mobile Manipulation with Low-Cost Whole-Body Teleoperation"
 authors: [Zipeng Fu, Tony Z. Zhao, Chelsea Finn]
 institutes: [Stanford University]

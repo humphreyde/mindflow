@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2504.12680
 title: "Embodied-R: Collaborative Framework for Activating Embodied Spatial Reasoning in Foundation Models via Reinforcement Learning"
 authors: [Baining Zhao, Ziyou Wang, Jianjie Fang, Chen Gao, Fanhang Man, Jinqiang Cui, Xin Wang, Xinlei Chen, Yong Li, Wenwu Zhu]
 institutes: [Tsinghua University]

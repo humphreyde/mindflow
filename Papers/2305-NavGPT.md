@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2305.16986
 title: "NavGPT: Explicit Reasoning in Vision-and-Language Navigation with Large Language Models"
 authors: [Gengze Zhou, Yicong Hong, Qi Wu]
 institutes: [The University of Adelaide, The Australian National University]

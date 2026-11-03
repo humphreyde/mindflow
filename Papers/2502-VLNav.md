@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2502.00931
 title: "VL-Nav: A Neuro-Symbolic Approach for Reasoning-based Vision-Language Navigation"
 authors: [Yi Du, Taimeng Fu, Zhipeng Zhao, Shaoshu Su, Zitong Zhan, Qiwei Du, Zhuoqun Chen, Bowen Li, Chen Wang]
 institutes: [University at Buffalo, Carnegie Mellon University]

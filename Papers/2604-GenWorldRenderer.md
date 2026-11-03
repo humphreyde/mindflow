@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.02329
 title: "Generative World Renderer"
 authors: [Zheng-Hui Huang, Zhixiang Wang, Jiaming Tan, Ruihan Yu, Yidan Zhang, Bo Zheng, Yu-Lun Liu, Yung-Yu Chuang, Kaipeng Zhang]
 institutes: [Alaya Studio (Shanda AI Research Tokyo), National Taiwan University, The University of Tokyo, National Yang Ming Chiao Tung University]

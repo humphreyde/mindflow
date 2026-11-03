@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2401.12202
 title: "OK-Robot: What Really Matters in Integrating Open-Knowledge Models for Robotics"
 authors: [Peiqi Liu, Yaswanth Orru, Jay Vakil, Chris Paxton, Nur Muhammad Mahi Shafiullah, Lerrel Pinto]
 institutes: [New York University, AI at Meta]

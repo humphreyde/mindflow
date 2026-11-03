@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2603.07660
 title: "Holi-Spatial: Evolving Video Streams into Holistic 3D Spatial Intelligence"
 authors: [Yuanyuan Gao, Hao Li, Yifei Liu, Xinhao Ji, Yuning Gong, Yuanjun Liao, Fangfu Liu, Manyuan Zhang, Yuchen Yang, Dan Xu, Xue Yang, Huaxi Huang, Hongjie Zhang, Ziwei Liu, Xiao Sun, Dingwen Zhang, Zhihang Zhong]
 institutes: [Shanghai AI Lab, Northwestern Polytechnical University, Shanghai Jiao Tong University, Peking University, Nanyang Technological University, Beihang University, Sichuan University, Tsinghua University, CUHK, Fudan University, HKUST]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2507.02029
 title: "RoboBrain 2.0 Technical Report"
 authors: [BAAI RoboBrain Team]
 institutes: [BAAI]

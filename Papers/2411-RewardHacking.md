@@ -1,4 +1,5 @@
 ---
+type: paper
 title: Reward Hacking in Reinforcement Learning
 authors: [Lilian Weng]
 institutes: [OpenAI (personal blog)]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2509.12129
 title: "NavFoM: Embodied Navigation Foundation Model"
 authors: [Jiazhao Zhang, Anqi Li, Yunpeng Qi, Minghan Li, Jiahang Liu, Shaoan Wang, Haoran Liu, Gengze Zhou, Yuze Wu, Xingxing Li, Yuxin Fan, Wenjun Li, Zhibo Chen, Fei Gao, Qi Wu, Zhizheng Zhang, He Wang]
 institutes: [Peking University, GalBot, USTC, BAAI, University of Adelaide, Zhejiang University, Differential Robotics]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2401.10935
 title: "SeeClick: Harnessing GUI Grounding for Advanced Visual GUI Agents"
 authors: [Kanzhi Cheng, Qiushi Sun, Yougang Chu, Fangzhi Xu, Yantao Li, Jianbing Zhang, Zhiyong Wu]
 institutes: [Nanjing University, Shanghai AI Laboratory]

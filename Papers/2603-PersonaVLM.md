@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.13074
 title: "PersonaVLM: Long-Term Personalized Multimodal LLMs"
 authors: [Chang Nie, Chaoyou Fu, Yifan Zhang, Haihua Yang, Caifeng Shan]
 institutes: [Nanjing University, ByteDance]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2509.15293
 title: "How Good are Foundation Models in Step-by-Step Embodied Reasoning?"
 authors: [Dinura Dissanayake, Ahmed Heakl, Omkar Thawakar, Noor Ahsan, Ritesh Thawkar, Ketan More, Jean Lahoud, Rao Anwer, Hisham Cholakkal, Ivan Laptev, Fahad Khan, Salman Khan]
 institutes: [MBZUAI, Linköping University, Australian National University]

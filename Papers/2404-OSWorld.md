@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2404.07972
 title: "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments"
 authors: [Tianbao Xie, Danyang Zhang, Jixuan Chen, Xiaochuan Li, Siheng Zhao, Ruisheng Cao, Toh Jing Hua, Zhoujun Cheng, Dongchan Shin, Fangyu Lei, Yitao Liu, Yiheng Xu, Shuyan Zhou, Silvio Savarese, Caiming Xiong, Victor Zhong, Tao Yu]
 institutes: [University of Hong Kong, Salesforce Research, Carnegie Mellon University, University of Waterloo]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.07430
 title: "HY-Embodied-0.5: Embodied Foundation Models for Real-World Agents"
 authors: [Tencent Robotics X, HY Vision Team]
 institutes: [Tencent]

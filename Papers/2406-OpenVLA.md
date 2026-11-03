@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2406.09246
 title: "OpenVLA: An Open-Source Vision-Language-Action Model"
 authors: [Moo Jin Kim, Karl Pertsch, Siddharth Karamcheti, Ted Xiao, Ashwin Balakrishna, Suraj Nair, Rafael Rafailov, Ethan Foster, Grace Lam, Pannag Sanketi, Quan Vuong, Thomas Kollar, Benjamin Burchfiel, Russ Tedrake, Dorsa Sadigh, Sergey Levine, Percy Liang, Chelsea Finn]
 institutes: [Stanford, UC Berkeley, Toyota Research Institute, Google DeepMind, Physical Intelligence, MIT]

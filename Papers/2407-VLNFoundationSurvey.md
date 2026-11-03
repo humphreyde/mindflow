@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2407.07035
 title: "Vision-and-Language Navigation Today and Tomorrow: A Survey in the Era of Foundation Models"
 authors: [Yue Zhang, Ziqiao Ma, Jialu Li, Yanyuan Qiao, Zun Wang, Joyce Chai, Qi Wu, Mohit Bansal, Parisa Kordjamshidi]
 institutes: [Michigan State University, University of Michigan, UNC Chapel Hill, University of Adelaide]

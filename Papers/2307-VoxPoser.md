@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2307.05973
 title: "VoxPoser: Composable 3D Value Maps for Robotic Manipulation with Language Models"
 authors: [Wenlong Huang, Chen Wang, Ruohan Zhang, Yunzhu Li, Jiajun Wu, Li Fei-Fei]
 institutes: [Stanford University, UIUC]

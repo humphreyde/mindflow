@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2506.15677
 title: "Embodied Web Agents: Bridging Physical-Digital Realms for Integrated Agent Intelligence"
 authors: [Yining Hong, Rui Sun, Bingxuan Li, Xingcheng Yao, Maxine Wu, Alexander Chien, Da Yin, Ying Nian Wu, Zhecan James Wang, Kai-Wei Chang]
 institutes: [UCLA]

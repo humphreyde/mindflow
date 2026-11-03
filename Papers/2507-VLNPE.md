@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2507.13019
 title: "Rethinking the Embodied Gap in Vision-and-Language Navigation: A Holistic Study of Physical and Visual Disparities"
 authors: [Liuyi Wang, Xinyuan Xia, Hui Zhao, Hanqing Wang, Tai Wang, Yilun Chen, Chengju Liu, Qijun Chen, Jiangmiao Pang]
 institutes: [Tongji University, Shanghai AI Laboratory, Shanghai Jiao Tong University, State Key Laboratory of Autonomous Intelligent Unmanned Systems]

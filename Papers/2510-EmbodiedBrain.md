@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2510.20578
 title: "EmbodiedBrain: Expanding Performance Boundaries of Task Planning for Embodied Intelligence"
 authors: [Ding Zou, Feifan Wang, Mengyu Ge, Siyuan Fan, Zongbing Zhang, Wei Chen, Lingfeng Wang, Zhongyou Hu, Wenrui Yan, Zhengwei Gao, Hao Wang, Weizhao Jin, Yu Zhang, Hainan Zhao, Mingliang Zhang, Xianxian Xi, Yaru Zhang, Wenyuan Li, Zhengguang Gao, Yurui Zhu]
 institutes: [ZTE NebulaBrain Team]

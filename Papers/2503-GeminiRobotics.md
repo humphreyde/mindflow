@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2503.20020
 title: "Gemini Robotics: Bringing AI into the Physical World"
 authors: [Gemini Robotics Team]
 institutes: [Google DeepMind]

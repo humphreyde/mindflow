@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2411.18279
 title: "Large Language Model-Brained GUI Agents: A Survey"
 authors: [Chaoyun Zhang, Shilin He, Jiaxu Qian, Bowen Li, Liqun Li, Si Qin, Yu Kang, Minghua Ma, Guyue Liu, Qingwei Lin, Saravan Rajmohan, Dongmei Zhang, Qi Zhang]
 institutes: [Microsoft, Shanghai AI Lab, Peking University]

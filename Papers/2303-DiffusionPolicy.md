@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2303.04137
 title: "Diffusion Policy: Visuomotor Policy Learning via Action Diffusion"
 authors: [Cheng Chi, Zhenjia Xu, Siyuan Feng, Eric Cousineau, Yilun Du, Benjamin Burchfiel, Russ Tedrake, Shuran Song]
 institutes: [Columbia University, Toyota Research Institute, MIT, Stanford University]

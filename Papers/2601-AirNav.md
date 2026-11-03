@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2601.03707
 title: "AirNav: A Large-Scale Real-World UAV Vision-and-Language Navigation Dataset with Natural and Diverse Instructions"
 authors: [Hengxing Cai, Yijie Rao, Ligang Huang, Zanyang Zhong, Jinhan Dong, Jingjun Tan, Wenhao Lu, Renxin Zhong]
 institutes: [Sun Yat-Sen University, Beihang University, Peking University, Beijing University Of Posts and Telecommunications, National University of Defense Technology]

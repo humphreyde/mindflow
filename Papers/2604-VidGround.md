@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.05117
 title: "Watch Before You Answer: Learning from Visually Grounded Post-Training"
 authors: [Yuxuan Zhang, EunJeong Hwang, Huaisong Zhang, Penghui Du, Yiming Jia, Dongfu Jiang, Xuan He, Shenhui Zhang, Ping Nie, Peter West, Kelsey R. Allen]
 institutes: [UBC, Vector Institute, Etude AI, Kuaishou Kolors, University of Toronto, University of Waterloo, UIUC]

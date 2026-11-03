@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2502.19645
 title: "Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success"
 authors: [Moo Jin Kim, Chelsea Finn, Percy Liang]
 institutes: [Stanford University]

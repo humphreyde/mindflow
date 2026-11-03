@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2509.19012
 title: "Pure Vision-Language-Action (VLA) Models: A Comprehensive Survey"
 authors: [Dapeng Zhang, Jing Sun, Chenghui Hu, Xiaoyan Wu, Zhenlong Yuan, Rui Zhou, Fei Shen, Qingguo Zhou]
 institutes: [Lanzhou University, National University of Singapore, ICT CAS]

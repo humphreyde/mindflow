@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2408.14837
 title: Diffusion Models Are Real-Time Game Engines
 authors: [Dani Valevski, Yaniv Leviathan, Moab Arar, Shlomi Fruchter]
 institutes: [Google Research, Google DeepMind, Tel Aviv University]

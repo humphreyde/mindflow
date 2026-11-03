@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.04707
 title: "OpenWorldLib: A Unified Codebase and Definition of Advanced World Models"
 authors: [DataFlow Team, Bohan Zeng, Daili Hua, Kaixin Zhu, Yifan Dai, Bozhou Li, Yuran Wang, Chengzhuo Tong, Yifan Yang, Mingkun Chang, Jianbin Zhao, Zhou Liu, Hao Liang, Xiaochen Ma, Ruichuan An, Junbo Niu, Zimo Meng, Tianyi Bai, Meiyi Qiang, Huanyao Zhang, Zhiyou Xiao, Tianyu Guo, Qinhan Yu, Runhao Zhao, Zhengpin Li, Xinyi Huang, Yisheng Pan, Yiwen Tang, Yang Shi, Yue Ding, Xinlong Chen, Hongcheng Gao, Minglei Shi, Jialong Wu, Zekun Wang, Yuanxing Zhang, Xintao Wang, Pengfei Wan, Yiren Song, Mike Zheng Shou, Wentao Zhang]
 institutes: [Peking University, Kling Team Kuaishou Technology, Zhongguancun Academy, HKUST, Tsinghua University, NUS, SJTU, SYSU]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2512.11047
 title: "WholeBodyVLA: Towards Unified Latent VLA for Whole-Body Loco-Manipulation Control"
 authors: [Haoran Jiang, Jin Chen, Qingwen Bu, Li Chen, Modi Shi, Yanjie Zhang, Delong Li, Chuanzhe Suo, Chuang Wang, Zhihui Peng, Hongyang Li]
 institutes: [Fudan University, OpenDriveLab & MMLab @ HKU, AgiBot, SII]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2510.03342
 title: "Gemini Robotics 1.5: Pushing the Frontier of Generalist Robots with Advanced Embodied Reasoning, Thinking, and Motion Transfer"
 authors: [Gemini Robotics Team]
 institutes: [Google DeepMind]

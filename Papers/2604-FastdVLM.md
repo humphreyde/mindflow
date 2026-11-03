@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.06832
 title: "Fast-dVLM: Efficient Block-Diffusion VLM via Direct Conversion from Autoregressive VLM"
 authors: [Chengyue Wu, Shiyi Lan, Yonggan Fu, Sensen Gao, Jin Wang, Jincheng Yu, Jose M. Alvarez, Pavlo Molchanov, Ping Luo, Song Han, Ligeng Zhu, Enze Xie]
 institutes: [HKU, NVIDIA, MIT, MBZUAI]

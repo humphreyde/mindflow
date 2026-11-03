@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.11784
 title: "ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents"
 authors: [Fei Tang, Zhiqiong Lu, Boxuan Zhang, Weiming Lu, Jun Xiao, Yueting Zhuang, Yongliang Shen]
 institutes: [Zhejiang University]

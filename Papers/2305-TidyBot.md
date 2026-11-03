@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2305.05658
 title: "TidyBot: Personalized Robot Assistance with Large Language Models"
 authors: [Jimmy Wu, Rika Antonova, Adam Kan, Marion Lepert, Andy Zeng, Shuran Song, Jeannette Bohg, Szymon Rusinkiewicz, Thomas Funkhouser]
 institutes: [Princeton, Stanford, The Nueva School, Google, Columbia]

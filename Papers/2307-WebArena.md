@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2307.13854
 title: "WebArena: A Realistic Web Environment for Building Autonomous Agents"
 authors: [Shuyan Zhou, Frank F. Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, Uri Alon, Graham Neubig]
 institutes: [CMU, Inspired Cognition]

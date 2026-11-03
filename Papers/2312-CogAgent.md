@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2312.08914
 title: "CogAgent: A Visual Language Model for GUI Agents"
 authors: [Wenyi Hong, Weihan Wang, Qingsong Lv, Jiazheng Xu, Wenmeng Yu, Junhui Ji, Yan Wang, Zihan Wang, Yuxuan Zhang, Juanzi Li, Bin Xu, Yuxiao Dong, Ming Ding, Jie Tang]
 institutes: [Tsinghua University, Zhipu AI]

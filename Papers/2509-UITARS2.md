@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2509.02544
 title: "UI-TARS-2 Technical Report: Advancing GUI Agent with Multi-Turn Reinforcement Learning"
 authors: [ByteDance Seed Team]
 institutes: [ByteDance Seed]

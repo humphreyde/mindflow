@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2504.12679
 title: "TongUI: Internet-Scale Trajectories from Multimodal Web Tutorials for Generalized GUI Agents"
 authors: [Bofei Zhang, Zirui Shang, Zhi Gao, Wang Zhang, Rui Xie, Xiaojian Ma, Tao Yuan, Xinxiao Wu, Song-Chun Zhu, Qing Li]
 institutes: [BIGAI, Beijing Institute of Technology, Peking University, Renmin University of China, Tsinghua University]

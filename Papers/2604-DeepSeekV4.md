@@ -1,4 +1,5 @@
 ---
+type: paper
 title: "DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence"
 authors: [DeepSeek-AI]
 institutes: [DeepSeek-AI]

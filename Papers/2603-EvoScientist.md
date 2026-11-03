@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2603.08127
 title: "EvoScientist: Towards Multi-Agent Evolving AI Scientists for End-to-End Scientific Discovery"
 authors: [Yougang Lyu, Xi Zhang, Xinhao Yi, Yuyue Zhao, Shuyu Guo, Wenxiang Hu, Jan Piotrowski, Jakub Kaliski, Jacopo Urbani, Zaiqiao Meng, Lun Zhou, Xiaohui Yan]
 institutes: [Huawei Technologies, Vrije Universiteit Amsterdam]

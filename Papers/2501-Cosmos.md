@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2501.03575
 title: Cosmos World Foundation Model Platform for Physical AI
 authors: [NVIDIA Cosmos Team, Niket Agarwal, Yogesh Balaji, Ming-Yu Liu, et al.]
 institutes: [NVIDIA]

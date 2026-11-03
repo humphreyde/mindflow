@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2502.05485
 title: "HAMSTER: Hierarchical Action Models For Open-World Robot Manipulation"
 authors: [Yi Li, Yuquan Deng, Jesse Zhang, Joel Jang, Marius Memmel, Raymond Yu, Caelan Garrett, Fabio Ramos, Dieter Fox, Anqi Li, Abhishek Gupta, Ankit Goyal]
 institutes: [NVIDIA, University of Washington, University of Southern California]

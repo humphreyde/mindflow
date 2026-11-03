@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2004.02857
 title: "Beyond the Nav-Graph: Vision-and-Language Navigation in Continuous Environments"
 authors: [Jacob Krantz, Erik Wijmans, Arjun Majumdar, Dhruv Batra, Stefan Lee]
 institutes: [Oregon State University, Georgia Institute of Technology, Facebook AI Research]

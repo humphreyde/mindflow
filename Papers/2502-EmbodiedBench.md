@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2502.09560
 title: "EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for Vision-Driven Embodied Agents"
 authors: [Rui Yang, Hanyang Chen, Junyu Zhang, Mark Zhao, Cheng Qian, Kangrui Wang, Qineng Wang, Teja Venkat Koripella, Marziyeh Movahedi, Manling Li, Heng Ji, Huan Zhang, Tong Zhang]
 institutes: [UIUC, Northwestern, U Toronto, TTIC]

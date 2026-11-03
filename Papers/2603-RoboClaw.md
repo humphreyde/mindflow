@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2603.11558
 title: "RoboClaw: An Agentic Framework for Scalable Long-Horizon Robotic Tasks"
 authors: [Ruiying Li, Yunlang Zhou, Yuyao Zhu, Kylin Chen, Jingyuan Wang, Sukai Wang, Kongtao Hu, Minhui Yu, Bowen Jiang, Zhan Su, Jiayao Ma, Xin He, Yongjian Shen, Yang Yang, Guanghui Ren, Maoqing Yao, Wenhao Wang, Yao Mu]
 institutes: [AgiBot, ScaleLab]

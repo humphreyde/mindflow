@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2504.07981
 title: "ScreenSpot-Pro: GUI Grounding for Professional High-Resolution Computer Use"
 authors: [Kaixin Li, Ziyang Meng, Hongzhan Lin, Ziyang Luo, Yuchen Tian, Jing Ma, Zhiyong Huang, Tat-Seng Chua]
 institutes: [National University of Singapore, East China Normal University, Hong Kong Baptist University]

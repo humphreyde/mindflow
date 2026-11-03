@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2510.11027
 title: "Vlaser: Vision-Language-Action Model with Synergistic Embodied Reasoning"
 authors: [Ganlin Yang, Tianyi Zhang, Haoran Hao, Weiyun Wang, Yibin Liu, Dehui Wang, Guanzhou Chen, Zijian Cai, Junting Chen, Weijie Su, Wengang Zhou, Yu Qiao, Jifeng Dai, Jiangmiao Pang, Gen Luo, Wenhai Wang, Yao Mu, Zhi Hou]
 institutes: [Shanghai AI Laboratory, USTC, SJTU, Zhejiang University, Nanjing University, Fudan University, Tsinghua University, NUS]

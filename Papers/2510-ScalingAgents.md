@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2510.02250
 title: The Unreasonable Effectiveness of Scaling Agents for Computer Use
 authors: [Gonzalo Gonzalez-Pumariega, Vincent Tu, Chih-Lun Lee, Jiachen Yang, Ang Li, Xin Eric Wang]
 institutes: [Simular Research]

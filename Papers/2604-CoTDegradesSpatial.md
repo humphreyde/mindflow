@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.16060
 title: "Chain-of-Thought Degrades Visual Spatial Reasoning Capabilities of Multimodal LLMs"
 authors: [Sai Srinivas Kancheti, Aditya Sanjiv Kanade, Vineeth N. Balasubramanian, Tanuja Ganu]
 institutes: [IIT Hyderabad, Microsoft Research India]

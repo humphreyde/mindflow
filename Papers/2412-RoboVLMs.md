@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2412.14058
 title: "What Matters in Building Vision-Language-Action Models for Generalist Robots"
 authors: [Xinghang Li, Peiyan Li, Long Qian, Minghuan Liu, Dong Wang, Jirong Liu, Bingyi Kang, Xiao Ma, Xinlong Wang, Di Guo, Tao Kong, Hanbo Zhang, Huaping Liu]
 institutes: [Tsinghua University, ByteDance Research, CASIA, Shanghai Jiao Tong University, NUS, BAAI, BUPT]

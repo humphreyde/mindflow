@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2511.07332
 title: "Grounding Computer Use Agents on Human Demonstrations"
 authors: [Aarash Feizi, Shravan Nayak, Xiangru Jian, Kevin Qinghong Lin, Kaixin Li, Rabiul Awal, Xing Han Lù, Johan Obando-Ceron, Juan A. Rodriguez, Nicolas Chapados, David Vazquez, Adriana Romero-Soriano, Reihaneh Rabbany, Perouz Taslakian, Christopher Pal, Spandana Gella, Sai Rajeswar]
 institutes: [Mila, McGill, Université de Montréal, ServiceNow Research, University of Waterloo, University of Oxford, NUS, Polytechnique Montréal, ÉTS]

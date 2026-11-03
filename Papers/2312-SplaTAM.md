@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2312.02126
 title: "SplaTAM: Splat, Track & Map 3D Gaussians for Dense RGB-D SLAM"
 authors: [Nikhil Keetha, Jay Karhade, Krishna Murthy Jatavallabhula, Gengshan Yang, Sebastian Scherer, Deva Ramanan, Jonathon Luiten]
 institutes: [CMU, MIT]

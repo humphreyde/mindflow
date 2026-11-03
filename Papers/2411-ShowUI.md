@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2411.17465
 title: "ShowUI: One Vision-Language-Action Model for GUI Visual Agent"
 authors: [Kevin Qinghong Lin, Linjie Li, Difei Gao, Zhengyuan Yang, Shiwei Wu, Zechen Bai, Stan Weixian Lei, Lijuan Wang, Mike Zheng Shou]
 institutes: [Show Lab NUS, Microsoft]

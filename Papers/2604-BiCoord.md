@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.05831
 title: "BiCoord: A Bimanual Manipulation Benchmark towards Long-Horizon Spatial-Temporal Coordination"
 authors: [Xingyu Peng, Chen Gao, Liankai Jin, Annan Li, Si Liu]
 institutes: [Beihang University, Zhongguancun Academy, National University of Singapore]

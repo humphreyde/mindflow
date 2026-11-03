@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2405.17398
 title: "Vista: A Generalizable Driving World Model with High Fidelity and Versatile Controllability"
 authors: [Shenyuan Gao, Jiazhi Yang, Li Chen, Kashyap Chitta, Yihang Qiu, Andreas Geiger, Jun Zhang, Hongyang Li]
 institutes: [HKUST, OpenDriveLab @ Shanghai AI Lab, University of Tübingen, Tübingen AI Center, HKU]

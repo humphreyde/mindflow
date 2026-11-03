@@ -1,4 +1,5 @@
 ---
+type: paper
 title: "Gemini Robotics ER 1.6: Enhanced Embodied Reasoning"
 authors: [Laura Graesser, Peng Xu]
 institutes: [Google DeepMind]

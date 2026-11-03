@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.14144
 title: "SpatialEvo: Self-Evolving Spatial Intelligence via Deterministic Geometric Environments"
 authors: [Dingming Li, Yingxiu Zhao, Xinrui Cheng, Kangheng Lin, Hongbo Peng, Hongxing Li, Zixuan Wang, Yuhong Dai, Haodong Li, Jia Wang, Yukang Shi, Liang Zhao, Jianjian Sun, Zheng Ge, Xiangyu Zhang, Weiming Lu, Jun Xiao, Yueting Zhuang, Yongliang Shen]
 institutes: [Zhejiang University, StepFun]

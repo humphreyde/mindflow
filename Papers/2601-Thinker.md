@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2601.21199
 title: "Thinker: A vision-language foundation model for embodied intelligence"
 authors: [Baiyu Pan, Daqin Luo, Junpeng Yang, Jiyuan Wang, Yixuan Zhang, Hailin Shi, Jichao Jiao]
 institutes: [UBTECH Robotics]

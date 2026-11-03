@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2406.04339
 title: "RoboMamba: Efficient Vision-Language-Action Model for Robotic Reasoning and Manipulation"
 authors: [Jiaming Liu, Mengzhen Liu, Zhenyu Wang, Pengju An, Xiaoqi Li, Kaichen Zhou, Senqiao Yang, Renrui Zhang, Yandong Guo, Shanghang Zhang]
 institutes: [Peking University, AI2Robotics, BAAI]

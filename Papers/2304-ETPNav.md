@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2304.03047
 title: "ETPNav: Evolving Topological Planning for Vision-Language Navigation in Continuous Environments"
 authors: [Dong An, Hanqing Wang, Wenguan Wang, Zun Wang, Yan Huang, Keji He, Liang Wang]
 institutes: [CASIA, BIT, Zhejiang University, ANU]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2512.13030
 title: "Motus: A Unified Latent Action World Model"
 authors: [Hongzhe Bi, Hengkai Tan, Shenghao Xie, Zeyuan Wang, Shuhe Huang, Haitian Liu, Ruowen Zhao, Yao Feng, Chendong Xiang, Yinze Rong, Hongyan Zhao, Hanyu Liu, Zhizhong Su, Lei Ma, Hang Su, Jun Zhu]
 institutes: [Tsinghua University, Shengshu, Peking University, Horizon Robotics]

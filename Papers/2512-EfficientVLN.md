@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2512.10310
 title: "Efficient-VLN: A Training-Efficient Vision-Language Navigation Model"
 authors: [Duo Zheng, Shijia Huang, Yanyang Li, Liwei Wang]
 institutes: [The Chinese University of Hong Kong]

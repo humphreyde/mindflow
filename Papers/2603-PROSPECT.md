@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2603.03739
 title: "PROSPECT: Unified Streaming Vision-Language Navigation via Semantic–Spatial Fusion and Latent Predictive Representation"
 authors: [Zehua Fan, Wenqi Lyu, Wenxuan Song, Linge Zhao, Yifei Yang, Xi Wang, Junjie He, Lida Huang, Haiyan Liu, Bingchuan Sun, Guangjun Bao, Xuanyao Mao, Liang Xu, Yan Wang, Feng Gao]
 institutes: [Shanghai Jiao Tong University, Tsinghua University, University of Adelaide, Wuhan University, HKUST(GZ), Beijing Jiaotong University, Lenovo]

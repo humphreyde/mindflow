@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2602.09973
 title: "RoboInter: A Holistic Intermediate Representation Suite Towards Robotic Manipulation"
 authors: [Hao Li, Ziqin Wang, Zi-han Ding, Shuai Yang, Yilun Chen, Yang Tian, Xiaolin Hu, Tai Wang, Dahua Lin, Feng Zhao, Si Liu, Jiangmiao Pang]
 institutes: [University of Science and Technology of China, Shanghai Artificial Intelligence Laboratory, Beihang University, Nanyang Technological University, Zhejiang University, Tsinghua University, The Chinese University of Hong Kong]

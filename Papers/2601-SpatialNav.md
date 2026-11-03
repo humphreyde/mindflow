@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2601.06806
 title: "SpatialNav: Leveraging Spatial Scene Graphs for Zero-Shot Vision-and-Language Navigation"
 authors: [Jiwen Zhang, Zejun Li, Siyuan Wang, Xiangyu Shi, Zhongyu Wei, Qi Wu]
 institutes: [Fudan University, University of Adelaide]

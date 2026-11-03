@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2509.01106
 title: "Robix: A Unified Model for Robot Interaction, Reasoning and Planning"
 authors: [Huang Fang, Mengxi Zhang, Heng Dong, Wei Li, Zixuan Wang, Qifeng Zhang, Xueyun Tian, Yucheng Hu, Hang Li]
 institutes: [ByteDance Seed]

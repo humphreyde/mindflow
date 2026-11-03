@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2503.13446
 title: "MoManipVLA: Transferring Vision-language-action Models for General Mobile Manipulation"
 authors: [Zhenyu Wu, Yuheng Zhou, Xiuwei Xu, Ziwei Wang, Haibin Yan]
 institutes: [BUPT, NTU, Tsinghua University]

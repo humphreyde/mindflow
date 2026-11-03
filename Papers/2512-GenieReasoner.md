@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2512.24125
 title: "Unified Embodied VLM Reasoning with Robotic Action via Autoregressive Discretized Pre-training"
 authors: [Yi Liu, Sukai Wang, Dafeng Wei, Xiaowei Cai, Linqing Zhong, Jiange Yang, Guanghui Ren, Jinyu Zhang, Maoqing Yao, Chuankang Li, Xindong He, Liliang Chen, Jianlan Luo]
 institutes: [AgiBot Research, AgiBot, Shanghai Innovation Institute]

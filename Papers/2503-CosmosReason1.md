@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2503.15558
 title: "Cosmos-Reason1: From Physical Common Sense To Embodied Reasoning"
 authors: [NVIDIA]
 institutes: [NVIDIA]

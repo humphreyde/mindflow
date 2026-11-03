@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2409.12514
 title: "TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models for Robotic Manipulation"
 authors: [Junjie Wen, Yichen Zhu, Jinming Li, Minjie Zhu, Zhibin Tang, Kun Wu, Zhiyuan Xu, Ning Liu, Ran Cheng, Chaomin Shen, Yaxin Peng, Feifei Feng, Jian Tang]
 institutes: [East China Normal University, Midea Group AI Lab, Shanghai University, Syracuse University, Beijing Innovation Center of Humanoid Robotics]

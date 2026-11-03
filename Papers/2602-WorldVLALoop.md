@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2602.06508
 title: "World-VLA-Loop: Closed-Loop Learning of Video World Model and VLA Policy"
 authors: [Xiaokang Liu, Zechen Bai, Hai Ci, Kevin Yuchen Ma, Mike Zheng Shou]
 institutes: [Show Lab NUS]

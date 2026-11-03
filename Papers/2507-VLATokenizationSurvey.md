@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2507.01925
 title: "A Survey on Vision-Language-Action Models: An Action Tokenization Perspective"
 authors: [Yifan Zhong, Fengshuo Bai, Shaofei Cai, Xuchuan Huang, Zhang Chen, Xiaowei Zhang, Yuanfei Wang, Shaoyang Guo, Tianrui Guan, Ka Nam Lui, Zhiquan Qi, Yitao Liang, Yuanpei Chen, Yaodong Yang]
 institutes: [Peking University Institute for AI, PKU-PsiBot Joint Lab]

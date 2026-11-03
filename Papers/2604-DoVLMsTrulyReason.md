@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.16256
 title: "Do Vision-Language Models Truly Perform Vision Reasoning? A Rigorous Study of the Modality Gap"
 authors: [Yige Xu, Yongjie Wang, Zizhuo Wu, Kaisong Song, Jun Lin, Zhiqi Shen]
 institutes: [NTU, Alibaba-NTU ANGEL, Tongyi Lab Alibaba]

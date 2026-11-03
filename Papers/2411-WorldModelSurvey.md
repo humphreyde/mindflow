@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2411.14499
 title: "Understanding World or Predicting Future? A Comprehensive Survey of World Models"
 authors: [Jingtao Ding, Yunke Zhang, Yu Shang, Jie Feng, Yuheng Zhang, Zefang Zong, Yuan Yuan, Hongyuan Su, Nian Li, Jinghua Piao, Yucheng Deng, Nicholas Sukiennik, Chen Gao, Fengli Xu, Yong Li]
 institutes: [Tsinghua University]

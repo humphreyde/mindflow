@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2406.14540
 title: "IRASim: A Fine-Grained World Model for Robot Manipulation"
 authors: [Fangqi Zhu, Hongtao Wu, Song Guo, Yuxiao Liu, Chilam Cheang, Tao Kong]
 institutes: [HKUST, ByteDance Seed]

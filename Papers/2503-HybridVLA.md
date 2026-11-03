@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2503.10631
 title: "HybridVLA: Collaborative Diffusion and Autoregression in a Unified Vision-Language-Action Model"
 authors: [Jiaming Liu, Hao Chen, Pengju An, Zhuoyang Liu, Renrui Zhang, Chenyang Gu, Xiaoqi Li, Ziyu Guo, Sixiang Chen, Mengzhen Liu, Chengkai Hou, Mengdi Zhao, KC Alex Zhou, Pheng-Ann Heng, Shanghang Zhang]
 institutes: [Peking University, BAAI, CUHK]

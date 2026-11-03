@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.05595
 title: Uncovering Linguistic Fragility in Vision-Language-Action Models via Diversity-Aware Red Teaming
 authors: [Baoshun Tong, Haoran He, Ling Pan, Yang Liu, Liang Lin]
 institutes: [Sun Yat-sen University, HKUST]

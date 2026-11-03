@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2602.14979
 title: "RynnBrain: Open Embodied Foundation Models"
 authors: [Ronghao Dang, Jiayan Guo, Bohan Hou, Sicong Leng, Kehan Li, Xin Li, Jiangpin Liu, Yunxuan Mao, Zhikai Wang, Yuqian Yuan, Minghao Zhu, Xiao Lin, Yang Bai, Qian Jiang, Yaxi Zhao, Minghua Zeng, Junlong Gao, Yuming Jiang, Jun Cen, Siteng Huang, Liuyi Wang, Wenqiao Zhang, Chengju Liu, Jianfei Yang, Shijian Lu, Deli Zhao]
 institutes: [DAMO Academy, Alibaba Group]

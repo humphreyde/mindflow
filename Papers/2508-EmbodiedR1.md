@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2508.13998
 title: "Embodied-R1: Reinforced Embodied Reasoning for General Robotic Manipulation"
 authors: [Yifu Yuan, Haiqin Cui, Yaoting Huang, Yibin Chen, Fei Ni, Zibin Dong, Pengyi Li, Yan Zheng, Hongyao Tang, Jianye Hao]
 institutes: [Tianjin University]

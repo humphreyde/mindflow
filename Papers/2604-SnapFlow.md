@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.05656
 title: "SnapFlow: One-Step Action Generation for Flow-Matching VLAs via Progressive Self-Distillation"
 authors: [Wuyang Luan, Junhui Li, Weiguang Zhao, Wenjian Zhang, Tieru Wu, Rui Ma]
 institutes: [Jilin University, Chongqing University, University of Liverpool, GenY]

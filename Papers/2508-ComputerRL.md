@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2508.14040
 title: "ComputerRL: Scaling End-to-End Online Reinforcement Learning for Computer Use Agents"
 authors: [Hanyu Lai, Xiao Liu, Yanxiao Zhao, Han Xu, Hanchen Zhang, Bohao Jing, Yanyu Ren, Shuntian Yao, Yuxiao Dong, Jie Tang]
 institutes: [Tsinghua University, Z.AI, University of Chinese Academy of Sciences]

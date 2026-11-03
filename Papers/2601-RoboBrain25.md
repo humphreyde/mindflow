@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2601.14352
 title: "RoboBrain 2.5: Depth in Sight, Time in Mind"
 authors: [Huajie Tan, Enshen Zhou, Zhiyu Li, Yijie Xu, Yuheng Ji, Xiansheng Chen, Cheng Chi, Pengwei Wang, Huizhu Jia, Yulong Ao, Yonghua Lin, Zhongyuan Wang, Tiejun Huang, Shanghang Zhang]
 institutes: [BAAI]

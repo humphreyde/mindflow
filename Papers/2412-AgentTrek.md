@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2412.09605
 title: "AgentTrek: Agent Trajectory Synthesis via Guiding Replay with Web Tutorials"
 authors: [Yiheng Xu, Dunjie Lu, Zhennan Shen, Junli Wang, Zekun Wang, Yuchen Mao, Caiming Xiong, Tao Yu]
 institutes: [University of Hong Kong, Salesforce Research]

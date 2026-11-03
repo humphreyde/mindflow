@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2412.04453
 title: "NaVILA: Legged Robot Vision-Language-Action Model for Navigation"
 authors: [An-Chieh Cheng, Yandong Ji, Zhaojing Yang, Zaitian Gongye, Xueyan Zou, Jan Kautz, Erdem Bıyık, Hongxu Yin, Sifei Liu, Xiaolong Wang]
 institutes: [UC San Diego, USC, NVIDIA]

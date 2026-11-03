@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2510.12403
 title: "Robot Learning: A Tutorial"
 authors: [Francesco Capuano, Caroline Pascal, Adil Zouitine, Mustafa Shukor, Pepijn Kooijmans, Steven Palma, Michel Aractingi, Dana Aubakirova, Martino Russi, Andres Marafioti, Simon Alibert, Matthieu Cord, Thomas Wolf, Remi Cadene]
 institutes: [Hugging Face]

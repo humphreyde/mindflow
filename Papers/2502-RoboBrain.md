@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2502.21257
 title: "RoboBrain: A Unified Brain Model for Robotic Manipulation from Abstract to Concrete"
 authors: [Yuheng Ji, Huajie Tan, Jiayu Shi, Xiaoshuai Hao, Yuan Zhang, Hengyuan Zhang, Pengwei Wang, Mengdi Zhao, Yao Mu, Pengju An, Xinda Xue, Qinghang Su, Huaihai Lyu, Xiaolong Zheng, Jiaming Liu, Zhongyuan Wang, Shanghang Zhang]
 institutes: [Peking University, BAAI, CASIA, IIE-CAS, HKU, UCAS]

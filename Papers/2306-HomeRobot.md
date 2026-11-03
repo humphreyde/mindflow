@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2306.11565
 title: "HomeRobot: Open-Vocabulary Mobile Manipulation"
 authors: [Sriram Yenamandra, Arun Ramachandran, Karmesh Yadav, Austin Wang, Mukul Khanna, Theophile Gervet, Tsung-Yen Yang, Vidhi Jain, Alexander William Clegg, John Turner, Zsolt Kira, Manolis Savva, Angel Chang, Devendra Singh Chaplot, Dhruv Batra, Roozbeh Mottaghi, Yonatan Bisk, Chris Paxton]
 institutes: [Georgia Tech, FAIR Meta AI, Carnegie Mellon, Simon Fraser]

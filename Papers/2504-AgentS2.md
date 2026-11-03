@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2504.00906
 title: "Agent S2: A Compositional Generalist-Specialist Framework for Computer Use Agents"
 authors: [Saaket Agashe, Kyle Wong, Vincent Tu, Jiachen Yang, Ang Li, Xin Eric Wang]
 institutes: [Simular Research]

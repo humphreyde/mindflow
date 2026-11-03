@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2409.08264
 title: "WindowsAgentArena: Evaluating Multi-Modal OS Agents at Scale"
 authors: [Rogerio Bonatti, Dan Zhao, Francesco Bonacci, Dillon Dupont, Sara Abdali, Yinheng Li, Yadong Lu, Justin Wagle, Kazuhito Koishida, Arthur Bucker, Lawrence Jang, Zack Hui]
 institutes: [Microsoft, Carnegie Mellon University, Columbia University]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2402.15852
 title: "NaVid: Video-based VLM Plans the Next Step for Vision-and-Language Navigation"
 authors:
   - Jiazhao Zhang

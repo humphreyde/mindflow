@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.08377
 title: "SkillClaw: Let Skills Evolve Collectively with Agentic Evolver"
 authors: [Ziyu Ma, Shidong Yang, Yuxiang Ji, Xucong Wang, Yong Wang, Yiming Hu, Tongwen Huang, Xiangxiang Chu]
 institutes: [DreamX Team (AMAP-ML / Alibaba)]

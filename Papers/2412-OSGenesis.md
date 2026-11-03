@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2412.19723
 title: "OS-Genesis: Automating GUI Agent Trajectory Construction via Reverse Task Synthesis"
 authors: [Qiushi Sun, Kanzhi Cheng, Zichen Ding, Chuanyang Jin, Yian Wang, Fangzhi Xu, Zhenyu Wu, Chengyou Jia, Liheng Chen, Zhoumianze Liu, Ben Kao, Guohao Li, Junxian He, Yu Qiao, Zhiyong Wu]
 institutes: [Shanghai AI Laboratory, The University of Hong Kong, Johns Hopkins University, Shanghai Jiao Tong University, University of Oxford, Hong Kong University of Science and Technology]

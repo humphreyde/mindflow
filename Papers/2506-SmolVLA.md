@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2506.01844
 title: "SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics"
 authors: [Mustafa Shukor, Dana Aubakirova, Francesco Capuano, Pepijn Kooijmans, Steven Palma, Adil Zouitine, Michel Aractingi, Caroline Pascal, Martino Russi, Andres Marafioti, Simon Alibert, Matthieu Cord, Thomas Wolf, Remi Cadene]
 institutes: [Hugging Face, Sorbonne University, valeo.ai, ENS Paris-Saclay]

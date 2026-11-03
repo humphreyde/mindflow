@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2506.00123
 title: "Visual Embodied Brain: Let Multimodal Large Language Models See, Think, and Control in Spaces"
 authors: [Gen Luo, Ganlin Yang, Ziyang Gong, Guanzhou Chen, Haonan Duan, Erfei Cui, Ronglei Tong, Zhi Hou, Tianyi Zhang, Zhe Chen, Shenglong Ye, Lewei Lu, Jingbo Wang, Wenhai Wang, Jifeng Dai, Yu Qiao, Rongrong Ji, Xizhou Zhu]
 institutes: [Shanghai AI Laboratory, Tsinghua University, USTC, SJTU, Xiamen University, SenseTime Research, Zhejiang University, Nanjing University]

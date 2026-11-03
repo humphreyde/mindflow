@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2501.16150
 title: "A Comprehensive Survey of Agents for Computer Use: Foundations, Challenges, and Future Directions"
 authors: [Pascal J. Sager, Benjamin Meyer, Peng Yan, Rebekka von Wartburg-Kottler, Layan Etaiwi, Aref Enayati, Gabriel Nobel, Ahmed Abdulkadir, Benjamin F. Grewe, Thilo Stadelmann]
 institutes: [ZHAW, University of Zurich, ETH AI Center, Polytechnique Montreal, University of Fribourg, AlpineAI, European Centre for Living Technology]

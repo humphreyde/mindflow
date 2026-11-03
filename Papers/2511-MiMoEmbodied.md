@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2511.16518
 title: "MiMo-Embodied: X-Embodied Foundation Model Technical Report"
 authors: [Xiaomi Embodied Intelligence Team]
 institutes: [Xiaomi]

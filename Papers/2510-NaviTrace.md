@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2510.26909
 title: "NaviTrace: Evaluating Embodied Navigation of Vision-Language Models"
 authors: [Tim Windecker, Manthan Patel, Moritz Reuss, Richard Schwarzkopf, Cesar Cadena, Rudolf Lioutikov, Marco Hutter, Jonas Frey]
 institutes: [ETH Zurich (RSL), KIT (IRL), FZI, Robotics Institute Germany]

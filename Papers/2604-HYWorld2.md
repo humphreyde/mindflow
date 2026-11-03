@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2604.14268
 title: "HY-World 2.0: A Multi-Modal World Model for Reconstructing, Generating, and Simulating 3D Worlds"
 authors: [Tencent Hunyuan]
 institutes: [Tencent Hunyuan]

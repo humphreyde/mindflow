@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2506.00070
 title: "Robot-R1: Reinforcement Learning for Enhanced Embodied Reasoning in Robotics"
 authors: [Dongyoung Kim, Sumin Park, Huiwon Jang, Jinwoo Shin, Jaehyung Kim, Younggyo Seo]
 institutes: [KAIST, Yonsei University, UC Berkeley, RLWRLD]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2412.09082
 title: "Towards Long-Horizon Vision-Language Navigation: Platform, Benchmark and Method"
 authors: [Xinshuai Song, Weixing Chen, Yang Liu, Weikai Chen, Guanbin Li, Liang Lin]
 institutes: [Sun Yat-sen University, Peng Cheng Laboratory, Tencent America]

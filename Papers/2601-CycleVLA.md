@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2601.02295
 title: "CycleVLA: Proactive Self-Correcting Vision-Language-Action Models via Subtask Backtracking and Minimum Bayes Risk Decoding"
 authors: [Chenyang Ma, Guangyu Yang, Kai Lu, Shitong Xu, Bill Byrne, Niki Trigoni, Andrew Markham]
 institutes: [University of Oxford, University of Cambridge]

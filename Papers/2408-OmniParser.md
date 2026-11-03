@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2408.00203
 title: "OmniParser for Pure Vision Based GUI Agent"
 authors: [Yadong Lu, Jianwei Yang, Yelong Shen, Ahmed Awadallah]
 institutes: [Microsoft Research, Microsoft Gen AI]

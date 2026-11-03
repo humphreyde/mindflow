@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2509.09332
 title: "OmniEVA: Embodied Versatile PlAnner via Task-Adaptive 3D-Grounded and Embodiment-aware Reasoning"
 authors: [Yuecheng Liu, Dafeng Chi, Shiguang Wu, Zhanguang Zhang, Yuzheng Zhuang, Bowen Yang, He Zhu, Lingfeng Zhang, Pengwei Xie, David Gamaliel Arcos Bravo, Yingxue Zhang, Jianye Hao, Xingyue Quan]
 institutes: [Huawei Noah's Ark Lab]

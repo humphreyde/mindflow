@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2602.08537
 title: "UniPlan: Vision-Language Task Planning for Mobile Manipulation with Unified PDDL Formulation"
 authors: [Haoming Ye, Yunxiao Xiao, Cewu Lu, Panpan Cai]
 institutes: [Shanghai Jiao Tong University]

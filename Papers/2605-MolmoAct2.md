@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2605.02881
 title: "MolmoAct2: Action Reasoning Models for Real-world Deployment"
 authors: [Haoquan Fang, Jiafei Duan, Donovan Clay, Sam Wang, Shuo Liu, Weikai Huang, Xiang Fan, Wei-Chuan Tsai, Shirui Chen, Yi Ru Wang, Shanli Xing, Jaemin Cho, Jae Sung Park, Ainaz Eftekhar, Peter Sushko, Karen Farley, Angad Wadhwa, Cole Harrison, Winson Han, Ying-Chun Lee, Eli VanderBilt, Rose Hendrix, Suveen Ellawela, Lucas Ngoo, Joyce Chai, Zhongzheng Ren, Ali Farhadi, Dieter Fox, Ranjay Krishna]
 institutes: [Allen Institute for AI, University of Washington, NUS, UPenn, JHU, Amazon, Cortex AI, U-Michigan, UNC]

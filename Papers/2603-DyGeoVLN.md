@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2603.21269
 title: "DyGeoVLN: Infusing Dynamic Geometry Foundation Model into Vision-Language Navigation"
 authors: [Xiangchen Liu, Hanghan Zheng, Jeil Jeong, Minsung Yoon, Lin Zhao, Zhide Zhong, Haoang Li, Sung-Eui Yoon]
 institutes: [KAIST, HKUST(GZ), JD Explore Academy]

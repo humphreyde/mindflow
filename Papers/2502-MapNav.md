@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2502.13451
 title: "MapNav: A Novel Memory Representation via Annotated Semantic Maps for VLM-based Vision-and-Language Navigation"
 authors: [Lingfeng Zhang, Xiaoshuai Hao, Qinwen Xu, Qiang Zhang, Xinyao Zhang, Pengwei Wang, Jing Zhang, Zhongyuan Wang, Shanghang Zhang, Renjing Xu]
 institutes: [HKUST(GZ), BAAI, Beijing Innovation Center of Humanoid Robotics, Wuhan University, Peking University]

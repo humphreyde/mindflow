@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2403.09227
 title: "BEHAVIOR-1K: A Human-Centered, Embodied AI Benchmark with 1,000 Everyday Activities and Realistic Simulation"
 authors: [Chengshu Li, Ruohan Zhang, Josiah Wong, Cem Gokmen, Sanjana Srivastava, Roberto Martín-Martín, Chen Wang, Gabrael Levine, Wensi Ai, Li Fei-Fei]
 institutes: [Stanford University, UT Austin, UIUC, USC, Salesforce Research]

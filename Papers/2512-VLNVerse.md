@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2512.19021
 title: "VLNVerse: A Benchmark for Vision-Language Navigation with Versatile, Embodied, Realistic Simulation and Evaluation"
 authors: [Sihao Lin, Zerui Li, Xunyi Zhao, Gengze Zhou, Liuyi Wang, Rong Wei, Rui Tang, Juncheng Li, Hanqing Wang, Jiangmiao Pang, Anton van den Hengel, Jiajun Liu, Qi Wu]
 institutes: [Adelaide University, AIML, Tongji University, ManyCore, Zhejiang University, Shanghai AI Lab, CSIRO Data61]

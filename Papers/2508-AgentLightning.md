@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2508.03680
 title: "Agent Lightning: Train ANY AI Agents with Reinforcement Learning"
 authors: [Xufang Luo, Yuge Zhang, Zhiyuan He, Zilong Wang, Siyun Zhao, Dongsheng Li, Luna K. Qiu, Yuqing Yang]
 institutes: [Microsoft Research]

@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2501.10100
 title: "Robotic World Model: A Neural Network Simulator for Robust Policy Optimization in Robotics"
 authors: [Chenhao Li, Andreas Krause, Marco Hutter]
 institutes: [ETH Zurich, ETH AI Center]

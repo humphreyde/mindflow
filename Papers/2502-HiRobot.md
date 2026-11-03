@@ -1,4 +1,6 @@
 ---
+type: paper
+arxiv_id: 2502.19417
 title: "Hi Robot: Open-Ended Instruction Following with Hierarchical Vision-Language-Action Models"
 authors: [Lucy Xiaoyang Shi, Brian Ichter, Michael Equi, Liyiming Ke, Karl Pertsch, Quan Vuong, James Tanner, Anna Walling, Haohuan Wang, Niccolo Fusai, Adrian Li-Bell, Danny Driess, Lachy Groom, Sergey Levine, Chelsea Finn]
 institutes: [Physical Intelligence]
