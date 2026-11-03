@@ -1,0 +1,5703 @@
+{
+  "duplicate_groups": [],
+  "items": [
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "1711.07280",
+        "type": "paper"
+      },
+      "expected_post_sha256": "0470f8da55c0cd98b861f73114c5481c4116513982464bfaa71a5b860b94f604",
+      "identity": {
+        "arxiv_id": "1711.07280",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:1711.07280",
+        "kind": "arxiv",
+        "normalized_title": "vision and language navigation interpreting visually grounded navigation instructions in real environments",
+        "official_url": "https://arxiv.org/abs/1711.07280"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/1711-R2R.md",
+      "source_sha256": "1b0a19a9f6fa5d9b638890b781cab89b180ca862b39609810d293e3903e937ab"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2004.02857",
+        "type": "paper"
+      },
+      "expected_post_sha256": "1fa944b3c4cccf0ca1f216983aa28bac076b4dce9f015587d3eb333dd7c5fe8e",
+      "identity": {
+        "arxiv_id": "2004.02857",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2004.02857",
+        "kind": "arxiv",
+        "normalized_title": "beyond the nav graph vision and language navigation in continuous environments",
+        "official_url": "https://arxiv.org/abs/2004.02857"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2004-VLNCE.md",
+      "source_sha256": "8287d3da19bce0bb86841094f501be3b0e2b1122cac2551c9da2fe635032fa05"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2010.07954",
+        "type": "paper"
+      },
+      "expected_post_sha256": "5618a552ed2182d7838634579908f45c0eef88542afc497ce96b541ec8312001",
+      "identity": {
+        "arxiv_id": "2010.07954",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2010.07954",
+        "kind": "arxiv",
+        "normalized_title": "room across room multilingual vision and language navigation with dense spatiotemporal grounding",
+        "official_url": "https://arxiv.org/abs/2010.07954"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2010-RxR.md",
+      "source_sha256": "6eb7f9c8c5c5b5e691ee4a503976fe07c1b8423e3467fca4a642c90b1a94a938"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2202.11742",
+        "type": "paper"
+      },
+      "expected_post_sha256": "8404d0471258cabff956c846fda622f6d15b90abbacf9e2435153340f5401c3d",
+      "identity": {
+        "arxiv_id": "2202.11742",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2202.11742",
+        "kind": "arxiv",
+        "normalized_title": "think global act local dual scale graph transformer for vision and language navigation",
+        "official_url": "https://arxiv.org/abs/2202.11742"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2202-DUET.md",
+      "source_sha256": "e1886fe8a4ce824f45f8bdae7c8fc159720b93f7b05f0be6eed2b033b0971984"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2204.01691",
+        "type": "paper"
+      },
+      "expected_post_sha256": "0b6a482227fa3d55661fd37e5ffe100ac579593397ceadc3bd48847e79ca88bd",
+      "identity": {
+        "arxiv_id": "2204.01691",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2204.01691",
+        "kind": "arxiv",
+        "normalized_title": "do as i can not as i say grounding language in robotic affordances",
+        "official_url": "https://arxiv.org/abs/2204.01691"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2204-SayCan.md",
+      "source_sha256": "273bb05d93084f0fb9f78b646a5f3e5f597de4bd4e356e2751313c62a6a27636"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2210.05714",
+        "type": "paper"
+      },
+      "expected_post_sha256": "5d007005714b7616accaec0e0698cf574f35bface8f6210b7af943f450fec9a8",
+      "identity": {
+        "arxiv_id": "2210.05714",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2210.05714",
+        "kind": "arxiv",
+        "normalized_title": "visual language maps for robot navigation",
+        "official_url": "https://arxiv.org/abs/2210.05714"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2210-VLMaps.md",
+      "source_sha256": "0fc99071e596285ed48d838dc48a592d2ee360129296623f44afb1ba252fdd0a"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2212.06817",
+        "type": "paper"
+      },
+      "expected_post_sha256": "ff2ca4bd001aa795be601a6a00970f9e57687ab4a6b2bc410ec8f7bdd788f92d",
+      "identity": {
+        "arxiv_id": "2212.06817",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2212.06817",
+        "kind": "arxiv",
+        "normalized_title": "rt 1 robotics transformer for real world control at scale",
+        "official_url": "https://arxiv.org/abs/2212.06817"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2212-RT1.md",
+      "source_sha256": "be79f540e85c4f0f7225e135d67a7f273fe83e19fc65ed1e04a7eaf4845ed774"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2303.04137",
+        "type": "paper"
+      },
+      "expected_post_sha256": "4678bbb68aabd7ce3acb253723bbac196532feb2cc5b02b8a39e7835dd1228f6",
+      "identity": {
+        "arxiv_id": "2303.04137",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2303.04137",
+        "kind": "arxiv",
+        "normalized_title": "diffusion policy visuomotor policy learning via action diffusion",
+        "official_url": "https://arxiv.org/abs/2303.04137"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2303-DiffusionPolicy.md",
+      "source_sha256": "15a626cbab9e29765522318e98509e1f10391e5ead55233c0cfc62b917638fc6"
+    },
+    {
+      "classification_candidates": [
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2303.03378",
+        "type": "paper"
+      },
+      "expected_post_sha256": "bd63d88fd1eb40e88c23e2d8f850f3318d7d5ee8f1b69e5a06822fcff75afdae",
+      "identity": {
+        "arxiv_id": "2303.03378",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2303.03378",
+        "kind": "arxiv",
+        "normalized_title": "palm e an embodied multimodal language model",
+        "official_url": "https://arxiv.org/abs/2303.03378"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2303-PaLME.md",
+      "source_sha256": "dcc5ebc7371059048039d50ac20959445459b7345b4d9103a5ef3bf7f9a1329d"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2304.03047",
+        "type": "paper"
+      },
+      "expected_post_sha256": "9961d69f5cd9957066a554c897ef882f6c25c96c2c6445652c1f926c878b89ff",
+      "identity": {
+        "arxiv_id": "2304.03047",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2304.03047",
+        "kind": "arxiv",
+        "normalized_title": "etpnav evolving topological planning for vision language navigation in continuous environments",
+        "official_url": "https://arxiv.org/abs/2304.03047"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2304-ETPNav.md",
+      "source_sha256": "a774f202c52a1389cb93c032537e0c4266c90d3c7c7dbba492d4e0ad19057260"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2305.16986",
+        "type": "paper"
+      },
+      "expected_post_sha256": "34970d8f67d63c1df121b0aeddde69da10cadb315c850bf8cd6188f1edd91f0e",
+      "identity": {
+        "arxiv_id": "2305.16986",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2305.16986",
+        "kind": "arxiv",
+        "normalized_title": "navgpt explicit reasoning in vision and language navigation with large language models",
+        "official_url": "https://arxiv.org/abs/2305.16986"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2305-NavGPT.md",
+      "source_sha256": "c39a478a47519805430a03f6c04d4d79145d5f021658ba229361248a27e64f8a"
+    },
+    {
+      "classification_candidates": [],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2305.14992",
+        "type": "paper"
+      },
+      "expected_post_sha256": "8d6e26bcb1494c1c2f4358c4e383b387ec2ebc8ec5dd37db732dcf1dacdfa585",
+      "identity": {
+        "arxiv_id": "2305.14992",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2305.14992",
+        "kind": "arxiv",
+        "normalized_title": "reasoning with language model is planning with world model",
+        "official_url": "https://arxiv.org/abs/2305.14992"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "no-domain-candidate",
+          "message": "classification requires review; candidates=[]",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2305-RAP.md",
+      "source_sha256": "1557bafa02d6d1a6f4e5801aac7b9581811c597a3e3b77aa39bc235c0697294d"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2305.05658",
+        "type": "paper"
+      },
+      "expected_post_sha256": "84b35c0be07050724ff22aae1790ed286c67115cacf0ef3f4031958c4daf8634",
+      "identity": {
+        "arxiv_id": "2305.05658",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2305.05658",
+        "kind": "arxiv",
+        "normalized_title": "tidybot personalized robot assistance with large language models",
+        "official_url": "https://arxiv.org/abs/2305.05658"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2305-TidyBot.md",
+      "source_sha256": "a501e160c030a254a79227e9f46cf07c407327e7a75c002fbea99729a5542aee"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2306.11565",
+        "type": "paper"
+      },
+      "expected_post_sha256": "03dd0f02c71af3f866c98e00b1dfd14a0cc401b2a80b9a90d945c92b6ff83474",
+      "identity": {
+        "arxiv_id": "2306.11565",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2306.11565",
+        "kind": "arxiv",
+        "normalized_title": "homerobot open vocabulary mobile manipulation",
+        "official_url": "https://arxiv.org/abs/2306.11565"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2306-HomeRobot.md",
+      "source_sha256": "221ffbe42f7904370f9de45d22d5c75535e7944a8df9463076af17f9905a7937"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2307.15818",
+        "type": "paper"
+      },
+      "expected_post_sha256": "21c6ab749ac26473a4396e64e9e700e948dc236aefbf5f82c1d4ad8a72ff4d3f",
+      "identity": {
+        "arxiv_id": "2307.15818",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2307.15818",
+        "kind": "arxiv",
+        "normalized_title": "rt 2 vision language action models transfer web knowledge to robotic control",
+        "official_url": "https://arxiv.org/abs/2307.15818"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2307-RT2.md",
+      "source_sha256": "b514f7857f5df51b47cd178a0b6e35303656db9550cee31d76b4e9f17f931711"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2307.05973",
+        "type": "paper"
+      },
+      "expected_post_sha256": "4c0a886b61e4c11d1a274c3769ace920c22c4efd630b91a2735c4298704b616a",
+      "identity": {
+        "arxiv_id": "2307.05973",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2307.05973",
+        "kind": "arxiv",
+        "normalized_title": "voxposer composable 3d value maps for robotic manipulation with language models",
+        "official_url": "https://arxiv.org/abs/2307.05973"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2307-VoxPoser.md",
+      "source_sha256": "76e6736933d1036c66945c7ae727ef10968d327606170102fdc8d816b2c7edd8"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2307.13854",
+        "type": "paper"
+      },
+      "expected_post_sha256": "b7dcc8acd64b5a0bb6112db520be7a008fbe55e4ddab8d23e6526273c4b8c099",
+      "identity": {
+        "arxiv_id": "2307.13854",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2307.13854",
+        "kind": "arxiv",
+        "normalized_title": "webarena a realistic web environment for building autonomous agents",
+        "official_url": "https://arxiv.org/abs/2307.13854"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2307-WebArena.md",
+      "source_sha256": "0ca4a5a28bf233161b34dae96458f16d1792467aa604d23eaac0b4bf87bd4143"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2309.16650",
+        "type": "paper"
+      },
+      "expected_post_sha256": "20b9b0267e18d6ec3f4a1ddf8279ffc1a1b6d53f40dcb0cef51f8e634d7e78c6",
+      "identity": {
+        "arxiv_id": "2309.16650",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2309.16650",
+        "kind": "arxiv",
+        "normalized_title": "conceptgraphs open vocabulary 3d scene graphs for perception and planning",
+        "official_url": "https://arxiv.org/abs/2309.16650"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2309-ConceptGraphs.md",
+      "source_sha256": "a43075c1fd3b9f45c20ae32d92546a335930f7c65d4fcc519f22968aa70b31ba"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2311.12871",
+        "type": "paper"
+      },
+      "expected_post_sha256": "3d046366b6753ffe6540e69a5dc1bebbe7bc4156af6c974fdd3b6dea846215e4",
+      "identity": {
+        "arxiv_id": "2311.12871",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2311.12871",
+        "kind": "arxiv",
+        "normalized_title": "an embodied generalist agent in 3d world",
+        "official_url": "https://arxiv.org/abs/2311.12871"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2311-LEO.md",
+      "source_sha256": "bc4cb7c71b348144a5a299aa26a5cb379133963e3f442b47035a7ac954c74d5a"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2312.08914",
+        "type": "paper"
+      },
+      "expected_post_sha256": "eb6d6995fa7a4a4c3e603907ab80f1a6032ca5057a4df1e447507b18e31460da",
+      "identity": {
+        "arxiv_id": "2312.08914",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2312.08914",
+        "kind": "arxiv",
+        "normalized_title": "cogagent a visual language model for gui agents",
+        "official_url": "https://arxiv.org/abs/2312.08914"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2312-CogAgent.md",
+      "source_sha256": "b815a2e7fc304f71d11ed4696226ecf881696ae06ff19dcf37a4f624f26ff3bf"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2312.02126",
+        "type": "paper"
+      },
+      "expected_post_sha256": "a02b53d4486b183480d13e3e6bc611a0c4e4ba1bd8bdcfa1c2c257897c5b62ab",
+      "identity": {
+        "arxiv_id": "2312.02126",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2312.02126",
+        "kind": "arxiv",
+        "normalized_title": "splatam splat track map 3d gaussians for dense rgb d slam",
+        "official_url": "https://arxiv.org/abs/2312.02126"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2312-SplaTAM.md",
+      "source_sha256": "0d62bb4af3cb1ef4876bef69637de5e057b2f7fdf60ac3eea83ad6d6eb207e53"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2401.02117",
+        "type": "paper"
+      },
+      "expected_post_sha256": "6e47864dd0baa570cefa93e0500a82453469067823f4630749e46709a008fd8d",
+      "identity": {
+        "arxiv_id": "2401.02117",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2401.02117",
+        "kind": "arxiv",
+        "normalized_title": "mobile aloha learning bimanual mobile manipulation with low cost whole body teleoperation",
+        "official_url": "https://arxiv.org/abs/2401.02117"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2401-MobileALOHA.md",
+      "source_sha256": "63ac41795907eaada81f7e8e8c4ade85733c03ee9062e324ceb60fdfcfdaee17"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2401.12202",
+        "type": "paper"
+      },
+      "expected_post_sha256": "ed83559fae5ec9506b8fcb78a7ed5433a23fe35a37f51c2348b0a98d28aad7cf",
+      "identity": {
+        "arxiv_id": "2401.12202",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2401.12202",
+        "kind": "arxiv",
+        "normalized_title": "ok robot what really matters in integrating open knowledge models for robotics",
+        "official_url": "https://arxiv.org/abs/2401.12202"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2401-OKRobot.md",
+      "source_sha256": "34b79de34adfb1c72444112e321e18a970b21695da96239af33b9f1dbda5bf5b"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2401.10935",
+        "type": "paper"
+      },
+      "expected_post_sha256": "f2fa25169fa5153ee8988aa77fb5905052a75f935645e0c7bd20e287a6a854ba",
+      "identity": {
+        "arxiv_id": "2401.10935",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2401.10935",
+        "kind": "arxiv",
+        "normalized_title": "seeclick harnessing gui grounding for advanced visual gui agents",
+        "official_url": "https://arxiv.org/abs/2401.10935"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2401-SeeClick.md",
+      "source_sha256": "4c98141d9f7892c7ec18d18499d72b0796ac357a3195e9b697cb155ca7a36597"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2401.12168",
+        "type": "paper"
+      },
+      "expected_post_sha256": "5b35f8c6426dcf3ba03959d075bad7dbf3dc6bf544dd467b0a720f453e6ebfbf",
+      "identity": {
+        "arxiv_id": "2401.12168",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2401.12168",
+        "kind": "arxiv",
+        "normalized_title": "spatialvlm endowing vision language models with spatial reasoning capabilities",
+        "official_url": "https://arxiv.org/abs/2401.12168"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2401-SpatialVLM.md",
+      "source_sha256": "0d33e694fb7499fe95e2b32f8e0d9b0a90b77df8e52bac760d1bb101d7d876b5"
+    },
+    {
+      "classification_candidates": [
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2402.15391",
+        "type": "paper"
+      },
+      "expected_post_sha256": "13c9d544e0c08df83ab9cb7c82166d365cec7f4c8c6df47dd47a119f019b1be1",
+      "identity": {
+        "arxiv_id": "2402.15391",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2402.15391",
+        "kind": "arxiv",
+        "normalized_title": "genie generative interactive environments",
+        "official_url": "https://arxiv.org/abs/2402.15391"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2402-Genie.md",
+      "source_sha256": "6a6ea158f6e9a8d3870369ac31a39d0752208c05defee1b8610ae284413be504"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2402.15852",
+        "type": "paper"
+      },
+      "expected_post_sha256": "719ddcf5b018798d18ce3e504fdd35c0c854ad8edcf22578cb8567b0a2a6c8ba",
+      "identity": {
+        "arxiv_id": "2402.15852",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2402.15852",
+        "kind": "arxiv",
+        "normalized_title": "navid video based vlm plans the next step for vision and language navigation",
+        "official_url": "https://arxiv.org/abs/2402.15852"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2402-NaVid.md",
+      "source_sha256": "05643776f0a5ad1fe7b4b0810244703d9cfebedcc13fa77a3d41ec9581a2d7f3"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2403.09227",
+        "type": "paper"
+      },
+      "expected_post_sha256": "09d3dd041693e2b8a9c93f9108604ea49fc86127148d2655efbde8d801e6d4cb",
+      "identity": {
+        "arxiv_id": "2403.09227",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2403.09227",
+        "kind": "arxiv",
+        "normalized_title": "behavior 1k a human centered embodied ai benchmark with 1 000 everyday activities and realistic simulation",
+        "official_url": "https://arxiv.org/abs/2403.09227"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2403-Behavior1K.md",
+      "source_sha256": "ada4175d6e703f034ee6eef92195efd14ad5787fc1ccad59c677be402cf17f90"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2403.01823",
+        "type": "paper"
+      },
+      "expected_post_sha256": "6e636ed6217b173eef0a57334f7aaaf1f984f9ad229595d943a5c84b975f1566",
+      "identity": {
+        "arxiv_id": "2403.01823",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2403.01823",
+        "kind": "arxiv",
+        "normalized_title": "rt h action hierarchies using language",
+        "official_url": "https://arxiv.org/abs/2403.01823"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2403-RTH.md",
+      "source_sha256": "e14373e93e13aad4bc678482ea0302ec40386dd97bc39d46ee5d6bbb52283098"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2404.07972",
+        "type": "paper"
+      },
+      "expected_post_sha256": "139a1dceb22384d1f4ac82a8e7214276e29d5492629ffd6ba54fec3d995913c5",
+      "identity": {
+        "arxiv_id": "2404.07972",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2404.07972",
+        "kind": "arxiv",
+        "normalized_title": "osworld benchmarking multimodal agents for open ended tasks in real computer environments",
+        "official_url": "https://arxiv.org/abs/2404.07972"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2404-OSWorld.md",
+      "source_sha256": "6e11014ef98a1408eeb99e6b0b20070853a17286f5def4d9070b168daf542979"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2405.12399",
+        "type": "paper"
+      },
+      "expected_post_sha256": "aae6c63d77088947af5294d76685635819e640d6c6db16eda4eb0df0771e5b4d",
+      "identity": {
+        "arxiv_id": "2405.12399",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2405.12399",
+        "kind": "arxiv",
+        "normalized_title": "diffusion for world modeling visual details matter in atari",
+        "official_url": "https://arxiv.org/abs/2405.12399"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2405-DIAMOND.md",
+      "source_sha256": "50c8268c0530811dbee46303e8e2c926d0056d2a5fb5d40f40c29967a72b9a29"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2405.20337",
+        "type": "paper"
+      },
+      "expected_post_sha256": "82b71134f4c11a1c970a5d0c7dd5b2f617dc8c9a78683b16dd853664371ac9ba",
+      "identity": {
+        "arxiv_id": "2405.20337",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2405.20337",
+        "kind": "arxiv",
+        "normalized_title": "occsora 4d occupancy generation models as world simulators for autonomous driving",
+        "official_url": "https://arxiv.org/abs/2405.20337"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2405-OccSora.md",
+      "source_sha256": "d65ac6fdc5111873f91ebb7b4937f48db7c52de971ea06bcb3624d515e546e1b"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2405.12213",
+        "type": "paper"
+      },
+      "expected_post_sha256": "cc1b7c9898e8e40a9959ffb8285047e205126268c7fa51c63810b964eca58d47",
+      "identity": {
+        "arxiv_id": "2405.12213",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2405.12213",
+        "kind": "arxiv",
+        "normalized_title": "octo an open source generalist robot policy",
+        "official_url": "https://arxiv.org/abs/2405.12213"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2405-Octo.md",
+      "source_sha256": "88c3f04c1a5fbd7694fce0c7411f7384b59d8c691ec1abf841769086c5d02814"
+    },
+    {
+      "classification_candidates": [],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2405.17398",
+        "type": "paper"
+      },
+      "expected_post_sha256": "9c2e67d4ba0f27d88a57be6e2d6ca7ebea9e929151f213aa09b7458e76daac5a",
+      "identity": {
+        "arxiv_id": "2405.17398",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2405.17398",
+        "kind": "arxiv",
+        "normalized_title": "vista a generalizable driving world model with high fidelity and versatile controllability",
+        "official_url": "https://arxiv.org/abs/2405.17398"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "no-domain-candidate",
+          "message": "classification requires review; candidates=[]",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2405-Vista.md",
+      "source_sha256": "68f95a12d5c0e800ec6badc4abedd39ea280daabaf166c55a1a665056735d802"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2406.14540",
+        "type": "paper"
+      },
+      "expected_post_sha256": "d4f95ebf96f151c4988ce9263b1de0041dbcb6a4b38af5a7320b29dd08917ed3",
+      "identity": {
+        "arxiv_id": "2406.14540",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2406.14540",
+        "kind": "arxiv",
+        "normalized_title": "irasim a fine grained world model for robot manipulation",
+        "official_url": "https://arxiv.org/abs/2406.14540"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2406-IRASim.md",
+      "source_sha256": "160c49ae76990e2e006bf01afe87c87092ed4d92455bb57abef043cf9f332a61"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2406.09246",
+        "type": "paper"
+      },
+      "expected_post_sha256": "db8cd0f576ce684aa05b71c125d0096c13a87cba8a833c706f3606c73ed24444",
+      "identity": {
+        "arxiv_id": "2406.09246",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2406.09246",
+        "kind": "arxiv",
+        "normalized_title": "openvla an open source vision language action model",
+        "official_url": "https://arxiv.org/abs/2406.09246"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2406-OpenVLA.md",
+      "source_sha256": "f69bb3e589e00a978e458911b7747c47cd7c3b3a69822ad7ccca2cce0dfcdc11"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2406.04339",
+        "type": "paper"
+      },
+      "expected_post_sha256": "b16c1c61179e059e6e6f8fdd8dbc1cdb4dd5dda4b945dd06dade437d0945a896",
+      "identity": {
+        "arxiv_id": "2406.04339",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2406.04339",
+        "kind": "arxiv",
+        "normalized_title": "robomamba efficient vision language action model for robotic reasoning and manipulation",
+        "official_url": "https://arxiv.org/abs/2406.04339"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2406-RoboMamba.md",
+      "source_sha256": "71935be233b80254cce2738d99cc32cd36d724ef4adea1ec94785a2fd19f883f"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2407.08693",
+        "type": "paper"
+      },
+      "expected_post_sha256": "c8eeae78131244a68e533c0c5454f65256e85f1ee116a02b94020b4b376a27d3",
+      "identity": {
+        "arxiv_id": "2407.08693",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2407.08693",
+        "kind": "arxiv",
+        "normalized_title": "robotic control via embodied chain of thought reasoning",
+        "official_url": "https://arxiv.org/abs/2407.08693"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2407-ECoT.md",
+      "source_sha256": "d17699e09482720a9f2c5c28bd18f7b56d43ccbefaab08d3c6308fa8330db506"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2407.07035",
+        "type": "paper"
+      },
+      "expected_post_sha256": "6161e1eca2528de3ae83ef295e019caa92cf79ce2800cceae13c4d62e3c217b6",
+      "identity": {
+        "arxiv_id": "2407.07035",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2407.07035",
+        "kind": "arxiv",
+        "normalized_title": "vision and language navigation today and tomorrow a survey in the era of foundation models",
+        "official_url": "https://arxiv.org/abs/2407.07035"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2407-VLNFoundationSurvey.md",
+      "source_sha256": "1434c09c0c63104b5b352e11ed4cdb8ef3f7aef8d656c327c692697e4f3a7380"
+    },
+    {
+      "classification_candidates": [
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2408.14837",
+        "type": "paper"
+      },
+      "expected_post_sha256": "3a0d63727d6e207f541e06426b0767cfbd42964deb2c8616510870f745b01de1",
+      "identity": {
+        "arxiv_id": "2408.14837",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2408.14837",
+        "kind": "arxiv",
+        "normalized_title": "diffusion models are real time game engines",
+        "official_url": "https://arxiv.org/abs/2408.14837"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2408-GameNGen.md",
+      "source_sha256": "74376a287d26a2f840e07eb75bab1271101474ff72134731d2f39d7868791ae2"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2408.00203",
+        "type": "paper"
+      },
+      "expected_post_sha256": "db68f165f8c2c0f06561a6bd62d9cac9f5f5f20e7831ce3e342377a3daa582a4",
+      "identity": {
+        "arxiv_id": "2408.00203",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2408.00203",
+        "kind": "arxiv",
+        "normalized_title": "omniparser for pure vision based gui agent",
+        "official_url": "https://arxiv.org/abs/2408.00203"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2408-OmniParser.md",
+      "source_sha256": "03b4fc33b0e47afcfdb833bd3dd18b993b646671f27729f367f4e4b4d4307f00"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2409.12514",
+        "type": "paper"
+      },
+      "expected_post_sha256": "58d82d17b5d88ca678d85f0fadfe40a7dc7efa551db2abf614e7d6cba7da9b38",
+      "identity": {
+        "arxiv_id": "2409.12514",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2409.12514",
+        "kind": "arxiv",
+        "normalized_title": "tinyvla towards fast data efficient vision language action models for robotic manipulation",
+        "official_url": "https://arxiv.org/abs/2409.12514"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2409-TinyVLA.md",
+      "source_sha256": "0aeaa8b50b3631bf527b941c4a94800396370b1aecd2c0abee7261b1451dd64b"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2409.08264",
+        "type": "paper"
+      },
+      "expected_post_sha256": "8b8b625a7484de9c7dbf57ad3afdd69ecc1ec100a3246e45c0990b546897e78a",
+      "identity": {
+        "arxiv_id": "2409.08264",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2409.08264",
+        "kind": "arxiv",
+        "normalized_title": "windowsagentarena evaluating multi modal os agents at scale",
+        "official_url": "https://arxiv.org/abs/2409.08264"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2409-WindowsAgentArena.md",
+      "source_sha256": "c0211296c488e9a553cb0aa8d02b197b39ea30a7fa94d98fbb16a8e02a9519fd"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2410.06237",
+        "type": "paper"
+      },
+      "expected_post_sha256": "21aa82092cbfc0d1d9efb8beee6be91a755dc131ab006d81b559fc1edce1a96d",
+      "identity": {
+        "arxiv_id": "2410.06237",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2410.06237",
+        "kind": "arxiv",
+        "normalized_title": "bumble unifying reasoning and acting with vision language models for building wide mobile manipulation",
+        "official_url": "https://arxiv.org/abs/2410.06237"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2410-BUMBLE.md",
+      "source_sha256": "0c9202fb55bc2a8eac71f3206a93b67d64260ecf3f2797becac1b831e3e52153"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2410.11989",
+        "type": "paper"
+      },
+      "expected_post_sha256": "7c667af8d9bac2dcb39fa350650ab232bce3825722740f8f054f451aed4aa959",
+      "identity": {
+        "arxiv_id": "2410.11989",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2410.11989",
+        "kind": "arxiv",
+        "normalized_title": "dynamic open vocabulary 3d scene graphs for long term language guided mobile manipulation",
+        "official_url": "https://arxiv.org/abs/2410.11989"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2410-DovSG.md",
+      "source_sha256": "a4f298d1db1309041fcdadfaf5d73f2fe1cfd629d94347e240e8941061f5528f"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2410.11758",
+        "type": "paper"
+      },
+      "expected_post_sha256": "b71efcd26f590b059c09de5b7f096c07d03b5ba015a8522f9ace918d7d67132f",
+      "identity": {
+        "arxiv_id": "2410.11758",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2410.11758",
+        "kind": "arxiv",
+        "normalized_title": "lapa latent action pretraining from videos",
+        "official_url": "https://arxiv.org/abs/2410.11758"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2410-LAPA.md",
+      "source_sha256": "8915b15fc41ae381ff539461e830a4c98a27477432869e8cbe29bba21c5465ea"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2410.23218",
+        "type": "paper"
+      },
+      "expected_post_sha256": "d3d353a1d80e2eb38824fd1c2d79bb13f79f200d22639bcbbd4f5441d7598df1",
+      "identity": {
+        "arxiv_id": "2410.23218",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2410.23218",
+        "kind": "arxiv",
+        "normalized_title": "os atlas a foundation action model for generalist gui agents",
+        "official_url": "https://arxiv.org/abs/2410.23218"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2410-OSAtlas.md",
+      "source_sha256": "a6edabdb12784c6cc0b26235b1e0a93cce7d1e161654715b170ab5201ef5cff9"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2410.24164",
+        "type": "paper"
+      },
+      "expected_post_sha256": "8dd6071fff8c400e1c0447795d308ae03b2207ac278ca9bf9d65fc9164035cca",
+      "identity": {
+        "arxiv_id": "2410.24164",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2410.24164",
+        "kind": "arxiv",
+        "normalized_title": "π0 a vision language action flow model for general robot control",
+        "official_url": "https://arxiv.org/abs/2410.24164"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2410-Pi0.md",
+      "source_sha256": "0bf6d3428299fb1953b2ff871a5152ce61e176f7704dcbc0c8978b975278917b"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2411.18279",
+        "type": "paper"
+      },
+      "expected_post_sha256": "8ea0368c6c4c15664f74ce892d9eb7fb8948dd7b90b4cc0d02bdf93ba1bb77f6",
+      "identity": {
+        "arxiv_id": "2411.18279",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2411.18279",
+        "kind": "arxiv",
+        "normalized_title": "large language model brained gui agents a survey",
+        "official_url": "https://arxiv.org/abs/2411.18279"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2411-GUIAgentSurvey.md",
+      "source_sha256": "97543a771983828aaeddecd823bcaf0aeb7fe10f385591071388e27cd5c739c1"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "review",
+      "deterministic_updates": {
+        "type": "paper"
+      },
+      "expected_post_sha256": "b343d93f27bf705acb410ad5438c0bd15b299a1123900627807bd46628117fc1",
+      "identity": {
+        "arxiv_id": null,
+        "confidence": "review",
+        "doi": null,
+        "key": "url-title:https://lilianweng.github.io/posts/2024-11-28-reward-hacking#reward hacking in reinforcement learning",
+        "kind": "url-title",
+        "normalized_title": "reward hacking in reinforcement learning",
+        "official_url": "https://lilianweng.github.io/posts/2024-11-28-reward-hacking"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "url-title-identity",
+          "message": "official URL plus title requires review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2411-RewardHacking.md",
+      "source_sha256": "3dcf813f2893fa59d98b8a40c3f312d52c687aef9f7d92fcc7dd309d1b234092"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2411.17465",
+        "type": "paper"
+      },
+      "expected_post_sha256": "e95775ea8a36b37e3f483dcc4d050f384e9f57da86a9781cd4cf5323def80965",
+      "identity": {
+        "arxiv_id": "2411.17465",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2411.17465",
+        "kind": "arxiv",
+        "normalized_title": "showui one vision language action model for gui visual agent",
+        "official_url": "https://arxiv.org/abs/2411.17465"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2411-ShowUI.md",
+      "source_sha256": "bfcc5b01ac94fd6ddaae25e50ad101857f296a4b36de24519a29abdc249bf3e0"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2411.14499",
+        "type": "paper"
+      },
+      "expected_post_sha256": "1ea764091c827f4731ca932184436d75795d26a2f710c5275a599d072b6424bc",
+      "identity": {
+        "arxiv_id": "2411.14499",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2411.14499",
+        "kind": "arxiv",
+        "normalized_title": "understanding world or predicting future a comprehensive survey of world models",
+        "official_url": "https://arxiv.org/abs/2411.14499"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2411-WorldModelSurvey.md",
+      "source_sha256": "89e362668216924b4f251b7b748bd16449af5d922b47078bd0e1d326dd262fe5"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2412.09605",
+        "type": "paper"
+      },
+      "expected_post_sha256": "ebd5c5429f6f5f435f7a379fc2e2469b5194885fbd9ea8375b969078a43053f1",
+      "identity": {
+        "arxiv_id": "2412.09605",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2412.09605",
+        "kind": "arxiv",
+        "normalized_title": "agenttrek agent trajectory synthesis via guiding replay with web tutorials",
+        "official_url": "https://arxiv.org/abs/2412.09605"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2412-AgentTrek.md",
+      "source_sha256": "3fe13ee2ed6a91c8b39b18df56555c82e5d6c588d3f7e2f3bf2826eb88e31ace"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2412.09082",
+        "type": "paper"
+      },
+      "expected_post_sha256": "88699ad860694e14e7f066daafce5cf22bc2a2590d25a7680faf6a7e8cd6442e",
+      "identity": {
+        "arxiv_id": "2412.09082",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2412.09082",
+        "kind": "arxiv",
+        "normalized_title": "towards long horizon vision language navigation platform benchmark and method",
+        "official_url": "https://arxiv.org/abs/2412.09082"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2412-LHVLN.md",
+      "source_sha256": "19542c47afa401ed114adf0d2420e79af871ce8adfc50bb6599385fd42a81b42"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2412.04453",
+        "type": "paper"
+      },
+      "expected_post_sha256": "e9f18dfffaaf7c65dc662a519bf040b6b1e4dc4c3d5143426ad05aed4a905777",
+      "identity": {
+        "arxiv_id": "2412.04453",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2412.04453",
+        "kind": "arxiv",
+        "normalized_title": "navila legged robot vision language action model for navigation",
+        "official_url": "https://arxiv.org/abs/2412.04453"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2412-NaVILA.md",
+      "source_sha256": "eb3a9529fc07715d3aee60474b8d9662381a11d47acd103a76a13c12cfaa13ca"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2412.19723",
+        "type": "paper"
+      },
+      "expected_post_sha256": "d0f53f5e68d860d9823b6bb2353bfec9e714f58c9d51bb4a5dea6318be0c7dd6",
+      "identity": {
+        "arxiv_id": "2412.19723",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2412.19723",
+        "kind": "arxiv",
+        "normalized_title": "os genesis automating gui agent trajectory construction via reverse task synthesis",
+        "official_url": "https://arxiv.org/abs/2412.19723"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2412-OSGenesis.md",
+      "source_sha256": "deba94ae44a9e2f6a2f989424c95824dee9e348d823aa3166c31d8fbb8da5771"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2412.14058",
+        "type": "paper"
+      },
+      "expected_post_sha256": "2963f07f5a07d9d30945351a0bd2213f58b8afedb8b7e30c0054927d7a325cf6",
+      "identity": {
+        "arxiv_id": "2412.14058",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2412.14058",
+        "kind": "arxiv",
+        "normalized_title": "what matters in building vision language action models for generalist robots",
+        "official_url": "https://arxiv.org/abs/2412.14058"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2412-RoboVLMs.md",
+      "source_sha256": "0483d5cbdde2a8aee50f8679f5c300f0ffbfa5eb92920bda4cb67ee802159adf"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2501.16150",
+        "type": "paper"
+      },
+      "expected_post_sha256": "8c91558417a9e928ae10e7d2cd5389adcd268fcb53bbf276101fd48bc9b35b95",
+      "identity": {
+        "arxiv_id": "2501.16150",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2501.16150",
+        "kind": "arxiv",
+        "normalized_title": "a comprehensive survey of agents for computer use foundations challenges and future directions",
+        "official_url": "https://arxiv.org/abs/2501.16150"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2501-ACUSurvey.md",
+      "source_sha256": "8b1c92110c5e94a9fe3f73fd1fe7f45a99e9063e2ab4a80c89cf279fbf6ced20"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2501.03575",
+        "type": "paper"
+      },
+      "expected_post_sha256": "50f94c0b4e524ea2034b478110a9dfc185fa933983df909e9928b0871c125e1b",
+      "identity": {
+        "arxiv_id": "2501.03575",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2501.03575",
+        "kind": "arxiv",
+        "normalized_title": "cosmos world foundation model platform for physical ai",
+        "official_url": "https://arxiv.org/abs/2501.03575"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2501-Cosmos.md",
+      "source_sha256": "a1d58d474112dafbf7d64226b7ade19d72f8726fbae9fc62873526cae3fdee7d"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2501.10100",
+        "type": "paper"
+      },
+      "expected_post_sha256": "5934d3120da6ff3ca399db9216a8c6545229f8a7c756a5d3a5081fed1d6227ed",
+      "identity": {
+        "arxiv_id": "2501.10100",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2501.10100",
+        "kind": "arxiv",
+        "normalized_title": "robotic world model a neural network simulator for robust policy optimization in robotics",
+        "official_url": "https://arxiv.org/abs/2501.10100"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2501-RoboticWorldModel.md",
+      "source_sha256": "27b9722e3de97d4f007970819a916741948f173f6e77978e36f2a9cea86d6aae"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2501.12326",
+        "type": "paper"
+      },
+      "expected_post_sha256": "1e947f6dc50eb25878fa49131706d495f9f50f2389dfe6d165c12bb6d246c9bd",
+      "identity": {
+        "arxiv_id": "2501.12326",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2501.12326",
+        "kind": "arxiv",
+        "normalized_title": "ui tars pioneering automated gui interaction with native agents",
+        "official_url": "https://arxiv.org/abs/2501.12326"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2501-UITARS.md",
+      "source_sha256": "29841b414178bda6d3bfbff40a8d1937dcc47c1fff2621cc2707bbf58ec6ff90"
+    },
+    {
+      "classification_candidates": [
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2502.09560",
+        "type": "paper"
+      },
+      "expected_post_sha256": "66713c6d1849318f430d8dd0fabfa8c1db3a751f6566467daba993ed7cd5bcca",
+      "identity": {
+        "arxiv_id": "2502.09560",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2502.09560",
+        "kind": "arxiv",
+        "normalized_title": "embodiedbench comprehensive benchmarking multi modal large language models for vision driven embodied agents",
+        "official_url": "https://arxiv.org/abs/2502.09560"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2502-EmbodiedBench.md",
+      "source_sha256": "4ddcad45bf407d3f91ac2d6819eb01a71617a50ed10c603bd4d53a08f4951432"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2502.05485",
+        "type": "paper"
+      },
+      "expected_post_sha256": "54b02688fb4630ac7170c27585bbed0e74d0033bcc309f22b4c78fe24287e0f9",
+      "identity": {
+        "arxiv_id": "2502.05485",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2502.05485",
+        "kind": "arxiv",
+        "normalized_title": "hamster hierarchical action models for open world robot manipulation",
+        "official_url": "https://arxiv.org/abs/2502.05485"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2502-HAMSTER.md",
+      "source_sha256": "e09358492e492dfc49b698e5de8cb83c8a4a9db43e427472b51ed1b14e79eb65"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2502.19417",
+        "type": "paper"
+      },
+      "expected_post_sha256": "36c10923e5e67085ad4569adef4efd5ad71e112315e562d02ae269f2e3ec9805",
+      "identity": {
+        "arxiv_id": "2502.19417",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2502.19417",
+        "kind": "arxiv",
+        "normalized_title": "hi robot open ended instruction following with hierarchical vision language action models",
+        "official_url": "https://arxiv.org/abs/2502.19417"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "too-many-tags",
+          "message": "paper has 5 tags; expected at most 4",
+          "severity": "warning"
+        }
+      ],
+      "path": "Papers/2502-HiRobot.md",
+      "source_sha256": "3716f9fdc6aa22f90858f7bc83cc8db09528da1d7e02a735f2ffffc85e9a152b"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2502.13451",
+        "type": "paper"
+      },
+      "expected_post_sha256": "78e85de6ed828cb7d770d1b592a20bb07d0cb5573af2078c27d81119b4b044a0",
+      "identity": {
+        "arxiv_id": "2502.13451",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2502.13451",
+        "kind": "arxiv",
+        "normalized_title": "mapnav a novel memory representation via annotated semantic maps for vlm based vision and language navigation",
+        "official_url": "https://arxiv.org/abs/2502.13451"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2502-MapNav.md",
+      "source_sha256": "ff736fd44e7f939f17f21af0e35369090b3d040249970fe3f2780ab8b65fabc1"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2502.19645",
+        "type": "paper"
+      },
+      "expected_post_sha256": "73de8e53e1a85736adbde6221b6291bb455c77adbe0de68eab3fec0782145437",
+      "identity": {
+        "arxiv_id": "2502.19645",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2502.19645",
+        "kind": "arxiv",
+        "normalized_title": "fine tuning vision language action models optimizing speed and success",
+        "official_url": "https://arxiv.org/abs/2502.19645"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2502-OpenVLA-OFT.md",
+      "source_sha256": "23be2164a3694cd28ba65278ad68364e785dd5475820504668dd62a73f032de7"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2502.21257",
+        "type": "paper"
+      },
+      "expected_post_sha256": "dd162c05684e83c3c81c8761c0d933a4e9192616198ad9cfbd618b62a59d5fe9",
+      "identity": {
+        "arxiv_id": "2502.21257",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2502.21257",
+        "kind": "arxiv",
+        "normalized_title": "robobrain a unified brain model for robotic manipulation from abstract to concrete",
+        "official_url": "https://arxiv.org/abs/2502.21257"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2502-RoboBrain.md",
+      "source_sha256": "bada576c97544684bb7a387828e5817c90da99beebfe02cd6ee8e7551dbf0fe4"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2502.00931",
+        "type": "paper"
+      },
+      "expected_post_sha256": "5ac1f4dc848e1d8f0a2528985f41780c32d19c7be2d71615a0c4714e54e904c8",
+      "identity": {
+        "arxiv_id": "2502.00931",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2502.00931",
+        "kind": "arxiv",
+        "normalized_title": "vl nav a neuro symbolic approach for reasoning based vision language navigation",
+        "official_url": "https://arxiv.org/abs/2502.00931"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2502-VLNav.md",
+      "source_sha256": "273c8a74886ac6940e59409361e868cd012c34057f19af749c3feb1ec440122d"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2503.15558",
+        "type": "paper"
+      },
+      "expected_post_sha256": "fa22ee732b0db9493d301a9e967e6475c6891fb93c5e2cbf254810dd558bebc2",
+      "identity": {
+        "arxiv_id": "2503.15558",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2503.15558",
+        "kind": "arxiv",
+        "normalized_title": "cosmos reason1 from physical common sense to embodied reasoning",
+        "official_url": "https://arxiv.org/abs/2503.15558"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2503-CosmosReason1.md",
+      "source_sha256": "627e0f6a4a9df3a915f1842f1df58600a4ceb8d7bed49ef58e72e76be4e7a675"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2503.14734",
+        "type": "paper"
+      },
+      "expected_post_sha256": "5f9f508c5e8cea2367d356a887aff665b0d930b8d9753a50b043d3e20cf82086",
+      "identity": {
+        "arxiv_id": "2503.14734",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2503.14734",
+        "kind": "arxiv",
+        "normalized_title": "gr00t n1 an open foundation model for generalist humanoid robots",
+        "official_url": "https://arxiv.org/abs/2503.14734"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2503-GR00TN1.md",
+      "source_sha256": "46a7e4139ea38628d699713ec34d85bcab8c151f166a262ac70145e7ebd13e7c"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2503.20020",
+        "type": "paper"
+      },
+      "expected_post_sha256": "ac5adcfb1fea33c20ef39773395fe71c85ccb8aeaebf0ca4d521a54efbc8db68",
+      "identity": {
+        "arxiv_id": "2503.20020",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2503.20020",
+        "kind": "arxiv",
+        "normalized_title": "gemini robotics bringing ai into the physical world",
+        "official_url": "https://arxiv.org/abs/2503.20020"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2503-GeminiRobotics.md",
+      "source_sha256": "6a307da19e5deb00ed7474b4bcb60d594c391cae5c2a093bfddda29effa2a6e9"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2503.10631",
+        "type": "paper"
+      },
+      "expected_post_sha256": "f43f32ee9be46357a41f9a8b3c64716c3c0fe1f4e8eae8591f5e934a1da715cd",
+      "identity": {
+        "arxiv_id": "2503.10631",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2503.10631",
+        "kind": "arxiv",
+        "normalized_title": "hybridvla collaborative diffusion and autoregression in a unified vision language action model",
+        "official_url": "https://arxiv.org/abs/2503.10631"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2503-HybridVLA.md",
+      "source_sha256": "b040df306cc79e61b2a9015a142bbd55ddeeaf2c8a998a55188c30d3ae54979c"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2503.13446",
+        "type": "paper"
+      },
+      "expected_post_sha256": "523b29494082c40555f7430cf842f75d4eaea54f656f495c54e5c34cd630b484",
+      "identity": {
+        "arxiv_id": "2503.13446",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2503.13446",
+        "kind": "arxiv",
+        "normalized_title": "momanipvla transferring vision language action models for general mobile manipulation",
+        "official_url": "https://arxiv.org/abs/2503.13446"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2503-MoManipVLA.md",
+      "source_sha256": "68e1f6c48cb915fc65319ff5e18d821ec126f209afc912ef93578da1edf01575"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2503.11651",
+        "type": "paper"
+      },
+      "expected_post_sha256": "377c6a2f78f46502f7187af5ce6689c080e58b1984b37670214d291421754927",
+      "identity": {
+        "arxiv_id": "2503.11651",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2503.11651",
+        "kind": "arxiv",
+        "normalized_title": "vggt visual geometry grounded transformer",
+        "official_url": "https://arxiv.org/abs/2503.11651"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2503-VGGT.md",
+      "source_sha256": "d55626ee7f0dc067093e0154a4fa83ec5a95bd44ad35200403b9f75859efd35c"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2504.00906",
+        "type": "paper"
+      },
+      "expected_post_sha256": "b6fe337bdf3393bb17a06385fa1f037337d136566d93b9e6b6ef39b36a2c9ac9",
+      "identity": {
+        "arxiv_id": "2504.00906",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2504.00906",
+        "kind": "arxiv",
+        "normalized_title": "agent s2 a compositional generalist specialist framework for computer use agents",
+        "official_url": "https://arxiv.org/abs/2504.00906"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2504-AgentS2.md",
+      "source_sha256": "a818bbd2259b9436c8240d4c8011186052bc120503cd5d6af59629b994119f32"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2504.12680",
+        "type": "paper"
+      },
+      "expected_post_sha256": "e35c120d27df6795392f02144cb6a51d703d62c7a70f257fb01122a7586866b7",
+      "identity": {
+        "arxiv_id": "2504.12680",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2504.12680",
+        "kind": "arxiv",
+        "normalized_title": "embodied r collaborative framework for activating embodied spatial reasoning in foundation models via reinforcement learning",
+        "official_url": "https://arxiv.org/abs/2504.12680"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2504-EmbodiedR.md",
+      "source_sha256": "69271b5cc29a58b868cc5c405f0475a8de8977f6428979394c7f1281efd195fd"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2504.16054",
+        "type": "paper"
+      },
+      "expected_post_sha256": "4c2aefaf18f12ac0b9ffb4e28cb71c2a77b1d3a044e74ffe64d11dafa576fc2f",
+      "identity": {
+        "arxiv_id": "2504.16054",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2504.16054",
+        "kind": "arxiv",
+        "normalized_title": "π0 5 a vision language action model with open world generalization",
+        "official_url": "https://arxiv.org/abs/2504.16054"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2504-Pi05.md",
+      "source_sha256": "88c55154dee881b5c3f5bc7c78b377590e98a354a41f37e6907662ce6d7c4c20"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2504.07981",
+        "type": "paper"
+      },
+      "expected_post_sha256": "780b1d28e3716d95aca86a81444c9c1adfa4920db823f9ef1a89c34c4f391e99",
+      "identity": {
+        "arxiv_id": "2504.07981",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2504.07981",
+        "kind": "arxiv",
+        "normalized_title": "screenspot pro gui grounding for professional high resolution computer use",
+        "official_url": "https://arxiv.org/abs/2504.07981"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2504-ScreenSpotPro.md",
+      "source_sha256": "89dcf4cc4e7788d99ad28542dd3fd2f233fa0682bc9ac9b3e3cff8cb78cc564e"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2504.12679",
+        "type": "paper"
+      },
+      "expected_post_sha256": "63a846a4bb51497c72f2d62e5ed0a98a9889cd5e0e3a2f5a57fed1329abbd92e",
+      "identity": {
+        "arxiv_id": "2504.12679",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2504.12679",
+        "kind": "arxiv",
+        "normalized_title": "tongui internet scale trajectories from multimodal web tutorials for generalized gui agents",
+        "official_url": "https://arxiv.org/abs/2504.12679"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2504-TongUI.md",
+      "source_sha256": "fa2727d08dfc5b965c71c4c6a844ccb7814773958c4401f79f6df31001d9830e"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2504.02792",
+        "type": "paper"
+      },
+      "expected_post_sha256": "3b56ef9490b7be679a9c58520928ca46c73a0ce7c4365d19f936c6987e732a92",
+      "identity": {
+        "arxiv_id": "2504.02792",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2504.02792",
+        "kind": "arxiv",
+        "normalized_title": "unified world models coupling video and action diffusion for pretraining on large robotic datasets",
+        "official_url": "https://arxiv.org/abs/2504.02792"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2504-UWM.md",
+      "source_sha256": "771981d6958089c4a3ee6d4b00219e5a21293a2e8de95ed6b86b25f44f703433"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2505.12705",
+        "type": "paper"
+      },
+      "expected_post_sha256": "994eb1e4747fc3af8c15c4fbba76425275e530c4e41705c60d2d32002c48614c",
+      "identity": {
+        "arxiv_id": "2505.12705",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2505.12705",
+        "kind": "arxiv",
+        "normalized_title": "dreamgen unlocking generalization in robot learning through video world models",
+        "official_url": "https://arxiv.org/abs/2505.12705"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2505-DreamGen.md",
+      "source_sha256": "a5bd093cfd67bde7b99e072b9c7e792c6fc787e29d0203afb1b37bbe2039481b"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2506.15677",
+        "type": "paper"
+      },
+      "expected_post_sha256": "4c0ceadfddf8db9cce4f53969cb9be4507371e081958ac47af956507785cc36b",
+      "identity": {
+        "arxiv_id": "2506.15677",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2506.15677",
+        "kind": "arxiv",
+        "normalized_title": "embodied web agents bridging physical digital realms for integrated agent intelligence",
+        "official_url": "https://arxiv.org/abs/2506.15677"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2506-EmbodiedWebAgent.md",
+      "source_sha256": "35acfeeb6c07ce21e01c872b665ea072138e0c2339c63a26ec2fb111d8c501dc"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2506.00070",
+        "type": "paper"
+      },
+      "expected_post_sha256": "a82ddb51c93e48a51905d1deb5daefce642083dc24e1e77f4317ff7421c06f4a",
+      "identity": {
+        "arxiv_id": "2506.00070",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2506.00070",
+        "kind": "arxiv",
+        "normalized_title": "robot r1 reinforcement learning for enhanced embodied reasoning in robotics",
+        "official_url": "https://arxiv.org/abs/2506.00070"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2506-RobotR1.md",
+      "source_sha256": "b2eb64af89774978cab74f30564d480d42c8efdb5dd47aca2726c5bea7d42784"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2506.01844",
+        "type": "paper"
+      },
+      "expected_post_sha256": "5c2f7c9be8918d58d95946a68a7eacf4143e2cab59f79a77891f68098de9bf7e",
+      "identity": {
+        "arxiv_id": "2506.01844",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2506.01844",
+        "kind": "arxiv",
+        "normalized_title": "smolvla a vision language action model for affordable and efficient robotics",
+        "official_url": "https://arxiv.org/abs/2506.01844"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2506-SmolVLA.md",
+      "source_sha256": "eea8c7a7dd4879d8432370f93339ce4bf1d0ae57e584659b42bd993ff2ffc9ae"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2506.09985",
+        "type": "paper"
+      },
+      "expected_post_sha256": "cff0adf983478444751f6a90a7ebcb12a89624261f789bda34271cc941dcbd77",
+      "identity": {
+        "arxiv_id": "2506.09985",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2506.09985",
+        "kind": "arxiv",
+        "normalized_title": "v jepa 2 self supervised video models enable understanding prediction and planning",
+        "official_url": "https://arxiv.org/abs/2506.09985"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2506-VJEPA2.md",
+      "source_sha256": "2cf526c63d25ec6b0af4b79e73548ef51438b29131c098989b30eecdc6ad66e7"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2506.17221",
+        "type": "paper"
+      },
+      "expected_post_sha256": "13e6984b109f0e54ff52f464869bf8651a903c4514fd18dfe4f0007bf39e3eea",
+      "identity": {
+        "arxiv_id": "2506.17221",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2506.17221",
+        "kind": "arxiv",
+        "normalized_title": "vln r1 vision language navigation via reinforcement fine tuning",
+        "official_url": "https://arxiv.org/abs/2506.17221"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2506-VLNR1.md",
+      "source_sha256": "35ebea06b64ad84ee9a2cb4d5373c81831f5245cb3c8a2fdc2caeb7b4fac58d9"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2506.00123",
+        "type": "paper"
+      },
+      "expected_post_sha256": "15a20ad5523d78de6438702d840f7b268ad9491c77cbe983f8bfa03597fdd900",
+      "identity": {
+        "arxiv_id": "2506.00123",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2506.00123",
+        "kind": "arxiv",
+        "normalized_title": "visual embodied brain let multimodal large language models see think and control in spaces",
+        "official_url": "https://arxiv.org/abs/2506.00123"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2506-VeBrain.md",
+      "source_sha256": "06c4508528738a8f0920ea775bb9634a126e366f10a7e6f8cc21decc65129999"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2507.04047",
+        "type": "paper"
+      },
+      "expected_post_sha256": "9102c86df2601b057ee74a2fba3fcf87444a8a545ca9700cc99ab7eec0a59269",
+      "identity": {
+        "arxiv_id": "2507.04047",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2507.04047",
+        "kind": "arxiv",
+        "normalized_title": "move to understand a 3d scene bridging visual grounding and exploration for efficient and versatile embodied navigation",
+        "official_url": "https://arxiv.org/abs/2507.04047"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2507-MTU3D.md",
+      "source_sha256": "1c8215538b63fd3965047012bea9b59243b33bfbb5d1855867366a293e199b29"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2507.02029",
+        "type": "paper"
+      },
+      "expected_post_sha256": "04ca9d47a29a63c0c0dc0ef483328e7eb403e0162694d85f46226a994eb551df",
+      "identity": {
+        "arxiv_id": "2507.02029",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2507.02029",
+        "kind": "arxiv",
+        "normalized_title": "robobrain 2 0 technical report",
+        "official_url": "https://arxiv.org/abs/2507.02029"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2507-RoboBrain2.md",
+      "source_sha256": "9c305da4ef7314f60ceabdca794f3e369cb186dbbf1ccaf64579d7b6d97a9bbe"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2507.05240",
+        "type": "paper"
+      },
+      "expected_post_sha256": "34b25b44d19609b699a9c3ad355b76d5605bbfb2985cbcfdf45773b2dcc887c4",
+      "identity": {
+        "arxiv_id": "2507.05240",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2507.05240",
+        "kind": "arxiv",
+        "normalized_title": "streamvln streaming vision and language navigation via slowfast context modeling",
+        "official_url": "https://arxiv.org/abs/2507.05240"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2507-StreamVLN.md",
+      "source_sha256": "0d12fdd81da88e427560c289e6fe8b1cdd5b070fd64d36e002e380787591938f"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2507.01925",
+        "type": "paper"
+      },
+      "expected_post_sha256": "b0f9f0ddf312e4e11fdab36418717957ca8997fa08759ef8c18288d384d06a9e",
+      "identity": {
+        "arxiv_id": "2507.01925",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2507.01925",
+        "kind": "arxiv",
+        "normalized_title": "a survey on vision language action models an action tokenization perspective",
+        "official_url": "https://arxiv.org/abs/2507.01925"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2507-VLATokenizationSurvey.md",
+      "source_sha256": "469042c33ed0e35c900099ffe5ba398eaab48aa1b1031c8517b45caed3394b8a"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2507.13019",
+        "type": "paper"
+      },
+      "expected_post_sha256": "edb889d35fffc69243d57b9a5bf16d7ae75c915f7c59b67ef929d7d6c530ddaa",
+      "identity": {
+        "arxiv_id": "2507.13019",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2507.13019",
+        "kind": "arxiv",
+        "normalized_title": "rethinking the embodied gap in vision and language navigation a holistic study of physical and visual disparities",
+        "official_url": "https://arxiv.org/abs/2507.13019"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2507-VLNPE.md",
+      "source_sha256": "1686e1b2b4dbc4e773ca26c751ec12f02a423f8f9c5fe5d986681c45cb35c76b"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2508.03680",
+        "type": "paper"
+      },
+      "expected_post_sha256": "0bd984aff2dac2d2af42e3da7808c82a524d613cdc6b9322dcb3ee471207e486",
+      "identity": {
+        "arxiv_id": "2508.03680",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2508.03680",
+        "kind": "arxiv",
+        "normalized_title": "agent lightning train any ai agents with reinforcement learning",
+        "official_url": "https://arxiv.org/abs/2508.03680"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2508-AgentLightning.md",
+      "source_sha256": "b0c2bee5e6af6b8f69f62770b1695ec5276247a14672015333ad479246a3dbc0"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2508.14040",
+        "type": "paper"
+      },
+      "expected_post_sha256": "807016cde479ee1b44b1b8dd7a5790aaa4ab4238810c706fa5bc4156e7149efb",
+      "identity": {
+        "arxiv_id": "2508.14040",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2508.14040",
+        "kind": "arxiv",
+        "normalized_title": "computerrl scaling end to end online reinforcement learning for computer use agents",
+        "official_url": "https://arxiv.org/abs/2508.14040"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2508-ComputerRL.md",
+      "source_sha256": "c1fd8a571050ffec4cba21d32e3750f61aae2602ff41a23905902267b7177473"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2508.13998",
+        "type": "paper"
+      },
+      "expected_post_sha256": "a2d7333e765628a391d23c89552442ae097e1ecd5bf5327564367ab775294dde",
+      "identity": {
+        "arxiv_id": "2508.13998",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2508.13998",
+        "kind": "arxiv",
+        "normalized_title": "embodied r1 reinforced embodied reasoning for general robotic manipulation",
+        "official_url": "https://arxiv.org/abs/2508.13998"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai']",
+          "severity": "review"
+        },
+        {
+          "code": "too-many-tags",
+          "message": "paper has 5 tags; expected at most 4",
+          "severity": "warning"
+        }
+      ],
+      "path": "Papers/2508-EmbodiedR1.md",
+      "source_sha256": "eef051af901249565f788a887e29c4ad976f229061f070e9111b02ac9e4b3bfd"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2508.04482",
+        "type": "paper"
+      },
+      "expected_post_sha256": "123a282cc33fb8b4700394b5f6fa5613392fd3c95246022fb77b3f40b47c6c0f",
+      "identity": {
+        "arxiv_id": "2508.04482",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2508.04482",
+        "kind": "arxiv",
+        "normalized_title": "os agents a survey on mllm based agents for general computing devices use",
+        "official_url": "https://arxiv.org/abs/2508.04482"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2508-OSAgentsSurvey.md",
+      "source_sha256": "b3916b7c7a92ef4b24f27a99a38777528f873f8f23592122d91421b0216480bb"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2508.09123",
+        "type": "paper"
+      },
+      "expected_post_sha256": "f1d28a8cc041e55aeac2e7763ec08e2585de62dab09eb87c04f4e257f7bb24c7",
+      "identity": {
+        "arxiv_id": "2508.09123",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2508.09123",
+        "kind": "arxiv",
+        "normalized_title": "opencua open foundations for computer use agents",
+        "official_url": "https://arxiv.org/abs/2508.09123"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2508-OpenCUA.md",
+      "source_sha256": "0b999ddde37146be468243a107268f6612f0fdeea46ef872de269661de452c5b"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2509.21006",
+        "type": "paper"
+      },
+      "expected_post_sha256": "da6cdd33186e9e80bfcdf567a83073c86f17e5d5214038f0c554436ed348f55f",
+      "identity": {
+        "arxiv_id": "2509.21006",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2509.21006",
+        "kind": "arxiv",
+        "normalized_title": "anywherevla language conditioned exploration and mobile manipulation",
+        "official_url": "https://arxiv.org/abs/2509.21006"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2509-AnywhereVLA.md",
+      "source_sha256": "1a2ea53cdde8e4f80d485672c582c5f7e090c02a6130aab17ce6433d5c93c493"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2509.23866",
+        "type": "paper"
+      },
+      "expected_post_sha256": "ded184962f2c4273165c9f6905f8947fa7189e6d85f5d149ce781e64736a6a8f",
+      "identity": {
+        "arxiv_id": "2509.23866",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2509.23866",
+        "kind": "arxiv",
+        "normalized_title": "efficient multi turn rl for gui agents via decoupled training and adaptive data curation",
+        "official_url": "https://arxiv.org/abs/2509.23866"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2509-DARTGUI.md",
+      "source_sha256": "c1daa5a83438a641a0f32c3ee576f14e16170707fb8214db257f3c835b329dc4"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2509.15293",
+        "type": "paper"
+      },
+      "expected_post_sha256": "65afcafd08b99c4a616080d3b3457d2590de88107cfafcc625683ea4ba59bb0f",
+      "identity": {
+        "arxiv_id": "2509.15293",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2509.15293",
+        "kind": "arxiv",
+        "normalized_title": "how good are foundation models in step by step embodied reasoning",
+        "official_url": "https://arxiv.org/abs/2509.15293"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2509-FoMER.md",
+      "source_sha256": "e15b4fa0ff75c6421055f5dc589bd56786920ffd3eeb80e62f3380fceb8426dd"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2509.12129",
+        "type": "paper"
+      },
+      "expected_post_sha256": "2fe4df85899fcd69971c94250927e22422643bec09e3c44b0dc299d5ec7bda24",
+      "identity": {
+        "arxiv_id": "2509.12129",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2509.12129",
+        "kind": "arxiv",
+        "normalized_title": "navfom embodied navigation foundation model",
+        "official_url": "https://arxiv.org/abs/2509.12129"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2509-NavFoM.md",
+      "source_sha256": "24288407e7d13810ec35a3e232da77a59589e812a511645314a184b11d82c6af"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2509.09332",
+        "type": "paper"
+      },
+      "expected_post_sha256": "c8a1dd880b426671d76e2e7ea95aff3c08437ea21155d6efca27bc487a736091",
+      "identity": {
+        "arxiv_id": "2509.09332",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2509.09332",
+        "kind": "arxiv",
+        "normalized_title": "omnieva embodied versatile planner via task adaptive 3d grounded and embodiment aware reasoning",
+        "official_url": "https://arxiv.org/abs/2509.09332"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2509-OmniEVA.md",
+      "source_sha256": "afd6d3925596fa06c3fedb9818a88ff16240ff12df4da171fb8cedac2dc405d6"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2509.19012",
+        "type": "paper"
+      },
+      "expected_post_sha256": "c5c51d81b7d188f0574de047d321783bebd5c0eb85a16a813de63d429b17ab79",
+      "identity": {
+        "arxiv_id": "2509.19012",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2509.19012",
+        "kind": "arxiv",
+        "normalized_title": "pure vision language action vla models a comprehensive survey",
+        "official_url": "https://arxiv.org/abs/2509.19012"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2509-PureVLA.md",
+      "source_sha256": "a76d25132f0da7d55c585bf9e7eeab1848257d0525843062d839699d052bd1a6"
+    },
+    {
+      "classification_candidates": [
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2509.01106",
+        "type": "paper"
+      },
+      "expected_post_sha256": "69b60b3d7417f335437d30e9200d1586f55df0987a64bb40a049f1af769599e9",
+      "identity": {
+        "arxiv_id": "2509.01106",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2509.01106",
+        "kind": "arxiv",
+        "normalized_title": "robix a unified model for robot interaction reasoning and planning",
+        "official_url": "https://arxiv.org/abs/2509.01106"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2509-Robix.md",
+      "source_sha256": "160ec60ebccd2fdf758fa3c857b82f93909b3e742661348e2212d2628475083c"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2509.02544",
+        "type": "paper"
+      },
+      "expected_post_sha256": "30a21d327d3de0f7f5052dbdccc8c877c68e332369955d7af6b15fa74f2d691c",
+      "identity": {
+        "arxiv_id": "2509.02544",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2509.02544",
+        "kind": "arxiv",
+        "normalized_title": "ui tars 2 technical report advancing gui agent with multi turn reinforcement learning",
+        "official_url": "https://arxiv.org/abs/2509.02544"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2509-UITARS2.md",
+      "source_sha256": "208ad152500c169df1f12eb6f04aadac6f454a07c3cb6fe2f3984ddf4d86cc31"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2510.24795",
+        "type": "paper"
+      },
+      "expected_post_sha256": "59463ebac176eace10b5d4893d312da103d6d4833e5677e89710d34ef821ce8d",
+      "identity": {
+        "arxiv_id": "2510.24795",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2510.24795",
+        "kind": "arxiv",
+        "normalized_title": "a survey on efficient vision language action models",
+        "official_url": "https://arxiv.org/abs/2510.24795"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2510-EfficientVLASurvey.md",
+      "source_sha256": "49c827e40c175b302ac05cabba1eef3ee0a06bcda25d7166b7b17ea7fcc85e96"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2510.20578",
+        "type": "paper"
+      },
+      "expected_post_sha256": "89a61387d0fd6920b84649983faea645cd483d3ba650e1273aeb1da642e052ed",
+      "identity": {
+        "arxiv_id": "2510.20578",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2510.20578",
+        "kind": "arxiv",
+        "normalized_title": "embodiedbrain expanding performance boundaries of task planning for embodied intelligence",
+        "official_url": "https://arxiv.org/abs/2510.20578"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['ai-agent']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2510-EmbodiedBrain.md",
+      "source_sha256": "d5d81df266357f7cf9b7d0fb86127f5f59fa6874cb6313ad773dea0d00114980"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2510.03342",
+        "type": "paper"
+      },
+      "expected_post_sha256": "a12daebad89f5772a80700d7c986eed2c6e4be481f1b72b2b0d3a3a9a6524cdb",
+      "identity": {
+        "arxiv_id": "2510.03342",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2510.03342",
+        "kind": "arxiv",
+        "normalized_title": "gemini robotics 1 5 pushing the frontier of generalist robots with advanced embodied reasoning thinking and motion transfer",
+        "official_url": "https://arxiv.org/abs/2510.03342"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2510-GeminiRobotics15.md",
+      "source_sha256": "63361218e62d41fa7eec541b38ba01b075736349e0689ec59b6b4b36414cb507"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2510.26909",
+        "type": "paper"
+      },
+      "expected_post_sha256": "1d26a1defdf41a2c6bc036816b5db235dbbd39a9a38462a6bcd72f0e22e1a5a9",
+      "identity": {
+        "arxiv_id": "2510.26909",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2510.26909",
+        "kind": "arxiv",
+        "normalized_title": "navitrace evaluating embodied navigation of vision language models",
+        "official_url": "https://arxiv.org/abs/2510.26909"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2510-NaviTrace.md",
+      "source_sha256": "9b091106ee26f6b9c4775fc622d0620daecf408af5506b9d5a136465bb1f1ce0"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2510.12403",
+        "type": "paper"
+      },
+      "expected_post_sha256": "077f7119bceb918c701cd469fbd41f59dd564072d68efbbfa6c498dd082e78f4",
+      "identity": {
+        "arxiv_id": "2510.12403",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2510.12403",
+        "kind": "arxiv",
+        "normalized_title": "robot learning a tutorial",
+        "official_url": "https://arxiv.org/abs/2510.12403"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2510-RobotLearningTutorial.md",
+      "source_sha256": "842d1d46eff573618190c5d6b7d192f2fbbdeeae12528b58d8091b0232c55569"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2510.02250",
+        "type": "paper"
+      },
+      "expected_post_sha256": "04efa8383822857152dba6fc1af65bc1d4959ec837083860034d9d87af4008f4",
+      "identity": {
+        "arxiv_id": "2510.02250",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2510.02250",
+        "kind": "arxiv",
+        "normalized_title": "the unreasonable effectiveness of scaling agents for computer use",
+        "official_url": "https://arxiv.org/abs/2510.02250"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2510-ScalingAgents.md",
+      "source_sha256": "3becd3b615d0f79e2850ee6ef2fd9a5cd5c211acf23c59aaae1799f9b0f587c6"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2510.11027",
+        "type": "paper"
+      },
+      "expected_post_sha256": "7f105ec380cb4ef0abd0b60b51c3d6c653b653955ffc5d47a709ebb085c43be3",
+      "identity": {
+        "arxiv_id": "2510.11027",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2510.11027",
+        "kind": "arxiv",
+        "normalized_title": "vlaser vision language action model with synergistic embodied reasoning",
+        "official_url": "https://arxiv.org/abs/2510.11027"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2510-VLASER.md",
+      "source_sha256": "12e3d20cecee9ea5057f6fc3b50a0a6c8a90d3a26a20983dcf138669b4f1e188"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2510.10274",
+        "type": "paper"
+      },
+      "expected_post_sha256": "42f612727a0097db7f4319bed27804138c14e8b2908f0baff253966ebdfd0664",
+      "identity": {
+        "arxiv_id": "2510.10274",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2510.10274",
+        "kind": "arxiv",
+        "normalized_title": "x vla soft prompted transformer as scalable cross embodiment vision language action model",
+        "official_url": "https://arxiv.org/abs/2510.10274"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2510-XVLA.md",
+      "source_sha256": "27d17b0c2c07466839a5af040165b4204c490c29b1196492e1f10292e1a61cf2"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2511.18112",
+        "type": "paper"
+      },
+      "expected_post_sha256": "cd7d3341cb27a9bef8917a6085f2715924345e3055d10b132d10ca024f36ec10",
+      "identity": {
+        "arxiv_id": "2511.18112",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2511.18112",
+        "kind": "arxiv",
+        "normalized_title": "echovla synergistic declarative memory for vla driven mobile manipulation",
+        "official_url": "https://arxiv.org/abs/2511.18112"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2511-EchoVLA.md",
+      "source_sha256": "ff747e975a4949305e67c86b9216fd5ab088a330b3c1dbd617c2b3aac60e5d84"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "review",
+      "deterministic_updates": {
+        "type": "paper"
+      },
+      "expected_post_sha256": "7f30e6a29a0277f0f1474851745d393f3824e54c8d25061c0dc4071f951bbbf4",
+      "identity": {
+        "arxiv_id": null,
+        "confidence": "review",
+        "doi": null,
+        "key": "url-title:https://generalistai.com/blog/nov-04-2025-GEN-0#gen 0 embodied foundation models that scale with physical interaction",
+        "kind": "url-title",
+        "normalized_title": "gen 0 embodied foundation models that scale with physical interaction",
+        "official_url": "https://generalistai.com/blog/nov-04-2025-GEN-0"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "url-title-identity",
+          "message": "official URL plus title requires review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2511-GEN0.md",
+      "source_sha256": "89544808f5039db05c0d9cfcebeca930f3d64a34440738377bee23535711afb0"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2511.07332",
+        "type": "paper"
+      },
+      "expected_post_sha256": "338a90df5e6d5cadcbe0add238652a73b182a0d6b647d402209357e1a0fdb965",
+      "identity": {
+        "arxiv_id": "2511.07332",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2511.07332",
+        "kind": "arxiv",
+        "normalized_title": "grounding computer use agents on human demonstrations",
+        "official_url": "https://arxiv.org/abs/2511.07332"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2511-GroundCUA.md",
+      "source_sha256": "0f6a359513f385726b6c65fcebe0a570a6932b1b1148ee07d84332ac6f17739f"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2511.16518",
+        "type": "paper"
+      },
+      "expected_post_sha256": "b8fd8fde0a8ee1eb9759c41724dc85d41c1a81f9a6bfa5a4fcdf6245cd25fdb3",
+      "identity": {
+        "arxiv_id": "2511.16518",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2511.16518",
+        "kind": "arxiv",
+        "normalized_title": "mimo embodied x embodied foundation model technical report",
+        "official_url": "https://arxiv.org/abs/2511.16518"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2511-MiMoEmbodied.md",
+      "source_sha256": "f0e1cb5bda4732d23589574a39ca7b69e75ba81df18c8381b0386312b3e570f0"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2511.00108",
+        "type": "paper"
+      },
+      "expected_post_sha256": "97f07efb3f54924f9f36ab133a413aadba2b1caa816797dd53c2149c0f358de7",
+      "identity": {
+        "arxiv_id": "2511.00108",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2511.00108",
+        "kind": "arxiv",
+        "normalized_title": "pelican vl 1 0 a foundation brain model for embodied intelligence",
+        "official_url": "https://arxiv.org/abs/2511.00108"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2511-PelicanVL.md",
+      "source_sha256": "98ef7600904484e569934a8f78be32584142dfc4990b881cf1d3ae656557eaa6"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2511.14759",
+        "type": "paper"
+      },
+      "expected_post_sha256": "942ce12da4b7919bc8dfdf3b0e00f24941d381b04394187901d11230f78cfd88",
+      "identity": {
+        "arxiv_id": "2511.14759",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2511.14759",
+        "kind": "arxiv",
+        "normalized_title": "π 0 6 a vla that learns from experience",
+        "official_url": "https://arxiv.org/abs/2511.14759"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2511-PiStar06.md",
+      "source_sha256": "5365b9d126a856debe0de95922dfcc4112f5ff8df4791fc80fef240f3dd99722"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2512.20940",
+        "type": "paper"
+      },
+      "expected_post_sha256": "0218a6cc5db06b24494339218a865e37eadd55756672c72fe39a8b3bac94efe5",
+      "identity": {
+        "arxiv_id": "2512.20940",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2512.20940",
+        "kind": "arxiv",
+        "normalized_title": "etp r1 evolving topological planning with reinforcement fine tuning for vision language navigation in continuous environments",
+        "official_url": "https://arxiv.org/abs/2512.20940"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2512-ETPR1.md",
+      "source_sha256": "5324465216a5067c2e92a44833577cfdc573c5d97034fc685a3da94c09299d61"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2512.10310",
+        "type": "paper"
+      },
+      "expected_post_sha256": "3332175d4f3b423fd9e917c550d4dee21155f420b2880ffd894c23b5588f869e",
+      "identity": {
+        "arxiv_id": "2512.10310",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2512.10310",
+        "kind": "arxiv",
+        "normalized_title": "efficient vln a training efficient vision language navigation model",
+        "official_url": "https://arxiv.org/abs/2512.10310"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2512-EfficientVLN.md",
+      "source_sha256": "c941501742c25860791ab505dcea75f3e4f40f80f508b9744beb6ccda1d831ca"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2512.24125",
+        "type": "paper"
+      },
+      "expected_post_sha256": "125bf0cff6c2c094a9c719dad93c98ee3f13a503af4f1fbf9adba0b3d1dd2df4",
+      "identity": {
+        "arxiv_id": "2512.24125",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2512.24125",
+        "kind": "arxiv",
+        "normalized_title": "unified embodied vlm reasoning with robotic action via autoregressive discretized pre training",
+        "official_url": "https://arxiv.org/abs/2512.24125"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2512-GenieReasoner.md",
+      "source_sha256": "e87f3302bd2f0e58e1b884948db66fb4c2bce8768ff92ebc39a35fa0c69da448"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2512.08580",
+        "type": "paper"
+      },
+      "expected_post_sha256": "9708d34a3465d62610de2c09c36c43c7c5f830cdcc5bea4a56197698b5cb1a1c",
+      "identity": {
+        "arxiv_id": "2512.08580",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2512.08580",
+        "kind": "arxiv",
+        "normalized_title": "mind to hand purposeful robotic control via embodied reasoning",
+        "official_url": "https://arxiv.org/abs/2512.08580"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2512-Lumo1.md",
+      "source_sha256": "5c4889c25ceee9770796791a901d08e0c2d365948c6eadb6d402866d9195a3de"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2512.13030",
+        "type": "paper"
+      },
+      "expected_post_sha256": "86083adc83c4b370a54885dff77bd0deccf79d6acd7289cad1eb5d23027d0cf8",
+      "identity": {
+        "arxiv_id": "2512.13030",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2512.13030",
+        "kind": "arxiv",
+        "normalized_title": "motus a unified latent action world model",
+        "official_url": "https://arxiv.org/abs/2512.13030"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2512-Motus.md",
+      "source_sha256": "419062856d476e5cb120014f8c58d291e1b176bb34dff1051d32423f1294c200"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2512.04601",
+        "type": "paper"
+      },
+      "expected_post_sha256": "7e430ab7b06679e5ae1ec42a1969cd30ebfd0c3bd9dd62b98aebde8e3734c144",
+      "identity": {
+        "arxiv_id": "2512.04601",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2512.04601",
+        "kind": "arxiv",
+        "normalized_title": "natural language actor critic scalable off policy learning in language space",
+        "official_url": "https://arxiv.org/abs/2512.04601"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2512-NLAC.md",
+      "source_sha256": "cd427daafc2528c409b7b3a9106f511c2911f4f4163973815f819b56278d2421"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2512.19021",
+        "type": "paper"
+      },
+      "expected_post_sha256": "9c4fbf9e43ef8d215c482391033181834b7bffcca5c4324ace35a2ce5def6b2e",
+      "identity": {
+        "arxiv_id": "2512.19021",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2512.19021",
+        "kind": "arxiv",
+        "normalized_title": "vlnverse a benchmark for vision language navigation with versatile embodied realistic simulation and evaluation",
+        "official_url": "https://arxiv.org/abs/2512.19021"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2512-VLNVerse.md",
+      "source_sha256": "03c99fa36339bc46c4a1f406751b987a557bf851d2ba92c0d8f6b84631174cd6"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2512.11047",
+        "type": "paper"
+      },
+      "expected_post_sha256": "edbe5a4eccedf787143dd205636209bef6f6b5ae912b470b115d19cc1da03fc4",
+      "identity": {
+        "arxiv_id": "2512.11047",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2512.11047",
+        "kind": "arxiv",
+        "normalized_title": "wholebodyvla towards unified latent vla for whole body loco manipulation control",
+        "official_url": "https://arxiv.org/abs/2512.11047"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2512-WholeBodyVLA.md",
+      "source_sha256": "c25d4db465edb72eaeef293bafd919b9422fe274691f2c989095a123d03f8f63"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2601.03707",
+        "type": "paper"
+      },
+      "expected_post_sha256": "a4ec9048fc92539302371e5941a3e51bc09a21a739f6a2bdf7d2b9c4c203bcb7",
+      "identity": {
+        "arxiv_id": "2601.03707",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2601.03707",
+        "kind": "arxiv",
+        "normalized_title": "airnav a large scale real world uav vision and language navigation dataset with natural and diverse instructions",
+        "official_url": "https://arxiv.org/abs/2601.03707"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2601-AirNav.md",
+      "source_sha256": "3a98f0a4ff7d4823d3e1c2a279eeabd1473626806a0ef5313c3a3856febb5281"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2601.02295",
+        "type": "paper"
+      },
+      "expected_post_sha256": "4756e55aa9a60eaf67f691838e8013ee48933930c1536ee068075e1083fcbd21",
+      "identity": {
+        "arxiv_id": "2601.02295",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2601.02295",
+        "kind": "arxiv",
+        "normalized_title": "cyclevla proactive self correcting vision language action models via subtask backtracking and minimum bayes risk decoding",
+        "official_url": "https://arxiv.org/abs/2601.02295"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2601-CycleVLA.md",
+      "source_sha256": "5fd8131cbcc29b00a452653119ab479eaa5b22c42edb3260025aa64476707924"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "review",
+      "deterministic_updates": {
+        "type": "paper"
+      },
+      "expected_post_sha256": "10b31f58e6ff3c970f6908f75ce1677be093bc88c5529e2c10434e62cb4f5fa4",
+      "identity": {
+        "arxiv_id": null,
+        "confidence": "review",
+        "doi": null,
+        "key": "url-title:https://www.figure.ai/news/helix-02#helix 02 a unified whole body loco manipulation vla",
+        "kind": "url-title",
+        "normalized_title": "helix 02 a unified whole body loco manipulation vla",
+        "official_url": "https://www.figure.ai/news/helix-02"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "url-title-identity",
+          "message": "official URL plus title requires review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2601-Helix02.md",
+      "source_sha256": "9b09a7d184cc43cdc5019edcfaa2ad7047f592a0544d570a6064ce50b9ae8e43"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2601.14352",
+        "type": "paper"
+      },
+      "expected_post_sha256": "a5c0f7bf35efb951c8d4a2d7671c89eb46e58d8aa359ba8374a8848b797bc281",
+      "identity": {
+        "arxiv_id": "2601.14352",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2601.14352",
+        "kind": "arxiv",
+        "normalized_title": "robobrain 2 5 depth in sight time in mind",
+        "official_url": "https://arxiv.org/abs/2601.14352"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2601-RoboBrain25.md",
+      "source_sha256": "c9ffa60915b9791eef5c4eb525b9565b91a88c201f0836aa8a33af308ac6eb89"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2601.06806",
+        "type": "paper"
+      },
+      "expected_post_sha256": "d462ed75b77b8c6789929e725f8cae4fdb9a8e6877e4ad596b52cb33f8f25a8a",
+      "identity": {
+        "arxiv_id": "2601.06806",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2601.06806",
+        "kind": "arxiv",
+        "normalized_title": "spatialnav leveraging spatial scene graphs for zero shot vision and language navigation",
+        "official_url": "https://arxiv.org/abs/2601.06806"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2601-SpatialNav.md",
+      "source_sha256": "15fe69464264304fbcfe696cd49f7740ed4fa903ecbab6e6df0d7a57d684d585"
+    },
+    {
+      "classification_candidates": [
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2601.21199",
+        "type": "paper"
+      },
+      "expected_post_sha256": "532068d8675b756123f1bdbd6d311fcf2cbfd621468a6fa2e56ae1d2dafdbdbb",
+      "identity": {
+        "arxiv_id": "2601.21199",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2601.21199",
+        "kind": "arxiv",
+        "normalized_title": "thinker a vision language foundation model for embodied intelligence",
+        "official_url": "https://arxiv.org/abs/2601.21199"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2601-Thinker.md",
+      "source_sha256": "d02bdb84d48902ab8517da68a3f2cc4d053b1b9424ba4a04e1c16239631dedcc"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.14974",
+        "type": "paper"
+      },
+      "expected_post_sha256": "06e46f3a3b5cf782b406d99b38f24f8b1cd6ea8947746c4fa00ec50bdc4712cf",
+      "identity": {
+        "arxiv_id": "2602.14974",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.14974",
+        "kind": "arxiv",
+        "normalized_title": "dm0 an embodied native vision language action model towards physical ai",
+        "official_url": "https://arxiv.org/abs/2602.14974"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-DM0.md",
+      "source_sha256": "6688a1a88ac6e90f2258a3bcd07d3d6e48782358032db625e0782f5e1cebb820"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.15922",
+        "type": "paper"
+      },
+      "expected_post_sha256": "c3703195a7e41835a211c0a13b45aa2d72a4927348cb5e64657cc32420378419",
+      "identity": {
+        "arxiv_id": "2602.15922",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.15922",
+        "kind": "arxiv",
+        "normalized_title": "world action models are zero shot policies",
+        "official_url": "https://arxiv.org/abs/2602.15922"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-DreamZero.md",
+      "source_sha256": "644089709f68a84388dd92c68ff208a6a29fb00304a0bea9982625354504850d"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.15400",
+        "type": "paper"
+      },
+      "expected_post_sha256": "cddb8d1ea943f551181513a5a49997b6c08b9a94d8c48f952557d5944bf04654",
+      "identity": {
+        "arxiv_id": "2602.15400",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.15400",
+        "kind": "arxiv",
+        "normalized_title": "one agent to guide them all empowering mllms for vision and language navigation via explicit world representation",
+        "official_url": "https://arxiv.org/abs/2602.15400"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-GTA.md",
+      "source_sha256": "208108d3c9fe9d8037d037885838e2ef80325105caded742e97db04f1f5257ea"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.12099",
+        "type": "paper"
+      },
+      "expected_post_sha256": "d69fb4a6408a0fa574c9d06223240df8a53a78d4c917c25ea7e5a3960921928c",
+      "identity": {
+        "arxiv_id": "2602.12099",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.12099",
+        "kind": "arxiv",
+        "normalized_title": "gigabrain 0 5m a vla that learns from world model based reinforcement learning",
+        "official_url": "https://arxiv.org/abs/2602.12099"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-GigaBrain05M.md",
+      "source_sha256": "4a901a7db9df817f672230a6b8cd78e74bfb252336258f1178cace165af8befb"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.02276",
+        "type": "paper"
+      },
+      "expected_post_sha256": "1f9f9db1ccb1dfef5b3aa6a186ff81de9ec91c6628668fb15e2c7ca5e2f77c93",
+      "identity": {
+        "arxiv_id": "2602.02276",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.02276",
+        "kind": "arxiv",
+        "normalized_title": "kimi k2 5 visual agentic intelligence",
+        "official_url": "https://arxiv.org/abs/2602.02276"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-KimiK25.md",
+      "source_sha256": "7cf41151af6867c01a6cac68c35603d55826bed78b39d463bff9c5fb777cec89"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.12215",
+        "type": "paper"
+      },
+      "expected_post_sha256": "869259317aa2c13b1551952df468ff23ff54dc6600ee5b50675cef8ee116f2e6",
+      "identity": {
+        "arxiv_id": "2602.12215",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.12215",
+        "kind": "arxiv",
+        "normalized_title": "lda 1b scaling latent dynamics action model via universal embodied data ingestion",
+        "official_url": "https://arxiv.org/abs/2602.12215"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-LDA1B.md",
+      "source_sha256": "d3429a1a23c08d0b4c9002518d32c8ca886a3b34c7c275dcc204cc92b905f323"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.09973",
+        "type": "paper"
+      },
+      "expected_post_sha256": "eb260b68721312ba0663322b8f92421c00c2cb796dbdd035859d069627bd2d2b",
+      "identity": {
+        "arxiv_id": "2602.09973",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.09973",
+        "kind": "arxiv",
+        "normalized_title": "robointer a holistic intermediate representation suite towards robotic manipulation",
+        "official_url": "https://arxiv.org/abs/2602.09973"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-RoboInter.md",
+      "source_sha256": "e1068cfeb5c98a9b5a98f6ba82ad2773ab47fb879a92404ddcdb321729696530"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.14979",
+        "type": "paper"
+      },
+      "expected_post_sha256": "a5062e53a73f525859a6e0633aa7c3611f47cb18563c91ea12bdb77f6e76951d",
+      "identity": {
+        "arxiv_id": "2602.14979",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.14979",
+        "kind": "arxiv",
+        "normalized_title": "rynnbrain open embodied foundation models",
+        "official_url": "https://arxiv.org/abs/2602.14979"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-RynnBrain.md",
+      "source_sha256": "0e804258f8a91c7cda9df688e83f0d0ab6b4e5a495b5eacc65cefa234100c0da"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.08537",
+        "type": "paper"
+      },
+      "expected_post_sha256": "e232c0e79052663484083dc98d3503e7ad32b4e6b5d96539a4c7ad328e794a85",
+      "identity": {
+        "arxiv_id": "2602.08537",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.08537",
+        "kind": "arxiv",
+        "normalized_title": "uniplan vision language task planning for mobile manipulation with unified pddl formulation",
+        "official_url": "https://arxiv.org/abs/2602.08537"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-UniPlan.md",
+      "source_sha256": "f80383f432f9772a0ba98155a3fba3c68ca11be77e82332c513ea23ed3c159ad"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.06508",
+        "type": "paper"
+      },
+      "expected_post_sha256": "913d92804fc5034916e93f2006255aa4ec3c89b39a90485f883d5994c4708123",
+      "identity": {
+        "arxiv_id": "2602.06508",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.06508",
+        "kind": "arxiv",
+        "normalized_title": "world vla loop closed loop learning of video world model and vla policy",
+        "official_url": "https://arxiv.org/abs/2602.06508"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-WorldVLALoop.md",
+      "source_sha256": "88c09108528a8d86812691fcae9b0ac1220c895ef2fbe9807e501fcd4724810f"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2602.12684",
+        "type": "paper"
+      },
+      "expected_post_sha256": "39d5b626d5fcf4d07f788d75df4a2816b1a0b433922de1fb9525a4efed7585b8",
+      "identity": {
+        "arxiv_id": "2602.12684",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2602.12684",
+        "kind": "arxiv",
+        "normalized_title": "xiaomi robotics 0 an open sourced vision language action model with real time execution",
+        "official_url": "https://arxiv.org/abs/2602.12684"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2602-XiaomiRobotics0.md",
+      "source_sha256": "27bd00c95f17bd1e4910bcdc1cb295a9d1af72aee7b42ce3592c742aa013deff"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2603.03198",
+        "type": "paper"
+      },
+      "expected_post_sha256": "7700ba106422c342106d9a7fb53799e3296ae4d599512dfa35d3bf9686b3c99e",
+      "identity": {
+        "arxiv_id": "2603.03198",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2603.03198",
+        "kind": "arxiv",
+        "normalized_title": "ace brain 0 spatial intelligence as a shared scaffold for universal embodiments",
+        "official_url": "https://arxiv.org/abs/2603.03198"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2603-ACEBrain0.md",
+      "source_sha256": "c00d1813b59df6a14a38224fdddd6097f1fa447654341817f5a5a60a2394e5f1"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2603.00926",
+        "type": "paper"
+      },
+      "expected_post_sha256": "997bdfcda1b90afcebac1d834e73ce6190295b0142bc93f253be984c815ff044",
+      "identity": {
+        "arxiv_id": "2603.00926",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2603.00926",
+        "kind": "arxiv",
+        "normalized_title": "dam vla a dynamic action model based vision language action framework for robot manipulation",
+        "official_url": "https://arxiv.org/abs/2603.00926"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2603-DAMVLA.md",
+      "source_sha256": "aecab9e2661cf467850392302cead2cc604e8f36e9f9234230de2ac71b05ec75"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2603.21269",
+        "type": "paper"
+      },
+      "expected_post_sha256": "d218c0b1efdd8f56c59e2cf4732ccb1aa17ab293a77c6359f32abb7f27a4965b",
+      "identity": {
+        "arxiv_id": "2603.21269",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2603.21269",
+        "kind": "arxiv",
+        "normalized_title": "dygeovln infusing dynamic geometry foundation model into vision language navigation",
+        "official_url": "https://arxiv.org/abs/2603.21269"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2603-DyGeoVLN.md",
+      "source_sha256": "c8407750940b3d90dc23eec15f6dfcd4ba9c724217a1de9dbbee716cd59c25c4"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2603.08127",
+        "type": "paper"
+      },
+      "expected_post_sha256": "22315298999610ca65dfcd1d2294e562cb60619250f6bd4ea5d43dc61096364d",
+      "identity": {
+        "arxiv_id": "2603.08127",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2603.08127",
+        "kind": "arxiv",
+        "normalized_title": "evoscientist towards multi agent evolving ai scientists for end to end scientific discovery",
+        "official_url": "https://arxiv.org/abs/2603.08127"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2603-EvoScientist.md",
+      "source_sha256": "6098b598539331ca04bcdb0f451cc6fbfce25065662aeee05af05282b9cf18ce"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2603.07660",
+        "type": "paper"
+      },
+      "expected_post_sha256": "608466ac214db0d242b0b7024a51d1ccac746eebb3b2599544dcf8de71855585",
+      "identity": {
+        "arxiv_id": "2603.07660",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2603.07660",
+        "kind": "arxiv",
+        "normalized_title": "holi spatial evolving video streams into holistic 3d spatial intelligence",
+        "official_url": "https://arxiv.org/abs/2603.07660"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2603-HoliSpatial.md",
+      "source_sha256": "73cd8006db279df2728480bfd7bd4454bc543b288daf9f454967af1fb2e9bad9"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2603.03596",
+        "type": "paper"
+      },
+      "expected_post_sha256": "6b97c246db41f11776ff2a07fbbfa28489a81d934683cbffb94adbec9626d552",
+      "identity": {
+        "arxiv_id": "2603.03596",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2603.03596",
+        "kind": "arxiv",
+        "normalized_title": "mem multi scale embodied memory for vision language action models",
+        "official_url": "https://arxiv.org/abs/2603.03596v1"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2603-MEM.md",
+      "source_sha256": "0703e44aad4a5aba36176ec04fc4cf414aa6d96fa851504503b095ba46b5e2ba"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2603.03739",
+        "type": "paper"
+      },
+      "expected_post_sha256": "7324bc379996cd5e351a1d0198ce229171351822548d7bcd0a81163dd89cd173",
+      "identity": {
+        "arxiv_id": "2603.03739",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2603.03739",
+        "kind": "arxiv",
+        "normalized_title": "prospect unified streaming vision language navigation via semantic spatial fusion and latent predictive representation",
+        "official_url": "https://arxiv.org/abs/2603.03739"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2603-PROSPECT.md",
+      "source_sha256": "a28457abd7ed245c01b9dfad7eab269dae31ed78e2bd85d78f12be407f80d10c"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.13074",
+        "type": "paper"
+      },
+      "expected_post_sha256": "11373d8d9135776ad6b2ef9e0475d685b4f29ea5462731b174b316234af492d6",
+      "identity": {
+        "arxiv_id": "2604.13074",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.13074",
+        "kind": "arxiv",
+        "normalized_title": "personavlm long term personalized multimodal llms",
+        "official_url": "https://arxiv.org/abs/2604.13074"
+      },
+      "issues": [
+        {
+          "code": "filename-identity-mismatch",
+          "message": "filename prefix 2603 differs from arXiv prefix 2604",
+          "severity": "review"
+        },
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2603-PersonaVLM.md",
+      "source_sha256": "52bd845a074e69cf73fdb9b597e9426666b050d26c6a5254376bfaf81c02f2de"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2603.11558",
+        "type": "paper"
+      },
+      "expected_post_sha256": "9be1854fd38f32d83f2e34006a9dce4e70823c76706d15f568a93a35dfbe59f5",
+      "identity": {
+        "arxiv_id": "2603.11558",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2603.11558",
+        "kind": "arxiv",
+        "normalized_title": "roboclaw an agentic framework for scalable long horizon robotic tasks",
+        "official_url": "https://arxiv.org/abs/2603.11558"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2603-RoboClaw.md",
+      "source_sha256": "05cc42b04a2201a77ff3635f9379bfe7f1c7d715e28e2f074a53cc8ce7d4249b"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2603.22760",
+        "type": "paper"
+      },
+      "expected_post_sha256": "d0b91dec28dcb497d61e2d31fc57c4dee9131762066b46c638f4929ffdcc717c",
+      "identity": {
+        "arxiv_id": "2603.22760",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2603.22760",
+        "kind": "arxiv",
+        "normalized_title": "sg vla learning spatially grounded vision language action models for mobile manipulation",
+        "official_url": "https://arxiv.org/abs/2603.22760"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2603-SGVLA.md",
+      "source_sha256": "faaa284d0bd863b41f930a98884b2b26dca7a8806a07b2ae31199709dbb9bc3d"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.05672",
+        "type": "paper"
+      },
+      "expected_post_sha256": "f6b0ba8a0fbf076de75964ecdfa92389295c0e116deffbd80dbe5bf863f08dbb",
+      "identity": {
+        "arxiv_id": "2604.05672",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.05672",
+        "kind": "arxiv",
+        "normalized_title": "a1 a fully transparent open source adaptive and efficient truncated vision language action model",
+        "official_url": "https://arxiv.org/abs/2604.05672"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-A1VLA.md",
+      "source_sha256": "0f7d543ed89bbd394af3fa8ebb26e98842fa17d093a24ff8eeaa3c1232b4c2d1"
+    },
+    {
+      "classification_candidates": [
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.04184",
+        "type": "paper"
+      },
+      "expected_post_sha256": "9337a1875066c035739e29243cc8dbe37f04a46bdf7e47e70ab6ba36420f68fa",
+      "identity": {
+        "arxiv_id": "2604.04184",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.04184",
+        "kind": "arxiv",
+        "normalized_title": "aura always on understanding and real time assistance via video streams",
+        "official_url": "https://arxiv.org/abs/2604.04184"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-AURA.md",
+      "source_sha256": "dcaa7e7172c420b0074aa2092d0283e6d0baf4fecac69d641cdbea976664b68f"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.05831",
+        "type": "paper"
+      },
+      "expected_post_sha256": "e5326aa39990a4aee0d72e6f674aa591ad872ee2c6b94fb2be4d6750df80a44e",
+      "identity": {
+        "arxiv_id": "2604.05831",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.05831",
+        "kind": "arxiv",
+        "normalized_title": "bicoord a bimanual manipulation benchmark towards long horizon spatial temporal coordination",
+        "official_url": "https://arxiv.org/abs/2604.05831"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-BiCoord.md",
+      "source_sha256": "70dd076104c1bae82047f457bd4d43c94dcdc2991fa5376bd0f07c8daca8c91b"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.06132",
+        "type": "paper"
+      },
+      "expected_post_sha256": "17c70fd629e6795f1583d53875b9fc9d2b3e53b580ed1290774621359a5d6920",
+      "identity": {
+        "arxiv_id": "2604.06132",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.06132",
+        "kind": "arxiv",
+        "normalized_title": "claw eval toward trustworthy evaluation of autonomous agents",
+        "official_url": "https://arxiv.org/abs/2604.06132"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-ClawEval.md",
+      "source_sha256": "ef3c0f8601e37a30ff4b3e288adc25efc1a55aae27dae39113a00a37adcbc7ef"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.11784",
+        "type": "paper"
+      },
+      "expected_post_sha256": "900c98d4504a6a3f8d01d38e98800c889322681677e45276be7dc8d584937043",
+      "identity": {
+        "arxiv_id": "2604.11784",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.11784",
+        "kind": "arxiv",
+        "normalized_title": "clawgui a unified framework for training evaluating and deploying gui agents",
+        "official_url": "https://arxiv.org/abs/2604.11784"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-ClawGUI.md",
+      "source_sha256": "5dbac3ea7bd8140c4f5c190e06c5a24b708d12b03a945032b5550fd6869add4a"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.16060",
+        "type": "paper"
+      },
+      "expected_post_sha256": "af9540ef5329dc9721ad7e05679d9aa87c6fb1b9a75e65d4e51db8fee4d93347",
+      "identity": {
+        "arxiv_id": "2604.16060",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.16060",
+        "kind": "arxiv",
+        "normalized_title": "chain of thought degrades visual spatial reasoning capabilities of multimodal llms",
+        "official_url": "https://arxiv.org/abs/2604.16060"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-CoTDegradesSpatial.md",
+      "source_sha256": "9972be1da296083b705e89febfbc3c6b2bdf1527ef0a86aaae47e21017f642f3"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.05595",
+        "type": "paper"
+      },
+      "expected_post_sha256": "38397011eed9ec20e11c7f866bed7896abf180695352a983648152b503331b52",
+      "identity": {
+        "arxiv_id": "2604.05595",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.05595",
+        "kind": "arxiv",
+        "normalized_title": "uncovering linguistic fragility in vision language action models via diversity aware red teaming",
+        "official_url": "https://arxiv.org/abs/2604.05595"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-DAERT.md",
+      "source_sha256": "36d759379149dc84e037350177fd925d701e2c252cb862ae8375388dff2c965e"
+    },
+    {
+      "classification_candidates": [],
+      "confidence": "review",
+      "deterministic_updates": {
+        "type": "paper"
+      },
+      "expected_post_sha256": "5fe1961a1cbd17e0a3ca24b189af899516f67465a364562578a9febf2ae66fe7",
+      "identity": {
+        "arxiv_id": null,
+        "confidence": "review",
+        "doi": null,
+        "key": "url-title:https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf#deepseek v4 towards highly efficient million token context intelligence",
+        "kind": "url-title",
+        "normalized_title": "deepseek v4 towards highly efficient million token context intelligence",
+        "official_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "no-domain-candidate",
+          "message": "classification requires review; candidates=[]",
+          "severity": "review"
+        },
+        {
+          "code": "url-title-identity",
+          "message": "official URL plus title requires review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-DeepSeekV4.md",
+      "source_sha256": "1aa66ee0cdc1a07d6684ab9b999e466fe30ce33c5a71a5213bf20aae32a1ed4a"
+    },
+    {
+      "classification_candidates": [
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.16256",
+        "type": "paper"
+      },
+      "expected_post_sha256": "2cb6db200f0de9cf54f92c8952cc0cb6fa06fd31215fb7836ee1047bbfdd731b",
+      "identity": {
+        "arxiv_id": "2604.16256",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.16256",
+        "kind": "arxiv",
+        "normalized_title": "do vision language models truly perform vision reasoning a rigorous study of the modality gap",
+        "official_url": "https://arxiv.org/abs/2604.16256"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-DoVLMsTrulyReason.md",
+      "source_sha256": "45c9de01e0d8c2ab0836aec9b39ea5440daff7c7d3ae6eb4a5196891c62b8d78"
+    },
+    {
+      "classification_candidates": [
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.06832",
+        "type": "paper"
+      },
+      "expected_post_sha256": "7c2166b4c0db2225127440615857d393f7d8b8f347c1118e60162e4e42ddb35b",
+      "identity": {
+        "arxiv_id": "2604.06832",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.06832",
+        "kind": "arxiv",
+        "normalized_title": "fast dvlm efficient block diffusion vlm via direct conversion from autoregressive vlm",
+        "official_url": "https://arxiv.org/abs/2604.06832"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-FastdVLM.md",
+      "source_sha256": "76d684b01f5f7b5198cb6536c22062ad3243d251ee13a855ff8b0e9cbf6d2d1c"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "review",
+      "deterministic_updates": {
+        "type": "paper"
+      },
+      "expected_post_sha256": "766e57ca7449afe52a68397a65069aa526b246afcbba249ad6222119d70fe9f4",
+      "identity": {
+        "arxiv_id": null,
+        "confidence": "review",
+        "doi": null,
+        "key": "url-title:https://generalistai.com/blog/apr-02-2026-GEN-1#gen 1 scaling embodied foundation models to mastery",
+        "kind": "url-title",
+        "normalized_title": "gen 1 scaling embodied foundation models to mastery",
+        "official_url": "https://generalistai.com/blog/apr-02-2026-GEN-1"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "url-title-identity",
+          "message": "official URL plus title requires review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-GEN1.md",
+      "source_sha256": "86c676fd6ec5d87761c83ef81963b92f7dd4faf1f0f14cf9171c276e182477dd"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "review",
+      "deterministic_updates": {
+        "type": "paper"
+      },
+      "expected_post_sha256": "ba8e03bf7e5bdddb2724c9b56d1a8b60d68addd3fb1190e2425d1fa87391ecfb",
+      "identity": {
+        "arxiv_id": null,
+        "confidence": "review",
+        "doi": null,
+        "key": "url-title:https://deepmind.google/blog/gemini-robotics-er-1-6#gemini robotics er 1 6 enhanced embodied reasoning",
+        "kind": "url-title",
+        "normalized_title": "gemini robotics er 1 6 enhanced embodied reasoning",
+        "official_url": "https://deepmind.google/blog/gemini-robotics-er-1-6"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        },
+        {
+          "code": "url-title-identity",
+          "message": "official URL plus title requires review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-GeminiRoboticsER16.md",
+      "source_sha256": "7bd5c5e9adc2a172044f6d5d36893b342cdca147b1dd95ef4273cd65d7f4e598"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.02329",
+        "type": "paper"
+      },
+      "expected_post_sha256": "426efe8a4e82d5bf21d08ea83c2ebafa3d5d6d32fa1b2f331f59df1ee6eae9f6",
+      "identity": {
+        "arxiv_id": "2604.02329",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.02329",
+        "kind": "arxiv",
+        "normalized_title": "generative world renderer",
+        "official_url": "https://arxiv.org/abs/2604.02329"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-GenWorldRenderer.md",
+      "source_sha256": "f7ebf63cbf07030bdcdf1311f84656fc09f435ff455143ab71ae29b610ed8d71"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.07430",
+        "type": "paper"
+      },
+      "expected_post_sha256": "215c28118126962da9b116de02ededd98d7755db081202af5a6fbe065b610b37",
+      "identity": {
+        "arxiv_id": "2604.07430",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.07430",
+        "kind": "arxiv",
+        "normalized_title": "hy embodied 0 5 embodied foundation models for real world agents",
+        "official_url": "https://arxiv.org/abs/2604.07430"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-HYEmbodied.md",
+      "source_sha256": "dcd7df5023dbb24893660ab6822a2c50990bfa51921d4b80ab8a350f4b3f57cd"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.14268",
+        "type": "paper"
+      },
+      "expected_post_sha256": "a06803569509101983f5525d8070d6da83260e6a5b41053ea1bb018c172f1fad",
+      "identity": {
+        "arxiv_id": "2604.14268",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.14268",
+        "kind": "arxiv",
+        "normalized_title": "hy world 2 0 a multi modal world model for reconstructing generating and simulating 3d worlds",
+        "official_url": "https://arxiv.org/abs/2604.14268"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-HYWorld2.md",
+      "source_sha256": "bb91c671a1ff6be4a5acbffdc775809bdfda53a8fd9861258c535bc44e68f25d"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.07034",
+        "type": "paper"
+      },
+      "expected_post_sha256": "b93a0759e8a355ff09943bdfd78a42220e5f5cccdee18a26878d3d96205b2136",
+      "identity": {
+        "arxiv_id": "2604.07034",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.07034",
+        "kind": "arxiv",
+        "normalized_title": "kite keyframe indexed tokenized evidence for vlm based robot failure analysis",
+        "official_url": "https://arxiv.org/abs/2604.07034"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-KITE.md",
+      "source_sha256": "e80cce7866dad9da0ae6ea8a7a55c2723ae6eb3a5f5f15f889730bb9e2e69346"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.07296",
+        "type": "paper"
+      },
+      "expected_post_sha256": "e9c237cbcdabfb2329c8eff461a8ff08a3db86f41321cb2dfcfaa92859ae64ad",
+      "identity": {
+        "arxiv_id": "2604.07296",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.07296",
+        "kind": "arxiv",
+        "normalized_title": "openspatial a principled data engine for empowering spatial intelligence",
+        "official_url": "https://arxiv.org/abs/2604.07296"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-OpenSpatial.md",
+      "source_sha256": "f1128f5e7e8662de028c97c75851fa02c240adea65c0c8bc428e95ec35f34ea3"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.04707",
+        "type": "paper"
+      },
+      "expected_post_sha256": "d1fc8dab55937b726742e59820425b6ae6c2d85c707d82f5e0c467b1acf12ddf",
+      "identity": {
+        "arxiv_id": "2604.04707",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.04707",
+        "kind": "arxiv",
+        "normalized_title": "openworldlib a unified codebase and definition of advanced world models",
+        "official_url": "https://arxiv.org/abs/2604.04707"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "shared-first",
+          "message": "classification requires review; candidates=['embodied-ai']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-OpenWorldLib.md",
+      "source_sha256": "62371a1c16cc2639fd2b563c328c7ad8a50dbc29853ceeeed7df002daefab90d"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "review",
+      "deterministic_updates": {
+        "type": "paper"
+      },
+      "expected_post_sha256": "e0455675263044b9b71b3c5629d440ed28b2fef198a4aff405ecad7bcb670c6c",
+      "identity": {
+        "arxiv_id": null,
+        "confidence": "review",
+        "doi": null,
+        "key": "url-title:https://www.pi.website/download/pi07.pdf#π0 7 a steerable generalist robotic foundation model with emergent capabilities",
+        "kind": "url-title",
+        "normalized_title": "π0 7 a steerable generalist robotic foundation model with emergent capabilities",
+        "official_url": "https://www.pi.website/download/pi07.pdf"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "url-title-identity",
+          "message": "official URL plus title requires review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-Pi07.md",
+      "source_sha256": "b960c4df2b018723a98afd59d2c7f54021dd93b7e1f79482c96f36801cd51221"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.06268",
+        "type": "paper"
+      },
+      "expected_post_sha256": "3c3142769cb9cc66201d9c8d27dd5bd0acfabd479fc8abb135000ce717043089",
+      "identity": {
+        "arxiv_id": "2604.06268",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.06268",
+        "kind": "arxiv",
+        "normalized_title": "ragen 2 reasoning collapse in agentic rl",
+        "official_url": "https://arxiv.org/abs/2604.06268"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-RAGEN2.md",
+      "source_sha256": "8515bbc36197c42575a9991c54c8148b3093f274a15cff0726d2fbee16c3572c"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.05544",
+        "type": "paper"
+      },
+      "expected_post_sha256": "f237b36418cd0d32f94b3bffd60491d715c5da8d08c885cb224b74237b359438",
+      "identity": {
+        "arxiv_id": "2604.05544",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.05544",
+        "kind": "arxiv",
+        "normalized_title": "referring aware visuomotor policy learning for closed loop manipulation",
+        "official_url": "https://arxiv.org/abs/2604.05544"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-ReV.md",
+      "source_sha256": "676649d1706fa19b94d93d9c468cc463eb6a250d1199c9b523df639c8e46c22f"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.02268",
+        "type": "paper"
+      },
+      "expected_post_sha256": "5760e85c0ef57980c8b3ca17b702b9e429349870ea2ccdff2f722b2940f1a84d",
+      "identity": {
+        "arxiv_id": "2604.02268",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.02268",
+        "kind": "arxiv",
+        "normalized_title": "skill0 in context agentic reinforcement learning for skill internalization",
+        "official_url": "https://arxiv.org/abs/2604.02268"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-Skill0.md",
+      "source_sha256": "0b5518ab91c2f1147c54cf960388e4187e93fab629f15b79f0606d44790799c3"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.08377",
+        "type": "paper"
+      },
+      "expected_post_sha256": "84faa78070506673af3c3e4c13191f439d59f55151dc0d6b765d93ad106d6f5b",
+      "identity": {
+        "arxiv_id": "2604.08377",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.08377",
+        "kind": "arxiv",
+        "normalized_title": "skillclaw let skills evolve collectively with agentic evolver",
+        "official_url": "https://arxiv.org/abs/2604.08377"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-SkillClaw.md",
+      "source_sha256": "a0dd3bc81f1ba89301f731b58bba5ef9494591031436d166f8208e8de49c526f"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.05656",
+        "type": "paper"
+      },
+      "expected_post_sha256": "ba6169d14687403b37cf5895e7cd80b86cb7927d5366aad1add94e6cb9e0beac",
+      "identity": {
+        "arxiv_id": "2604.05656",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.05656",
+        "kind": "arxiv",
+        "normalized_title": "snapflow one step action generation for flow matching vlas via progressive self distillation",
+        "official_url": "https://arxiv.org/abs/2604.05656"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-SnapFlow.md",
+      "source_sha256": "c97838fab32877dd11df37bf183075740c0a0007f0b7dcdeccb76678de8b4ec9"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "embodied-ai",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.14144",
+        "type": "paper"
+      },
+      "expected_post_sha256": "6cbd8b47363966e3376e4f3dd9e356ddc35dd5a435740ff046e961bdfe6cd827",
+      "identity": {
+        "arxiv_id": "2604.14144",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.14144",
+        "kind": "arxiv",
+        "normalized_title": "spatialevo self evolving spatial intelligence via deterministic geometric environments",
+        "official_url": "https://arxiv.org/abs/2604.14144"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'embodied-ai', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-SpatialEvo.md",
+      "source_sha256": "04bfdf366915ba8b51277751b5d016c27b167aab3e392b0c10f8481758e77d96"
+    },
+    {
+      "classification_candidates": [
+        "ai-agent",
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.05117",
+        "type": "paper"
+      },
+      "expected_post_sha256": "be03bcef41f6827339149871fe9d822eb322b2a56ae0fa64f1937b81b0eda4a2",
+      "identity": {
+        "arxiv_id": "2604.05117",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.05117",
+        "kind": "arxiv",
+        "normalized_title": "watch before you answer learning from visually grounded post training",
+        "official_url": "https://arxiv.org/abs/2604.05117"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        },
+        {
+          "code": "multi-domain-candidate",
+          "message": "classification requires review; candidates=['ai-agent', 'multimodal-understanding']",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-VidGround.md",
+      "source_sha256": "aa487fe009ffbd9c7531ca2d72c4ecd7acde3d9fba2cff9073172392706bc5e4"
+    },
+    {
+      "classification_candidates": [
+        "multimodal-understanding"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2604.05015",
+        "type": "paper"
+      },
+      "expected_post_sha256": "c7becbb65c4a0bce5802af01b92427a96f8a9f84d2fa6c518805b24179ceab9b",
+      "identity": {
+        "arxiv_id": "2604.05015",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2604.05015",
+        "kind": "arxiv",
+        "normalized_title": "video mme v2 towards the next stage in benchmarks for comprehensive video understanding",
+        "official_url": "https://arxiv.org/abs/2604.05015"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2604-VideoMMEv2.md",
+      "source_sha256": "81a4f81af27226d58fe30fd3a68de20de7c9b58ba5aacad5f83c241e53038afb"
+    },
+    {
+      "classification_candidates": [
+        "embodied-ai"
+      ],
+      "confidence": "high",
+      "deterministic_updates": {
+        "arxiv_id": "2605.02881",
+        "type": "paper"
+      },
+      "expected_post_sha256": "ce44c5edc85590e4cd78e2de2286cf54045385271406f36b6e1f88c331a5fe4d",
+      "identity": {
+        "arxiv_id": "2605.02881",
+        "confidence": "high",
+        "doi": null,
+        "key": "arxiv:2605.02881",
+        "kind": "arxiv",
+        "normalized_title": "molmoact2 action reasoning models for real world deployment",
+        "official_url": "https://arxiv.org/abs/2605.02881"
+      },
+      "issues": [
+        {
+          "code": "missing-classification",
+          "message": "primary_domain and domains require review",
+          "severity": "review"
+        }
+      ],
+      "path": "Papers/2605-MolmoAct2.md",
+      "source_sha256": "84260fa308ea1d6e9ca0314ebc0d7de4b5aba9703eda8af8c877cfa5b2eeb7ad"
+    }
+  ],
+  "manifest_version": 1,
+  "summary": {
+    "arxiv_identity": 175,
+    "duplicate_identity_groups": 0,
+    "errors": 0,
+    "needs_review": 182,
+    "total": 182,
+    "url_title_review": 7
+  }
+}
