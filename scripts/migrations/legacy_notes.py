@@ -58,6 +58,7 @@ ARXIV_RE = re.compile(
 )
 DOI_RE = re.compile(r"(?:doi\.org/|doi:\s*)(10\.\d{4,9}/[^\s)\]}>,]+)", re.IGNORECASE)
 URL_RE = re.compile(r"https?://[^\s)\]}>,]+", re.IGNORECASE)
+EMBED_RE = re.compile(r"!\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]")
 
 
 def _sha256(raw: bytes) -> str:
@@ -122,6 +123,12 @@ class ApprovalReceipt:
         ).encode("utf-8")
 
 
+@dataclass(frozen=True)
+class AssetResult:
+    destination_name: str
+    reuse_existing: bool
+
+
 def _git(source: Path, *args: str) -> str:
     result = subprocess.run(
         ["git", "-C", str(source), *args],
@@ -167,11 +174,55 @@ def _iter_included_files(source: Path) -> tuple[Path, ...]:
     return tuple(sorted(paths, key=lambda path: path.relative_to(source).as_posix()))
 
 
+def _resolve_source_asset(source: Path, note: Path, reference: str) -> Path | None:
+    reference_path = Path(reference)
+    if reference_path.suffix.lower() in {"", ".md"} or reference_path.is_absolute():
+        return None
+    candidates = (
+        (source / reference_path,)
+        if reference.startswith("PaperNotes/")
+        else (note.parent / reference_path, source / reference_path)
+    )
+    for candidate in candidates:
+        resolved = candidate.resolve()
+        try:
+            resolved.relative_to(source)
+        except ValueError:
+            continue
+        if resolved.is_file():
+            return resolved
+    matches = [path.resolve() for path in source.rglob(reference_path.name) if path.is_file()]
+    return matches[0] if len(matches) == 1 else None
+
+
+def _raw_asset_references(
+    source: Path, note: Path
+) -> tuple[tuple[str, Path | None], ...]:
+    text = note.read_text(encoding="utf-8", errors="replace")
+    return tuple(
+        (reference, _resolve_source_asset(source, note, reference))
+        for reference in dict.fromkeys(EMBED_RE.findall(text))
+        if not reference.casefold().startswith(("http://", "https://"))
+        and Path(reference).suffix.lower() not in {"", ".md"}
+    )
+
+
+def _snapshot_files(source: Path) -> tuple[Path, ...]:
+    files = set(_iter_included_files(source))
+    for note in tuple(files):
+        if note.suffix.lower() != ".md":
+            continue
+        for _, asset in _raw_asset_references(source, note):
+            if asset is not None:
+                files.add(asset)
+    return tuple(sorted(files, key=lambda path: path.relative_to(source).as_posix()))
+
+
 def snapshot_source(source: Path) -> SourceSnapshot:
     source = source.resolve()
     files = tuple(
         (path.relative_to(source).as_posix(), _sha256(path.read_bytes()))
-        for path in _iter_included_files(source)
+        for path in _snapshot_files(source)
     )
     status = tuple(
         sorted(line for line in _git(source, "status", "--short").splitlines() if line)
@@ -335,24 +386,69 @@ def _route_auxiliary(relative: Path) -> tuple[str, str]:
 
 
 def _link_rewrites(
-    path: Path, legacy_destinations: Mapping[str, str]
+    path: Path,
+    legacy_destinations: Mapping[str, str],
+    asset_rewrites: Sequence[tuple[str, str]] = (),
 ) -> tuple[tuple[str, str], ...]:
     text = path.read_text(encoding="utf-8", errors="replace")
-    rewrites = [
+    rewrites = list(asset_rewrites)
+    rewrites.extend(
         (old, new)
         for old, new in sorted(legacy_destinations.items())
         if old in text
-    ]
+    )
     unresolved_pattern = re.compile(
         r"\[\[(PaperNotes/[^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]"
     )
     for match in unresolved_pattern.finditer(text):
         old_path = match.group(1)
-        if old_path in legacy_destinations:
+        if old_path in legacy_destinations or any(
+            old_path == old for old, _ in asset_rewrites
+        ):
             continue
         readable = match.group(2) or Path(old_path).name
         rewrites.append((match.group(0), readable))
     return tuple(sorted(set(rewrites)))
+
+
+def _asset_folder(destination: str) -> str:
+    path = Path(destination)
+    stem = re.sub(r"^\d{4}-", "", path.stem)
+    if path.parts[0] == "Papers":
+        return f"Papers/assets/{stem}"
+    if path.parts[0] == "Topics":
+        return f"Topics/assets/{stem}"
+    raise ValueError(f"assets are unsupported for destination: {destination}")
+
+
+def _plan_item_assets(
+    source: Path,
+    target: Path,
+    note: Path,
+    destination: str | None,
+) -> tuple[tuple[str, ...], tuple[tuple[str, str], ...], tuple[str, ...]]:
+    if destination is None or not destination.startswith(("Papers/", "Topics/")):
+        return (), (), ()
+    references: list[str] = []
+    rewrites: list[tuple[str, str]] = []
+    missing: list[str] = []
+    for old_reference, asset in _raw_asset_references(source, note):
+        if asset is None:
+            missing.append(old_reference)
+            continue
+        raw = asset.read_bytes()
+        original_destination = f"{_asset_folder(destination)}/{asset.name}"
+        existing_path = target / original_destination
+        existing = existing_path.read_bytes() if existing_path.is_file() else None
+        result = plan_asset_copy(asset.name, raw, existing=existing)
+        destination_reference = f"{_asset_folder(destination)}/{result.destination_name}"
+        references.append(asset.relative_to(source).as_posix())
+        rewrites.append((old_reference, destination_reference))
+    return (
+        tuple(sorted(set(references))),
+        tuple(sorted(set(rewrites))),
+        tuple(sorted(set(missing))),
+    )
 
 
 def build_manifest(source: Path, target: Path) -> MigrationManifest:
@@ -401,6 +497,9 @@ def build_manifest(source: Path, target: Path) -> MigrationManifest:
             "normalized_title": "",
         }
         duplicate_group = None
+        referenced_assets: tuple[str, ...] = ()
+        asset_rewrites: tuple[tuple[str, str], ...] = ()
+        missing_assets: tuple[str, ...] = ()
         if relative.parts[0] != "PaperNotes":
             decision, destination = _route_auxiliary(relative)
             is_history = relative.as_posix() == "DailyPapers/.history.json"
@@ -454,6 +553,35 @@ def build_manifest(source: Path, target: Path) -> MigrationManifest:
                 else:
                     status = "ready"
                     reason = "old-only paper candidate"
+        if decision in {"import-paper", "import-topic"}:
+            referenced_assets, asset_rewrites, missing_assets = _plan_item_assets(
+                source, target, path, destination
+            )
+            if missing_assets:
+                status = "blocked"
+                reason = "missing referenced assets: " + ", ".join(missing_assets)
+        link_rewrites = _link_rewrites(path, legacy_destinations, asset_rewrites)
+        if relative.parts[0] != "PaperNotes" and destination is not None:
+            destination_path = target / destination
+            if destination_path.is_file():
+                source_raw = path.read_bytes()
+                if relative.as_posix() == "DailyPapers/.history.json":
+                    source_history = json.loads(source_raw)
+                    target_history = json.loads(destination_path.read_bytes())
+                    expected = (
+                        json.dumps(
+                            merge_history(source_history, target_history),
+                            sort_keys=True,
+                            ensure_ascii=False,
+                            indent=2,
+                        )
+                        + "\n"
+                    ).encode("utf-8")
+                else:
+                    expected = _apply_rewrites(source_raw, link_rewrites)
+                if destination_path.read_bytes() == expected:
+                    status = "applied"
+                    reason = "target matches deterministic migration output"
         items.append(
             MigrationItem(
                 source_path=source_path,
@@ -466,8 +594,8 @@ def build_manifest(source: Path, target: Path) -> MigrationManifest:
                 decision=decision,
                 destination_path=destination,
                 duplicate_group=duplicate_group,
-                referenced_assets=(),
-                link_rewrites=_link_rewrites(path, legacy_destinations),
+                referenced_assets=referenced_assets,
+                link_rewrites=link_rewrites,
                 status=status,
                 reason=reason,
             )
@@ -690,6 +818,97 @@ def _apply_rewrites(raw: bytes, rewrites: Sequence[tuple[str, str]]) -> bytes:
     return raw
 
 
+def plan_asset_copy(
+    name: str, source: bytes, *, existing: bytes | None = None
+) -> AssetResult:
+    if existing is None:
+        return AssetResult(name, False)
+    if existing == source:
+        return AssetResult(name, True)
+    path = Path(name)
+    suffix = _sha256(source)[:12]
+    return AssetResult(f"{path.stem}-{suffix}{path.suffix}", False)
+
+
+def _frontmatter_keys(raw: bytes, newline: bytes) -> set[str]:
+    closing = raw.find(newline + b"---" + newline, len(b"---") + len(newline))
+    if closing < 0:
+        raise ValueError("legacy note has malformed frontmatter")
+    frontmatter = raw[len(b"---") + len(newline) : closing]
+    keys: set[str] = set()
+    for line in frontmatter.split(newline):
+        match = re.match(rb"([A-Za-z_][A-Za-z0-9_-]*):", line)
+        if match:
+            keys.add(match.group(1).decode("ascii"))
+    return keys
+
+
+def _render_imported_note(
+    item: MigrationItem,
+    source_bytes: bytes,
+    rewrites: Sequence[tuple[str, str]],
+    *,
+    paper: bool,
+) -> bytes:
+    if source_bytes.startswith(b"---\r\n"):
+        newline = b"\r\n"
+    elif source_bytes.startswith(b"---\n"):
+        newline = b"\n"
+    else:
+        raise ValueError("legacy Paper must have YAML frontmatter")
+    keys = _frontmatter_keys(source_bytes, newline)
+    additions: list[bytes] = []
+    fields: list[tuple[str, str | None]] = []
+    if paper:
+        fields.extend(
+            [
+                ("type", "paper"),
+                ("arxiv_id", item.identity.get("arxiv_id")),
+                ("doi", item.identity.get("doi")),
+            ]
+        )
+    fields.extend(
+        [
+        ("source_vault", "notes"),
+        ("source_path", item.source_path),
+        ("date_migrated", "2026-11-03"),
+        ]
+    )
+    for key, value in fields:
+        if key not in keys and value:
+            additions.append(f"{key}: {value}".encode("utf-8") + newline)
+    insertion = len(b"---") + len(newline)
+    rendered = source_bytes[:insertion] + b"".join(additions) + source_bytes[insertion:]
+    return _apply_rewrites(rendered, rewrites)
+
+
+def render_imported_paper(
+    item: MigrationItem,
+    source_bytes: bytes,
+    rewrites: Sequence[tuple[str, str]],
+) -> bytes:
+    return _render_imported_note(item, source_bytes, rewrites, paper=True)
+
+
+def render_imported_topic(
+    item: MigrationItem,
+    source_bytes: bytes,
+    rewrites: Sequence[tuple[str, str]],
+) -> bytes:
+    return _render_imported_note(item, source_bytes, rewrites, paper=False)
+
+
+def _planned_asset_destination(
+    item: MigrationItem, source_asset: Path, target: Path
+) -> tuple[Path, bool]:
+    if item.destination_path is None:
+        raise ValueError(f"asset item has no destination: {item.source_path}")
+    original = target / _asset_folder(item.destination_path) / source_asset.name
+    existing = original.read_bytes() if original.is_file() else None
+    result = plan_asset_copy(source_asset.name, source_asset.read_bytes(), existing=existing)
+    return original.with_name(result.destination_name), result.reuse_existing
+
+
 def apply_manifest(
     manifest_path: Path,
     receipt_path: Path,
@@ -725,7 +944,12 @@ def apply_manifest(
         is_history = item.source_path == "DailyPapers/.history.json"
         if (destination.exists() or destination.is_symlink()) and not is_history:
             raise ValueError(f"target exists: {item.destination_path}")
-        raw = _apply_rewrites(source_raw, item.link_rewrites)
+        if item.decision == "import-paper":
+            raw = render_imported_paper(item, source_raw, item.link_rewrites)
+        elif item.decision == "import-topic":
+            raw = render_imported_topic(item, source_raw, item.link_rewrites)
+        else:
+            raw = _apply_rewrites(source_raw, item.link_rewrites)
         previous = destination.read_bytes() if destination.is_file() else None
         if is_history:
             try:
@@ -745,6 +969,24 @@ def apply_manifest(
                 + "\n"
             ).encode("utf-8")
         prepared.append((destination, raw, previous))
+        for asset_relative in item.referenced_assets:
+            source_asset = (source / asset_relative).resolve()
+            try:
+                source_asset.relative_to(source)
+            except ValueError as exc:
+                raise ValueError(f"asset escapes source: {asset_relative}") from exc
+            if not source_asset.is_file():
+                raise ValueError(f"missing referenced asset: {asset_relative}")
+            asset_destination, reuse_existing = _planned_asset_destination(
+                item, source_asset, target
+            )
+            if reuse_existing:
+                continue
+            if asset_destination.exists() or asset_destination.is_symlink():
+                raise ValueError(
+                    f"target exists: {asset_destination.relative_to(target).as_posix()}"
+                )
+            prepared.append((asset_destination, source_asset.read_bytes(), None))
     created: list[Path] = []
     replaced: list[tuple[Path, bytes]] = []
     try:

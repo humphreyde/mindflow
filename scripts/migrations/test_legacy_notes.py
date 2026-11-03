@@ -10,6 +10,8 @@ from scripts.migrations.legacy_notes import (
     approve_manifest,
     build_manifest,
     merge_history,
+    plan_asset_copy,
+    render_imported_paper,
     snapshot_source,
     verify_receipt,
 )
@@ -203,6 +205,27 @@ class LegacyNotesPlannerTests(unittest.TestCase):
             (self.target / "Workbench/daily/.history.json").read_text(encoding="utf-8")
         )
         self.assertEqual([item["id"] for item in history], ["2601.00001", "2601.00002"])
+
+    def test_import_preserves_body_and_adds_only_migration_fields(self) -> None:
+        item = next(
+            item
+            for item in build_manifest(self.source, self.target).items
+            if item.source_path.endswith("Novel.md")
+        )
+        source_bytes = (self.source / item.source_path).read_bytes()
+        body = source_bytes[source_bytes.index(b"---\nBody\n") + 4 :]
+        rendered = render_imported_paper(item, source_bytes, item.link_rewrites)
+        self.assertIn(b"type: paper\n", rendered)
+        self.assertIn(b"source_vault: notes\n", rendered)
+        self.assertIn(b"source_path: PaperNotes/VLA/Novel.md\n", rendered)
+        self.assertIn(b"date_migrated: 2026-11-03\n", rendered)
+        self.assertIn(b"arxiv_id: 2601.00001\n", rendered)
+        self.assertTrue(rendered.endswith(body))
+
+    def test_asset_collision_uses_hash_suffix(self) -> None:
+        result = plan_asset_copy("figure.png", b"source", existing=b"different")
+        self.assertRegex(result.destination_name, r"^figure-[0-9a-f]{12}\.png$")
+        self.assertFalse(result.reuse_existing)
 
 
 if __name__ == "__main__":

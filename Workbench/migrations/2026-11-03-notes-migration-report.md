@@ -6,20 +6,20 @@
 ## Counts
 
 - `blocked:blocked`: 1
-- `import-daily:ready`: 2
-- `import-insight:ready`: 3
+- `import-daily:applied`: 2
+- `import-insight:applied`: 3
 - `import-paper:blocked`: 1
 - `import-paper:ready`: 22
-- `import-source:ready`: 6
+- `import-source:applied`: 6
 - `import-topic:ready`: 2
-- `import-trending:ready`: 1
+- `import-trending:applied`: 1
 - `merge-paper:ready`: 8
 
 ## Items
 
-- `DailyPapers/.history.json` → `Workbench/daily/.history.json`: **import-daily/ready** — merge deterministic history
-- `DailyPapers/2026-10-28-论文推荐.md` → `Workbench/daily/2026-10-28-论文推荐.md`: **import-daily/ready** — approved auxiliary route
-- `GitHubTrending/2026-W44 GitHub周榜.md` → `Workbench/trending/2026-W44 GitHub周榜.md`: **import-trending/ready** — approved auxiliary route
+- `DailyPapers/.history.json` → `Workbench/daily/.history.json`: **import-daily/applied** — target matches deterministic migration output
+- `DailyPapers/2026-10-28-论文推荐.md` → `Workbench/daily/2026-10-28-论文推荐.md`: **import-daily/applied** — target matches deterministic migration output
+- `GitHubTrending/2026-W44 GitHub周榜.md` → `Workbench/trending/2026-W44 GitHub周榜.md`: **import-trending/applied** — target matches deterministic migration output
 - `PaperNotes/VLA/FAST.md` → `Papers/2501-FAST.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/VLA/FLARE.md` → `Papers/2505-FLARE.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/VLA/FLASH.md` → `Papers/2605-FLASH.md`: **import-paper/ready** — old-only paper candidate
@@ -54,12 +54,12 @@
 - `PaperNotes/world model/GAWM.md` → `Papers/2610-GAWM.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/world model/OpenWAM.md` → `Papers/2609-OpenWAM.md`: **import-paper/ready** — old-only paper candidate
 - `PaperNotes/world model/WAM-Survey.md` → `Papers/2609-WAMSurvey.md`: **import-paper/ready** — old-only paper candidate
-- `ResearchNotes/Dyna2部署的一些know-how.md` → `ResearchSources/Insights/Dyna2部署的一些know-how.md`: **import-insight/ready** — approved auxiliary route
-- `ResearchSources/Insights/任务空间接口：连接上层策略与RL控制器.md` → `ResearchSources/Insights/任务空间接口：连接上层策略与RL控制器.md`: **import-insight/ready** — approved auxiliary route
-- `ResearchSources/Insights/访问模式驱动的机器人训练数据物理布局.md` → `ResearchSources/Insights/访问模式驱动的机器人训练数据物理布局.md`: **import-insight/ready** — approved auxiliary route
-- `ResearchSources/Sources/Fast-WAM- Do World Action Models Need Test-time Future Imagination?.md` → `ResearchSources/Sources/Fast-WAM- Do World Action Models Need Test-time Future Imagination?.md`: **import-source/ready** — approved auxiliary route
-- `ResearchSources/Sources/Isaac GR00T N1.7 Early Access Release.md` → `ResearchSources/Sources/Isaac GR00T N1.7 Early Access Release.md`: **import-source/ready** — approved auxiliary route
-- `ResearchSources/Sources/Training Dyna-2 at million-hour scale, repeatably.md` → `ResearchSources/Sources/Training Dyna-2 at million-hour scale, repeatably.md`: **import-source/ready** — approved auxiliary route
-- `ResearchSources/Sources/π0- A Foundation Model for Robotics with Sergey Levine - 719.md` → `ResearchSources/Sources/π0- A Foundation Model for Robotics with Sergey Levine - 719.md`: **import-source/ready** — approved auxiliary route
-- `ResearchSources/Sources/数采厂的变化.md` → `ResearchSources/Sources/数采厂的变化.md`: **import-source/ready** — approved auxiliary route
-- `ResearchSources/Sources/读懂 OpenPI 的 π0.5：从源码出发，真正看懂模型结构、训练逻辑和推理过程.md` → `ResearchSources/Sources/读懂 OpenPI 的 π0.5：从源码出发，真正看懂模型结构、训练逻辑和推理过程.md`: **import-source/ready** — approved auxiliary route
+- `ResearchNotes/Dyna2部署的一些know-how.md` → `ResearchSources/Insights/Dyna2部署的一些know-how.md`: **import-insight/applied** — target matches deterministic migration output
+- `ResearchSources/Insights/任务空间接口：连接上层策略与RL控制器.md` → `ResearchSources/Insights/任务空间接口：连接上层策略与RL控制器.md`: **import-insight/applied** — target matches deterministic migration output
+- `ResearchSources/Insights/访问模式驱动的机器人训练数据物理布局.md` → `ResearchSources/Insights/访问模式驱动的机器人训练数据物理布局.md`: **import-insight/applied** — target matches deterministic migration output
+- `ResearchSources/Sources/Fast-WAM- Do World Action Models Need Test-time Future Imagination?.md` → `ResearchSources/Sources/Fast-WAM- Do World Action Models Need Test-time Future Imagination?.md`: **import-source/applied** — target matches deterministic migration output
+- `ResearchSources/Sources/Isaac GR00T N1.7 Early Access Release.md` → `ResearchSources/Sources/Isaac GR00T N1.7 Early Access Release.md`: **import-source/applied** — target matches deterministic migration output
+- `ResearchSources/Sources/Training Dyna-2 at million-hour scale, repeatably.md` → `ResearchSources/Sources/Training Dyna-2 at million-hour scale, repeatably.md`: **import-source/applied** — target matches deterministic migration output
+- `ResearchSources/Sources/π0- A Foundation Model for Robotics with Sergey Levine - 719.md` → `ResearchSources/Sources/π0- A Foundation Model for Robotics with Sergey Levine - 719.md`: **import-source/applied** — target matches deterministic migration output
+- `ResearchSources/Sources/数采厂的变化.md` → `ResearchSources/Sources/数采厂的变化.md`: **import-source/applied** — target matches deterministic migration output
+- `ResearchSources/Sources/读懂 OpenPI 的 π0.5：从源码出发，真正看懂模型结构、训练逻辑和推理过程.md` → `ResearchSources/Sources/读懂 OpenPI 的 π0.5：从源码出发，真正看懂模型结构、训练逻辑和推理过程.md`: **import-source/applied** — target matches deterministic migration output

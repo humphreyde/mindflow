@@ -14,12 +14,12 @@
       },
       "identity_confidence": "review",
       "link_rewrites": [],
-      "reason": "merge deterministic history",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "DailyPapers",
       "source_path": "DailyPapers/.history.json",
       "source_sha256": "6140b9bdfa5731752b3f18bbab06757fb41b0311068a3a6f41b83e962291c0d6",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-daily",
@@ -35,12 +35,12 @@
       },
       "identity_confidence": "review",
       "link_rewrites": [],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "DailyPapers",
       "source_path": "DailyPapers/2026-10-28-论文推荐.md",
       "source_sha256": "74fdf264a845cce86beb6b488cbe15ed8e8d34417815f1e2d01459315bf5d461",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-trending",
@@ -56,12 +56,12 @@
       },
       "identity_confidence": "review",
       "link_rewrites": [],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "GitHubTrending",
       "source_path": "GitHubTrending/2026-W44 GitHub周榜.md",
       "source_sha256": "f5f6ba5c71e4ebb52a814af38f02ad69098e13d2b7bf0028acd0ea84d2ae2b96",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1018,9 +1018,56 @@
         "official_url": "https://www.pi.website/download/rlt.pdf"
       },
       "identity_confidence": "review",
-      "link_rewrites": [],
+      "link_rewrites": [
+        [
+          "rlt_fig1_overview.png",
+          "Papers/assets/lega-RLT/rlt_fig1_overview.png"
+        ],
+        [
+          "rlt_fig2_rl_token.png",
+          "Papers/assets/lega-RLT/rlt_fig2_rl_token.png"
+        ],
+        [
+          "rlt_fig3_tasks.png",
+          "Papers/assets/lega-RLT/rlt_fig3_tasks.png"
+        ],
+        [
+          "rlt_fig4_throughput.png",
+          "Papers/assets/lega-RLT/rlt_fig4_throughput.png"
+        ],
+        [
+          "rlt_fig5_success.png",
+          "Papers/assets/lega-RLT/rlt_fig5_success.png"
+        ],
+        [
+          "rlt_fig6_vs_others.png",
+          "Papers/assets/lega-RLT/rlt_fig6_vs_others.png"
+        ],
+        [
+          "rlt_fig7_train_throughput.png",
+          "Papers/assets/lega-RLT/rlt_fig7_train_throughput.png"
+        ],
+        [
+          "rlt_fig8_train_success.png",
+          "Papers/assets/lega-RLT/rlt_fig8_train_success.png"
+        ],
+        [
+          "rlt_fig9_speed_hist.png",
+          "Papers/assets/lega-RLT/rlt_fig9_speed_hist.png"
+        ]
+      ],
       "reason": "old-only paper candidate",
-      "referenced_assets": [],
+      "referenced_assets": [
+        "PaperNotes/VLA/assets/rlt_fig1_overview.png",
+        "PaperNotes/VLA/assets/rlt_fig2_rl_token.png",
+        "PaperNotes/VLA/assets/rlt_fig3_tasks.png",
+        "PaperNotes/VLA/assets/rlt_fig4_throughput.png",
+        "PaperNotes/VLA/assets/rlt_fig5_success.png",
+        "PaperNotes/VLA/assets/rlt_fig6_vs_others.png",
+        "PaperNotes/VLA/assets/rlt_fig7_train_throughput.png",
+        "PaperNotes/VLA/assets/rlt_fig8_train_success.png",
+        "PaperNotes/VLA/assets/rlt_fig9_speed_hist.png"
+      ],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/RLT.md",
       "source_sha256": "59464f8dc073a17e026b8d1328bed1607b39141690b29dd4ee645b6e5c55857a",
@@ -1041,16 +1088,16 @@
       "identity_confidence": "high",
       "link_rewrites": [
         [
-          "[[PaperNotes/VLA/assets/STEAM/figure5.png]]",
-          "figure5.png"
+          "PaperNotes/VLA/assets/STEAM/figure5.png",
+          "Papers/assets/STEAM/figure5.png"
         ],
         [
-          "[[PaperNotes/VLA/assets/STEAM/figure6.png]]",
-          "figure6.png"
+          "PaperNotes/VLA/assets/STEAM/figure6.png",
+          "Papers/assets/STEAM/figure6.png"
         ],
         [
-          "[[PaperNotes/VLA/assets/STEAM/figure7.png]]",
-          "figure7.png"
+          "PaperNotes/VLA/assets/STEAM/figure7.png",
+          "Papers/assets/STEAM/figure7.png"
         ],
         [
           "[[PaperNotes/_authors/Chao Yu\\|Chao Yu]]",
@@ -1130,7 +1177,11 @@
         ]
       ],
       "reason": "old-only paper candidate",
-      "referenced_assets": [],
+      "referenced_assets": [
+        "PaperNotes/VLA/assets/STEAM/figure5.png",
+        "PaperNotes/VLA/assets/STEAM/figure6.png",
+        "PaperNotes/VLA/assets/STEAM/figure7.png"
+      ],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/STEAM.md",
       "source_sha256": "8903a7ac6c4c57b5e774bd44435d381bc9b90ee64a026748a246d534d83536c1",
@@ -1177,10 +1228,56 @@
         [
           "[[PaperNotes/_authors/Yufeng Chi\\|Yufeng Chi]]",
           "Yufeng Chi"
+        ],
+        [
+          "assets/Workhorse_fig1.png",
+          "Papers/assets/Workhorse/Workhorse_fig1.png"
+        ],
+        [
+          "assets/Workhorse_fig2.png",
+          "Papers/assets/Workhorse/Workhorse_fig2.png"
+        ],
+        [
+          "assets/Workhorse_fig3.png",
+          "Papers/assets/Workhorse/Workhorse_fig3.png"
+        ],
+        [
+          "assets/Workhorse_fig4.png",
+          "Papers/assets/Workhorse/Workhorse_fig4.png"
+        ],
+        [
+          "assets/Workhorse_fig5.png",
+          "Papers/assets/Workhorse/Workhorse_fig5.png"
+        ],
+        [
+          "assets/Workhorse_fig6.png",
+          "Papers/assets/Workhorse/Workhorse_fig6.png"
+        ],
+        [
+          "assets/Workhorse_fig7.png",
+          "Papers/assets/Workhorse/Workhorse_fig7.png"
+        ],
+        [
+          "assets/Workhorse_fig8.png",
+          "Papers/assets/Workhorse/Workhorse_fig8.png"
+        ],
+        [
+          "assets/Workhorse_fig9.png",
+          "Papers/assets/Workhorse/Workhorse_fig9.png"
         ]
       ],
       "reason": "old-only paper candidate",
-      "referenced_assets": [],
+      "referenced_assets": [
+        "PaperNotes/VLA/assets/Workhorse_fig1.png",
+        "PaperNotes/VLA/assets/Workhorse_fig2.png",
+        "PaperNotes/VLA/assets/Workhorse_fig3.png",
+        "PaperNotes/VLA/assets/Workhorse_fig4.png",
+        "PaperNotes/VLA/assets/Workhorse_fig5.png",
+        "PaperNotes/VLA/assets/Workhorse_fig6.png",
+        "PaperNotes/VLA/assets/Workhorse_fig7.png",
+        "PaperNotes/VLA/assets/Workhorse_fig8.png",
+        "PaperNotes/VLA/assets/Workhorse_fig9.png"
+      ],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/Workhorse.md",
       "source_sha256": "540c5089e0c2c5cea20d5e12e3e8b848e16d9f25990a1462e2bdaa61b51b506f",
@@ -1551,6 +1648,90 @@
           "Papers/2603-FastWAM"
         ],
         [
+          "PaperNotes/world model/assets/OpenWAM_fig01_overview.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig01_overview.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig02_model_infra.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig02_model_infra.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig03_inference_denoise.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig03_inference_denoise.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig04_acceleration.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig04_acceleration.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig05_evaluation_protocol.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig05_evaluation_protocol.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig06_backbone_scale.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig06_backbone_scale.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig07_visual_representations.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig07_visual_representations.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig08_attention_masks.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig08_attention_masks.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig09_denoising_schedules.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig09_denoising_schedules.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig10_pretraining_generalization.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig10_pretraining_generalization.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig11_information_flow_scale.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig11_information_flow_scale.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig12_architecture.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig12_architecture.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig13_benchmark_grid.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig13_benchmark_grid.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig14_benchmark_radial.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig14_benchmark_radial.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig15_singlearm_data.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig15_singlearm_data.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig16_id_ood.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig16_id_ood.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig17_real_robot_setups.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig17_real_robot_setups.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig18_singlearm_setup.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig18_singlearm_setup.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig19_singlearm_sequences.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig19_singlearm_sequences.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig20_dexterous_setup.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig20_dexterous_setup.png"
+        ],
+        [
+          "PaperNotes/world model/assets/OpenWAM_fig21_dexterous_sequences.png",
+          "Papers/assets/OpenWAM/OpenWAM_fig21_dexterous_sequences.png"
+        ],
+        [
           "[[PaperNotes/_authors/Chenhao Zhang\\|Chenhao Zhang]]",
           "Chenhao Zhang"
         ],
@@ -1649,94 +1830,32 @@
         [
           "[[PaperNotes/world model/Fast-WAM\\|Fast-WAM]]",
           "Fast-WAM"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig01_overview.png]]",
-          "OpenWAM_fig01_overview.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig02_model_infra.png]]",
-          "OpenWAM_fig02_model_infra.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig03_inference_denoise.png]]",
-          "OpenWAM_fig03_inference_denoise.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig04_acceleration.png]]",
-          "OpenWAM_fig04_acceleration.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig05_evaluation_protocol.png]]",
-          "OpenWAM_fig05_evaluation_protocol.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig06_backbone_scale.png]]",
-          "OpenWAM_fig06_backbone_scale.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig07_visual_representations.png]]",
-          "OpenWAM_fig07_visual_representations.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig08_attention_masks.png]]",
-          "OpenWAM_fig08_attention_masks.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig09_denoising_schedules.png]]",
-          "OpenWAM_fig09_denoising_schedules.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig10_pretraining_generalization.png]]",
-          "OpenWAM_fig10_pretraining_generalization.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig11_information_flow_scale.png]]",
-          "OpenWAM_fig11_information_flow_scale.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig12_architecture.png]]",
-          "OpenWAM_fig12_architecture.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig13_benchmark_grid.png]]",
-          "OpenWAM_fig13_benchmark_grid.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig14_benchmark_radial.png]]",
-          "OpenWAM_fig14_benchmark_radial.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig15_singlearm_data.png]]",
-          "OpenWAM_fig15_singlearm_data.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig16_id_ood.png]]",
-          "OpenWAM_fig16_id_ood.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig17_real_robot_setups.png]]",
-          "OpenWAM_fig17_real_robot_setups.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig18_singlearm_setup.png]]",
-          "OpenWAM_fig18_singlearm_setup.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig19_singlearm_sequences.png]]",
-          "OpenWAM_fig19_singlearm_sequences.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig20_dexterous_setup.png]]",
-          "OpenWAM_fig20_dexterous_setup.png"
-        ],
-        [
-          "[[PaperNotes/world model/assets/OpenWAM_fig21_dexterous_sequences.png]]",
-          "OpenWAM_fig21_dexterous_sequences.png"
         ]
       ],
       "reason": "old-only paper candidate",
-      "referenced_assets": [],
+      "referenced_assets": [
+        "PaperNotes/world model/assets/OpenWAM_fig01_overview.png",
+        "PaperNotes/world model/assets/OpenWAM_fig02_model_infra.png",
+        "PaperNotes/world model/assets/OpenWAM_fig03_inference_denoise.png",
+        "PaperNotes/world model/assets/OpenWAM_fig04_acceleration.png",
+        "PaperNotes/world model/assets/OpenWAM_fig05_evaluation_protocol.png",
+        "PaperNotes/world model/assets/OpenWAM_fig06_backbone_scale.png",
+        "PaperNotes/world model/assets/OpenWAM_fig07_visual_representations.png",
+        "PaperNotes/world model/assets/OpenWAM_fig08_attention_masks.png",
+        "PaperNotes/world model/assets/OpenWAM_fig09_denoising_schedules.png",
+        "PaperNotes/world model/assets/OpenWAM_fig10_pretraining_generalization.png",
+        "PaperNotes/world model/assets/OpenWAM_fig11_information_flow_scale.png",
+        "PaperNotes/world model/assets/OpenWAM_fig12_architecture.png",
+        "PaperNotes/world model/assets/OpenWAM_fig13_benchmark_grid.png",
+        "PaperNotes/world model/assets/OpenWAM_fig14_benchmark_radial.png",
+        "PaperNotes/world model/assets/OpenWAM_fig15_singlearm_data.png",
+        "PaperNotes/world model/assets/OpenWAM_fig16_id_ood.png",
+        "PaperNotes/world model/assets/OpenWAM_fig17_real_robot_setups.png",
+        "PaperNotes/world model/assets/OpenWAM_fig18_singlearm_setup.png",
+        "PaperNotes/world model/assets/OpenWAM_fig19_singlearm_sequences.png",
+        "PaperNotes/world model/assets/OpenWAM_fig20_dexterous_setup.png",
+        "PaperNotes/world model/assets/OpenWAM_fig21_dexterous_sequences.png"
+      ],
       "source_kind": "paper",
       "source_path": "PaperNotes/world model/OpenWAM.md",
       "source_sha256": "e89df3f22571c39d5bed762e17e60d07eccba117724112a2d980f3c70a73c34e",
@@ -1870,12 +1989,12 @@
       },
       "identity_confidence": "review",
       "link_rewrites": [],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "ResearchNotes",
       "source_path": "ResearchNotes/Dyna2部署的一些know-how.md",
       "source_sha256": "8f5da76ddcf41f8a7a8008837630c70dfdf20defc7e05f4193b32dd8802ddf36",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-insight",
@@ -1900,12 +2019,12 @@
           "Papers/2604-Dyna21"
         ]
       ],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "ResearchSources",
       "source_path": "ResearchSources/Insights/任务空间接口：连接上层策略与RL控制器.md",
       "source_sha256": "7fe358fe5a6eac65120536d892a4160b08badc0626e795730b828d3354a06db5",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-insight",
@@ -1921,12 +2040,12 @@
       },
       "identity_confidence": "review",
       "link_rewrites": [],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "ResearchSources",
       "source_path": "ResearchSources/Insights/访问模式驱动的机器人训练数据物理布局.md",
       "source_sha256": "302c7edce9ad65ba64e6d44da7569d63272e5895b1ee3acd0c96597233cd411a",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-source",
@@ -1955,12 +2074,12 @@
           "Fast-WAM Code Companion"
         ]
       ],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "ResearchSources",
       "source_path": "ResearchSources/Sources/Fast-WAM- Do World Action Models Need Test-time Future Imagination?.md",
       "source_sha256": "be8c833412fb2cdef87ca3d4100f9d4e37bb0be3580ccc4d162fbf4596af3866",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-source",
@@ -1981,12 +2100,12 @@
           "Topics/GR00T-Series-Survey"
         ]
       ],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "ResearchSources",
       "source_path": "ResearchSources/Sources/Isaac GR00T N1.7 Early Access Release.md",
       "source_sha256": "03d30a8d878ad31bb0b04b129f1d5e6dcd2012c61dfdbae9adf911d7dc70a5f7",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-source",
@@ -2002,12 +2121,12 @@
       },
       "identity_confidence": "review",
       "link_rewrites": [],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "ResearchSources",
       "source_path": "ResearchSources/Sources/Training Dyna-2 at million-hour scale, repeatably.md",
       "source_sha256": "f0b16e63e9c5130dc0314ac9a4e53e71c99bbbd877f327b83e168f7edd084af5",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-source",
@@ -2028,12 +2147,12 @@
           "Papers/2410-Pi0"
         ]
       ],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "ResearchSources",
       "source_path": "ResearchSources/Sources/π0- A Foundation Model for Robotics with Sergey Levine - 719.md",
       "source_sha256": "1807729783a78c5e70d9394e6194165ed5902a50cf8099a31b70ce5f8c08d92f",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-source",
@@ -2049,12 +2168,12 @@
       },
       "identity_confidence": "review",
       "link_rewrites": [],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "ResearchSources",
       "source_path": "ResearchSources/Sources/数采厂的变化.md",
       "source_sha256": "920004d1e0ae69b6e1794a079b0a4550d5a61650823bb6b752ed4c7384369dbb",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-source",
@@ -2079,12 +2198,12 @@
           "Papers/2504-Pi05"
         ]
       ],
-      "reason": "approved auxiliary route",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "ResearchSources",
       "source_path": "ResearchSources/Sources/读懂 OpenPI 的 π0.5：从源码出发，真正看懂模型结构、训练逻辑和推理过程.md",
       "source_sha256": "f442f22fac6184d378db1ca6558c60ea705212a6749d69eabb9f10584d0ab479",
-      "status": "ready"
+      "status": "applied"
     }
   ],
   "manifest_version": 1,
@@ -2188,6 +2307,238 @@
         "540c5089e0c2c5cea20d5e12e3e8b848e16d9f25990a1462e2bdaa61b51b506f"
       ],
       [
+        "PaperNotes/VLA/assets/MEM_fig1.png",
+        "2f5978075c1c1158a3e4be520112eea0a177dcfd4c0621cc3284754997bad585"
+      ],
+      [
+        "PaperNotes/VLA/assets/MEM_fig10.png",
+        "6a3cf44d1ef22e8fd05f658ebe25df50d31e507b4d185928875934b6d9c5f8bc"
+      ],
+      [
+        "PaperNotes/VLA/assets/MEM_fig2.png",
+        "6c92271a3a4419f7da69f6d46ee58a71cec11d741a6dd2309756f2581d51f33c"
+      ],
+      [
+        "PaperNotes/VLA/assets/MEM_fig3.png",
+        "6d5cef285375f40497080af7fd533e723d8a03d602af8560329e66ed0afa0120"
+      ],
+      [
+        "PaperNotes/VLA/assets/MEM_fig4.png",
+        "b4e4e96f3ee3b6cc6f6c244f6da8f602724caf228aedf61163ae2f5c397683c9"
+      ],
+      [
+        "PaperNotes/VLA/assets/MEM_fig5.png",
+        "5db5350dc54a451f7ac219943ac2792995431dbb6cedd2023f0c40a197eb0761"
+      ],
+      [
+        "PaperNotes/VLA/assets/MEM_fig6.png",
+        "829b1bf32ad88b0a159c0f912bd7b67342f534a218cb66c479c5289c1413db2e"
+      ],
+      [
+        "PaperNotes/VLA/assets/MEM_fig7.png",
+        "6b43be55d66d4fdb62d8751e2c2db4aa158a36ec00544ca4d5798db130c0ff38"
+      ],
+      [
+        "PaperNotes/VLA/assets/MEM_fig8.png",
+        "2512ee1903cd1c8dce9f4c1bab44ce2b7bc9d6fdf2df901b74b11877c83a511d"
+      ],
+      [
+        "PaperNotes/VLA/assets/MEM_fig9.png",
+        "e9fe4f662989c5ad445af11adcdad88cc4bc1d3d55709ad93570f40793d9fa4f"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig10_page11.png",
+        "7c785acdebc4f47020e720026bbe107273f3ae71d693a692d2391d580e0767c8"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig11_page11.png",
+        "06444d2347c68d86e0dcbab0ece46c979d61b27e96b1d707237ef4881a4fb33e"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig12_page12.png",
+        "113375478f68aceb082cc6d3829c9b122a37248a127db23b6cdb1e796f492aed"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig13_page12.png",
+        "7da620543508367adddd24c5b3f8c080e78361dc3cc93e9ba0f7e8d8cce61040"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig14_page13.png",
+        "d29f463a456fe9e1d65775d57e62b34d8093457ddbeecd1e8d543db86825034c"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig15_page13.png",
+        "76ae401108f757c1f51dd10c07a19070e28455d41f8bb1edaa9762a1d78a2cbf"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig16_page13.png",
+        "2eaa63d34d9b6b10f7258081a9b21d48fdffb90437c186c9436dcdea8f34f029"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig17_page13.png",
+        "883f22af6bc9b4f1da4b1ca5c8045f04bc577cd0ca819ab4d55a9c70094a8740"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig18_page14.png",
+        "09986288df439cd91a422e5cceae55e4e612d6b378f8d0affae09b020ddfeed1"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig19_page23.png",
+        "0f83edc37cb81cc0af13d2cf16de1d599496aa92c83314e0f9859ac741df18c0"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig1_page1.png",
+        "0acd3e9e75653901ecaabb2b0829f085304527e3e4b16229439c6dc44e936a09"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig20_page24.png",
+        "2e2d3802a7535f88fec6e4958c4cdc22bf4e0dbc8c15d11a9bc734df116611c2"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig21_page24.png",
+        "c0369ca97be8d86419fa8dcdde71ab3f49be9987a74e5193527d42ea49121a56"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig22_page24.png",
+        "b6a4c796a68359d98fcef0747eaca630ed4e306ca32bfa71e6987f67d77a5fc1"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig2_page4.png",
+        "eb0ecca6ed9f612b1e234a1344f3d036f314553b32a85b2004196ef14a429558"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig3_page6.png",
+        "5a96dc5b65861710761cec9031e85544b9e75df7cfea5410d04c8d4afecf18ec"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig4_page7.png",
+        "357f921ef99e45e4023a3e6621016980ec0fa20698d7a693b50d25ca0b9a5b39"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig5_page8.png",
+        "8d613d7b0879e8014f2525816528e4078174c8f44cbd1e0dc8b4cc041a591ac5"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig6_page9.png",
+        "08cbb3da8752e18689f27503c8d7b302f939ed80e1aa27a88829a071deffec44"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig7_page9.png",
+        "4e72b063e21bca20a09270df627543087bafe99d23ac6ca547ff62104d983d75"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig8_page10.png",
+        "ae5b1a501111aa6b1759bbf1a770bd72068bd6558253443de6b9b331f93b69f6"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi07_fig9_page11.png",
+        "acef0be0203b8080a158707b3e8c799ed4260d530097eef486d672b172055363"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi0_fig10.png",
+        "4e6dc552b567cfcd0b09dacca79f87610b321c0702c8a9bc03ce970af3a5a4e1"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi0_fig11.png",
+        "c37cb331f667f1003a248181eaed66d65d22f08dfe8516743a6c16e40ee1b884"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi0_fig12.png",
+        "49d24bc0e5a852ec0643b9066c09bf8392a718acec52c5d81d3ce4da70e9dc56"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi0_fig13.png",
+        "0806b0a63fe90254214785a984c10782a9b2e042a4a0b9ebcde6f744a0b34f68"
+      ],
+      [
+        "PaperNotes/VLA/assets/Pi0_fig14.png",
+        "2474e4b0f21f60f0fc3c86483191485205402e0d972189bf78782898e1035712"
+      ],
+      [
+        "PaperNotes/VLA/assets/STEAM/figure5.png",
+        "484a970aa8f981260143cecaec9d79fa4bb5be025b01105bf6143412df101584"
+      ],
+      [
+        "PaperNotes/VLA/assets/STEAM/figure6.png",
+        "acb310d046ceefe406eb7dea8650cdf2fd5a288c3d4e35465f6410186a02f154"
+      ],
+      [
+        "PaperNotes/VLA/assets/STEAM/figure7.png",
+        "a6fad0e8f6e660932e63a349a2067624f7e2c98f38f1e0ca628ff00309074fc3"
+      ],
+      [
+        "PaperNotes/VLA/assets/Workhorse_fig1.png",
+        "529acb4d8b146b078b7a851864d779c3e02a170a911e099f037308864f7480d6"
+      ],
+      [
+        "PaperNotes/VLA/assets/Workhorse_fig2.png",
+        "29df987171e00818d10c9cad1c209968f348b0882837e3a4e7afa2a342f166d7"
+      ],
+      [
+        "PaperNotes/VLA/assets/Workhorse_fig3.png",
+        "d1bfcf87f5bcaf74ecf039d1b38aea8bfb0a5071bad4c827753ae6ed3cee1959"
+      ],
+      [
+        "PaperNotes/VLA/assets/Workhorse_fig4.png",
+        "7dbf0b5d4dc5ef178976179d9d5532334880e31481381f15fdaf103b7a4e6444"
+      ],
+      [
+        "PaperNotes/VLA/assets/Workhorse_fig5.png",
+        "99a2e61786068c5a98657c6e9c646fe7a0ae98f090590655e6d7feaeffa22935"
+      ],
+      [
+        "PaperNotes/VLA/assets/Workhorse_fig6.png",
+        "4540c50d518abd8d055d819f4986c7877add5dbe16b7ee795bf532520316f820"
+      ],
+      [
+        "PaperNotes/VLA/assets/Workhorse_fig7.png",
+        "1e42fb430d7a27a0a4be874ea37a1ba4078eff4583004d8b11b1624e295be41c"
+      ],
+      [
+        "PaperNotes/VLA/assets/Workhorse_fig8.png",
+        "68e5afb07489e34f093006b17407803345eaf628e73485b2e2ae9c8ff4bba252"
+      ],
+      [
+        "PaperNotes/VLA/assets/Workhorse_fig9.png",
+        "5278eb71b97cf7ccc0293c7552be65616b1392424fa15e09a3b25c6efaa2444a"
+      ],
+      [
+        "PaperNotes/VLA/assets/rlt_fig1_overview.png",
+        "b95c0ea1ac756794c86d3d622e2a878f6a5ab55220a2b58e89d8b343abf69345"
+      ],
+      [
+        "PaperNotes/VLA/assets/rlt_fig2_rl_token.png",
+        "e5797c24bf57861dbe1b1165be2e99c9199430558b4d9513789bd40a90582d9f"
+      ],
+      [
+        "PaperNotes/VLA/assets/rlt_fig3_tasks.png",
+        "5727991be2fbda5c909aeed6b83c3a522314e4777e8bd3b60eeeba0424552daf"
+      ],
+      [
+        "PaperNotes/VLA/assets/rlt_fig4_throughput.png",
+        "2c1256e79f45fc9fd1202fe38517c4690c0ff598a3c5d5f5d264438a46f01a0d"
+      ],
+      [
+        "PaperNotes/VLA/assets/rlt_fig5_success.png",
+        "a120bbae26b3a7d42af9a3dd2ca825ba33327dbafc188e81a65e6898e397e649"
+      ],
+      [
+        "PaperNotes/VLA/assets/rlt_fig6_vs_others.png",
+        "873ca0b2135b22b0b4409ad709271f7a44dbf5ed2f6defd3a7bae8d507cc320e"
+      ],
+      [
+        "PaperNotes/VLA/assets/rlt_fig7_train_throughput.png",
+        "39e8fed5d01647b2236966fef9865c05620459154b5e0b215e41cb1c232723f1"
+      ],
+      [
+        "PaperNotes/VLA/assets/rlt_fig8_train_success.png",
+        "0d01e586b8c44b515b02836bfb7b53e2c0d831a7a90209bf5c088672c8c762f0"
+      ],
+      [
+        "PaperNotes/VLA/assets/rlt_fig9_speed_hist.png",
+        "2eeae7ba9ecb817057675c8a2397334a8950a51530b0c7f24f0314a4d833e252"
+      ],
+      [
         "PaperNotes/_inbox/HEISD.md",
         "39eab0fce7f99cacdc0c910dd188657429df898f8b7707567682719a2dc6112a"
       ],
@@ -2238,6 +2589,90 @@
       [
         "PaperNotes/world model/WAM-Survey.md",
         "455bf8e6c64a6bc792369d03edc9ecb96921a08f9266af98af9e8f3e755d23c8"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig01_overview.png",
+        "c073499687d6b2f6771ffab31ea725ad04fcb2e36557641259f0fa9ff7805080"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig02_model_infra.png",
+        "fdedef43d19cadc0e067886fa4d24dd3e495b648074806620cf8361a17002aea"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig03_inference_denoise.png",
+        "98e685928d3ffb11d31e6fcd57793d707da49c0c041ea075e343bbf38b0f4e3e"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig04_acceleration.png",
+        "3643620ba249ed5b8b4951788c2e7cd47c6ef2a5cbb16bc133d68b95d374cbfd"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig05_evaluation_protocol.png",
+        "9c512ff6a39deb9cedb87d0f50ce68ad31d47eaf0797c276071fb2e135ec54e9"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig06_backbone_scale.png",
+        "e60c5319c3e117a78b1c42a615883e5610a6597ff8e0ffd1d9fdf29838c92833"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig07_visual_representations.png",
+        "7cdf0a741973df9f882044a40767446b027e747a9d1a6abf40d516695bd89b2d"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig08_attention_masks.png",
+        "890ef3df637acd276bbd2189b1f060a47290f123b55f9fb7069eb82cbb724967"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig09_denoising_schedules.png",
+        "5ed781dae62a180d862ab2e100c4e2c35a397141a592623ec9b14df0c83807ef"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig10_pretraining_generalization.png",
+        "19c6e2b2cceb31c8056ddf06a69de590ab496d69ca9f962f54fd9eee43f31d56"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig11_information_flow_scale.png",
+        "fa5e8494152053952d9b52b9ce0557bc0f9cdb4de1180ff7b7a30f97576ccb27"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig12_architecture.png",
+        "6145a650333c7531c0037d8c909e58a1bbb14447d5251398dcf8bbd5ee5bb856"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig13_benchmark_grid.png",
+        "6f97dabf06370f853bd1d06910537b6e4446265341e02d8347629c5628db4d20"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig14_benchmark_radial.png",
+        "0efcd7a8d2125453bd288268af0402cdee1a1ae4f982087338e8627ffcc1e388"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig15_singlearm_data.png",
+        "fb09b630df53bcba479189da479a42af1eab7cf1dbe2b9cb4cce64e35711d5cf"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig16_id_ood.png",
+        "b69248c591249a9ee5ac247f25becc4be4981ab3f37425453e7e249d6ba37ace"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig17_real_robot_setups.png",
+        "f10a10848fc995f443407be9e9d389de20234f345d2c9a3324ae2f54a4c14d91"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig18_singlearm_setup.png",
+        "9d9432af1d8fb200a4a2c6d7a9ce00c173bccc22ffd0e4c44232733b98301dc4"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig19_singlearm_sequences.png",
+        "23359bfdd19c1832e130ec21d8cb3e3cf359d64ea6732db2f42c41cc7d361170"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig20_dexterous_setup.png",
+        "2c625e1d9fc356a9617e79418463dd1f87a5b8a50c7b5c71181e5bfe3e919b95"
+      ],
+      [
+        "PaperNotes/world model/assets/OpenWAM_fig21_dexterous_sequences.png",
+        "94916599f8b01a0c55d17116a663666ff65f2b8bd0b71ed416e23d90b70865a8"
       ],
       [
         "ResearchNotes/Dyna2部署的一些know-how.md",
