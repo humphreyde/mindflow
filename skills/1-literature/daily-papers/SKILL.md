@@ -40,6 +40,10 @@ python3 skills/1-literature/daily-papers/fetch_and_score.py \
 
 对每篇“要精读”论文执行 `paper-digest`；若已存在论文笔记，只读取并使用该笔记，不覆盖。点评必须基于完整笔记正文，而不是只依据摘要。
 
+在 MindFlow 内使用本仓库 `skills/1-literature/paper-digest`；只有用户明确指定旧
+`/Users/limx/notes` vault 或旧工作流时，才路由到全局 legacy `paper-reader`。
+这是仓库内路由，不代表全局同名 `daily-papers` 已切换或冲突已解决。
+
 默认顺序处理。仅当运行时提供并行工作能力、用户授权并行、论文任务彼此独立、各任务写入不同的笔记和 assets，且不会并发写日志/历史/日报等共享文件时，才可并行。共享日志由协调过程串行追加；任一条件不满足就顺序执行。
 
 每篇返回以下点评块：
@@ -77,7 +81,7 @@ tags: [daily-papers, tag1, tag2, ...]
 |--------|------|
 | 🔥 `3 - Foundation` | [[#{短标题}]]（理由） |
 | 👀 `2 - Frontier` | [[#{短标题}]]（理由） |
-| 💤 `1 - Archived` | [[#{短标题}]]（理由） |
+| 💤 `1 - Peripheral` | [[#{短标题}]]（理由） |
 
 ## 论文点评
 

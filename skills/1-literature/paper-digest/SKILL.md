@@ -9,6 +9,11 @@ description: Use when user asks to "read paper", "analyze paper", "summarize pap
 
 支持 `paper`（学术论文）和 `blog`（技术或产品文章）。
 
+在 MindFlow 内，单篇论文阅读与笔记生成统一使用本仓库的
+`skills/1-literature/paper-digest`。只有用户明确指定旧 `/Users/limx/notes`
+vault 或旧工作流时，才使用全局 legacy `paper-reader`。此路由仅约束
+MindFlow 仓库内行为，不安装、禁用或改写任何全局 skill。
+
 ## Runtime capabilities
 
 - Node.js 18+：运行 `scripts/defuddle_parse.mjs` 提取 HTML。
@@ -23,7 +28,12 @@ description: Use when user asks to "read paper", "analyze paper", "summarize pap
 
 ### 1. 去重预检
 
-在 `Papers/` 中按 arXiv ID、DOI、规范化标题和文件名查找已有笔记。命中后立即停止写入，向用户返回 `[[已有笔记]]` 并询问取消或显式更新。只有用户明确授权更新时，才先完整读取现有笔记并做最小合并；不得覆盖手写段落、frontmatter 字段或已有 assets。
+先读取 vault 根目录 `references/paper-schema.md`，并使用
+`scripts/paper_schema.py` 按 arXiv ID、DOI、官方 URL + 规范化标题检查
+`Papers/`。强 identity 重复或任何 identity 歧义都阻止写入；命中已有笔记时
+返回 `[[已有笔记]]` 并询问取消或显式更新。只有用户明确授权更新时，才先
+完整读取现有笔记并做最小合并；不得覆盖手写段落、frontmatter 字段或已有
+assets。
 
 ### 2. 获取来源
 
@@ -49,6 +59,27 @@ description: Use when user asks to "read paper", "analyze paper", "summarize pap
 | github | `curl -fsSL "https://raw.githubusercontent.com/<org>/<repo>/main/README.md" -o /tmp/{ShortTitle}/github.md` | `main` 返回 404 时用相同参数试 `master` 一次；仍失败或其他 HTTP 错误则记录诊断，标记该来源不可得 |
 
 记录每类网络来源的原始 URL、访问日期和 `local_path`。用户提供的本地 PDF 记录原始绝对路径和 SHA-256，再复制或读取到任务临时目录；该“原始路径 + SHA-256 + 提取文件位置”是充分 provenance，不需要额外网络来源才能继续。
+
+#### 2.5 可选 Zotero 解析边界
+
+仅在用户或当前证据需要 library membership、item key、citekey、附件存在性或
+indexed fulltext 时，调用已安装的全局 Zotero 只读能力；默认 digest 不依赖
+Zotero。可达编排路径为：
+
+```text
+paper-digest metadata
+  -> invoke the installed global Zotero read-only capability on demand
+  -> map item key / DOI / arXiv / normalized title into ZoteroCandidate
+  -> apply zotero_resolution.py ambiguity and priority policy
+  -> optionally map explicit attachment listing to ZoteroAttachment metadata only
+  -> always choose paper body/claims from normalized OfficialSource
+  -> on unavailable/not_found, continue directly with OfficialSource
+```
+
+`zotero_resolution.py` 的 Protocol 只是确定性测试用的 policy seam，不是第二个
+Zotero client。不得读 Zotero SQLite、暴露本地附件路径或提供 mutation；
+`ZoteroCandidate` 不能作为论文正文或 claim 来源。只有用户或证据明确要求时，
+才通过全局 Zotero 能力读取 indexed fulltext。
 
 下载命令失败时，其目标文件不视为可用来源；不得把错误页或不完整文件送入后续正文提取。
 
@@ -99,6 +130,7 @@ Schema：
 - `{skill_dir}/references/paper-note-template.md`
 - vault 根目录 `references/obsidian-syntax.md`
 - vault 根目录 `references/tags.md`
+- vault 根目录 `references/paper-schema.md`
 
 笔记顺序固定为 Frontmatter → `## Summary` → Body → `## 关联工作` → `## 论文点评`。撰写顺序使用 Body → 关联工作 → 论文点评 → Summary → Frontmatter，使判断建立在已读证据之上。
 
@@ -109,6 +141,11 @@ Schema：
 - PDF 图片从任务临时目录复制到 `Papers/assets/{ShortTitle}/`，命名为 `fig{N}-{FigureTitle}.{ext}`，使用 `![](Papers/assets/{ShortTitle}/fig{N}-{FigureTitle}.{ext})`。
 
 文件名为 `YYMM-ShortTitle.md`：`YYMM` 来自 `date_publish`，`ShortTitle` 是 2-4 个关键词的 CamelCase 缩写。保存到 `Papers/{文件名}.md`。
+
+写入前再次运行 identity/duplicate 检查；任何歧义都阻止写入。完成草稿后使用
+`paper_schema.validate_paper(..., mode="strict")` 验证 canonical fields、domain、
+1-4 个受控 tags、review status、rating 和 identity。只有 strict validation
+无 error 时才保存新笔记。
 
 ### 4. 注入 Wikilink
 
@@ -147,6 +184,7 @@ DomainMaps/*<TermCamelCase>*.md
 ## Guard
 
 - 默认不改已有论文笔记或 assets；只有用户明确授权更新时才最小合并，并保留 frontmatter、手写内容和已有链接。
+- Zotero 查询保持可选、只读和歧义敏感；多候选不降级到弱匹配，不以 Zotero 元数据替代官方正文。
 - 每个 claim、URL、数字、公式、表格和媒体必须追溯到具体来源位置。网络来源记录官方 URL 与本地提取文件位置；用户提供的本地文件以原始绝对路径、SHA-256 和提取文件位置作为充分 provenance。搜索摘要和二手转载不能替代原文。
 - 网络、API 或单类来源失败时按既定 fallback 有限重试，随后把对应来源/指标标为 unavailable 或 `null`；不得编造缺失信息，也不得让非关键指标阻塞正文 digest。
 - 临时目录必须专属于本次任务，不覆盖同名旧目录；只清理已确认由本次创建的精确路径，绝不对 `/tmp` 或宽泛路径做递归删除。
@@ -167,6 +205,7 @@ DomainMaps/*<TermCamelCase>*.md
 
 - [ ] `Papers/{文件名}.md` 已创建；若原笔记存在，只有在显式授权下做最小更新且用户内容仍在。
 - [ ] frontmatter、Summary、Body、关联工作、论文点评符合模板；无 `%%...%%` 或占位符。
+- [ ] 写入前 identity 无歧义/重复，写入后 strict Paper schema validation 无 error。
 - [ ] 所有 URL、数字、公式、表格、方法 claim 可在记录的本地来源文件中搜索到，并已标明来源位置；没有凭记忆补写。
 - [ ] 媒体与说明紧邻且语境一致；teaser 位置正确；无装饰图；PDF assets 命名和路径符合约定。
 - [ ] Summary、frontmatter `rating` 和 `### Rating` 分数一致；Rating 首行的 Metrics 日期和数值来自 `metrics.json`，缺失字段写 `N/A（原因）`。

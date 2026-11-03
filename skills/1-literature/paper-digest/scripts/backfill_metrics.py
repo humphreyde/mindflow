@@ -48,6 +48,8 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from paper_schema import parse_frontmatter, resolve_identity, validate_paper
+
 # --- paths -------------------------------------------------------------------
 VAULT = Path(__file__).resolve().parents[4]  # skills/1-literature/paper-digest/scripts -> vault root
 PAPERS_DIR = VAULT / "Papers"
@@ -114,29 +116,29 @@ class PaperOutput:
 def parse_paper(path: Path) -> PaperInput:
     text = path.read_text(encoding="utf-8", errors="replace")
     already = bool(RE_METRICS_LINE.search(text))
-    fm_match = RE_FRONTMATTER.search(text)
-    fm = fm_match.group(1) if fm_match else ""
-
-    arxiv_id = None
+    document = parse_frontmatter(path)
+    conflicts = [
+        issue
+        for issue in validate_paper(document, mode="audit")
+        if issue.code == "identity-conflict"
+    ]
+    if conflicts:
+        raise ValueError(f"identity conflict: {conflicts[0].message}")
+    identity = resolve_identity(document)
+    arxiv_id = identity.arxiv_id
     gh_slug = None
     date_publish = None
-    for line in fm.splitlines():
-        line = line.rstrip()
-        if line.startswith("paper:"):
-            m = RE_ARXIV.search(line)
-            if m:
-                arxiv_id = m.group(1)
-        elif line.startswith("github:"):
-            m = RE_GH.search(line)
-            if m:
-                gh_slug = m.group(1)
-        elif line.startswith("date_publish:"):
-            v = line.split(":", 1)[1].strip()
-            # tolerate YYYY-MM-DD or YYYY-MM
-            if re.match(r"^\d{4}-\d{2}-\d{2}$", v):
-                date_publish = v
-            elif re.match(r"^\d{4}-\d{2}$", v):
-                date_publish = v + "-01"
+    github = document.frontmatter.get("github")
+    if isinstance(github, str):
+        match = RE_GH.search(github)
+        if match:
+            gh_slug = match.group(1)
+    published = document.frontmatter.get("date_publish")
+    if isinstance(published, str):
+        if re.match(r"^\d{4}-\d{2}-\d{2}$", published):
+            date_publish = published
+        elif re.match(r"^\d{4}-\d{2}$", published):
+            date_publish = published + "-01"
 
     # NOTE: no whole-doc fallback — body hits match *cited* papers' arxiv IDs
     # (bug found on 2604-GEN1: empty frontmatter `paper:` → body fallback grabbed

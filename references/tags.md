@@ -4,7 +4,7 @@
 
 ## 选择原则
 
-- 添加新笔记时，从下表中选取 1-3 个 tag，**按相关性从高到低排列**（第一个 tag 应为笔记的核心主题）。
+- 添加新笔记时，从下表中选取 1-4 个 tag，**按相关性从高到低排列**（第一个 tag 应为笔记的核心主题）。
 - 优先选择所属 domain 内的 tag；只在笔记真正跨领域时使用「跨领域」section 的 tag。
 - 如需新增 tag，要遵循设计原则，并更新 tag 列表。
 - **Meta tag 例外**：`Workbench/daily/` 下的日报 / 周报文件可使用 `daily-papers`、`weekly` 等格式标记，这些不计入研究主题 tag 配额，也不在本 taxonomy 中正式列出。
@@ -55,6 +55,7 @@
 | `diffusion-policy` | Diffusion-based action generation |
 | `flow-matching` | Flow matching 生成方法（主要用于 action generation） |
 | `VLN` | Vision-Language Navigation 模型 |
+| `world-action-model` | World Action Model（以动作条件建模世界动态，服务预测、规划或控制） |
 
 #### 感知/表示
 

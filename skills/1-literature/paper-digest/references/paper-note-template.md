@@ -1,15 +1,27 @@
 ---
+type: paper
 title:
 authors:            # [author1, author2, ...]
 institutes:         # [institute1, institute2, ...]
 date_publish:
 venue:
-tags:               # [tag1, tag2, ...]
+primary_domain:     # multimodal-understanding | ai-agent | embodied-ai | general-ai
+domains:            # [primary_domain, optional-cross-domain]
+tags:               # 1-4 controlled tags from references/tags.md
+review_status:      # inbox | digested | reviewed
+arxiv_id:           # canonical ID without arXiv: prefix or version suffix
+doi:                # canonical DOI without resolver URL
 paper:
-website: 
+website:
 github:
+zotero_library:
+zotero_item_key:    # stable Zotero item identifier; not the citekey
+zotero_citekey:     # optional mutable citation-key snapshot
 rating:              # {3 / 2 / 1}（在正文 ### Rating 段决定后回填此字段）
 date_added:          # 填写今天的日期 YYYY-MM-DD
+source_vault:        # migration-only; native MindFlow notes leave empty
+source_path:         # migration-only
+date_migrated:       # migration-only
 ---
 
 ## Summary
@@ -19,7 +31,7 @@ date_added:          # 填写今天的日期 YYYY-MM-DD
 > - **方法**: {关键方法}
 > - **结果**: {主要结果}
 > - **Sources**: [paper](paper_url) | [website](website_url) | [github](github_url) %% 三类 slot 对应 frontmatter 的 paper / website / github 字段，不互斥——有几类就保留几类，缺失的整段删除（含 `|` 分隔符）。label 文本固定不改，只替换括号内 URL。 %%
-> - **Rating**: {3 - Foundation / 2 - Frontier / 1 - Archived} （一句话理由） %% 从下文 `### Rating` 压缩而来：`### Rating` 先写完整 justification，这里再回写成一句话。 %%
+> - **Rating**: {3 - Foundation / 2 - Frontier / 1 - Peripheral} （一句话理由） %% 从下文 `### Rating` 压缩而来：`### Rating` 先写完整 justification，这里再回写成一句话。 %%
 
 **Key Takeaways:** 
 1. **{Takeaway 1}**: 简要说明
@@ -119,7 +131,7 @@ $$
   - 方法：当前或最近的 SOTA、必须比较的 Baseline、方法范式的代表工作。
   - Benchmark / Dataset：有一定使用量、正被主要工作采用，可能成长为标准但尚未定型。
 
-- **1 — Archived**：读过但不在方向主脉络和前沿。
+- **1 — Peripheral**：读过但不在方向主脉络和前沿。
   - 方法：incremental / niche / 为某个具体问题查的一次性参考 / 被后续工作取代。
   - Benchmark / Dataset：使用量低 / 范围过窄 / 被更通用的 benchmark 取代。
   - 预期不再主动翻。
@@ -134,7 +146,7 @@ $$
 **Metrics** (as of YYYY-MM-DD): citation={N}, influential={N} ({pct}%), velocity={N.N}/mo; HF upvotes={N or N/A}; github {N}⭐ / forks={N} / 90d commits={N or "100+"} / pushed {N}d ago{ · stale if applicable}
 %% 来源：影响力指标 `/tmp/{ShortTitle}/metrics.json` ；缺失的源对应字段写 "N/A（简短原因）"。%%
 
-**分数**：{3 - Foundation / 2 - Frontier / 1 - Archived}
+**分数**：{3 - Foundation / 2 - Frontier / 1 - Peripheral}
 **理由**：{2-3 句，必须 grounded 在本笔记已写内容和 Metrics 上。说清楚"为什么是这个档，而不是相邻档"。}
 
 %% 决定分数后，回填：(1) Summary 里的 Rating 一句话，(2) frontmatter 的 rating 字段。三处保持一致。 %%
