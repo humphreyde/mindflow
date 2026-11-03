@@ -1,0 +1,69 @@
+filters:
+  and:
+    - 'file.folder == "Papers"'
+    - 'file.ext == "md"'
+
+formulas:
+  is_cross_domain: 'list(domains).length > 1'
+  is_vla: 'list(tags).contains("VLA")'
+  is_wam: 'list(tags).contains("world-action-model") || (list(tags).contains("world-model") && list(tags).contains("VLA"))'
+  low_confidence_identity: '(!file.hasProperty("arxiv_id") || arxiv_id.isEmpty()) && (!file.hasProperty("doi") || doi.isEmpty())'
+  missing_identity: '(!file.hasProperty("arxiv_id") || arxiv_id.isEmpty()) && (!file.hasProperty("doi") || doi.isEmpty()) && (!file.hasProperty("paper") || paper.isEmpty()) && (!file.hasProperty("website") || website.isEmpty()) && (!file.hasProperty("github") || github.isEmpty())'
+  missing_classification: '!file.hasProperty("primary_domain") || primary_domain.isEmpty() || !file.hasProperty("domains") || list(domains).isEmpty()'
+  has_unknown_tag: 'list(tags).filter(!"VLM|video-LLM|video-understanding|agentic-RL|computer-use|gui-agent|web-agent|auto-research|manipulation|navigation|mobile-manipulation|VLA|imitation-learning|diffusion-policy|flow-matching|VLN|3D-representation|spatial-reasoning|spatial-memory|scene-understanding|semantic-map|SLAM|cross-embodiment|legged|world-action-model|LLM|world-model|embodied-reasoning|RL|task-planning|instruction-following".split("|").contains(value)).length > 0'
+  needs_review: 'formula.missing_identity || formula.low_confidence_identity || formula.missing_classification || formula.has_unknown_tag || !file.hasProperty("review_status") || review_status != "reviewed"'
+
+properties:
+  title:
+    displayName: Title
+  date_publish:
+    displayName: Published
+  rating:
+    displayName: Rating
+  primary_domain:
+    displayName: Primary Domain
+  domains:
+    displayName: Domains
+  tags:
+    displayName: Tags
+  venue:
+    displayName: Venue
+  review_status:
+    displayName: Review Status
+
+views:
+  - type: table
+    name: All Papers
+    order: [title, date_publish, rating, primary_domain, domains, tags, venue, review_status]
+  - type: table
+    name: By Primary Domain
+    groupBy:
+      property: primary_domain
+      direction: ASC
+    order: [title, date_publish, rating, domains, tags, review_status]
+  - type: table
+    name: Cross-domain
+    filters: 'formula.is_cross_domain'
+    order: [title, primary_domain, domains, tags, rating, review_status]
+  - type: table
+    name: VLA
+    filters: 'formula.is_vla'
+    order: [title, date_publish, rating, primary_domain, domains, tags, review_status]
+  - type: table
+    name: WAM
+    filters: 'formula.is_wam'
+    order: [title, date_publish, rating, primary_domain, domains, tags, review_status]
+  - type: table
+    name: Needs Review
+    filters: 'formula.needs_review'
+    order: [title, date_publish, primary_domain, domains, tags, review_status]
+  - type: table
+    name: Foundation
+    filters: 'rating == 3'
+    order: [title, date_publish, primary_domain, domains, tags, review_status]
+  - type: table
+    name: Recent
+    order: [title, date_added, rating, primary_domain, domains, tags, review_status]
+    sort:
+      - property: date_added
+        direction: DESC
