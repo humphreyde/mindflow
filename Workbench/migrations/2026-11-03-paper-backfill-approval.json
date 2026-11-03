@@ -1,0 +1,10 @@
+{
+  "approval_status": "pending",
+  "approval_version": 1,
+  "approved_arxiv_additions": 175,
+  "approved_other_fields": 0,
+  "approved_type_additions": 182,
+  "manifest_commit": "1e2a322fb97e7f547017761bed937d8ddf3e19b9",
+  "manifest_path": "Workbench/migrations/2026-11-03-paper-classification-identity-audit.json",
+  "manifest_sha256": "3bf0854c0d49aba2832857f980e797cf1b4cd8ed04e0486e3f7486a5a83f1dca"
+}
