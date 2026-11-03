@@ -107,6 +107,21 @@ class MigrationManifest:
         ).encode("utf-8")
 
 
+@dataclass(frozen=True)
+class ApprovalReceipt:
+    approval_version: int
+    approval_status: str
+    manifest_path: str
+    manifest_sha256: str
+    approval_basis: str
+
+    def to_json_bytes(self) -> bytes:
+        return (
+            json.dumps(asdict(self), sort_keys=True, ensure_ascii=False, indent=2)
+            + "\n"
+        ).encode("utf-8")
+
+
 def _git(source: Path, *args: str) -> str:
     result = subprocess.run(
         ["git", "-C", str(source), *args],
@@ -478,6 +493,170 @@ def write_plan(
     _atomic_write(markdown_path, _markdown_report(manifest))
 
 
+def _manifest_from_bytes(raw: bytes) -> MigrationManifest:
+    try:
+        payload = json.loads(raw)
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValueError("invalid migration manifest JSON") from exc
+    if not isinstance(payload, dict) or payload.get("manifest_version") != 1:
+        raise ValueError("unsupported migration manifest version")
+    try:
+        snapshot_raw = payload["source_snapshot"]
+        snapshot = SourceSnapshot(
+            git_head=snapshot_raw["git_head"],
+            git_status=tuple(snapshot_raw["git_status"]),
+            files=tuple(tuple(pair) for pair in snapshot_raw["files"]),
+        )
+        items = tuple(
+            MigrationItem(
+                source_path=item["source_path"],
+                source_sha256=item["source_sha256"],
+                source_kind=item["source_kind"],
+                identity=dict(item["identity"]),
+                identity_confidence=item["identity_confidence"],
+                decision=item["decision"],
+                destination_path=item["destination_path"],
+                duplicate_group=item["duplicate_group"],
+                referenced_assets=tuple(item["referenced_assets"]),
+                link_rewrites=tuple(tuple(pair) for pair in item["link_rewrites"]),
+                status=item["status"],
+                reason=item["reason"],
+            )
+            for item in payload["items"]
+        )
+        return MigrationManifest(
+            manifest_version=1,
+            source_root=payload["source_root"],
+            target_root=payload["target_root"],
+            source_snapshot=snapshot,
+            items=items,
+        )
+    except (KeyError, TypeError, ValueError) as exc:
+        raise ValueError("malformed migration manifest") from exc
+
+
+def _relative_to_target(path: Path, target: Path) -> str:
+    try:
+        return path.resolve().relative_to(target.resolve()).as_posix()
+    except ValueError as exc:
+        raise ValueError("manifest and receipt must be inside target vault") from exc
+
+
+def approve_manifest(
+    manifest_path: Path,
+    receipt_path: Path,
+    basis: str,
+    *,
+    target: Path,
+) -> ApprovalReceipt:
+    manifest_absolute = manifest_path.resolve()
+    _manifest_from_bytes(manifest_absolute.read_bytes())
+    receipt = ApprovalReceipt(
+        approval_version=1,
+        approval_status="confirmed",
+        manifest_path=_relative_to_target(manifest_absolute, target),
+        manifest_sha256=_sha256(manifest_absolute.read_bytes()),
+        approval_basis=basis,
+    )
+    _guard_output(Path("/nonexistent-source-root"), receipt_path)
+    _atomic_write(receipt_path.resolve(), receipt.to_json_bytes())
+    return receipt
+
+
+def _load_receipt(receipt_path: Path) -> ApprovalReceipt:
+    try:
+        payload = json.loads(receipt_path.read_bytes())
+        receipt = ApprovalReceipt(**payload)
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, TypeError) as exc:
+        raise ValueError("invalid migration approval receipt") from exc
+    if receipt.approval_version != 1 or receipt.approval_status != "confirmed":
+        raise ValueError("migration approval receipt is not confirmed")
+    return receipt
+
+
+def verify_receipt(
+    manifest_path: Path, receipt_path: Path, *, target: Path
+) -> ApprovalReceipt:
+    receipt = _load_receipt(receipt_path)
+    expected_path = _relative_to_target(manifest_path, target)
+    if receipt.manifest_path != expected_path:
+        raise ValueError("approval manifest path mismatch")
+    if receipt.manifest_sha256 != _sha256(manifest_path.read_bytes()):
+        raise ValueError("manifest SHA-256 mismatch")
+    return receipt
+
+
+def _safe_destination(target: Path, relative: str) -> Path:
+    candidate = (target / relative).resolve()
+    try:
+        candidate.relative_to(target.resolve())
+    except ValueError as exc:
+        raise ValueError(f"destination escapes target: {relative}") from exc
+    return candidate
+
+
+def _exclusive_write(path: Path, raw: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o644)
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(raw)
+            handle.flush()
+            os.fsync(handle.fileno())
+    except BaseException:
+        path.unlink(missing_ok=True)
+        raise
+
+
+def apply_manifest(
+    manifest_path: Path,
+    receipt_path: Path,
+    source: Path,
+    target: Path,
+    decisions: set[str],
+) -> tuple[str, ...]:
+    source = source.resolve()
+    target = target.resolve()
+    verify_receipt(manifest_path, receipt_path, target=target)
+    manifest = _manifest_from_bytes(manifest_path.read_bytes())
+    if Path(manifest.source_root).resolve() != source:
+        raise ValueError("source root differs from frozen manifest")
+    if Path(manifest.target_root).resolve() != target:
+        raise ValueError("target root differs from frozen manifest")
+    current_snapshot = snapshot_source(source)
+    if current_snapshot != manifest.source_snapshot:
+        raise ValueError("source hash drift from frozen manifest")
+    selected = [
+        item
+        for item in manifest.items
+        if item.decision in decisions and item.status == "ready"
+    ]
+    prepared: list[tuple[Path, bytes]] = []
+    for item in selected:
+        if item.destination_path is None:
+            raise ValueError(f"ready item has no destination: {item.source_path}")
+        source_path = source / item.source_path
+        raw = source_path.read_bytes()
+        if _sha256(raw) != item.source_sha256:
+            raise ValueError(f"source hash drift: {item.source_path}")
+        destination = _safe_destination(target, item.destination_path)
+        if destination.exists() or destination.is_symlink():
+            raise ValueError(f"target exists: {item.destination_path}")
+        prepared.append((destination, raw))
+    created: list[Path] = []
+    try:
+        for destination, raw in prepared:
+            _exclusive_write(destination, raw)
+            created.append(destination)
+    except BaseException:
+        for path in reversed(created):
+            path.unlink(missing_ok=True)
+        raise
+    if snapshot_source(source) != manifest.source_snapshot:
+        raise ValueError("source hash drift during apply")
+    return tuple(path.relative_to(target).as_posix() for path in created)
+
+
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -486,6 +665,17 @@ def _build_parser() -> argparse.ArgumentParser:
     plan.add_argument("--target", required=True, type=Path)
     plan.add_argument("--json", required=True, type=Path)
     plan.add_argument("--markdown", required=True, type=Path)
+    approve = subparsers.add_parser("approve")
+    approve.add_argument("--manifest", required=True, type=Path)
+    approve.add_argument("--receipt", required=True, type=Path)
+    approve.add_argument("--basis", required=True)
+    approve.add_argument("--target", type=Path, default=Path("."))
+    apply_parser = subparsers.add_parser("apply")
+    apply_parser.add_argument("--manifest", required=True, type=Path)
+    apply_parser.add_argument("--receipt", required=True, type=Path)
+    apply_parser.add_argument("--source", type=Path)
+    apply_parser.add_argument("--target", required=True, type=Path)
+    apply_parser.add_argument("--decisions", required=True)
     return parser
 
 
@@ -494,6 +684,27 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "plan":
         manifest = build_manifest(args.source, args.target)
         write_plan(manifest, args.source, args.json, args.markdown)
+        return 0
+    if args.command == "approve":
+        approve_manifest(
+            args.manifest,
+            args.receipt,
+            args.basis,
+            target=args.target,
+        )
+        return 0
+    if args.command == "apply":
+        manifest = _manifest_from_bytes(args.manifest.read_bytes())
+        source = args.source or Path(manifest.source_root)
+        created = apply_manifest(
+            args.manifest,
+            args.receipt,
+            source,
+            args.target,
+            {value for value in args.decisions.split(",") if value},
+        )
+        for path in created:
+            print(path)
         return 0
     raise AssertionError(args.command)
 

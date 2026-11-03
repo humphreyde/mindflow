@@ -4,7 +4,13 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.migrations.legacy_notes import build_manifest, snapshot_source
+from scripts.migrations.legacy_notes import (
+    apply_manifest,
+    approve_manifest,
+    build_manifest,
+    snapshot_source,
+    verify_receipt,
+)
 
 
 class LegacyNotesPlannerTests(unittest.TestCase):
@@ -61,6 +67,19 @@ class LegacyNotesPlannerTests(unittest.TestCase):
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
 
+    def freeze_manifest(self) -> tuple[Path, Path]:
+        manifest_path = self.target / "Workbench/migrations/manifest.json"
+        receipt_path = self.target / "Workbench/migrations/approval.json"
+        manifest_path.parent.mkdir(parents=True, exist_ok=True)
+        manifest_path.write_bytes(build_manifest(self.source, self.target).to_json_bytes())
+        approve_manifest(
+            manifest_path,
+            receipt_path,
+            "user directive 2026-11-03: 按你推荐的做，不问我",
+            target=self.target,
+        )
+        return manifest_path, receipt_path
+
     def test_manifest_is_stable_and_source_is_unchanged(self) -> None:
         before = snapshot_source(self.source)
         first = build_manifest(self.source, self.target).to_json_bytes()
@@ -101,6 +120,41 @@ class LegacyNotesPlannerTests(unittest.TestCase):
         self.assertEqual(item.identity_confidence, "review")
         self.assertEqual(item.decision, "merge-paper")
         self.assertEqual(item.destination_path, "Papers/2601-ExistingReport.md")
+
+    def test_apply_rejects_source_hash_drift(self) -> None:
+        manifest, receipt = self.freeze_manifest()
+        source_note = self.source / "DailyPapers/2026-10-28-论文推荐.md"
+        source_note.write_text("changed\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "source hash drift"):
+            apply_manifest(
+                manifest,
+                receipt,
+                self.source,
+                self.target,
+                {"import-daily"},
+            )
+
+    def test_apply_never_overwrites_existing_target(self) -> None:
+        manifest, receipt = self.freeze_manifest()
+        destination = self.target / "Workbench/daily/2026-10-28-论文推荐.md"
+        destination.parent.mkdir(parents=True)
+        destination.write_text("user content\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "target exists"):
+            apply_manifest(
+                manifest,
+                receipt,
+                self.source,
+                self.target,
+                {"import-daily"},
+            )
+        self.assertEqual(destination.read_text(encoding="utf-8"), "user content\n")
+
+    def test_receipt_is_bound_to_manifest_bytes(self) -> None:
+        manifest, receipt = self.freeze_manifest()
+        verify_receipt(manifest, receipt, target=self.target)
+        manifest.write_bytes(manifest.read_bytes() + b" ")
+        with self.assertRaisesRegex(ValueError, "manifest SHA-256"):
+            verify_receipt(manifest, receipt, target=self.target)
 
 
 if __name__ == "__main__":
