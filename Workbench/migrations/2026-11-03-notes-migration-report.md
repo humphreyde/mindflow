@@ -9,9 +9,9 @@
 - `import-daily:applied`: 2
 - `import-insight:applied`: 3
 - `import-paper:blocked`: 1
-- `import-paper:ready`: 22
+- `import-paper:applied`: 22
 - `import-source:applied`: 6
-- `import-topic:ready`: 2
+- `import-topic:applied`: 2
 - `import-trending:applied`: 1
 - `merge-paper:merged`: 8
 
@@ -20,40 +20,40 @@
 - `DailyPapers/.history.json` → `Workbench/daily/.history.json`: **import-daily/applied** — target matches deterministic migration output
 - `DailyPapers/2026-10-28-论文推荐.md` → `Workbench/daily/2026-10-28-论文推荐.md`: **import-daily/applied** — target matches deterministic migration output
 - `GitHubTrending/2026-W44 GitHub周榜.md` → `Workbench/trending/2026-W44 GitHub周榜.md`: **import-trending/applied** — target matches deterministic migration output
-- `PaperNotes/VLA/FAST.md` → `Papers/2501-FAST.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/VLA/FLARE.md` → `Papers/2505-FLARE.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/VLA/FLASH.md` → `Papers/2605-FLASH.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/VLA/GR00T N1.5.md` → `Papers/2506-GR00TN15.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/VLA/GR00T N1.6.md` → `Papers/2512-GR00TN16.md`: **import-paper/ready** — old-only paper candidate
+- `PaperNotes/VLA/FAST.md` → `Papers/2501-FAST.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/VLA/FLARE.md` → `Papers/2505-FLARE.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/VLA/FLASH.md` → `Papers/2605-FLASH.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/VLA/GR00T N1.5.md` → `Papers/2506-GR00TN15.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/VLA/GR00T N1.6.md` → `Papers/2512-GR00TN16.md`: **import-paper/applied** — target matches deterministic migration output
 - `PaperNotes/VLA/GR00T N1.md` → `Papers/2503-GR00TN1.md`: **merge-paper/merged** — high-confidence identity match
-- `PaperNotes/VLA/GR00T-Series-Survey.md` → `Topics/GR00T-Series-Survey.md`: **import-topic/ready** — approved series survey
-- `PaperNotes/VLA/HIL-SERL.md` → `Papers/2410-HILSERL.md`: **import-paper/ready** — old-only paper candidate
+- `PaperNotes/VLA/GR00T-Series-Survey.md` → `Topics/GR00T-Series-Survey.md`: **import-topic/applied** — target matches deterministic migration output
+- `PaperNotes/VLA/HIL-SERL.md` → `Papers/2410-HILSERL.md`: **import-paper/applied** — target matches deterministic migration output
 - `PaperNotes/VLA/HiRobot.md` → `Papers/2502-HiRobot.md`: **merge-paper/merged** — high-confidence identity match
-- `PaperNotes/VLA/KI.md` → `Papers/2505-KI.md`: **import-paper/ready** — old-only paper candidate
+- `PaperNotes/VLA/KI.md` → `Papers/2505-KI.md`: **import-paper/applied** — target matches deterministic migration output
 - `PaperNotes/VLA/MEM.md` → `Papers/2603-MEM.md`: **merge-paper/merged** — exact official URL and normalized title match
-- `PaperNotes/VLA/PLD.md` → `Papers/2511-PLD.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/VLA/Pi-Series-Survey.md` → `Topics/Pi-Series-Survey.md`: **import-topic/ready** — approved series survey
+- `PaperNotes/VLA/PLD.md` → `Papers/2511-PLD.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/VLA/Pi-Series-Survey.md` → `Topics/Pi-Series-Survey.md`: **import-topic/applied** — target matches deterministic migration output
 - `PaperNotes/VLA/Pi0.md` → `Papers/2410-Pi0.md`: **merge-paper/merged** — high-confidence identity match
 - `PaperNotes/VLA/Pi05.md` → `Papers/2504-Pi05.md`: **merge-paper/merged** — high-confidence identity match
 - `PaperNotes/VLA/Pi06 Base Model.md` → `-`: **blocked/blocked** — misfiled concept requires semantic absorption
 - `PaperNotes/VLA/Pi06.md` → `Papers/2511-PiStar06.md`: **merge-paper/merged** — high-confidence identity match
 - `PaperNotes/VLA/Pi07.md` → `Papers/2604-Pi07.md`: **merge-paper/merged** — exact official URL and normalized title match
-- `PaperNotes/VLA/RLT.md` → `Papers/2603-RLT.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/VLA/STEAM.md` → `Papers/2606-STEAM.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/VLA/Workhorse.md` → `Papers/2610-Workhorse.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/_inbox/HEISD.md` → `Papers/2603-HEISD.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/_inbox/KERV.md` → `Papers/2603-KERV.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/_inbox/Mean Flow VLA.md` → `Papers/2603-MeanFlowVLA.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/_inbox/One-step Diffusion Policy.md` → `Papers/2410-OnestepDiffusionPolicy.md`: **import-paper/ready** — old-only paper candidate
+- `PaperNotes/VLA/RLT.md` → `Papers/2603-RLT.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/VLA/STEAM.md` → `Papers/2606-STEAM.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/VLA/Workhorse.md` → `Papers/2610-Workhorse.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/_inbox/HEISD.md` → `Papers/2603-HEISD.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/_inbox/KERV.md` → `Papers/2603-KERV.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/_inbox/Mean Flow VLA.md` → `Papers/2603-MeanFlowVLA.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/_inbox/One-step Diffusion Policy.md` → `Papers/2410-OnestepDiffusionPolicy.md`: **import-paper/applied** — target matches deterministic migration output
 - `PaperNotes/_inbox/Pi0.md` → `Papers/2410-Pi0.md`: **merge-paper/merged** — high-confidence identity match
 - `PaperNotes/_inbox/Spec-VLA.md` → `-`: **import-paper/blocked** — missing paper identity
-- `PaperNotes/_inbox/Triton-Pi0.md` → `Papers/2510-TritonPi0.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/world model/DiT4DiT.md` → `Papers/2603-DiT4DiT.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/world model/Dyna-2.1.md` → `Papers/2604-Dyna21.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/world model/Fast-WAM.md` → `Papers/2603-FastWAM.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/world model/GAWM.md` → `Papers/2610-GAWM.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/world model/OpenWAM.md` → `Papers/2609-OpenWAM.md`: **import-paper/ready** — old-only paper candidate
-- `PaperNotes/world model/WAM-Survey.md` → `Papers/2609-WAMSurvey.md`: **import-paper/ready** — old-only paper candidate
+- `PaperNotes/_inbox/Triton-Pi0.md` → `Papers/2510-TritonPi0.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/world model/DiT4DiT.md` → `Papers/2603-DiT4DiT.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/world model/Dyna-2.1.md` → `Papers/2604-Dyna21.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/world model/Fast-WAM.md` → `Papers/2603-FastWAM.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/world model/GAWM.md` → `Papers/2610-GAWM.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/world model/OpenWAM.md` → `Papers/2609-OpenWAM.md`: **import-paper/applied** — target matches deterministic migration output
+- `PaperNotes/world model/WAM-Survey.md` → `Papers/2609-WAMSurvey.md`: **import-paper/applied** — target matches deterministic migration output
 - `ResearchNotes/Dyna2部署的一些know-how.md` → `ResearchSources/Insights/Dyna2部署的一些know-how.md`: **import-insight/applied** — target matches deterministic migration output
 - `ResearchSources/Insights/任务空间接口：连接上层策略与RL控制器.md` → `ResearchSources/Insights/任务空间接口：连接上层策略与RL控制器.md`: **import-insight/applied** — target matches deterministic migration output
 - `ResearchSources/Insights/访问模式驱动的机器人训练数据物理布局.md` → `ResearchSources/Insights/访问模式驱动的机器人训练数据物理布局.md`: **import-insight/applied** — target matches deterministic migration output
@@ -74,3 +74,15 @@
 - `PaperNotes/VLA/Pi06.md`: merged multi-task value-function appendix evidence and the fixed-checkpoint iteration protocol; omitted duplicate Recap equations, Algorithm 1, curves, critique, and research mapping. Destination SHA-256: `d131ce023b319ebaec581a5b33c3c984e039727b3bd960b6012c041142dcde1d`.
 - `PaperNotes/VLA/Pi07.md`: merged joint-space versus end-effector control and human-study controls; omitted duplicate prompt-expansion method, experiments, deployment-cost critique, related work, and rating. Destination SHA-256: `9844f2682428d0180fd3624641fab40013917470b4730af589ece0b83f72ecf0`.
 - `PaperNotes/_inbox/Pi0.md`: no source-only prose; omitted duplicate metadata and links. Destination SHA-256 remains `10e5fa947c7edf6a80cd8c13d48199f07de6860764f0aa544391664f9f9bd364`.
+
+## Final verification
+
+- Result: **pass** (`46` manifest items, `0` verifier errors).
+- Accounting: `44` materialized or semantically merged items; `2` explicitly blocked items with no target write.
+- Papers: `204` total, `0` duplicate strong-identity groups, `0` schema errors.
+- Assets: all `42` referenced copied assets exist and match source bytes.
+- Source: HEAD `8bdcf185e277fc522c49d22d6304ef7edb50f52d`; frozen status and included-file hashes unchanged.
+- Forbidden paths: no migrated destination contains an old `[[PaperNotes/...]]` wikilink or legacy absolute notes-vault path.
+- Remaining blocked items:
+  - `PaperNotes/VLA/Pi06 Base Model.md`: misfiled concept requires semantic absorption.
+  - `PaperNotes/_inbox/Spec-VLA.md`: missing paper identity.

@@ -77,12 +77,12 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/FAST.md",
       "source_sha256": "bf2095dfbdaa5458d512cfc98cf32b39e67b58988be30c5e171246a184d535c4",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -199,12 +199,12 @@
           "VLA"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/FLARE.md",
       "source_sha256": "48301daa83d94b3251f13c7202e108aff2afec3c1737be50aeb059763820aa1e",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -220,12 +220,12 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/FLASH.md",
       "source_sha256": "9ded74a6bc645007e576aacfc1c07bd7ff3ad926b22709bccd3fb305730defcd",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -342,12 +342,12 @@
           "Zongyu Lin"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/GR00T N1.5.md",
       "source_sha256": "7310ec45d3afbb18d3d50915ccadab0e443c3c014d9ada0ac67977b21048da03",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -460,12 +460,12 @@
           "Yunhao Ge"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/GR00T N1.6.md",
       "source_sha256": "befa1aca0660f22b913105becef6babcb71191ced7df1582828101b00f37d7b0",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "merge-paper",
@@ -623,12 +623,12 @@
           "Papers/2512-GR00TN16"
         ]
       ],
-      "reason": "approved series survey",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/GR00T-Series-Survey.md",
       "source_sha256": "a1529ea31e09f4c12c890d8f94bf7b6f82845491bfa57297b68f705fa6737037",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -661,12 +661,12 @@
           "Sergey Levine"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/HIL-SERL.md",
       "source_sha256": "83f4116adc829f0ffa89c423059e66330391f669922a305aa4b0b18b2a9966b0",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "merge-paper",
@@ -713,12 +713,12 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/KI.md",
       "source_sha256": "6f3a819ac7eefa5b25284f2f229ce2f345bd08d930a8ede51924753e9282a233",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "merge-paper",
@@ -822,12 +822,12 @@
           "OpenVLA"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/PLD.md",
       "source_sha256": "0639dea6787b05b23b80b7ec2a5ca09369e25bb860b01192a2c7bbe32916c1c1",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-topic",
@@ -843,12 +843,12 @@
       },
       "identity_confidence": "review",
       "link_rewrites": [],
-      "reason": "approved series survey",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/Pi-Series-Survey.md",
       "source_sha256": "5623220850f3aba9f6b322814850a0427224b5ce648a9a8568953c78069ded51",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "merge-paper",
@@ -1127,7 +1127,7 @@
           "Papers/assets/RLT/rlt_fig9_speed_hist.png"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [
         "PaperNotes/VLA/assets/rlt_fig1_overview.png",
         "PaperNotes/VLA/assets/rlt_fig2_rl_token.png",
@@ -1142,7 +1142,7 @@
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/RLT.md",
       "source_sha256": "59464f8dc073a17e026b8d1328bed1607b39141690b29dd4ee645b6e5c55857a",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1247,7 +1247,7 @@
           "Zhihao Liu"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [
         "PaperNotes/VLA/assets/STEAM/figure5.png",
         "PaperNotes/VLA/assets/STEAM/figure6.png",
@@ -1256,7 +1256,7 @@
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/STEAM.md",
       "source_sha256": "8903a7ac6c4c57b5e774bd44435d381bc9b90ee64a026748a246d534d83536c1",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1337,7 +1337,7 @@
           "Papers/assets/Workhorse/Workhorse_fig9.png"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [
         "PaperNotes/VLA/assets/Workhorse_fig1.png",
         "PaperNotes/VLA/assets/Workhorse_fig2.png",
@@ -1352,7 +1352,7 @@
       "source_kind": "paper",
       "source_path": "PaperNotes/VLA/Workhorse.md",
       "source_sha256": "540c5089e0c2c5cea20d5e12e3e8b848e16d9f25990a1462e2bdaa61b51b506f",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1368,12 +1368,12 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/_inbox/HEISD.md",
       "source_sha256": "39eab0fce7f99cacdc0c910dd188657429df898f8b7707567682719a2dc6112a",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1389,12 +1389,12 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/_inbox/KERV.md",
       "source_sha256": "6064e03c70d009e71be10af861608718b7f999ca1fad6e4c757f13422f7da73f",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1410,12 +1410,12 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/_inbox/Mean Flow VLA.md",
       "source_sha256": "620ab3678e205c4f03c78b1a376deb7c629cd48b025b368fd64981f26a6b1e66",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1431,12 +1431,12 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/_inbox/One-step Diffusion Policy.md",
       "source_sha256": "b75da2e7bdb79feacf59eceb3ad0b1709f40351cfcf459df654029d7fc096f9b",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "merge-paper",
@@ -1499,12 +1499,12 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/_inbox/Triton-Pi0.md",
       "source_sha256": "15c5c1dde8edfc214f503d1ea0ec0b12f40c9a014538ec6a67c51dda44e70d4a",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1577,12 +1577,12 @@
           "Zifan Wang"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/world model/DiT4DiT.md",
       "source_sha256": "3de1b2a03ecc83e5bb79e6beaf6f70fcae1bd2b08922123101b05b91c63b016e",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1647,12 +1647,12 @@
           "WAM Survey"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/world model/Dyna-2.1.md",
       "source_sha256": "a3e8a2c0b2fc15ae477a9167d87338e626f96217db53b1cc5dc0c9b78daa0df9",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1677,12 +1677,12 @@
           "Implementation companion"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/world model/Fast-WAM.md",
       "source_sha256": "b0ee182e05f265a5a6b56075609318e385a3e5acddd1721d835116bcc351b0a5",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1698,12 +1698,12 @@
       },
       "identity_confidence": "high",
       "link_rewrites": [],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/world model/GAWM.md",
       "source_sha256": "25ef9983d67d05f159d37accfcd5982e4495616b10fc6390e7e00fc6137d5c09",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -1908,7 +1908,7 @@
           "Fast-WAM"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [
         "PaperNotes/world model/assets/OpenWAM_fig01_overview.png",
         "PaperNotes/world model/assets/OpenWAM_fig02_model_infra.png",
@@ -1935,7 +1935,7 @@
       "source_kind": "paper",
       "source_path": "PaperNotes/world model/OpenWAM.md",
       "source_sha256": "e89df3f22571c39d5bed762e17e60d07eccba117724112a2d980f3c70a73c34e",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-paper",
@@ -2044,12 +2044,12 @@
           "OpenWAM"
         ]
       ],
-      "reason": "old-only paper candidate",
+      "reason": "target matches deterministic migration output",
       "referenced_assets": [],
       "source_kind": "paper",
       "source_path": "PaperNotes/world model/WAM-Survey.md",
       "source_sha256": "455bf8e6c64a6bc792369d03edc9ecb96921a08f9266af98af9e8f3e755d23c8",
-      "status": "ready"
+      "status": "applied"
     },
     {
       "decision": "import-insight",

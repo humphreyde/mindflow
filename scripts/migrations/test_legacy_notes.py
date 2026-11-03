@@ -13,6 +13,7 @@ from scripts.migrations.legacy_notes import (
     plan_asset_copy,
     render_imported_paper,
     snapshot_source,
+    verify_migration,
     verify_receipt,
 )
 
@@ -240,6 +241,121 @@ class LegacyNotesPlannerTests(unittest.TestCase):
         result = plan_asset_copy("figure.png", b"source", existing=b"different")
         self.assertRegex(result.destination_name, r"^figure-[0-9a-f]{12}\.png$")
         self.assertFalse(result.reuse_existing)
+
+
+class LegacyNotesVerificationTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.temp_dir = tempfile.TemporaryDirectory()
+        root = Path(self.temp_dir.name)
+        self.source = root / "notes"
+        self.target = root / "mindflow"
+        (self.source / "PaperNotes/VLA").mkdir(parents=True)
+        (self.source / "DailyPapers").mkdir(parents=True)
+        (self.target / "Papers").mkdir(parents=True)
+        (self.source / "PaperNotes/VLA/Novel.md").write_text(
+            "---\ntitle: Novel\narxiv_id: 2601.00001\n---\n"
+            "Body ![[figure.png]]\n",
+            encoding="utf-8",
+        )
+        (self.source / "PaperNotes/VLA/figure.png").write_bytes(b"image-bytes")
+        (self.source / "DailyPapers/2026-11-03.md").write_text(
+            "Daily [[PaperNotes/VLA/Novel|Novel]]\n",
+            encoding="utf-8",
+        )
+        self.manifest = self.target / "Workbench/migrations/manifest.json"
+        self.receipt = self.target / "Workbench/migrations/approval.json"
+        self.manifest.parent.mkdir(parents=True)
+        self.manifest.write_bytes(
+            build_manifest(self.source, self.target).to_json_bytes()
+        )
+        approve_manifest(
+            self.manifest,
+            self.receipt,
+            "verification fixture",
+            target=self.target,
+        )
+        apply_manifest(
+            self.manifest,
+            self.receipt,
+            self.source,
+            self.target,
+            {"import-paper", "import-daily"},
+        )
+
+    def tearDown(self) -> None:
+        self.temp_dir.cleanup()
+
+    def verify(self) -> dict[str, int]:
+        return verify_migration(
+            self.manifest,
+            source=self.source,
+            target=self.target,
+        )
+
+    def rewrite_manifest(self, mutate) -> None:
+        payload = json.loads(self.manifest.read_text(encoding="utf-8"))
+        mutate(payload)
+        self.manifest.write_text(
+            json.dumps(payload, sort_keys=True, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
+    def test_verify_accepts_complete_materialized_manifest(self) -> None:
+        summary = self.verify()
+        self.assertEqual(summary["items"], 2)
+        self.assertEqual(summary["errors"], 0)
+
+    def test_verify_rejects_source_snapshot_drift(self) -> None:
+        (self.source / "DailyPapers/2026-11-03.md").write_text(
+            "changed\n", encoding="utf-8"
+        )
+        with self.assertRaisesRegex(ValueError, "source snapshot drift"):
+            self.verify()
+
+    def test_verify_rejects_duplicate_paper_identity(self) -> None:
+        (self.target / "Papers/2601-Duplicate.md").write_text(
+            "---\ntype: paper\ntitle: Duplicate\narxiv_id: 2601.00001\n---\n",
+            encoding="utf-8",
+        )
+        with self.assertRaisesRegex(ValueError, "duplicate Paper identity"):
+            self.verify()
+
+    def test_verify_rejects_missing_copied_asset(self) -> None:
+        (self.target / "Papers/assets/Novel/figure.png").unlink()
+        with self.assertRaisesRegex(ValueError, "missing copied asset"):
+            self.verify()
+
+    def test_verify_rejects_legacy_wikilink_and_absolute_path(self) -> None:
+        destination = self.target / "Workbench/daily/2026-11-03.md"
+        destination.write_text(
+            "[[PaperNotes/VLA/Novel|Novel]] /Users/limx/notes\n",
+            encoding="utf-8",
+        )
+        with self.assertRaisesRegex(
+            ValueError, "legacy PaperNotes wikilink.*legacy absolute path"
+        ):
+            self.verify()
+
+    def test_verify_rejects_unknown_status(self) -> None:
+        self.rewrite_manifest(
+            lambda payload: payload["items"][0].__setitem__("status", "mystery")
+        )
+        with self.assertRaisesRegex(ValueError, "unknown status"):
+            self.verify()
+
+    def test_verify_rejects_manifest_count_mismatch(self) -> None:
+        self.rewrite_manifest(lambda payload: payload["items"].pop())
+        with self.assertRaisesRegex(ValueError, "manifest accounting mismatch"):
+            self.verify()
+
+    def test_verify_rejects_target_hash_drift(self) -> None:
+        destination = self.target / "Papers/2601-Novel.md"
+        destination.write_text(
+            destination.read_text(encoding="utf-8") + "drift\n",
+            encoding="utf-8",
+        )
+        with self.assertRaisesRegex(ValueError, "target hash drift"):
+            self.verify()
 
 
 if __name__ == "__main__":

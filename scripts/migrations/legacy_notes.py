@@ -86,6 +86,9 @@ class MigrationItem:
     link_rewrites: tuple[tuple[str, str], ...]
     status: str
     reason: str
+    destination_post_sha256: str | None = None
+    merged_sections: tuple[str, ...] = ()
+    omitted_sections: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -734,6 +737,9 @@ def _manifest_from_bytes(raw: bytes) -> MigrationManifest:
                 link_rewrites=tuple(tuple(pair) for pair in item["link_rewrites"]),
                 status=item["status"],
                 reason=item["reason"],
+                destination_post_sha256=item.get("destination_post_sha256"),
+                merged_sections=tuple(item.get("merged_sections", ())),
+                omitted_sections=tuple(item.get("omitted_sections", ())),
             )
             for item in payload["items"]
         )
@@ -1044,6 +1050,179 @@ def apply_manifest(
     )
 
 
+def _expected_import_bytes(
+    item: MigrationItem, source: Path, destination: Path
+) -> bytes:
+    source_raw = (source / item.source_path).read_bytes()
+    if item.decision == "import-paper":
+        return render_imported_paper(item, source_raw, item.link_rewrites)
+    if item.decision == "import-topic":
+        return render_imported_topic(item, source_raw, item.link_rewrites)
+    if item.source_path == "DailyPapers/.history.json":
+        try:
+            source_history = json.loads(source_raw)
+            target_history = json.loads(destination.read_bytes())
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise ValueError("invalid daily history JSON") from exc
+        if not isinstance(source_history, list) or not isinstance(target_history, list):
+            raise ValueError("daily history must be a JSON list")
+        return (
+            json.dumps(
+                merge_history(source_history, target_history),
+                sort_keys=True,
+                ensure_ascii=False,
+                indent=2,
+            )
+            + "\n"
+        ).encode("utf-8")
+    return _apply_rewrites(source_raw, item.link_rewrites)
+
+
+def _duplicate_paper_identities(target: Path) -> tuple[str, ...]:
+    groups: dict[str, list[str]] = {}
+    for path in sorted((target / "Papers").glob("*.md")):
+        try:
+            identity = resolve_identity(parse_frontmatter(path))
+        except ValueError:
+            continue
+        if identity.key:
+            groups.setdefault(identity.key, []).append(
+                path.relative_to(target).as_posix()
+            )
+    return tuple(
+        f"{key}: {', '.join(paths)}"
+        for key, paths in sorted(groups.items())
+        if len(paths) > 1
+    )
+
+
+def verify_migration(
+    manifest_path: Path, *, source: Path, target: Path
+) -> dict[str, int]:
+    source = source.resolve()
+    target = target.resolve()
+    manifest = _manifest_from_bytes(manifest_path.read_bytes())
+    errors: list[str] = []
+
+    if Path(manifest.source_root).resolve() != source:
+        errors.append("source root differs from manifest")
+    if Path(manifest.target_root).resolve() != target:
+        errors.append("target root differs from manifest")
+    if snapshot_source(source) != manifest.source_snapshot:
+        errors.append("source snapshot drift")
+
+    source_paths = [item.source_path for item in manifest.items]
+    current_paths = [
+        path.relative_to(source).as_posix() for path in _iter_included_files(source)
+    ]
+    if len(source_paths) != len(set(source_paths)) or set(source_paths) != set(
+        current_paths
+    ):
+        errors.append(
+            "manifest accounting mismatch: "
+            f"manifest={len(source_paths)} unique={len(set(source_paths))} "
+            f"source={len(current_paths)}"
+        )
+
+    valid_statuses = {"ready", "applied", "blocked", "merged", "skipped"}
+    valid_decisions = {
+        "import-paper",
+        "merge-paper",
+        "import-topic",
+        "import-daily",
+        "import-trending",
+        "import-source",
+        "import-insight",
+        "skip",
+        "blocked",
+    }
+    destinations_to_scan: set[Path] = set()
+    for item in manifest.items:
+        if item.status not in valid_statuses:
+            errors.append(f"unknown status for {item.source_path}: {item.status}")
+        if item.decision not in valid_decisions:
+            errors.append(f"unknown decision for {item.source_path}: {item.decision}")
+        if item.status == "blocked" or item.decision in {"blocked", "skip"}:
+            if not item.reason.strip():
+                errors.append(f"blocked item lacks reason: {item.source_path}")
+            if item.destination_path:
+                blocked_destination = _safe_destination(
+                    target, item.destination_path
+                )
+                if blocked_destination.exists() or blocked_destination.is_symlink():
+                    errors.append(
+                        f"blocked item wrote target: {item.destination_path}"
+                    )
+            continue
+        if item.destination_path is None:
+            errors.append(f"materialized item lacks destination: {item.source_path}")
+            continue
+
+        destination = _safe_destination(target, item.destination_path)
+        destinations_to_scan.add(destination)
+        if not destination.is_file():
+            errors.append(f"missing target: {item.destination_path}")
+            continue
+        if item.decision == "merge-paper":
+            if item.status != "merged":
+                errors.append(f"merge item not finalized: {item.source_path}")
+            if not item.omitted_sections:
+                errors.append(f"merge item lacks section ledger: {item.source_path}")
+            actual_hash = _sha256(destination.read_bytes())
+            if item.destination_post_sha256 != actual_hash:
+                errors.append(f"target hash drift: {item.destination_path}")
+        else:
+            try:
+                expected = _expected_import_bytes(item, source, destination)
+            except (OSError, ValueError) as exc:
+                errors.append(f"cannot verify target {item.destination_path}: {exc}")
+            else:
+                if destination.read_bytes() != expected:
+                    errors.append(f"target hash drift: {item.destination_path}")
+
+        for asset_relative in item.referenced_assets:
+            source_asset = (source / asset_relative).resolve()
+            if not source_asset.is_file():
+                errors.append(f"source asset missing: {asset_relative}")
+                continue
+            asset_destination, _ = _planned_asset_destination(
+                item, source_asset, target
+            )
+            if not asset_destination.is_file():
+                errors.append(
+                    "missing copied asset: "
+                    f"{asset_destination.relative_to(target).as_posix()}"
+                )
+            elif asset_destination.read_bytes() != source_asset.read_bytes():
+                errors.append(
+                    "copied asset hash drift: "
+                    f"{asset_destination.relative_to(target).as_posix()}"
+                )
+
+    duplicate_groups = _duplicate_paper_identities(target)
+    if duplicate_groups:
+        errors.append("duplicate Paper identity: " + "; ".join(duplicate_groups))
+
+    absolute_markers = (str(source), "/Users/limx/notes", "~/notes")
+    for destination in sorted(destinations_to_scan):
+        if destination.suffix.lower() not in {".md", ".json"}:
+            continue
+        text = destination.read_text(encoding="utf-8", errors="replace")
+        relative = destination.relative_to(target).as_posix()
+        if "[[PaperNotes/" in text:
+            errors.append(f"legacy PaperNotes wikilink: {relative}")
+        if any(marker in text for marker in absolute_markers):
+            errors.append(f"legacy absolute path: {relative}")
+
+    if errors:
+        raise ValueError("; ".join(errors))
+    return {
+        "items": len(manifest.items),
+        "papers": len(tuple((target / "Papers").glob("*.md"))),
+        "errors": 0,
+    }
+
+
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -1063,6 +1242,10 @@ def _build_parser() -> argparse.ArgumentParser:
     apply_parser.add_argument("--source", type=Path)
     apply_parser.add_argument("--target", required=True, type=Path)
     apply_parser.add_argument("--decisions", required=True)
+    verify = subparsers.add_parser("verify")
+    verify.add_argument("--manifest", required=True, type=Path)
+    verify.add_argument("--source", required=True, type=Path)
+    verify.add_argument("--target", required=True, type=Path)
     return parser
 
 
@@ -1092,6 +1275,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         for path in created:
             print(path)
+        return 0
+    if args.command == "verify":
+        print(
+            json.dumps(
+                verify_migration(
+                    args.manifest,
+                    source=args.source,
+                    target=args.target,
+                ),
+                sort_keys=True,
+            )
+        )
         return 0
     raise AssertionError(args.command)
 
