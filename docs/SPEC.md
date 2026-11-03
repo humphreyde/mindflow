@@ -2,7 +2,7 @@
 
 > 本文件是 MindFlow 的 **single source of truth**，记录系统的当前设计和约定。
 
-**Last updated**: 2026-10-28
+**Last updated**: 2026-11-03
 
 ---
 
@@ -93,6 +93,7 @@ MindFlow/
 │   ├── skill-protocol.md
 │   ├── memory-protocol.md
 │   ├── agenda-protocol.md
+│   ├── paper-schema.md
 │   └── tags.md
 │
 ├── Workbench/           # Researcher 工作状态（Supervisor 可随时查看和编辑）
@@ -126,7 +127,7 @@ Codex 是默认 runtime：从仓库根目录启动时读取 `AGENTS.md`，并通
 
 ### 4.1 Notes
 
-所有笔记遵循 `Templates/` 中对应的模板。共通约定：
+所有笔记遵循对应的 canonical template；Paper 模板由 `paper-digest` 持有，其余类型使用 `Templates/`。共通约定：
 - YAML frontmatter 存储结构化元数据
 - 正文用中文撰写，英文技术术语保持英文不翻译
 - 笔记之间通过 `[[wikilinks]]` 建立连接
@@ -141,6 +142,15 @@ Codex 是默认 runtime：从仓库根目录启动时读取 `AGENTS.md`，并通
 | 会议 | `Meetings/` | `YYYY-MM-DD-Description.md` | `Templates/Meeting.md` |
 | 报告 | `Reports/` | 描述性名称 | `Templates/Report.md` |
 | 实验 | `Experiments/` | 描述性名称 | `Templates/Experiment.md` |
+
+#### Paper schema and classification
+
+- Paper 继续扁平保存在 `Papers/`，不按 VLA、WAM 或其他单一主题拆目录。
+- canonical generation template 为 `skills/1-literature/paper-digest/references/paper-note-template.md`，字段契约为 `references/paper-schema.md`。
+- 分类使用 `primary_domain`、`domains` 与 `references/tags.md` 中的受控 tags；`Workbench/PARA/Resources/Papers.base` 提供动态筛选视图，不复制 Paper 内容。
+- identity 优先级为 arXiv ID、DOI、经验证的官方 URL 加规范化标题。URL/title-only identity 必须进入 review，不能自动合并。
+- 新内容的 rating 1 标签为 `Peripheral`。既有 `1 - Archived` 是兼容历史文本，只在单篇笔记被明确编辑时渐进迁移。
+- 既有 Paper 的批量更新必须经过只读 audit、人工 review 与固定 manifest 的确定性 apply。当前已完成的 backfill 只增加 `type: paper` 和高置信度 `arxiv_id`；它不代表既有 182 篇笔记都已补齐分类或 `review_status`。
 
 ### 4.2 Domain Map
 
@@ -265,6 +275,7 @@ L4: Domain Map      DomainMaps/{Name}.md             持久领域知识
 | Skill Protocol | `references/skill-protocol.md` | SKILL.md 格式、frontmatter 字段、skill levels |
 | Memory Protocol | `references/memory-protocol.md` | 记忆文件格式、L0-L4 晋升规则、更新规则 |
 | Agenda Protocol | `references/agenda-protocol.md` | agenda.md 格式、Researcher 权限、Supervisor override |
+| Paper Schema | `references/paper-schema.md` | Paper identity、classification、review status、rating 与迁移字段 |
 | Tag Taxonomy | `references/tags.md` | Tag 列表、选择原则、更新记录 |
 
 ## 7. Roadmap
@@ -283,6 +294,7 @@ L4: Domain Map      DomainMaps/{Name}.md             持久领域知识
 
 | 日期 | 变更 |
 |:-----|:-----|
+| 2026-11-03 | 建立 canonical Paper schema、只读 audit、Papers Base 与确定性 identity backfill；Paper 保持扁平路径，分类字段仍按 review 渐进补齐。 |
 | 2026-10-28 | 新增 profile-driven 跨仓库研究层：`mindflow-context` 按项目 profile 有界检索 MindFlow，保持外部代码仓库、研究状态页与 canonical skill discovery 的边界。 |
 | 2026-10-13 | Codex 成为默认 runtime；通过 `.agents/skills` 暴露 14 个 canonical skills；恢复 `Experiments/` 作为按需生成的实验输出区，并更新公开安装与 skill protocol。 |
 | 2026-04-01 | 移除 Daily/ 和 Experiments/ 目录；移除 cross-paper-analysis skill；CLAUDE.md 改为 AGENTS.md 的 symlink，身份信息集中到 AGENTS.md；精简 paper-digest 和 literature-survey；Paper 模板移除 Connections 章节 |

@@ -21,7 +21,7 @@ An Obsidian-based research workspace for building a **human-AI collaborative res
 
 ## Features
 
-- **Paper Notes** — 结构化论文笔记（108+ 篇），含 Mind Map 与跨论文链接
+- **Paper Notes** — 182 篇扁平存储的结构化论文笔记，通过 metadata、Base 与跨论文链接组织
 - **Domain Maps** — 按研究领域构建的认知地图（VLM、CUA、VLA 等）
 - **Research Ideas** — 灵感记录与评估，双向链接到相关论文
 - **Literature Survey** — 按主题系统调研，多篇论文对比分析
@@ -41,7 +41,7 @@ Install MindFlow from: https://github.com/liqing-ustc/mindflow/blob/main/docs/IN
 
 | Folder | Purpose | Naming |
 |--------|---------|--------|
-| `Papers/` | 论文笔记 | `YYMM-ShortTitle.md` |
+| `Papers/` | 扁平存储的论文笔记；分类由 metadata 与 `Workbench/PARA/Resources/Papers.base` 提供 | `YYMM-ShortTitle.md` |
 | `DomainMaps/` | 核心认知地图，每个 domain 一个文件 | `_index.md` 为索引 |
 | `Ideas/` | 研究灵感与评估 | 自由命名 |
 | `Topics/` | 文献调研与分析报告 | 主题名称 |
@@ -61,7 +61,7 @@ Install MindFlow from: https://github.com/liqing-ustc/mindflow/blob/main/docs/IN
 
 | Template | Purpose |
 |----------|---------|
-| Paper | 由 `skills/1-literature/paper-digest/references/paper-note-template.md` 生成；不在 `Templates/` 维护副本 |
+| Paper | 由 `skills/1-literature/paper-digest/references/paper-note-template.md` 生成，字段遵循 `references/paper-schema.md`；不在 `Templates/` 维护副本 |
 | Idea | 研究灵感（status: raw → developing → validated → archived） |
 | Project | 项目追踪（status: planning → active → paused → completed） |
 | Topic | 主题综述/文献对比（含论文对比表格） |
@@ -105,6 +105,14 @@ $mindflow-context 分析当前项目的 action chunking 设计
 - PARA Project 只有在存在明确 outcome 与 completion criteria 时创建。
 - 每个 `Projects/<workspace>/` 是独立 notes Git repository，代码位于 `code/<repo>`。已有外部代码仓优先通过绝对 symlink 接入，物理移动需另行批准。
 - `Papers/`、`Topics/`、`DomainMaps/`、`Ideas/` 和 `Experiments/` 继续作为 vault-root typed knowledge assets，不复制到 Project wrapper。
+
+### Paper workspace
+
+- `Papers/` 保持扁平路径，领域归属使用 `primary_domain`、`domains` 与受控 `tags`，不按 VLA、WAM 等主题拆目录。
+- canonical generation template 是 `skills/1-literature/paper-digest/references/paper-note-template.md`，字段契约是 `references/paper-schema.md`。
+- `Workbench/PARA/Resources/Papers.base` 提供全集、领域、VLA、WAM、待复核、Foundation 与最近更新等动态视图。
+- 既有笔记的确定性迁移遵循“只读 audit → 人工 review → 固定 manifest 的窄范围 apply”。当前 backfill 只增加 `type: paper` 与高置信度 `arxiv_id`；分类、DOI、Zotero、tags、rating 文本和文件名仍需单独复核。
+- 新内容使用 `1 - Peripheral`；既有 `1 - Archived` 是兼容历史文本，不做全库替换。
 
 #### Optional compatibility: Claude Code
 

@@ -99,12 +99,15 @@ Codex 应先读取对应 `SKILL.md`，再按其中的 Steps、Guard 和 Verify �
 3. Select the cloned `MindFlow` directory.
 4. Trust the vault when prompted if you want to enable community plugins.
 
-### Local Obsidian setup
+### Local Obsidian paper workspace
 
+- 在 Obsidian 设置中启用 core **Bases** feature；无需安装第三方数据库插件。
 - `.obsidian/templates.json` 的 `folder` 应为 `Templates`。
 - `.obsidian/app.json` 是 local-only 配置；`userIgnoreFilters` 只排除 wrapper 的 `code/`、`worklog/`、`.git/`，并为暂未迁移的 direct-root repository 保留精确兼容项。
 - `Projects/<workspace>/main.md` 与 `engineering.md` 应可在 Obsidian 搜索；code tree 不应进入索引。
-- Paper 的 canonical generation template 位于 `skills/1-literature/paper-digest/references/paper-note-template.md`，不在 `Templates/` 下另建副本。
+- Paper 的 canonical generation template 位于 `skills/1-literature/paper-digest/references/paper-note-template.md`，字段契约位于 `references/paper-schema.md`；不在 `Templates/` 下另建 Paper 副本。
+- 在 Obsidian 中打开 `Workbench/PARA/Resources/Papers.base`，确认八个 Paper views 可用。Paper 保持在 `Papers/` 根目录，分类由 metadata 与 Base 完成。
+- repository-local skill setup 不会安装、禁用或协调全局 `paper-reader` / `daily-papers`。若全局存在同名或旧版 skill，必须另行比较和切换；本安装步骤不会覆盖它们。
 
 [Obsidian Git](https://github.com/Vinzent03/obsidian-git) 可选，用于在 UI 中查看版本控制状态。
 
