@@ -4,11 +4,13 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import tempfile
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
+from typing import Literal, Sequence
 
 
 PROFILE_DIRECTORY = Path("Workbench/RepositoryProfiles")
@@ -48,6 +50,16 @@ class Profile:
     verified_at: str
     workspace_root: Path | None
     workspace_entrypoint_values: tuple[str, ...]
+
+
+MatchStatus = Literal["matched", "ambiguous", "not_found", "invalid"]
+
+
+@dataclass(frozen=True)
+class MatchResult:
+    status: MatchStatus
+    profile: Profile | None
+    errors: tuple[str, ...]
 
 
 def _error(path: Path, message: str) -> ValueError:
@@ -407,6 +419,56 @@ def validate_vault(vault: Path) -> tuple[list[Profile], list[str]]:
     return profiles, errors
 
 
+def match_profile(
+    profiles: Sequence[Profile],
+    repo_root: Path,
+    repository_name: str | None = None,
+) -> MatchResult:
+    try:
+        canonical_root = repo_root.resolve()
+    except PATH_ERRORS as exc:
+        return MatchResult("invalid", None, (f"cannot resolve repository root: {exc}",))
+
+    root_claimants = [
+        profile
+        for profile in profiles
+        if canonical_root in {root.resolve() for root in profile.repo_roots}
+    ]
+    if len(root_claimants) == 1:
+        return MatchResult("matched", root_claimants[0], ())
+    if len(root_claimants) > 1:
+        paths = ", ".join(str(profile.path) for profile in root_claimants)
+        return MatchResult(
+            "ambiguous",
+            None,
+            (f"multiple profiles claim canonical root {canonical_root}: {paths}",),
+        )
+
+    if repository_name:
+        identity = repository_name.casefold()
+        identity_claimants = [
+            profile
+            for profile in profiles
+            if identity
+            in {profile.repo_key.casefold(), *(alias.casefold() for alias in profile.aliases)}
+        ]
+        if len(identity_claimants) == 1:
+            return MatchResult("matched", identity_claimants[0], ())
+        if len(identity_claimants) > 1:
+            paths = ", ".join(str(profile.path) for profile in identity_claimants)
+            return MatchResult(
+                "ambiguous",
+                None,
+                (f"multiple profiles claim identity {repository_name!r}: {paths}",),
+            )
+
+    return MatchResult(
+        "not_found",
+        None,
+        (f"no repository profile matches {canonical_root}",),
+    )
+
+
 def _write_fixture_profile(
     vault: Path,
     filename: str,
@@ -562,6 +624,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--vault", required=True, type=Path)
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--repo-root", type=Path)
+    parser.add_argument("--repository-name")
+    parser.add_argument("--json", action="store_true")
     arguments = parser.parse_args()
 
     if arguments.self_test:
@@ -572,6 +637,36 @@ def main() -> int:
         for error in errors:
             print(f"ERROR {error}")
         return 1
+
+    if arguments.repo_root is not None:
+        result = match_profile(
+            profiles,
+            arguments.repo_root,
+            repository_name=arguments.repository_name or arguments.repo_root.name,
+        )
+        profile_key = result.profile.repo_key if result.profile else None
+        profile_path: str | None = None
+        if result.profile is not None:
+            try:
+                profile_path = str(
+                    result.profile.path.resolve().relative_to(arguments.vault.resolve())
+                )
+            except PATH_ERRORS:
+                profile_path = str(result.profile.path)
+        payload = {
+            "status": result.status,
+            "profile_key": profile_key,
+            "profile_path": profile_path,
+            "errors": list(result.errors),
+        }
+        if arguments.json:
+            print(json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
+        elif result.profile is not None:
+            print(f"matched {result.profile.repo_key}: {profile_path}")
+        else:
+            for error in result.errors:
+                print(f"ERROR {error}")
+        return 0 if result.status == "matched" else 1
 
     unique_roots = {root for profile in profiles for root in profile.repo_roots}
     print(
