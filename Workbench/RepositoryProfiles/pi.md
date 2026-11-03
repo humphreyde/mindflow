@@ -4,7 +4,7 @@ tags: []
 type: repository-profile
 repo_key: pi
 repo_roots:
-  - /Users/limx/project/pi
+  - Projects/pi/code/pi
 workspace_root: Projects/pi
 workspace_entrypoints: []
 aliases:
@@ -28,7 +28,7 @@ verified_at: 2026-11-03
 
 ## Canonical Repositories
 
-- `/Users/limx/project/pi`
+- `Projects/pi/code/pi`
 
 ## Knowledge Entrypoints
 
@@ -36,5 +36,5 @@ verified_at: 2026-11-03
 
 ## Provenance
 
-- 代码、训练、部署和运行时事实以 `/Users/limx/project/pi` 为准；MindFlow 只保存研究知识与可追溯上下文。
-- 如果仓库未来迁移，只需更新 `repo_roots`，无需复制代码或运行时产物。
+- 代码、训练、部署和运行时事实以 `Projects/pi/code/pi` 解析出的 canonical repository 为准；MindFlow 只保存研究知识与可追溯上下文。
+- `Projects/pi/code/pi` 在每台机器上可以是实际仓库或指向实际仓库的链接；profile 无需保存机器专属绝对路径。
