@@ -7,6 +7,8 @@ description: 每日论文总结。抓取 HuggingFace Daily/Trending + arXiv 最�
 
 发现指定日期范围内与研究方向相关的新论文，保留确定性的抓取与评分结果，只为必读论文生成笔记，再汇总为可追溯的 Obsidian 日报。
 
+一次完整运行必须核对六类产物：候选快照、历史状态、论文笔记、日报、逐篇 `paper-digest` 日志和汇总 `daily-papers` 日志。评分标签固定为 `3 - Foundation`、`2 - Frontier`、`1 - Peripheral`。
+
 ## Steps
 
 ### 0. 解析范围

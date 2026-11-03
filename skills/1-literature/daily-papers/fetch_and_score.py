@@ -17,6 +17,7 @@ import json
 import re
 import sys
 import xml.etree.ElementTree as ET
+from typing import NamedTuple
 from datetime import datetime, timedelta
 from pathlib import Path
 from urllib.request import Request, urlopen
@@ -342,6 +343,160 @@ def merge_and_rank(
     top = candidates[:top_n]
     print(f"  Final: {len(top)} papers", file=sys.stderr)
     return top
+
+
+# ── 离线编排契约 ───────────────────────────────────────────────────────────
+
+class FixturePipelineResult(NamedTuple):
+    fetched: int
+    read: int
+    skipped: int
+
+
+RATING_LABELS = {
+    3: ("🔥", "Foundation"),
+    2: ("👀", "Frontier"),
+    1: ("💤", "Peripheral"),
+}
+
+
+def _exclusive_write(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with path.open("x", encoding="utf-8") as handle:
+            handle.write(content)
+    except FileExistsError as exc:
+        raise FileExistsError(f"pipeline artifact already exists: {path}") from exc
+
+
+def _render_fixture_daily(payload: dict, target_date) -> str:
+    digests = payload["digests"]
+    skipped = payload["skipped"]
+    lines = [
+        "---",
+        f"date: {target_date.isoformat()}",
+        "tags: [daily-papers]",
+        "---",
+        "",
+        "# 🔪 今日总结",
+        "",
+        f"离线契约样例：抓取 {len(payload['candidates'])} 篇，精读 {len(digests)} 篇。",
+        "",
+        "## 评分表",
+        "",
+        "| Rating | 论文 |",
+        "|---|---|",
+    ]
+    for rating in (3, 2, 1):
+        emoji, label = RATING_LABELS[rating]
+        entries = [
+            f"[[#{item['short_title']}]]（{item['reason']}）"
+            for item in digests
+            if item["rating"] == rating
+        ]
+        lines.append(
+            f"| {emoji} `{rating} - {label}` | "
+            + ("；".join(entries) if entries else "—")
+            + " |"
+        )
+    lines.extend(["", "## 论文点评", ""])
+    for item in digests:
+        lines.extend(
+            [
+                f"### {item['short_title']}",
+                f"- **Title**: {next(candidate['title'] for candidate in payload['candidates'] if candidate['url'] == item['candidate_url'])}",
+                f"- **📒 论文笔记**: [[{Path(item['filename']).stem}]]",
+                f"- **锐评**: {item['commentary']}",
+                f"- **Rating**: `{item['rating']}`，{item['reason']}",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "## 已跳过论文",
+            "",
+            "| 论文 | 跳过原因 |",
+            "|---|---|",
+            *[f"| {item['title']} | {item['reason']} |" for item in skipped],
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def _render_fixture_log(payload: dict, target_date) -> str:
+    digests = payload["digests"]
+    skipped = payload["skipped"]
+    lines = [f"# {target_date.isoformat()}", ""]
+    for item in digests:
+        lines.extend(
+            [
+                "### [00:00] paper-digest",
+                f"- **input**: {item['candidate_url']}",
+                f"- **output**: [[Papers/{Path(item['filename']).stem}]]",
+                "- **observation**: offline fixture digest",
+                "",
+            ]
+        )
+    counts = {rating: sum(item["rating"] == rating for item in digests) for rating in (3, 2, 1)}
+    lines.extend(
+        [
+            "### [00:00] daily-papers",
+            "- **input**: offline fixture",
+            f"- **output**: [[Workbench/daily/{target_date.isoformat()}]]",
+            (
+                f"- **observation**: 抓取 {len(payload['candidates'])} 篇，精读 {len(digests)} 篇"
+                f"（rating 3: {counts[3]} / 2: {counts[2]} / 1: {counts[1]}），"
+                f"跳过 {len(skipped)} 篇"
+            ),
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def run_fixture_pipeline(vault: Path, fixture: Path) -> FixturePipelineResult:
+    """Exercise the six-artifact orchestration contract without network or LLMs."""
+    root = resolve_vault_root(vault)
+    payload = json.loads(fixture.read_text(encoding="utf-8"))
+    candidates = payload.get("candidates")
+    digests = payload.get("digests")
+    skipped = payload.get("skipped")
+    if not all(isinstance(value, list) for value in (candidates, digests, skipped)):
+        raise ValueError("fixture requires candidates, digests, and skipped arrays")
+    if len(candidates) != len(digests) + len(skipped):
+        raise ValueError("fixture accounting requires fetched = read + skipped")
+    candidate_urls = {item["url"] for item in candidates}
+    accounted_urls = {item["candidate_url"] for item in digests + skipped}
+    if candidate_urls != accounted_urls:
+        raise ValueError("fixture decisions must account for each candidate exactly once")
+
+    target_date = datetime.strptime(payload["date"], "%Y-%m-%d").date()
+    candidates_path = resolve_output(root, "Workbench/daily/.candidates.json")
+    _exclusive_write(
+        candidates_path,
+        json.dumps(candidates, ensure_ascii=False, indent=2) + "\n",
+    )
+    history_path = resolve_output(root, "Workbench/daily/.history.json")
+    save_history(candidates, target_date, history_path)
+
+    for digest in digests:
+        filename = Path(digest["filename"])
+        if filename.name != digest["filename"] or filename.suffix != ".md":
+            raise ValueError(f"invalid fixture paper filename: {digest['filename']}")
+        _exclusive_write(
+            resolve_output(root, f"Papers/{digest['filename']}"), digest["paper_note"]
+        )
+
+    _exclusive_write(
+        resolve_output(root, f"Workbench/daily/{target_date.isoformat()}.md"),
+        _render_fixture_daily(payload, target_date),
+    )
+    _exclusive_write(
+        resolve_output(root, f"Workbench/logs/{target_date.isoformat()}.md"),
+        _render_fixture_log(payload, target_date),
+    )
+    return FixturePipelineResult(len(candidates), len(digests), len(skipped))
 
 
 # ── 主入口 ─────────────────────────────────────────────────────────────────
