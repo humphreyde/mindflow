@@ -1,0 +1,2285 @@
+{
+  "items": [
+    {
+      "decision": "import-daily",
+      "destination_path": "Workbench/daily/.history.json",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "merge deterministic history",
+      "referenced_assets": [],
+      "source_kind": "DailyPapers",
+      "source_path": "DailyPapers/.history.json",
+      "source_sha256": "6140b9bdfa5731752b3f18bbab06757fb41b0311068a3a6f41b83e962291c0d6",
+      "status": "ready"
+    },
+    {
+      "decision": "import-daily",
+      "destination_path": "Workbench/daily/2026-10-28-论文推荐.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "DailyPapers",
+      "source_path": "DailyPapers/2026-10-28-论文推荐.md",
+      "source_sha256": "74fdf264a845cce86beb6b488cbe15ed8e8d34417815f1e2d01459315bf5d461",
+      "status": "ready"
+    },
+    {
+      "decision": "import-trending",
+      "destination_path": "Workbench/trending/2026-W44 GitHub周榜.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "GitHubTrending",
+      "source_path": "GitHubTrending/2026-W44 GitHub周榜.md",
+      "source_sha256": "f5f6ba5c71e4ebb52a814af38f02ad69098e13d2b7bf0028acd0ea84d2ae2b96",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2501-FAST.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2501.09747",
+        "doi": null,
+        "key": "arxiv:2501.09747",
+        "kind": "arxiv",
+        "normalized_title": "fast efficient action tokenization for vision language action models",
+        "official_url": "https://arxiv.org/html/2501.09747v1"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/FAST.md",
+      "source_sha256": "bf2095dfbdaa5458d512cfc98cf32b39e67b58988be30c5e171246a184d535c4",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2505-FLARE.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2505.15659",
+        "doi": null,
+        "key": "arxiv:2505.15659",
+        "kind": "arxiv",
+        "normalized_title": "flare robot learning with implicit world modeling",
+        "official_url": "https://arxiv.org/html/2505.15659v1"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/GR00T N1",
+          "Papers/2503-GR00TN1"
+        ],
+        [
+          "PaperNotes/VLA/GR00T-Series-Survey",
+          "Topics/GR00T-Series-Survey"
+        ],
+        [
+          "[[PaperNotes/VLA/GR00T N1\\|GR00T N1]]",
+          "GR00T N1"
+        ],
+        [
+          "[[PaperNotes/_authors/Avnish Narayan\\|Avnish Narayan]]",
+          "Avnish Narayan"
+        ],
+        [
+          "[[PaperNotes/_authors/Fengyuan Hu\\|Fengyuan Hu]]",
+          "Fengyuan Hu"
+        ],
+        [
+          "[[PaperNotes/_authors/Furong Huang\\|Furong Huang]]",
+          "Furong Huang"
+        ],
+        [
+          "[[PaperNotes/_authors/Guanzhi Wang\\|Guanzhi Wang]]",
+          "Guanzhi Wang"
+        ],
+        [
+          "[[PaperNotes/_authors/Jan Kautz\\|Jan Kautz]]",
+          "Jan Kautz"
+        ],
+        [
+          "[[PaperNotes/_authors/Jiannan Xiang\\|Jiannan Xiang]]",
+          "Jiannan Xiang"
+        ],
+        [
+          "[[PaperNotes/_authors/Jing Wang\\|Jing Wang]]",
+          "Jing Wang"
+        ],
+        [
+          "[[PaperNotes/_authors/Joel Jang\\|Joel Jang]]",
+          "Joel Jang"
+        ],
+        [
+          "[[PaperNotes/_authors/Johan Bjorck\\|Johan Bjorck]]",
+          "Johan Bjorck"
+        ],
+        [
+          "[[PaperNotes/_authors/Kaushil Kundalia\\|Kaushil Kundalia]]",
+          "Kaushil Kundalia"
+        ],
+        [
+          "[[PaperNotes/_authors/Linxi Fan\\|Linxi Fan]]",
+          "Linxi Fan"
+        ],
+        [
+          "[[PaperNotes/_authors/Loic Magne\\|Loic Magne]]",
+          "Loic Magne"
+        ],
+        [
+          "[[PaperNotes/_authors/Qi Wang\\|Qi Wang]]",
+          "Qi Wang"
+        ],
+        [
+          "[[PaperNotes/_authors/Ruijie Zheng\\|Ruijie Zheng]]",
+          "Ruijie Zheng"
+        ],
+        [
+          "[[PaperNotes/_authors/Scott Reed\\|Scott Reed]]",
+          "Scott Reed"
+        ],
+        [
+          "[[PaperNotes/_authors/Seonghyeon Ye\\|Seonghyeon Ye]]",
+          "Seonghyeon Ye"
+        ],
+        [
+          "[[PaperNotes/_authors/Yinzhen Xu\\|Yinzhen Xu]]",
+          "Yinzhen Xu"
+        ],
+        [
+          "[[PaperNotes/_authors/You Liang Tan\\|You Liang Tan]]",
+          "You Liang Tan"
+        ],
+        [
+          "[[PaperNotes/_authors/Yu Fang\\|Yu Fang]]",
+          "Yu Fang"
+        ],
+        [
+          "[[PaperNotes/_authors/Yuke Zhu\\|Yuke Zhu]]",
+          "Yuke Zhu"
+        ],
+        [
+          "[[PaperNotes/_authors/Zongyu Lin\\|Zongyu Lin]]",
+          "Zongyu Lin"
+        ],
+        [
+          "[[PaperNotes/_concepts/3-机器人策略/VLA|VLA]]",
+          "VLA"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/FLARE.md",
+      "source_sha256": "48301daa83d94b3251f13c7202e108aff2afec3c1737be50aeb059763820aa1e",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2605-FLASH.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2605.13778",
+        "doi": null,
+        "key": "arxiv:2605.13778",
+        "kind": "arxiv",
+        "normalized_title": "realtime vla flash speculative inference framework for diffusion based vlas",
+        "official_url": "https://arxiv.org/html/2605.13778v1"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/FLASH.md",
+      "source_sha256": "9ded74a6bc645007e576aacfc1c07bd7ff3ad926b22709bccd3fb305730defcd",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/lega-GR00TN15.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": "url-title:https://github.com/NVIDIA/Isaac-GR00T/tree/n1.5-release#gr00t n1 5 an improved open foundation model for generalist humanoid robots",
+        "kind": "url-title",
+        "normalized_title": "gr00t n1 5 an improved open foundation model for generalist humanoid robots",
+        "official_url": "https://github.com/NVIDIA/Isaac-GR00T/tree/n1.5-release"
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/FLARE",
+          "Papers/2505-FLARE"
+        ],
+        [
+          "PaperNotes/VLA/GR00T N1",
+          "Papers/2503-GR00TN1"
+        ],
+        [
+          "PaperNotes/VLA/GR00T N1.6",
+          "Papers/lega-GR00TN16"
+        ],
+        [
+          "PaperNotes/VLA/GR00T-Series-Survey",
+          "Topics/GR00T-Series-Survey"
+        ],
+        [
+          "[[PaperNotes/VLA/GR00T N1\\|GR00T N1]]",
+          "GR00T N1"
+        ],
+        [
+          "[[PaperNotes/_authors/Dieter Fox\\|Dieter Fox]]",
+          "Dieter Fox"
+        ],
+        [
+          "[[PaperNotes/_authors/Fengyuan Hu\\|Fengyuan Hu]]",
+          "Fengyuan Hu"
+        ],
+        [
+          "[[PaperNotes/_authors/Fernando Castañeda\\|Fernando Castañeda]]",
+          "Fernando Castañeda"
+        ],
+        [
+          "[[PaperNotes/_authors/Jan Kautz\\|Jan Kautz]]",
+          "Jan Kautz"
+        ],
+        [
+          "[[PaperNotes/_authors/Joel Jang\\|Joel Jang]]",
+          "Joel Jang"
+        ],
+        [
+          "[[PaperNotes/_authors/Johan Bjorck\\|Johan Bjorck]]",
+          "Johan Bjorck"
+        ],
+        [
+          "[[PaperNotes/_authors/Kaushil Kundalia\\|Kaushil Kundalia]]",
+          "Kaushil Kundalia"
+        ],
+        [
+          "[[PaperNotes/_authors/Kevin Lin\\|Kevin Lin]]",
+          "Kevin Lin"
+        ],
+        [
+          "[[PaperNotes/_authors/Linxi Fan\\|Linxi \"Jim\" Fan]]",
+          "Linxi \"Jim\" Fan"
+        ],
+        [
+          "[[PaperNotes/_authors/Loic Magne\\|Loic Magne]]",
+          "Loic Magne"
+        ],
+        [
+          "[[PaperNotes/_authors/Nikita Cherniadev\\|Nikita Cherniadev]]",
+          "Nikita Cherniadev"
+        ],
+        [
+          "[[PaperNotes/_authors/Runyu Ding\\|Runyu Ding]]",
+          "Runyu Ding"
+        ],
+        [
+          "[[PaperNotes/_authors/Spencer Huang\\|Spencer Huang]]",
+          "Spencer Huang"
+        ],
+        [
+          "[[PaperNotes/_authors/Valts Blukis\\|Valts Blukis]]",
+          "Valts Blukis"
+        ],
+        [
+          "[[PaperNotes/_authors/Xiaowei Jiang\\|Xiaowei Jiang]]",
+          "Xiaowei Jiang"
+        ],
+        [
+          "[[PaperNotes/_authors/Xingye Da\\|Xingye Da]]",
+          "Xingye Da"
+        ],
+        [
+          "[[PaperNotes/_authors/Yu Fang\\|Yu Fang]]",
+          "Yu Fang"
+        ],
+        [
+          "[[PaperNotes/_authors/Yunze Man\\|Yunze Man]]",
+          "Yunze Man"
+        ],
+        [
+          "[[PaperNotes/_authors/Zhiqi Li\\|Zhiqi Li]]",
+          "Zhiqi Li"
+        ],
+        [
+          "[[PaperNotes/_authors/Zongyu Lin\\|Zongyu Lin]]",
+          "Zongyu Lin"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/GR00T N1.5.md",
+      "source_sha256": "7310ec45d3afbb18d3d50915ccadab0e443c3c014d9ada0ac67977b21048da03",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/lega-GR00TN16.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": "url-title:https://github.com/NVIDIA/Isaac-GR00T/tree/n1.6-release#gr00t n1 6 an improved open foundation model for generalist humanoid robots",
+        "kind": "url-title",
+        "normalized_title": "gr00t n1 6 an improved open foundation model for generalist humanoid robots",
+        "official_url": "https://github.com/NVIDIA/Isaac-GR00T/tree/n1.6-release"
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/GR00T N1",
+          "Papers/2503-GR00TN1"
+        ],
+        [
+          "PaperNotes/VLA/GR00T N1.5",
+          "Papers/lega-GR00TN15"
+        ],
+        [
+          "PaperNotes/VLA/GR00T-Series-Survey",
+          "Topics/GR00T-Series-Survey"
+        ],
+        [
+          "[[PaperNotes/VLA/GR00T N1.5\\|GR00T N1.5]]",
+          "GR00T N1.5"
+        ],
+        [
+          "[[PaperNotes/_authors/Allison Azzolini\\|Allison Azzolini]]",
+          "Allison Azzolini"
+        ],
+        [
+          "[[PaperNotes/_authors/Danyi Chen\\|Danyi Chen]]",
+          "Danyi Chen"
+        ],
+        [
+          "[[PaperNotes/_authors/Fengyuan Hu\\|Fengyuan Hu]]",
+          "Fengyuan Hu"
+        ],
+        [
+          "[[PaperNotes/_authors/Fernando Castañeda\\|Fernando Castañeda]]",
+          "Fernando Castañeda"
+        ],
+        [
+          "[[PaperNotes/_authors/Hassan Eslami\\|Hassan Eslami]]",
+          "Hassan Eslami"
+        ],
+        [
+          "[[PaperNotes/_authors/Joel Jang\\|Joel Jang]]",
+          "Joel Jang"
+        ],
+        [
+          "[[PaperNotes/_authors/Johan Bjorck\\|Johan Bjorck]]",
+          "Johan Bjorck"
+        ],
+        [
+          "[[PaperNotes/_authors/Linxi Fan\\|Linxi \"Jim\" Fan]]",
+          "Linxi \"Jim\" Fan"
+        ],
+        [
+          "[[PaperNotes/_authors/Max Fu\\|Max Fu]]",
+          "Max Fu"
+        ],
+        [
+          "[[PaperNotes/_authors/Nikita Cherniadev\\|Nikita Cherniadev]]",
+          "Nikita Cherniadev"
+        ],
+        [
+          "[[PaperNotes/_authors/Rahul Chand\\|Rahul Chand]]",
+          "Rahul Chand"
+        ],
+        [
+          "[[PaperNotes/_authors/Runyu Ding\\|Runyu Ding]]",
+          "Runyu Ding"
+        ],
+        [
+          "[[PaperNotes/_authors/Shenyuan Gao\\|Shenyuan Gao]]",
+          "Shenyuan Gao"
+        ],
+        [
+          "[[PaperNotes/_authors/Shunjia Ding\\|Shunjia Ding]]",
+          "Shunjia Ding"
+        ],
+        [
+          "[[PaperNotes/_authors/Spencer Huang\\|Spencer Huang]]",
+          "Spencer Huang"
+        ],
+        [
+          "[[PaperNotes/_authors/Valts Blukis\\|Valts Blukis]]",
+          "Valts Blukis"
+        ],
+        [
+          "[[PaperNotes/_authors/Xingye Da\\|Xingye Da]]",
+          "Xingye Da"
+        ],
+        [
+          "[[PaperNotes/_authors/Yan Chang\\|Yan Chang]]",
+          "Yan Chang"
+        ],
+        [
+          "[[PaperNotes/_authors/Yu Fang\\|Yu Fang]]",
+          "Yu Fang"
+        ],
+        [
+          "[[PaperNotes/_authors/Yunhao Ge\\|Yunhao Ge]]",
+          "Yunhao Ge"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/GR00T N1.6.md",
+      "source_sha256": "befa1aca0660f22b913105becef6babcb71191ced7df1582828101b00f37d7b0",
+      "status": "ready"
+    },
+    {
+      "decision": "merge-paper",
+      "destination_path": "Papers/2503-GR00TN1.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2503.14734",
+        "doi": null,
+        "key": "arxiv:2503.14734",
+        "kind": "arxiv",
+        "normalized_title": "gr00t n1 an open foundation model for generalist humanoid robots",
+        "official_url": "https://arxiv.org/html/2503.14734v2"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/GR00T-Series-Survey",
+          "Topics/GR00T-Series-Survey"
+        ],
+        [
+          "[[PaperNotes/_authors/Dieter Fox\\|Dieter Fox]]",
+          "Dieter Fox"
+        ],
+        [
+          "[[PaperNotes/_authors/Edith Llontop\\|Edith Llontop]]",
+          "Edith Llontop"
+        ],
+        [
+          "[[PaperNotes/_authors/Fengyuan Hu\\|Fengyuan Hu]]",
+          "Fengyuan Hu"
+        ],
+        [
+          "[[PaperNotes/_authors/Fernando Castañeda\\|Fernando Castañeda]]",
+          "Fernando Castañeda"
+        ],
+        [
+          "[[PaperNotes/_authors/Guilin Liu\\|Guilin Liu]]",
+          "Guilin Liu"
+        ],
+        [
+          "[[PaperNotes/_authors/Jan Kautz\\|Jan Kautz]]",
+          "Jan Kautz"
+        ],
+        [
+          "[[PaperNotes/_authors/Joel Jang\\|Joel Jang]]",
+          "Joel Jang"
+        ],
+        [
+          "[[PaperNotes/_authors/Johan Bjorck\\|Johan Bjorck]]",
+          "Johan Bjorck"
+        ],
+        [
+          "[[PaperNotes/_authors/Kaushil Kundalia\\|Kaushil Kundalia]]",
+          "Kaushil Kundalia"
+        ],
+        [
+          "[[PaperNotes/_authors/Kevin Lin\\|Kevin Lin]]",
+          "Kevin Lin"
+        ],
+        [
+          "[[PaperNotes/_authors/Lawrence Lao\\|Lawrence Lao]]",
+          "Lawrence Lao"
+        ],
+        [
+          "[[PaperNotes/_authors/Linxi Fan\\|Linxi \"Jim\" Fan]]",
+          "Linxi \"Jim\" Fan"
+        ],
+        [
+          "[[PaperNotes/_authors/Nikita Cherniadev\\|Nikita Cherniadev]]",
+          "Nikita Cherniadev"
+        ],
+        [
+          "[[PaperNotes/_authors/Runyu Ding\\|Runyu Ding]]",
+          "Runyu Ding"
+        ],
+        [
+          "[[PaperNotes/_authors/Spencer Huang\\|Spencer Huang]]",
+          "Spencer Huang"
+        ],
+        [
+          "[[PaperNotes/_authors/Xingye Da\\|Xingye Da]]",
+          "Xingye Da"
+        ],
+        [
+          "[[PaperNotes/_authors/Yu Fang\\|Yu Fang]]",
+          "Yu Fang"
+        ],
+        [
+          "[[PaperNotes/_authors/Yuke Zhu\\|Yuke Zhu]]",
+          "Yuke Zhu"
+        ],
+        [
+          "[[PaperNotes/_authors/Zhenyu Jiang\\|Zhenyu Jiang]]",
+          "Zhenyu Jiang"
+        ],
+        [
+          "[[PaperNotes/_authors/Zhiqi Li\\|Zhiqi Li]]",
+          "Zhiqi Li"
+        ],
+        [
+          "[[PaperNotes/_authors/Zongyu Lin\\|Zongyu Lin]]",
+          "Zongyu Lin"
+        ],
+        [
+          "[[PaperNotes/_concepts/3-机器人策略/VLA|VLA]]",
+          "VLA"
+        ]
+      ],
+      "reason": "high-confidence identity match",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/GR00T N1.md",
+      "source_sha256": "89cca9a1aa847eb88182495d49f1baf8ecc9092a613646ff31c6361723ec10ce",
+      "status": "ready"
+    },
+    {
+      "decision": "import-topic",
+      "destination_path": "Topics/GR00T-Series-Survey.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/FLARE",
+          "Papers/2505-FLARE"
+        ],
+        [
+          "PaperNotes/VLA/GR00T N1",
+          "Papers/2503-GR00TN1"
+        ],
+        [
+          "PaperNotes/VLA/GR00T N1.5",
+          "Papers/lega-GR00TN15"
+        ],
+        [
+          "PaperNotes/VLA/GR00T N1.6",
+          "Papers/lega-GR00TN16"
+        ]
+      ],
+      "reason": "approved series survey",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/GR00T-Series-Survey.md",
+      "source_sha256": "a1529ea31e09f4c12c890d8f94bf7b6f82845491bfa57297b68f705fa6737037",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2410-HILSERL.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2410.21845",
+        "doi": null,
+        "key": "arxiv:2410.21845",
+        "kind": "arxiv",
+        "normalized_title": "precise and dexterous robotic manipulation via human in the loop reinforcement learning",
+        "official_url": "https://arxiv.org/html/2410.21845"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "[[PaperNotes/_authors/Charles Xu\\|Charles Xu]]",
+          "Charles Xu"
+        ],
+        [
+          "[[PaperNotes/_authors/Jeffrey Wu\\|Jeffrey Wu]]",
+          "Jeffrey Wu"
+        ],
+        [
+          "[[PaperNotes/_authors/Jianlan Luo\\|Jianlan Luo]]",
+          "Jianlan Luo"
+        ],
+        [
+          "[[PaperNotes/_authors/Sergey Levine\\|Sergey Levine]]",
+          "Sergey Levine"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/HIL-SERL.md",
+      "source_sha256": "83f4116adc829f0ffa89c423059e66330391f669922a305aa4b0b18b2a9966b0",
+      "status": "ready"
+    },
+    {
+      "decision": "merge-paper",
+      "destination_path": "Papers/2502-HiRobot.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2502.19417",
+        "doi": null,
+        "key": "arxiv:2502.19417",
+        "kind": "arxiv",
+        "normalized_title": "hi robot open ended instruction following with hierarchical vision language action models",
+        "official_url": "https://arxiv.org/html/2502.19417"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "high-confidence identity match",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/HiRobot.md",
+      "source_sha256": "76b079a04223bcd61ac51c875f4331b7328b97fe19c8f700cda9074685e95efc",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2505-KI.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2505.23705",
+        "doi": null,
+        "key": "arxiv:2505.23705",
+        "kind": "arxiv",
+        "normalized_title": "knowledge insulating vision language action models train fast run fast generalize better",
+        "official_url": "https://arxiv.org/html/2505.23705"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/KI.md",
+      "source_sha256": "6f3a819ac7eefa5b25284f2f229ce2f345bd08d930a8ede51924753e9282a233",
+      "status": "ready"
+    },
+    {
+      "decision": "merge-paper",
+      "destination_path": "Papers/2603-MEM.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": "url-title:https://pi.website/research/memory#mem multi scale embodied memory for vision language action models",
+        "kind": "url-title",
+        "normalized_title": "mem multi scale embodied memory for vision language action models",
+        "official_url": "https://pi.website/research/memory"
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "exact official URL and normalized title match",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/MEM.md",
+      "source_sha256": "37672bc9bd2bea7e0b3b2ad036ada82fe192c7bddff83cda260a254680f520f5",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2511-PLD.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2511.00091",
+        "doi": null,
+        "key": "arxiv:2511.00091",
+        "kind": "arxiv",
+        "normalized_title": "self improving vision language action models with data generation via residual rl",
+        "official_url": "https://arxiv.org/html/2511.00091"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "[[PaperNotes/_authors/Andy Peng\\|Andy Peng]]",
+          "Andy Peng"
+        ],
+        [
+          "[[PaperNotes/_authors/Fengyuan Hu (needs-review-fengyuan-hu-vla-pld)\\|Fengyuan Hu]]",
+          "Fengyuan Hu"
+        ],
+        [
+          "[[PaperNotes/_authors/Guanya Shi\\|Guanya Shi]]",
+          "Guanya Shi"
+        ],
+        [
+          "[[PaperNotes/_authors/Haoru Xue\\|Haoru Xue]]",
+          "Haoru Xue"
+        ],
+        [
+          "[[PaperNotes/_authors/Haotian Lin\\|Haotian Lin]]",
+          "Haotian Lin"
+        ],
+        [
+          "[[PaperNotes/_authors/Jimmy Wu\\|Jimmy Wu]]",
+          "Jimmy Wu"
+        ],
+        [
+          "[[PaperNotes/_authors/Linxi \"Jim\" Fan\\|Linxi \"Jim\" Fan]]",
+          "Linxi \"Jim\" Fan"
+        ],
+        [
+          "[[PaperNotes/_authors/Tairan He\\|Tairan He]]",
+          "Tairan He"
+        ],
+        [
+          "[[PaperNotes/_authors/Wenli Xiao\\|Wenli Xiao]]",
+          "Wenli Xiao"
+        ],
+        [
+          "[[PaperNotes/_authors/Yuke Zhu\\|Yuke Zhu]]",
+          "Yuke Zhu"
+        ],
+        [
+          "[[PaperNotes/_authors/Yuqi Xie\\|Yuqi Xie]]",
+          "Yuqi Xie"
+        ],
+        [
+          "[[PaperNotes/_authors/Zhengyi Luo\\|Zhengyi Luo]]",
+          "Zhengyi Luo"
+        ],
+        [
+          "[[PaperNotes/_concepts/2-强化学习/Probe-Learn-Distill|Probe-Learn-Distill]]",
+          "Probe-Learn-Distill"
+        ],
+        [
+          "[[PaperNotes/_concepts/3-机器人策略/OpenVLA|OpenVLA]]",
+          "OpenVLA"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/PLD.md",
+      "source_sha256": "0639dea6787b05b23b80b7ec2a5ca09369e25bb860b01192a2c7bbe32916c1c1",
+      "status": "ready"
+    },
+    {
+      "decision": "import-topic",
+      "destination_path": "Topics/Pi-Series-Survey.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "approved series survey",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/Pi-Series-Survey.md",
+      "source_sha256": "5623220850f3aba9f6b322814850a0427224b5ce648a9a8568953c78069ded51",
+      "status": "ready"
+    },
+    {
+      "decision": "merge-paper",
+      "destination_path": "Papers/2410-Pi0.md",
+      "duplicate_group": "arxiv:2410.24164",
+      "identity": {
+        "arxiv_id": "2410.24164",
+        "doi": null,
+        "key": "arxiv:2410.24164",
+        "kind": "arxiv",
+        "normalized_title": "π0 a vision language action flow model for general robot control",
+        "official_url": "https://arxiv.org/html/2410.24164v4"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "high-confidence identity match",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/Pi0.md",
+      "source_sha256": "05203b8a0de9d2fbb87b6db6f23c2fed9da0226f7a1fef35fcac53452b1cbb6a",
+      "status": "ready"
+    },
+    {
+      "decision": "merge-paper",
+      "destination_path": "Papers/2504-Pi05.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2504.16054",
+        "doi": null,
+        "key": "arxiv:2504.16054",
+        "kind": "arxiv",
+        "normalized_title": "π0 5 a vision language action model with open world generalization",
+        "official_url": "https://arxiv.org/html/2504.16054v1"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "high-confidence identity match",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/Pi05.md",
+      "source_sha256": "c7ff57b08fec519664541a807997fa6053979356b6a6a269148384596fc7b545",
+      "status": "ready"
+    },
+    {
+      "decision": "blocked",
+      "destination_path": null,
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "misfiled concept requires semantic absorption",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/Pi06 Base Model.md",
+      "source_sha256": "82b0977e367dd1eb9c877b4908317731a5ecf379100d0363d36c677d15176590",
+      "status": "blocked"
+    },
+    {
+      "decision": "merge-paper",
+      "destination_path": "Papers/2511-PiStar06.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2511.14759",
+        "doi": null,
+        "key": "arxiv:2511.14759",
+        "kind": "arxiv",
+        "normalized_title": "π 0 6 a vla that learns from experience",
+        "official_url": "https://arxiv.org/html/2511.14759v2"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "high-confidence identity match",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/Pi06.md",
+      "source_sha256": "e20ded06753077059c89e6420fecd6042ffcb93b862e955988786311e3a83557",
+      "status": "ready"
+    },
+    {
+      "decision": "merge-paper",
+      "destination_path": "Papers/2604-Pi07.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": "url-title:https://www.pi.website/download/pi07.pdf#π0 7 a steerable generalist robotic foundation model with emergent capabilities",
+        "kind": "url-title",
+        "normalized_title": "π0 7 a steerable generalist robotic foundation model with emergent capabilities",
+        "official_url": "https://www.pi.website/download/pi07.pdf"
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [
+        [
+          "[[PaperNotes/_authors/Adnan Esmail\\|Adnan Esmail]]",
+          "Adnan Esmail"
+        ],
+        [
+          "[[PaperNotes/_authors/Ali Amin\\|Ali Amin]]",
+          "Ali Amin"
+        ],
+        [
+          "[[PaperNotes/_authors/Ashwin Balakrishna\\|Ashwin Balakrishna]]",
+          "Ashwin Balakrishna"
+        ],
+        [
+          "[[PaperNotes/_authors/Bo Ai\\|Bo Ai]]",
+          "Bo Ai"
+        ],
+        [
+          "[[PaperNotes/_authors/Danny Driess\\|Danny Driess]]",
+          "Danny Driess"
+        ],
+        [
+          "[[PaperNotes/_authors/Foster Collins\\|Foster Collins]]",
+          "Foster Collins"
+        ],
+        [
+          "[[PaperNotes/_authors/George Bokinsky\\|George Bokinsky]]",
+          "George Bokinsky"
+        ],
+        [
+          "[[PaperNotes/_authors/Grace Connors\\|Grace Connors]]",
+          "Grace Connors"
+        ],
+        [
+          "[[PaperNotes/_authors/Greg Balke\\|Greg Balke]]",
+          "Greg Balke"
+        ],
+        [
+          "[[PaperNotes/_authors/James Darpinian\\|James Darpinian]]",
+          "James Darpinian"
+        ],
+        [
+          "[[PaperNotes/_authors/Jared DiCarlo\\|Jared DiCarlo]]",
+          "Jared DiCarlo"
+        ],
+        [
+          "[[PaperNotes/_authors/Karan Dhabalia\\|Karan Dhabalia]]",
+          "Karan Dhabalia"
+        ],
+        [
+          "[[PaperNotes/_authors/Ken Conley\\|Ken Conley]]",
+          "Ken Conley"
+        ],
+        [
+          "[[PaperNotes/_authors/Kevin Black\\|Kevin Black]]",
+          "Kevin Black"
+        ],
+        [
+          "[[PaperNotes/_authors/Maitrayee Dhaka\\|Maitrayee Dhaka]]",
+          "Maitrayee Dhaka"
+        ],
+        [
+          "[[PaperNotes/_authors/Michael Equi\\|Michael Equi]]",
+          "Michael Equi"
+        ],
+        [
+          "[[PaperNotes/_authors/Raichelle Aniceto\\|Raichelle Aniceto]]",
+          "Raichelle Aniceto"
+        ],
+        [
+          "[[PaperNotes/_authors/Shihao Cao\\|Shihao Cao]]",
+          "Shihao Cao"
+        ],
+        [
+          "[[PaperNotes/_authors/Thomas Charbonnier\\|Thomas Charbonnier]]",
+          "Thomas Charbonnier"
+        ],
+        [
+          "[[PaperNotes/_authors/Vedant Choudhary\\|Vedant Choudhary]]",
+          "Vedant Choudhary"
+        ]
+      ],
+      "reason": "exact official URL and normalized title match",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/Pi07.md",
+      "source_sha256": "f2ec2a003ec224c41d4499081580eb4620cba95d67e7e819804a4d4bebd64c82",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/lega-RLT.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": "url-title:https://www.pi.website/download/rlt.pdf#rl token bootstrapping online rl with vision language action models",
+        "kind": "url-title",
+        "normalized_title": "rl token bootstrapping online rl with vision language action models",
+        "official_url": "https://www.pi.website/download/rlt.pdf"
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/RLT.md",
+      "source_sha256": "59464f8dc073a17e026b8d1328bed1607b39141690b29dd4ee645b6e5c55857a",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2606-STEAM.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2606.29834",
+        "doi": null,
+        "key": "arxiv:2606.29834",
+        "kind": "arxiv",
+        "normalized_title": "steam self supervised temporal ensemble advantage modeling for real world robot learning",
+        "official_url": "https://arxiv.org/html/2606.29834v1"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "[[PaperNotes/VLA/assets/STEAM/figure5.png]]",
+          "figure5.png"
+        ],
+        [
+          "[[PaperNotes/VLA/assets/STEAM/figure6.png]]",
+          "figure6.png"
+        ],
+        [
+          "[[PaperNotes/VLA/assets/STEAM/figure7.png]]",
+          "figure7.png"
+        ],
+        [
+          "[[PaperNotes/_authors/Chao Yu\\|Chao Yu]]",
+          "Chao Yu"
+        ],
+        [
+          "[[PaperNotes/_authors/Dongming Qiao\\|Dongming Qiao]]",
+          "Dongming Qiao"
+        ],
+        [
+          "[[PaperNotes/_authors/Feng Gao\\|Feng Gao]]",
+          "Feng Gao"
+        ],
+        [
+          "[[PaperNotes/_authors/Guoliang Fan\\|Guoliang Fan]]",
+          "Guoliang Fan"
+        ],
+        [
+          "[[PaperNotes/_authors/Jincheng Yu\\|Jincheng Yu]]",
+          "Jincheng Yu"
+        ],
+        [
+          "[[PaperNotes/_authors/Kang Chen\\|Kang Chen]]",
+          "Kang Chen"
+        ],
+        [
+          "[[PaperNotes/_authors/Liangzhi Shi\\|Liangzhi Shi]]",
+          "Liangzhi Shi"
+        ],
+        [
+          "[[PaperNotes/_authors/Qiuyi Gu\\|Qiuyi Gu]]",
+          "Qiuyi Gu"
+        ],
+        [
+          "[[PaperNotes/_authors/Quanlu Zhang\\|Quanlu Zhang]]",
+          "Quanlu Zhang"
+        ],
+        [
+          "[[PaperNotes/_authors/Shuaihang Chen\\|Shuaihang Chen]]",
+          "Shuaihang Chen"
+        ],
+        [
+          "[[PaperNotes/_authors/Tianxing Zhou\\|Tianxing Zhou]]",
+          "Tianxing Zhou"
+        ],
+        [
+          "[[PaperNotes/_authors/Xiaodan Liang\\|Xiaodan Liang]]",
+          "Xiaodan Liang"
+        ],
+        [
+          "[[PaperNotes/_authors/Xinlei Chen\\|Xinlei Chen]]",
+          "Xinlei Chen"
+        ],
+        [
+          "[[PaperNotes/_authors/Yitao Wang\\|Yitao Wang]]",
+          "Yitao Wang"
+        ],
+        [
+          "[[PaperNotes/_authors/Yixian Zhang\\|Yixian Zhang]]",
+          "Yixian Zhang"
+        ],
+        [
+          "[[PaperNotes/_authors/Yu Wang\\|Yu Wang]]",
+          "Yu Wang"
+        ],
+        [
+          "[[PaperNotes/_authors/Zefang Huang\\|Zefang Huang]]",
+          "Zefang Huang"
+        ],
+        [
+          "[[PaperNotes/_authors/Zhen Guo\\|Zhen Guo]]",
+          "Zhen Guo"
+        ],
+        [
+          "[[PaperNotes/_authors/Zhihao Liu\\|Zhihao Liu]]",
+          "Zhihao Liu"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/STEAM.md",
+      "source_sha256": "8903a7ac6c4c57b5e774bd44435d381bc9b90ee64a026748a246d534d83536c1",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2610-Workhorse.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2610.09117",
+        "doi": null,
+        "key": "arxiv:2610.09117",
+        "kind": "arxiv",
+        "normalized_title": "workhorse learning robust whole body humanoid loco manipulation from human data",
+        "official_url": "https://arxiv.org/html/2610.09117v2"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "[[PaperNotes/_authors/Kevin Zakka\\|Kevin Zakka]]",
+          "Kevin Zakka"
+        ],
+        [
+          "[[PaperNotes/_authors/Koushil Sreenath\\|Koushil Sreenath]]",
+          "Koushil Sreenath"
+        ],
+        [
+          "[[PaperNotes/_authors/Pieter Abbeel\\|Pieter Abbeel]]",
+          "Pieter Abbeel"
+        ],
+        [
+          "[[PaperNotes/_authors/Qiayuan Liao\\|Qiayuan Liao]]",
+          "Qiayuan Liao"
+        ],
+        [
+          "[[PaperNotes/_authors/Songbo Hu\\|Songbo Hu]]",
+          "Songbo Hu"
+        ],
+        [
+          "[[PaperNotes/_authors/Yakun Sophia Shao\\|Yakun Sophia Shao]]",
+          "Yakun Sophia Shao"
+        ],
+        [
+          "[[PaperNotes/_authors/Yufeng Chi\\|Yufeng Chi]]",
+          "Yufeng Chi"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/VLA/Workhorse.md",
+      "source_sha256": "540c5089e0c2c5cea20d5e12e3e8b848e16d9f25990a1462e2bdaa61b51b506f",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2603-HEISD.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2603.17573",
+        "doi": null,
+        "key": "arxiv:2603.17573",
+        "kind": "arxiv",
+        "normalized_title": "heisd hybrid speculative decoding for embodied vision language action models with kinematic awareness",
+        "official_url": null
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/_inbox/HEISD.md",
+      "source_sha256": "39eab0fce7f99cacdc0c910dd188657429df898f8b7707567682719a2dc6112a",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2603-KERV.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2603.01581",
+        "doi": null,
+        "key": "arxiv:2603.01581",
+        "kind": "arxiv",
+        "normalized_title": "kerv kinematic rectified speculative decoding for embodied vla models",
+        "official_url": null
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/_inbox/KERV.md",
+      "source_sha256": "6064e03c70d009e71be10af861608718b7f999ca1fad6e4c757f13422f7da73f",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2603-MeanFlowVLA.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2603.01469",
+        "doi": null,
+        "key": "arxiv:2603.01469",
+        "kind": "arxiv",
+        "normalized_title": "mean flow based one step vision language action",
+        "official_url": null
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/_inbox/Mean Flow VLA.md",
+      "source_sha256": "620ab3678e205c4f03c78b1a376deb7c629cd48b025b368fd64981f26a6b1e66",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2410-OnestepDiffusionPolicy.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2410.21257",
+        "doi": null,
+        "key": "arxiv:2410.21257",
+        "kind": "arxiv",
+        "normalized_title": "one step diffusion policy fast visuomotor policies via diffusion distillation",
+        "official_url": null
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/_inbox/One-step Diffusion Policy.md",
+      "source_sha256": "b75da2e7bdb79feacf59eceb3ad0b1709f40351cfcf459df654029d7fc096f9b",
+      "status": "ready"
+    },
+    {
+      "decision": "merge-paper",
+      "destination_path": "Papers/2410-Pi0.md",
+      "duplicate_group": "arxiv:2410.24164",
+      "identity": {
+        "arxiv_id": "2410.24164",
+        "doi": null,
+        "key": "arxiv:2410.24164",
+        "kind": "arxiv",
+        "normalized_title": "π0 a vision language action flow model for general robot control",
+        "official_url": null
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "high-confidence identity match",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/_inbox/Pi0.md",
+      "source_sha256": "de2a01768860fb1174d08ed37f32b18300bb61bd0fe997d441e942c9b4d43028",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/lega-SpecVLA.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "spec vla speculative decoding for vision language action models with relaxed acceptance",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "missing paper identity",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/_inbox/Spec-VLA.md",
+      "source_sha256": "76278dbabd6b7ce621fc1fefef9dfb6fad7d2c5b0e04e81bd5fc4d55cf729a8e",
+      "status": "blocked"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2510-TritonPi0.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2510.26742",
+        "doi": null,
+        "key": "arxiv:2510.26742",
+        "kind": "arxiv",
+        "normalized_title": "running vlas at real time speed",
+        "official_url": null
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/_inbox/Triton-Pi0.md",
+      "source_sha256": "15c5c1dde8edfc214f503d1ea0ec0b12f40c9a014538ec6a67c51dda44e70d4a",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2603-DiT4DiT.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2603.10448",
+        "doi": null,
+        "key": "arxiv:2603.10448",
+        "kind": "arxiv",
+        "normalized_title": "dit4dit jointly modeling video dynamics and actions for generalizable robot control",
+        "official_url": "https://arxiv.org/html/2603.10448v2"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/FLARE",
+          "Papers/2505-FLARE"
+        ],
+        [
+          "PaperNotes/VLA/GR00T N1",
+          "Papers/2503-GR00TN1"
+        ],
+        [
+          "PaperNotes/VLA/GR00T N1.5",
+          "Papers/lega-GR00TN15"
+        ],
+        [
+          "PaperNotes/VLA/Pi0",
+          "Papers/2410-Pi0"
+        ],
+        [
+          "PaperNotes/VLA/Pi05",
+          "Papers/2504-Pi05"
+        ],
+        [
+          "PaperNotes/world model/Fast-WAM",
+          "Papers/2603-FastWAM"
+        ],
+        [
+          "PaperNotes/world model/OpenWAM",
+          "Papers/2609-OpenWAM"
+        ],
+        [
+          "[[PaperNotes/_authors/Andy Cui|Andy Cui]]",
+          "Andy Cui"
+        ],
+        [
+          "[[PaperNotes/_authors/Chunli Jiang|Chunli Jiang]]",
+          "Chunli Jiang"
+        ],
+        [
+          "[[PaperNotes/_authors/Jia Zheng|Jia Zheng]]",
+          "Jia Zheng"
+        ],
+        [
+          "[[PaperNotes/_authors/Junwei Liang|Junwei Liang]]",
+          "Junwei Liang"
+        ],
+        [
+          "[[PaperNotes/_authors/Shuo Yang|Shuo Yang]]",
+          "Shuo Yang"
+        ],
+        [
+          "[[PaperNotes/_authors/Teli Ma|Teli Ma]]",
+          "Teli Ma"
+        ],
+        [
+          "[[PaperNotes/_authors/Zifan Wang|Zifan Wang]]",
+          "Zifan Wang"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/world model/DiT4DiT.md",
+      "source_sha256": "3de1b2a03ecc83e5bb79e6beaf6f70fcae1bd2b08922123101b05b91c63b016e",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2604-Dyna21.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2604.02523",
+        "doi": null,
+        "key": "arxiv:2604.02523",
+        "kind": "arxiv",
+        "normalized_title": "dyna 2 1 a physical agent for end to end workflows",
+        "official_url": "https://www.dyna.co/dyna-2.1"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/FLARE",
+          "Papers/2505-FLARE"
+        ],
+        [
+          "PaperNotes/VLA/GR00T-Series-Survey",
+          "Topics/GR00T-Series-Survey"
+        ],
+        [
+          "PaperNotes/VLA/Pi0",
+          "Papers/2410-Pi0"
+        ],
+        [
+          "PaperNotes/VLA/Pi07",
+          "Papers/2604-Pi07"
+        ],
+        [
+          "PaperNotes/world model/Fast-WAM",
+          "Papers/2603-FastWAM"
+        ],
+        [
+          "PaperNotes/world model/WAM-Survey",
+          "Papers/2609-WAMSurvey"
+        ],
+        [
+          "[[PaperNotes/VLA/FLARE\\|FLARE]]",
+          "FLARE"
+        ],
+        [
+          "[[PaperNotes/VLA/GR00T-Series-Survey\\|GR00T Series Survey]]",
+          "GR00T Series Survey"
+        ],
+        [
+          "[[PaperNotes/VLA/GR00T-Series-Survey\\|GR00T]]",
+          "GR00T"
+        ],
+        [
+          "[[PaperNotes/VLA/Pi07\\|Pi07]]",
+          "Pi07"
+        ],
+        [
+          "[[PaperNotes/world model/Fast-WAM\\|Fast-WAM]]",
+          "Fast-WAM"
+        ],
+        [
+          "[[PaperNotes/world model/WAM-Survey\\|WAM Survey]]",
+          "WAM Survey"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/world model/Dyna-2.1.md",
+      "source_sha256": "a3e8a2c0b2fc15ae477a9167d87338e626f96217db53b1cc5dc0c9b78daa0df9",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2603-FastWAM.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2603.16666",
+        "doi": null,
+        "key": "arxiv:2603.16666",
+        "kind": "arxiv",
+        "normalized_title": "fast wam do world action models need test time future imagination",
+        "official_url": "https://arxiv.org/html/2603.16666"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "[[PaperNotes/_code/Fast-WAM-code#Paper-to-Code Map|Repository mapping]]",
+          "Repository mapping"
+        ],
+        [
+          "[[PaperNotes/_code/Fast-WAM-code|Implementation companion]]",
+          "Implementation companion"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/world model/Fast-WAM.md",
+      "source_sha256": "b0ee182e05f265a5a6b56075609318e385a3e5acddd1721d835116bcc351b0a5",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2610-GAWM.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2610.37091",
+        "doi": null,
+        "key": "arxiv:2610.37091",
+        "kind": "arxiv",
+        "normalized_title": "gawm a compact latent world action model for multi task robot manipulation",
+        "official_url": "https://arxiv.org/html/2610.37091v1"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/world model/GAWM.md",
+      "source_sha256": "25ef9983d67d05f159d37accfcd5982e4495616b10fc6390e7e00fc6137d5c09",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2609-OpenWAM.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2609.07398",
+        "doi": null,
+        "key": "arxiv:2609.07398",
+        "kind": "arxiv",
+        "normalized_title": "openwam an open modular exploration towards systematic world action model pretraining",
+        "official_url": "https://github.com/OpenWAM-Official/OpenWAM"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "PaperNotes/world model/Fast-WAM",
+          "Papers/2603-FastWAM"
+        ],
+        [
+          "[[PaperNotes/_authors/Chenhao Zhang\\|Chenhao Zhang]]",
+          "Chenhao Zhang"
+        ],
+        [
+          "[[PaperNotes/_authors/Donghao Zhou\\|Donghao Zhou]]",
+          "Donghao Zhou"
+        ],
+        [
+          "[[PaperNotes/_authors/Guanqi He\\|Guanqi He]]",
+          "Guanqi He"
+        ],
+        [
+          "[[PaperNotes/_authors/Hang Zhao\\|Hang Zhao]]",
+          "Hang Zhao"
+        ],
+        [
+          "[[PaperNotes/_authors/Hao Dong\\|Hao Dong]]",
+          "Hao Dong"
+        ],
+        [
+          "[[PaperNotes/_authors/Jiaqi Liang\\|Jiaqi Liang]]",
+          "Jiaqi Liang"
+        ],
+        [
+          "[[PaperNotes/_authors/Kefei Zhu\\|Kefei Zhu]]",
+          "Kefei Zhu"
+        ],
+        [
+          "[[PaperNotes/_authors/Lin Shao\\|Lin Shao]]",
+          "Lin Shao"
+        ],
+        [
+          "[[PaperNotes/_authors/Mingleyang Li\\|Mingleyang Li]]",
+          "Mingleyang Li"
+        ],
+        [
+          "[[PaperNotes/_authors/Ning Gao\\|Ning Gao]]",
+          "Ning Gao"
+        ],
+        [
+          "[[PaperNotes/_authors/Qize Yu\\|Qize Yu]]",
+          "Qize Yu"
+        ],
+        [
+          "[[PaperNotes/_authors/Shanghang Zhang\\|Shanghang Zhang]]",
+          "Shanghang Zhang"
+        ],
+        [
+          "[[PaperNotes/_authors/Shenzhe Yao\\|Shenzhe Yao]]",
+          "Shenzhe Yao"
+        ],
+        [
+          "[[PaperNotes/_authors/Siqiao Huang\\|Siqiao Huang]]",
+          "Siqiao Huang"
+        ],
+        [
+          "[[PaperNotes/_authors/Weiyang Jin\\|Weiyang Jin]]",
+          "Weiyang Jin"
+        ],
+        [
+          "[[PaperNotes/_authors/Xiaowei Chi\\|Xiaowei Chi]]",
+          "Xiaowei Chi"
+        ],
+        [
+          "[[PaperNotes/_authors/Xuemin Chi\\|Xuemin Chi]]",
+          "Xuemin Chi"
+        ],
+        [
+          "[[PaperNotes/_authors/Yu-Kai Wang\\|Yu-Kai Wang]]",
+          "Yu-Kai Wang"
+        ],
+        [
+          "[[PaperNotes/_authors/Yue Chen\\|Yue Chen]]",
+          "Yue Chen"
+        ],
+        [
+          "[[PaperNotes/_authors/Yuhan Rui\\|Yuhan Rui]]",
+          "Yuhan Rui"
+        ],
+        [
+          "[[PaperNotes/_authors/Yuran Wang\\|Yuran Wang]]",
+          "Yuran Wang"
+        ],
+        [
+          "[[PaperNotes/_authors/Zhen Yuan\\|Zhen Yuan]]",
+          "Zhen Yuan"
+        ],
+        [
+          "[[PaperNotes/_authors/Zhenhao Shen\\|Zhenhao Shen]]",
+          "Zhenhao Shen"
+        ],
+        [
+          "[[PaperNotes/_authors/Zijie Zhu\\|Zijie Zhu]]",
+          "Zijie Zhu"
+        ],
+        [
+          "[[PaperNotes/world model/Fast-WAM\\|Fast-WAM]]",
+          "Fast-WAM"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig01_overview.png]]",
+          "OpenWAM_fig01_overview.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig02_model_infra.png]]",
+          "OpenWAM_fig02_model_infra.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig03_inference_denoise.png]]",
+          "OpenWAM_fig03_inference_denoise.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig04_acceleration.png]]",
+          "OpenWAM_fig04_acceleration.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig05_evaluation_protocol.png]]",
+          "OpenWAM_fig05_evaluation_protocol.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig06_backbone_scale.png]]",
+          "OpenWAM_fig06_backbone_scale.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig07_visual_representations.png]]",
+          "OpenWAM_fig07_visual_representations.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig08_attention_masks.png]]",
+          "OpenWAM_fig08_attention_masks.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig09_denoising_schedules.png]]",
+          "OpenWAM_fig09_denoising_schedules.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig10_pretraining_generalization.png]]",
+          "OpenWAM_fig10_pretraining_generalization.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig11_information_flow_scale.png]]",
+          "OpenWAM_fig11_information_flow_scale.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig12_architecture.png]]",
+          "OpenWAM_fig12_architecture.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig13_benchmark_grid.png]]",
+          "OpenWAM_fig13_benchmark_grid.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig14_benchmark_radial.png]]",
+          "OpenWAM_fig14_benchmark_radial.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig15_singlearm_data.png]]",
+          "OpenWAM_fig15_singlearm_data.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig16_id_ood.png]]",
+          "OpenWAM_fig16_id_ood.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig17_real_robot_setups.png]]",
+          "OpenWAM_fig17_real_robot_setups.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig18_singlearm_setup.png]]",
+          "OpenWAM_fig18_singlearm_setup.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig19_singlearm_sequences.png]]",
+          "OpenWAM_fig19_singlearm_sequences.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig20_dexterous_setup.png]]",
+          "OpenWAM_fig20_dexterous_setup.png"
+        ],
+        [
+          "[[PaperNotes/world model/assets/OpenWAM_fig21_dexterous_sequences.png]]",
+          "OpenWAM_fig21_dexterous_sequences.png"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/world model/OpenWAM.md",
+      "source_sha256": "e89df3f22571c39d5bed762e17e60d07eccba117724112a2d980f3c70a73c34e",
+      "status": "ready"
+    },
+    {
+      "decision": "import-paper",
+      "destination_path": "Papers/2609-WAMSurvey.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": "2609.16074",
+        "doi": null,
+        "key": "arxiv:2609.16074",
+        "kind": "arxiv",
+        "normalized_title": "world action models for robot learning and control a survey",
+        "official_url": "https://arxiv.org/html/2609.16074"
+      },
+      "identity_confidence": "high",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/Pi0",
+          "Papers/2410-Pi0"
+        ],
+        [
+          "PaperNotes/VLA/Pi07",
+          "Papers/2604-Pi07"
+        ],
+        [
+          "PaperNotes/world model/Fast-WAM",
+          "Papers/2603-FastWAM"
+        ],
+        [
+          "PaperNotes/world model/OpenWAM",
+          "Papers/2609-OpenWAM"
+        ],
+        [
+          "[[PaperNotes/VLA/Pi07\\|Pi07]]",
+          "Pi07"
+        ],
+        [
+          "[[PaperNotes/_authors/Benjamin Riviere\\|Benjamin Riviere]]",
+          "Benjamin Riviere"
+        ],
+        [
+          "[[PaperNotes/_authors/Danfei Xu\\|Danfei Xu]]",
+          "Danfei Xu"
+        ],
+        [
+          "[[PaperNotes/_authors/Eric Xing\\|Eric Xing]]",
+          "Eric Xing"
+        ],
+        [
+          "[[PaperNotes/_authors/Giuseppe Loianno\\|Giuseppe Loianno]]",
+          "Giuseppe Loianno"
+        ],
+        [
+          "[[PaperNotes/_authors/Guanzhi Wang\\|Guanzhi Wang]]",
+          "Guanzhi Wang"
+        ],
+        [
+          "[[PaperNotes/_authors/Hongjia Zhai\\|Hongjia Zhai]]",
+          "Hongjia Zhai"
+        ],
+        [
+          "[[PaperNotes/_authors/Huajian Zeng\\|Huajian Zeng]]",
+          "Huajian Zeng"
+        ],
+        [
+          "[[PaperNotes/_authors/Ivan Laptev\\|Ivan Laptev]]",
+          "Ivan Laptev"
+        ],
+        [
+          "[[PaperNotes/_authors/Jiaqi Yang\\|Jiaqi Yang]]",
+          "Jiaqi Yang"
+        ],
+        [
+          "[[PaperNotes/_authors/Jingyu Liu\\|Jingyu Liu]]",
+          "Jingyu Liu"
+        ],
+        [
+          "[[PaperNotes/_authors/Lei Cheng\\|Lei Cheng]]",
+          "Lei Cheng"
+        ],
+        [
+          "[[PaperNotes/_authors/Xingxing Zuo\\|Xingxing Zuo]]",
+          "Xingxing Zuo"
+        ],
+        [
+          "[[PaperNotes/_authors/Yuantai Zhang\\|Yuantai Zhang]]",
+          "Yuantai Zhang"
+        ],
+        [
+          "[[PaperNotes/_authors/Yuheng Qiu\\|Yuheng Qiu]]",
+          "Yuheng Qiu"
+        ],
+        [
+          "[[PaperNotes/_authors/Zezhou Cheng\\|Zezhou Cheng]]",
+          "Zezhou Cheng"
+        ],
+        [
+          "[[PaperNotes/_authors/Zuxing Lu\\|Zuxing Lu]]",
+          "Zuxing Lu"
+        ],
+        [
+          "[[PaperNotes/world model/Fast-WAM\\|Fast-WAM]]",
+          "Fast-WAM"
+        ],
+        [
+          "[[PaperNotes/world model/OpenWAM\\|OpenWAM]]",
+          "OpenWAM"
+        ]
+      ],
+      "reason": "old-only paper candidate",
+      "referenced_assets": [],
+      "source_kind": "paper",
+      "source_path": "PaperNotes/world model/WAM-Survey.md",
+      "source_sha256": "455bf8e6c64a6bc792369d03edc9ecb96921a08f9266af98af9e8f3e755d23c8",
+      "status": "ready"
+    },
+    {
+      "decision": "import-insight",
+      "destination_path": "ResearchSources/Insights/Dyna2部署的一些know-how.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "ResearchNotes",
+      "source_path": "ResearchNotes/Dyna2部署的一些know-how.md",
+      "source_sha256": "8f5da76ddcf41f8a7a8008837630c70dfdf20defc7e05f4193b32dd8802ddf36",
+      "status": "ready"
+    },
+    {
+      "decision": "import-insight",
+      "destination_path": "ResearchSources/Insights/任务空间接口：连接上层策略与RL控制器.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/Workhorse",
+          "Papers/2610-Workhorse"
+        ],
+        [
+          "PaperNotes/world model/Dyna-2.1",
+          "Papers/2604-Dyna21"
+        ]
+      ],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "ResearchSources",
+      "source_path": "ResearchSources/Insights/任务空间接口：连接上层策略与RL控制器.md",
+      "source_sha256": "7fe358fe5a6eac65120536d892a4160b08badc0626e795730b828d3354a06db5",
+      "status": "ready"
+    },
+    {
+      "decision": "import-insight",
+      "destination_path": "ResearchSources/Insights/访问模式驱动的机器人训练数据物理布局.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "ResearchSources",
+      "source_path": "ResearchSources/Insights/访问模式驱动的机器人训练数据物理布局.md",
+      "source_sha256": "302c7edce9ad65ba64e6d44da7569d63272e5895b1ee3acd0c96597233cd411a",
+      "status": "ready"
+    },
+    {
+      "decision": "import-source",
+      "destination_path": "ResearchSources/Sources/Fast-WAM- Do World Action Models Need Test-time Future Imagination?.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [
+        [
+          "PaperNotes/world model/Fast-WAM",
+          "Papers/2603-FastWAM"
+        ],
+        [
+          "[[PaperNotes/_code/Fast-WAM-code#Paper-to-Code Map]]",
+          "Fast-WAM-code"
+        ],
+        [
+          "[[PaperNotes/_code/Fast-WAM-code|Fast-WAM Code Companion]]",
+          "Fast-WAM Code Companion"
+        ]
+      ],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "ResearchSources",
+      "source_path": "ResearchSources/Sources/Fast-WAM- Do World Action Models Need Test-time Future Imagination?.md",
+      "source_sha256": "be8c833412fb2cdef87ca3d4100f9d4e37bb0be3580ccc4d162fbf4596af3866",
+      "status": "ready"
+    },
+    {
+      "decision": "import-source",
+      "destination_path": "ResearchSources/Sources/Isaac GR00T N1.7 Early Access Release.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/GR00T-Series-Survey",
+          "Topics/GR00T-Series-Survey"
+        ]
+      ],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "ResearchSources",
+      "source_path": "ResearchSources/Sources/Isaac GR00T N1.7 Early Access Release.md",
+      "source_sha256": "03d30a8d878ad31bb0b04b129f1d5e6dcd2012c61dfdbae9adf911d7dc70a5f7",
+      "status": "ready"
+    },
+    {
+      "decision": "import-source",
+      "destination_path": "ResearchSources/Sources/Training Dyna-2 at million-hour scale, repeatably.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "ResearchSources",
+      "source_path": "ResearchSources/Sources/Training Dyna-2 at million-hour scale, repeatably.md",
+      "source_sha256": "f0b16e63e9c5130dc0314ac9a4e53e71c99bbbd877f327b83e168f7edd084af5",
+      "status": "ready"
+    },
+    {
+      "decision": "import-source",
+      "destination_path": "ResearchSources/Sources/π0- A Foundation Model for Robotics with Sergey Levine - 719.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/Pi0",
+          "Papers/2410-Pi0"
+        ]
+      ],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "ResearchSources",
+      "source_path": "ResearchSources/Sources/π0- A Foundation Model for Robotics with Sergey Levine - 719.md",
+      "source_sha256": "1807729783a78c5e70d9394e6194165ed5902a50cf8099a31b70ce5f8c08d92f",
+      "status": "ready"
+    },
+    {
+      "decision": "import-source",
+      "destination_path": "ResearchSources/Sources/数采厂的变化.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "ResearchSources",
+      "source_path": "ResearchSources/Sources/数采厂的变化.md",
+      "source_sha256": "920004d1e0ae69b6e1794a079b0a4550d5a61650823bb6b752ed4c7384369dbb",
+      "status": "ready"
+    },
+    {
+      "decision": "import-source",
+      "destination_path": "ResearchSources/Sources/读懂 OpenPI 的 π0.5：从源码出发，真正看懂模型结构、训练逻辑和推理过程.md",
+      "duplicate_group": null,
+      "identity": {
+        "arxiv_id": null,
+        "doi": null,
+        "key": null,
+        "kind": "missing",
+        "normalized_title": "",
+        "official_url": null
+      },
+      "identity_confidence": "review",
+      "link_rewrites": [
+        [
+          "PaperNotes/VLA/Pi0",
+          "Papers/2410-Pi0"
+        ],
+        [
+          "PaperNotes/VLA/Pi05",
+          "Papers/2504-Pi05"
+        ]
+      ],
+      "reason": "approved auxiliary route",
+      "referenced_assets": [],
+      "source_kind": "ResearchSources",
+      "source_path": "ResearchSources/Sources/读懂 OpenPI 的 π0.5：从源码出发，真正看懂模型结构、训练逻辑和推理过程.md",
+      "source_sha256": "f442f22fac6184d378db1ca6558c60ea705212a6749d69eabb9f10584d0ab479",
+      "status": "ready"
+    }
+  ],
+  "manifest_version": 1,
+  "source_root": "/Users/limx/notes",
+  "source_snapshot": {
+    "files": [
+      [
+        "DailyPapers/.history.json",
+        "6140b9bdfa5731752b3f18bbab06757fb41b0311068a3a6f41b83e962291c0d6"
+      ],
+      [
+        "DailyPapers/2026-10-28-论文推荐.md",
+        "74fdf264a845cce86beb6b488cbe15ed8e8d34417815f1e2d01459315bf5d461"
+      ],
+      [
+        "GitHubTrending/2026-W44 GitHub周榜.md",
+        "f5f6ba5c71e4ebb52a814af38f02ad69098e13d2b7bf0028acd0ea84d2ae2b96"
+      ],
+      [
+        "PaperNotes/VLA/FAST.md",
+        "bf2095dfbdaa5458d512cfc98cf32b39e67b58988be30c5e171246a184d535c4"
+      ],
+      [
+        "PaperNotes/VLA/FLARE.md",
+        "48301daa83d94b3251f13c7202e108aff2afec3c1737be50aeb059763820aa1e"
+      ],
+      [
+        "PaperNotes/VLA/FLASH.md",
+        "9ded74a6bc645007e576aacfc1c07bd7ff3ad926b22709bccd3fb305730defcd"
+      ],
+      [
+        "PaperNotes/VLA/GR00T N1.5.md",
+        "7310ec45d3afbb18d3d50915ccadab0e443c3c014d9ada0ac67977b21048da03"
+      ],
+      [
+        "PaperNotes/VLA/GR00T N1.6.md",
+        "befa1aca0660f22b913105becef6babcb71191ced7df1582828101b00f37d7b0"
+      ],
+      [
+        "PaperNotes/VLA/GR00T N1.md",
+        "89cca9a1aa847eb88182495d49f1baf8ecc9092a613646ff31c6361723ec10ce"
+      ],
+      [
+        "PaperNotes/VLA/GR00T-Series-Survey.md",
+        "a1529ea31e09f4c12c890d8f94bf7b6f82845491bfa57297b68f705fa6737037"
+      ],
+      [
+        "PaperNotes/VLA/HIL-SERL.md",
+        "83f4116adc829f0ffa89c423059e66330391f669922a305aa4b0b18b2a9966b0"
+      ],
+      [
+        "PaperNotes/VLA/HiRobot.md",
+        "76b079a04223bcd61ac51c875f4331b7328b97fe19c8f700cda9074685e95efc"
+      ],
+      [
+        "PaperNotes/VLA/KI.md",
+        "6f3a819ac7eefa5b25284f2f229ce2f345bd08d930a8ede51924753e9282a233"
+      ],
+      [
+        "PaperNotes/VLA/MEM.md",
+        "37672bc9bd2bea7e0b3b2ad036ada82fe192c7bddff83cda260a254680f520f5"
+      ],
+      [
+        "PaperNotes/VLA/PLD.md",
+        "0639dea6787b05b23b80b7ec2a5ca09369e25bb860b01192a2c7bbe32916c1c1"
+      ],
+      [
+        "PaperNotes/VLA/Pi-Series-Survey.md",
+        "5623220850f3aba9f6b322814850a0427224b5ce648a9a8568953c78069ded51"
+      ],
+      [
+        "PaperNotes/VLA/Pi0.md",
+        "05203b8a0de9d2fbb87b6db6f23c2fed9da0226f7a1fef35fcac53452b1cbb6a"
+      ],
+      [
+        "PaperNotes/VLA/Pi05.md",
+        "c7ff57b08fec519664541a807997fa6053979356b6a6a269148384596fc7b545"
+      ],
+      [
+        "PaperNotes/VLA/Pi06 Base Model.md",
+        "82b0977e367dd1eb9c877b4908317731a5ecf379100d0363d36c677d15176590"
+      ],
+      [
+        "PaperNotes/VLA/Pi06.md",
+        "e20ded06753077059c89e6420fecd6042ffcb93b862e955988786311e3a83557"
+      ],
+      [
+        "PaperNotes/VLA/Pi07.md",
+        "f2ec2a003ec224c41d4499081580eb4620cba95d67e7e819804a4d4bebd64c82"
+      ],
+      [
+        "PaperNotes/VLA/RLT.md",
+        "59464f8dc073a17e026b8d1328bed1607b39141690b29dd4ee645b6e5c55857a"
+      ],
+      [
+        "PaperNotes/VLA/STEAM.md",
+        "8903a7ac6c4c57b5e774bd44435d381bc9b90ee64a026748a246d534d83536c1"
+      ],
+      [
+        "PaperNotes/VLA/Workhorse.md",
+        "540c5089e0c2c5cea20d5e12e3e8b848e16d9f25990a1462e2bdaa61b51b506f"
+      ],
+      [
+        "PaperNotes/_inbox/HEISD.md",
+        "39eab0fce7f99cacdc0c910dd188657429df898f8b7707567682719a2dc6112a"
+      ],
+      [
+        "PaperNotes/_inbox/KERV.md",
+        "6064e03c70d009e71be10af861608718b7f999ca1fad6e4c757f13422f7da73f"
+      ],
+      [
+        "PaperNotes/_inbox/Mean Flow VLA.md",
+        "620ab3678e205c4f03c78b1a376deb7c629cd48b025b368fd64981f26a6b1e66"
+      ],
+      [
+        "PaperNotes/_inbox/One-step Diffusion Policy.md",
+        "b75da2e7bdb79feacf59eceb3ad0b1709f40351cfcf459df654029d7fc096f9b"
+      ],
+      [
+        "PaperNotes/_inbox/Pi0.md",
+        "de2a01768860fb1174d08ed37f32b18300bb61bd0fe997d441e942c9b4d43028"
+      ],
+      [
+        "PaperNotes/_inbox/Spec-VLA.md",
+        "76278dbabd6b7ce621fc1fefef9dfb6fad7d2c5b0e04e81bd5fc4d55cf729a8e"
+      ],
+      [
+        "PaperNotes/_inbox/Triton-Pi0.md",
+        "15c5c1dde8edfc214f503d1ea0ec0b12f40c9a014538ec6a67c51dda44e70d4a"
+      ],
+      [
+        "PaperNotes/world model/DiT4DiT.md",
+        "3de1b2a03ecc83e5bb79e6beaf6f70fcae1bd2b08922123101b05b91c63b016e"
+      ],
+      [
+        "PaperNotes/world model/Dyna-2.1.md",
+        "a3e8a2c0b2fc15ae477a9167d87338e626f96217db53b1cc5dc0c9b78daa0df9"
+      ],
+      [
+        "PaperNotes/world model/Fast-WAM.md",
+        "b0ee182e05f265a5a6b56075609318e385a3e5acddd1721d835116bcc351b0a5"
+      ],
+      [
+        "PaperNotes/world model/GAWM.md",
+        "25ef9983d67d05f159d37accfcd5982e4495616b10fc6390e7e00fc6137d5c09"
+      ],
+      [
+        "PaperNotes/world model/OpenWAM.md",
+        "e89df3f22571c39d5bed762e17e60d07eccba117724112a2d980f3c70a73c34e"
+      ],
+      [
+        "PaperNotes/world model/WAM-Survey.md",
+        "455bf8e6c64a6bc792369d03edc9ecb96921a08f9266af98af9e8f3e755d23c8"
+      ],
+      [
+        "ResearchNotes/Dyna2部署的一些know-how.md",
+        "8f5da76ddcf41f8a7a8008837630c70dfdf20defc7e05f4193b32dd8802ddf36"
+      ],
+      [
+        "ResearchSources/Insights/任务空间接口：连接上层策略与RL控制器.md",
+        "7fe358fe5a6eac65120536d892a4160b08badc0626e795730b828d3354a06db5"
+      ],
+      [
+        "ResearchSources/Insights/访问模式驱动的机器人训练数据物理布局.md",
+        "302c7edce9ad65ba64e6d44da7569d63272e5895b1ee3acd0c96597233cd411a"
+      ],
+      [
+        "ResearchSources/Sources/Fast-WAM- Do World Action Models Need Test-time Future Imagination?.md",
+        "be8c833412fb2cdef87ca3d4100f9d4e37bb0be3580ccc4d162fbf4596af3866"
+      ],
+      [
+        "ResearchSources/Sources/Isaac GR00T N1.7 Early Access Release.md",
+        "03d30a8d878ad31bb0b04b129f1d5e6dcd2012c61dfdbae9adf911d7dc70a5f7"
+      ],
+      [
+        "ResearchSources/Sources/Training Dyna-2 at million-hour scale, repeatably.md",
+        "f0b16e63e9c5130dc0314ac9a4e53e71c99bbbd877f327b83e168f7edd084af5"
+      ],
+      [
+        "ResearchSources/Sources/π0- A Foundation Model for Robotics with Sergey Levine - 719.md",
+        "1807729783a78c5e70d9394e6194165ed5902a50cf8099a31b70ce5f8c08d92f"
+      ],
+      [
+        "ResearchSources/Sources/数采厂的变化.md",
+        "920004d1e0ae69b6e1794a079b0a4550d5a61650823bb6b752ed4c7384369dbb"
+      ],
+      [
+        "ResearchSources/Sources/读懂 OpenPI 的 π0.5：从源码出发，真正看懂模型结构、训练逻辑和推理过程.md",
+        "f442f22fac6184d378db1ca6558c60ea705212a6749d69eabb9f10584d0ab479"
+      ]
+    ],
+    "git_head": "8bdcf185e277fc522c49d22d6304ef7edb50f52d",
+    "git_status": [
+      "?? GitHubTrending/"
+    ]
+  },
+  "target_root": "/Users/limx/mindflow/.worktrees/notes-migration-design"
+}

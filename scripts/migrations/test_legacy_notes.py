@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -8,6 +9,7 @@ from scripts.migrations.legacy_notes import (
     apply_manifest,
     approve_manifest,
     build_manifest,
+    merge_history,
     snapshot_source,
     verify_receipt,
 )
@@ -58,7 +60,21 @@ class LegacyNotesPlannerTests(unittest.TestCase):
         (self.source / "PaperNotes/_concepts/C.md").write_text("# Concept\n", encoding="utf-8")
         (self.source / "PaperNotes/_code/code.md").write_text("# Code\n", encoding="utf-8")
         (self.source / "PaperNotes/PaperNotes.md").write_text("# Navigation\n", encoding="utf-8")
-        (self.source / "DailyPapers/2026-10-28-论文推荐.md").write_text("daily\n", encoding="utf-8")
+        (self.source / "DailyPapers/2026-10-28-论文推荐.md").write_text(
+            "daily [[PaperNotes/VLA/Novel|Novel]] and "
+            "[[PaperNotes/_code/Companion|Code Companion]]\n",
+            encoding="utf-8",
+        )
+        (self.source / "DailyPapers/.history.json").write_text(
+            '[{"id":"2601.00001","date":"2026-10-01","title":"A"},'
+            '{"id":"2601.00002","date":"2026-10-03","title":"B"}]\n',
+            encoding="utf-8",
+        )
+        (self.target / "Workbench/daily").mkdir(parents=True)
+        (self.target / "Workbench/daily/.history.json").write_text(
+            '[{"id":"2601.00001","date":"2026-10-02","title":"A"}]\n',
+            encoding="utf-8",
+        )
         (self.source / "GitHubTrending/2026-W44 GitHub周榜.md").write_text("trend\n", encoding="utf-8")
         (self.source / "ResearchSources/Sources/Post.md").write_text("source\n", encoding="utf-8")
         (self.source / "ResearchSources/Insights/Insight.md").write_text("insight\n", encoding="utf-8")
@@ -137,7 +153,7 @@ class LegacyNotesPlannerTests(unittest.TestCase):
     def test_apply_never_overwrites_existing_target(self) -> None:
         manifest, receipt = self.freeze_manifest()
         destination = self.target / "Workbench/daily/2026-10-28-论文推荐.md"
-        destination.parent.mkdir(parents=True)
+        destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text("user content\n", encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "target exists"):
             apply_manifest(
@@ -155,6 +171,38 @@ class LegacyNotesPlannerTests(unittest.TestCase):
         manifest.write_bytes(manifest.read_bytes() + b" ")
         with self.assertRaisesRegex(ValueError, "manifest SHA-256"):
             verify_receipt(manifest, receipt, target=self.target)
+
+    def test_history_merge_preserves_both_sides_and_deduplicates(self) -> None:
+        merged = merge_history(
+            [{"id": "2601.00001", "date": "2026-10-01", "title": "A"}],
+            [
+                {"id": "2601.00001", "date": "2026-10-02", "title": "A"},
+                {"id": "2601.00002", "date": "2026-10-03", "title": "B"},
+            ],
+        )
+        self.assertEqual([item["id"] for item in merged], ["2601.00001", "2601.00002"])
+        self.assertEqual(merged[0]["date"], "2026-10-01")
+
+    def test_auxiliary_apply_merges_history_and_rewrites_old_links(self) -> None:
+        manifest, receipt = self.freeze_manifest()
+        created = apply_manifest(
+            manifest,
+            receipt,
+            self.source,
+            self.target,
+            {"import-daily"},
+        )
+        self.assertIn("Workbench/daily/2026-10-28-论文推荐.md", created)
+        note = (self.target / "Workbench/daily/2026-10-28-论文推荐.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("[[Papers/2601-Novel|Novel]]", note)
+        self.assertIn("and Code Companion", note)
+        self.assertNotIn("PaperNotes/", note)
+        history = json.loads(
+            (self.target / "Workbench/daily/.history.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual([item["id"] for item in history], ["2601.00001", "2601.00002"])
 
 
 if __name__ == "__main__":

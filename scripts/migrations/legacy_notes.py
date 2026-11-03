@@ -147,6 +147,8 @@ def _is_excluded(relative: Path) -> bool:
             return True
         return relative.suffix.lower() != ".md"
     if parts[0] in {"DailyPapers", "GitHubTrending", "ResearchNotes"}:
+        if relative.as_posix() == "DailyPapers/.history.json":
+            return False
         if relative.name.startswith("."):
             return True
         return relative.suffix.lower() != ".md"
@@ -332,12 +334,34 @@ def _route_auxiliary(relative: Path) -> tuple[str, str]:
     raise ValueError(f"unsupported auxiliary path: {relative}")
 
 
+def _link_rewrites(
+    path: Path, legacy_destinations: Mapping[str, str]
+) -> tuple[tuple[str, str], ...]:
+    text = path.read_text(encoding="utf-8", errors="replace")
+    rewrites = [
+        (old, new)
+        for old, new in sorted(legacy_destinations.items())
+        if old in text
+    ]
+    unresolved_pattern = re.compile(
+        r"\[\[(PaperNotes/[^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]"
+    )
+    for match in unresolved_pattern.finditer(text):
+        old_path = match.group(1)
+        if old_path in legacy_destinations:
+            continue
+        readable = match.group(2) or Path(old_path).name
+        rewrites.append((match.group(0), readable))
+    return tuple(sorted(set(rewrites)))
+
+
 def build_manifest(source: Path, target: Path) -> MigrationManifest:
     source = source.resolve()
     target = target.resolve()
     target_identities = _target_identities(target)
+    included_files = _iter_included_files(source)
     candidates: list[tuple[Path, dict[str, str | None]]] = []
-    for path in _iter_included_files(source):
+    for path in included_files:
         relative = path.relative_to(source)
         if relative.parts[0] == "PaperNotes" and relative.name not in TOPIC_NAMES and relative.name not in BLOCKED_CONCEPTS:
             candidates.append((path, _source_identity(path)))
@@ -347,8 +371,25 @@ def build_manifest(source: Path, target: Path) -> MigrationManifest:
         if key:
             duplicate_counts[key] = duplicate_counts.get(key, 0) + 1
 
+    legacy_destinations: dict[str, str] = {}
+    for path in included_files:
+        relative = path.relative_to(source)
+        if relative.parts[0] != "PaperNotes" or relative.name in BLOCKED_CONCEPTS:
+            continue
+        if relative.name in TOPIC_NAMES:
+            destination = f"Topics/{relative.name}"
+        else:
+            identity = _source_identity(path)
+            key = identity.get("key")
+            destination = target_identities.get(key or "") or _paper_destination(
+                path, identity
+            )
+        legacy_destinations[relative.with_suffix("").as_posix()] = Path(
+            destination
+        ).with_suffix("").as_posix()
+
     items: list[MigrationItem] = []
-    for path in _iter_included_files(source):
+    for path in included_files:
         relative = path.relative_to(source)
         source_path = relative.as_posix()
         identity: dict[str, str | None] = {
@@ -362,8 +403,19 @@ def build_manifest(source: Path, target: Path) -> MigrationManifest:
         duplicate_group = None
         if relative.parts[0] != "PaperNotes":
             decision, destination = _route_auxiliary(relative)
-            status = "ready" if not (target / destination).exists() else "blocked"
-            reason = "approved auxiliary route" if status == "ready" else "target exists"
+            is_history = relative.as_posix() == "DailyPapers/.history.json"
+            status = (
+                "ready"
+                if is_history or not (target / destination).exists()
+                else "blocked"
+            )
+            reason = (
+                "merge deterministic history"
+                if is_history
+                else "approved auxiliary route"
+                if status == "ready"
+                else "target exists"
+            )
             confidence = "review"
         elif relative.name in BLOCKED_CONCEPTS:
             decision, destination, status = "blocked", None, "blocked"
@@ -415,7 +467,7 @@ def build_manifest(source: Path, target: Path) -> MigrationManifest:
                 destination_path=destination,
                 duplicate_group=duplicate_group,
                 referenced_assets=(),
-                link_rewrites=(),
+                link_rewrites=_link_rewrites(path, legacy_destinations),
                 status=status,
                 reason=reason,
             )
@@ -608,6 +660,36 @@ def _exclusive_write(path: Path, raw: bytes) -> None:
         raise
 
 
+def _history_key(item: Mapping[str, object]) -> str:
+    arxiv = normalize_arxiv_id(str(item.get("id") or item.get("arxiv_id") or ""))
+    if arxiv:
+        return f"arxiv:{arxiv}"
+    doi = normalize_doi(str(item.get("doi") or ""))
+    if doi:
+        return f"doi:{doi}"
+    return f"title:{normalize_title(str(item.get('title') or ''))}"
+
+
+def merge_history(
+    source: list[dict[str, object]], target: list[dict[str, object]]
+) -> list[dict[str, object]]:
+    merged: list[dict[str, object]] = []
+    seen: set[str] = set()
+    for item in (*source, *target):
+        key = _history_key(item)
+        if key in seen:
+            continue
+        seen.add(key)
+        merged.append(dict(item))
+    return merged
+
+
+def _apply_rewrites(raw: bytes, rewrites: Sequence[tuple[str, str]]) -> bytes:
+    for old, new in rewrites:
+        raw = raw.replace(old.encode("utf-8"), new.encode("utf-8"))
+    return raw
+
+
 def apply_manifest(
     manifest_path: Path,
     receipt_path: Path,
@@ -631,30 +713,60 @@ def apply_manifest(
         for item in manifest.items
         if item.decision in decisions and item.status == "ready"
     ]
-    prepared: list[tuple[Path, bytes]] = []
+    prepared: list[tuple[Path, bytes, bytes | None]] = []
     for item in selected:
         if item.destination_path is None:
             raise ValueError(f"ready item has no destination: {item.source_path}")
         source_path = source / item.source_path
-        raw = source_path.read_bytes()
-        if _sha256(raw) != item.source_sha256:
+        source_raw = source_path.read_bytes()
+        if _sha256(source_raw) != item.source_sha256:
             raise ValueError(f"source hash drift: {item.source_path}")
         destination = _safe_destination(target, item.destination_path)
-        if destination.exists() or destination.is_symlink():
+        is_history = item.source_path == "DailyPapers/.history.json"
+        if (destination.exists() or destination.is_symlink()) and not is_history:
             raise ValueError(f"target exists: {item.destination_path}")
-        prepared.append((destination, raw))
+        raw = _apply_rewrites(source_raw, item.link_rewrites)
+        previous = destination.read_bytes() if destination.is_file() else None
+        if is_history:
+            try:
+                source_history = json.loads(source_raw)
+                target_history = json.loads(previous) if previous is not None else []
+            except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+                raise ValueError("invalid daily history JSON") from exc
+            if not isinstance(source_history, list) or not isinstance(target_history, list):
+                raise ValueError("daily history must be a JSON list")
+            raw = (
+                json.dumps(
+                    merge_history(source_history, target_history),
+                    sort_keys=True,
+                    ensure_ascii=False,
+                    indent=2,
+                )
+                + "\n"
+            ).encode("utf-8")
+        prepared.append((destination, raw, previous))
     created: list[Path] = []
+    replaced: list[tuple[Path, bytes]] = []
     try:
-        for destination, raw in prepared:
-            _exclusive_write(destination, raw)
-            created.append(destination)
+        for destination, raw, previous in prepared:
+            if previous is None:
+                _exclusive_write(destination, raw)
+                created.append(destination)
+            else:
+                _atomic_write(destination, raw)
+                replaced.append((destination, previous))
     except BaseException:
+        for path, previous in reversed(replaced):
+            _atomic_write(path, previous)
         for path in reversed(created):
             path.unlink(missing_ok=True)
         raise
     if snapshot_source(source) != manifest.source_snapshot:
         raise ValueError("source hash drift during apply")
-    return tuple(path.relative_to(target).as_posix() for path in created)
+    return tuple(
+        path.relative_to(target).as_posix()
+        for path in (*created, *(path for path, _ in replaced))
+    )
 
 
 def _build_parser() -> argparse.ArgumentParser:

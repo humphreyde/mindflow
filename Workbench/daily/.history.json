@@ -1,0 +1,102 @@
+[
+  {
+    "date": "2026-10-28",
+    "id": "2610.37091",
+    "title": "GAWM: A Compact Latent World-Action Model for Multi-Task Robot Manipulation"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.37219",
+    "title": "Vision-Language-Action or World-Action? Just Action Models"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.36840",
+    "title": "Trace-WAM: Learning to Act via 3D Motion Prediction for World Action Models"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.37381",
+    "title": "PDRVLA: A Vision-Language-Action Model with Physical Dynamics Representations"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.37518",
+    "title": "World Dreamer v5-lite: A Multi-Robot World Action Model with One Dreamer"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.36791",
+    "title": "RynnWorld-Latent: A Cross-Embodiment World Model Conditioned on Universal Latent Actions"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.36662",
+    "title": "SWIM: Learning What Matters from Behaviors for JEPA World Models"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.36624",
+    "title": "Adapting Video Models for Robot Control via Motion-guided Asymmetric Prediction"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.37378",
+    "title": "VLA-Stem: A Lightweight Safety Mechanism for Vision-Language-Action Models via Reinforcement Learning"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.34674",
+    "title": "Benchmarking Obstacle-Conditioned Safety in Household Robot Navigation"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.37215",
+    "title": "Retrieve to Act: Motion Primitive Graph Retrieval for Robust VLA Execution"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.37196",
+    "title": "How Much Can Best-of-N Help a World Action Model? Measuring Selectable Headroom and Realizing It in Closed Loop"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.36694",
+    "title": "TOPS: Reshaping Flow Source and Transport for Multi-Task Robot Manipulation"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.36068",
+    "title": "Rollback: Experience Backtracking in World Models for Policy Improvement"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.37666",
+    "title": "ThinkWorld: World Imagination Reinforces Chain-of-Dynamics Reasoning"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.36765",
+    "title": "Evaluation-Guided Demonstration Refinement for Vision-Language-Action Policies: The Winning Entry in the MetaFine Open Competition"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.37170",
+    "title": "From 12 to 200 Demonstrations: How ACT, Diffusion Policy, SmolVLA and pi0.5 Scale on a Low-Cost Arm"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.36859",
+    "title": "ActiveAlign: Aligning Egocentric Manipulation via Active Perception"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.36685",
+    "title": "RoboSTD: Zero-Shot Single-to-Dual Transfer via Sagittal Mirroring for Bimanual Learning"
+  },
+  {
+    "date": "2026-10-28",
+    "id": "2610.33169",
+    "title": "World-in-Context: Interactive Video World Modeling with In-Context Conditioning"
+  }
+]
