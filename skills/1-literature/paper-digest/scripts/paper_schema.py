@@ -115,7 +115,10 @@ def _construct_unique_mapping(
         key = loader.construct_object(key_node, deep=deep)
         if key in mapping:
             raise ValueError(f"duplicate key {key!r}")
-        mapping[key] = loader.construct_object(value_node, deep=deep)
+        if key == "arxiv_id" and isinstance(value_node, yaml.ScalarNode):
+            mapping[key] = value_node.value
+        else:
+            mapping[key] = loader.construct_object(value_node, deep=deep)
     return mapping
 
 
@@ -416,6 +419,14 @@ def validate_paper(document: PaperDocument, mode: ValidationMode) -> list[Valida
     else:
         primary_domain = fm.get("primary_domain")
         domains = fm.get("domains")
+        if primary_domain is None or domains is None:
+            issues.append(
+                _issue(
+                    "missing-classification",
+                    "review",
+                    "primary_domain and domains require review",
+                )
+            )
         if primary_domain is not None and primary_domain not in DOMAINS:
             issues.append(_issue("unknown-domain", "review", f"unknown primary_domain: {primary_domain}"))
         if isinstance(domains, list):
