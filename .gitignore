@@ -30,6 +30,7 @@ Workbench/daily/.history.json
 dist/
 
 # Python / uv
+.python/
 .venv/
 __pycache__/
 *.py[cod]

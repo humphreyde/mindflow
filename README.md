@@ -74,11 +74,11 @@ Install MindFlow from: https://github.com/liqing-ustc/mindflow/blob/main/docs/IN
 
 ## AI Research Skills
 
-MindFlow 内置了 15 个 AI 技能，按研究流程分为 6 层：
+MindFlow 内置了 17 个 AI 技能，按研究流程分为 6 层：
 
 | Layer | Skills | Purpose |
 |-------|--------|---------|
-| 1. Literature | `daily-papers`, `paper-digest`, `literature-survey` | 每日论文推荐、论文阅读与文献调研 |
+| 1. Literature | `daily-papers`, `paper-digest`, `literature-survey`, `github-trending`, `research-insights` | 每日论文推荐、论文阅读、文献调研、GitHub 趋势与外部研究资料沉淀 |
 | 2. Ideation | `idea-generate`, `idea-evaluate` | 研究 idea 生成与评估 |
 | 3. Experiment | `experiment-design`, `experiment-track`, `result-analysis` | 实验设计、跟踪与分析 |
 | 4. Writing | `draft-section`, `writing-refine` | 论文写作与打磨 |
@@ -101,10 +101,11 @@ $mindflow-context 分析当前项目的 action chunking 设计
 
 ### Canonical Codex skill links
 
-在新电脑上，先把 MindFlow clone 到长期使用的主检出路径并安装锁定依赖；不要把临时 worktree 当作全局 skill 目标：
+在新电脑上，先把 MindFlow clone 到长期使用的主检出路径。推荐把 uv-managed Python 安装在 vault 内，使从嵌套 code repository 启动的 Codex 沙箱也能读取完整 Python 3.12 环境；不要把临时 worktree 当作全局 skill 目标：
 
 ```bash
-uv sync --frozen
+UV_PYTHON_INSTALL_DIR="$PWD/.python" uv python install 3.12 --no-bin
+UV_PYTHON_INSTALL_DIR="$PWD/.python" uv sync --frozen --python 3.12
 uv run --frozen python -B scripts/bootstrap_codex_skills.py plan --codex-home /absolute/path/to/.codex
 ```
 
