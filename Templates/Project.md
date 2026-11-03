@@ -1,32 +1,23 @@
 ---
-title:
-tags: []
 type: project
-repo_key:
-repo_roots: []
-aliases: []
-domains: []
-entrypoints: []
-keywords: []
+project_key:
+outcome:
+completion_criteria: []
 status: planning
-date_started: "{{date}}"
-verified_at:
+target_date:
+workspace_root:
+repo_refs: []
+area_refs: []
+knowledge_entrypoints: []
 ---
-## Goal
-这个项目要达成什么？
+## Outcome
 
-## Papers
-- [[]]  — 核心参考论文
+## Completion Criteria
 
-## Ideas
-- [[]]  — 关联的 idea
+## Repository References
 
-## Progress Log
-- {{date}}:
+## Knowledge Entrypoints
 
-## TODOs
-- [ ]
+## Progress
 
-## Results & Findings
-
-## Notes
+## Finalization
