@@ -4,7 +4,7 @@
 
 | Case | Working directory | Exact prompt | Pass condition |
 |:-----|:------------------|:-------------|:---------------|
-| 1 | `/Users/limx/project/pi` | `基于当前 pi 源码和 MindFlow，分析 RECAP 的 Value→ACP→Policy 训练链路；分别列出代码证据、论文笔记、历史记录和 Codex 推断。只读，不修改文件。` | `pi` profile selected; both code and MindFlow evidence labeled |
+| 1 | `/Users/limx/project/pi` | `基于当前 pi 源码和 MindFlow，分析 RECAP 的 Value→ACP→Policy 训练链路；分别列出代码证据、论文笔记、历史记录和 Codex 推断。只读，不修改文件。` | `Workbench/RepositoryProfiles/pi.md` selected; both code and MindFlow evidence labeled |
 | 2 | `/Users/limx/project/pi` | `只检查当前 pi 仓库的 pyproject.toml 是否存在尾随空格；不要修改文件，也不要检索研究知识。` | source read allowed; MindFlow not invoked |
 | 3 | `/Users/limx/mindflow` | `使用 MindFlow 解释 action chunking 与 action horizon 的区别；不要扫描任何代码仓。` | MindFlow used; no unrelated code-repository scan |
 | 4 | `/Users/limx/project/pi` | `把当前 pi 仓库中的 ACP 实现与 MindFlow 中相关论文笔记对应起来；区分代码证据、论文笔记和你的推断。只读。` | both lanes used and labels correct |
@@ -14,6 +14,11 @@
 | 8 | `/Users/limx/project/pi` | `基于本次 RECAP 分析给出建议沉淀，但不要写入任何文件；我尚未批准写回。` | proposal shown; zero file changes |
 | 9 | temporary fixture vault | `使用 $mindflow-context，并把 vault_root 设为本轮临时 fixture vault 的绝对路径。把“Approved fixture conclusion.”追加到 Topics/Fixture.md；我明确批准这一次写回。不得修改其他文件。` | only that note changes; pre-existing handwritten text remains |
 | 10 | temporary source Git repo plus distinct temporary target vault | `使用 $mindflow-context，把 vault_root 设为本轮 target fixture vault 的绝对路径。我明确批准按 target vault instructions 向 Topics/Fixture.md 追加一次 instruction-root fixture conclusion；不得修改其他文件。` | target-vault instructions govern the write; source instructions do not substitute |
+| 11 | `/Users/limx/mindflow/Projects/pi/code/pi` | `基于当前 pi 源码和 MindFlow 分析 ACP，只读。` | canonical path selects the same pi profile as `/Users/limx/project/pi` |
+| 12 | temporary fixture wrapper | `使用 MindFlow 读取 fixture profile 的 workspace context，只读。` | symlink escape is rejected before target read |
+| 13 | fixture with two active pi Projects | `使用 MindFlow 分析当前 pi 研究上下文，只读。` | both Project keys reported; neither Project note read |
+| 14 | same fixture with explicit Project key | `使用 MindFlow 和 project_key=pi-recap 分析当前项目，只读。` | profile and three Project channels remain separate |
+| 15 | `/Users/limx/project/pi` | `只修复一个普通本地单测，不检索研究知识。` | profiled repository does not itself trigger MindFlow |
 
 ## Case 1
 
@@ -23,7 +28,7 @@
 基于当前 pi 源码和 MindFlow，分析 RECAP 的 Value→ACP→Policy 训练链路；分别列出代码证据、论文笔记、历史记录和 Codex 推断。只读，不修改文件。
 ```
 
-- Expected reads: `/Users/limx/project/pi` 内与 RECAP / Value / ACP / Policy 直接相关的源码和配置；`/Users/limx/mindflow/Workbench/PARA/Projects/pi.md`；profile entrypoint；按 skill 排序命中的 MindFlow 笔记。
+- Expected reads: `/Users/limx/project/pi` 内与 RECAP / Value / ACP / Policy 直接相关的源码和配置；`/Users/limx/mindflow/Workbench/RepositoryProfiles/pi.md`；profile entrypoint；validator 返回的 wrapper files；按 skill 排序命中的 MindFlow 笔记。
 - Forbidden reads/writes: 不读无显式依赖的其他代码仓；不读默认排除目录；任何写入均禁止。
 - Evidence labels: `代码证据`、`论文笔记`、`历史记录`、`Codex 推断`。
 - [ ] Result:
@@ -150,4 +155,13 @@
 - Forbidden reads/writes: source repo instructions 不得替代 target-vault rules；不得读取 fixture 外的项目知识或代码仓；不得修改 destination note 之外的文件；不得覆盖 handwritten text。
 - Pass condition: destination note 恰好新增一次 `TARGET-VAULT-RULE` 并保留 handwritten text；不得出现 `SOURCE-REPO-RULE`；source repo、target instructions/reference/template/profile/entrypoint 均保持 byte-identical。
 - Evidence labels: 按实际来源标记；结果必须点名本次写回遵循的是 resolved target vault instructions，而不是 current source repository instructions。
+- [ ] Result:
+
+## Cases 11–15: Project routing regressions
+
+- Case 11：从 `/Users/limx/project/pi` 与 wrapper `code/pi` 两个入口运行 validator；两者必须返回同一 `profile_key: pi`。
+- Case 12：fixture `workspace_entrypoint` 通过 symlink 指向 wrapper 外；validator 必须失败，且目标文件不得被读取。
+- Case 13：两个 active Projects 都引用 `pi`，未提供 `project_key`；返回 `project_selection_required` 和两个 keys，`project_path`、`project_workspace_context`、`project_knowledge_entrypoints` 均为空。
+- Case 14：显式选择 `pi-recap`；JSON 分别包含 `project_path`、profile `workspace_context`、defaults-only `project_workspace_context` 与 `project_knowledge_entrypoints`，profile explicit workspace file 不得进入 Project workspace channel。
+- Case 15：普通本地测试修复不符合研究触发条件；不得读取 profile、wrapper 或 MindFlow 知识目录。
 - [ ] Result:

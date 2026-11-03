@@ -17,10 +17,11 @@ description: 当任务涉及研究、架构、实验设计、方法选择、论�
 ## Steps
 
 1. **分类触发条件。** 研究、架构、实验设计、方法选择、论文与实现映射、历史决策，以及用户明确要求 MindFlow 时触发。机械格式化、普通局部测试修复和纯语法检查不触发。
-2. **解析项目 profile。** 读取 `Workbench/PARA/Projects/*.md`，先以 canonical resolved `repo_root` 匹配 `repo_roots`，无结果时再以 repository name、`repo_key` 和 `aliases` 的 case-folded identity 匹配。任何阶段出现多个匹配立即停止并报告歧义，不猜测 profile。
+2. **解析 profile 与可选 Project。** 先运行 `scripts/validate_profiles.py --vault <resolved-vault> --repo-root <repo-root> --json`，只从 `Workbench/RepositoryProfiles/*.md` 选择 repository profile。canonical resolved `repo_root` 优先，repository name、`repo_key` 和 aliases 的 case-folded identity 只在没有 root claimant 时兜底；歧义立即停止。PARA Project 只在用户明确给出 `project_key` 时通过 `--project-key` 选择；返回 `project_selection_required` 时报告候选 keys，不读取任何 Project note，也不猜测。
 3. **处理 profile 失败。** 对 stale root 或 missing entrypoint 只报告路径和错误，不编辑 profile。没有 profile 时，以 repository name、任务词和代码符号继续通用检索，并明确说明“本次未使用项目 profile”。
-4. **构造检索词。** 合并任务文本中的实体与方法名、当前代码中直接相关的 symbols、profile 的 `repo_key` / `aliases` / `domains` / `keywords`，以及 profile entrypoints 的标题和显式链接。不要用无关仓库内容扩词。
-5. **按顺序搜索。** 使用 `rg -l -i`，依次搜索 profile entrypoints、`DomainMaps/`、`Topics/`、`Workbench/memory/`、`Papers/`、`Ideas/`、`Experiments/`、selected project profile。默认示例：
+4. **读取有界 project context。** validator 的 `vault_entrypoints` 相对 vault root；profile `workspace_context` 只含已验证 wrapper 的 `main.md`、`engineering.md` 和显式 `workspace_entrypoints`。显式选择 Project 后，另行读取单个 `project_path`、defaults-only `project_workspace_context` 和 vault-root `project_knowledge_entrypoints`。四条通道不得互相合并，不递归扫描目录，永不把 `code/`、`worklog/` 或 `.git/` 当知识入口。
+5. **构造检索词。** 合并任务文本中的实体与方法名、当前代码中直接相关的 symbols、profile 的 `repo_key` / `aliases` / `domains` / `keywords`，以及已验证 entrypoints 的标题和显式链接。不要用无关仓库内容扩词。
+6. **按顺序搜索。** 使用 `rg -l -i`，依次搜索 profile vault entrypoints、`DomainMaps/`、`Topics/`、`Workbench/memory/`、`Papers/`、`Ideas/`、`Experiments/`、profile wrapper context；只有显式选择 Project 时才加入其三条独立 Project channels。默认示例：
 
    ```bash
    rg -l -i \
@@ -42,15 +43,15 @@ description: 当任务涉及研究、架构、实验设计、方法选择、论�
      --glob '!Meetings/**' \
      --glob '!Workbench/logs/**' \
      '(RECAP|ACP|policy)' \
-     DomainMaps/VLA.md DomainMaps Topics Workbench/memory Papers Ideas Experiments Workbench/PARA/Projects/pi.md
+     DomainMaps/VLA.md DomainMaps Topics Workbench/memory Papers Ideas Experiments Workbench/RepositoryProfiles/pi.md
    ```
 
-   将首项替换为实际 profile entrypoints，将末项替换为 selected project profile，并保持其余根目录顺序。默认排除 `Projects/**`、`.git/`、`.website/`、`.worktrees/`、`assets/`、checkpoints、models、datasets、logs、caches、builds、`Private/`、`Meetings/` 和 `Workbench/logs/`。仅当任务明确需要历史决策时，才移除 `!Meetings/**` 并加入 `Meetings`；还必须同时移除 `!**/logs/**` 与 `!Workbench/logs/**`，并加入 `Workbench/logs`。只移除较窄的 `!Workbench/logs/**` 不能覆盖广义 logs exclusion。
-6. **排序候选。** 优先级依次为：profile 或笔记的显式链接；精确 title / arXiv ID / DOI / Zotero citekey；frontmatter alias / tag；正文匹配。先读 5–8 篇最高相关笔记；只沿已有证据支持的 wikilink 跟进一跳，总数最多 12 篇。broken link 要跳过并点名。
-7. **保持源码通道边界。** 从当前 repository 开始；只有显式 dependency、当前代码的直接 reference，或用户点名另一 repository 时，才检查另一个代码仓。不得为了补齐背景扫描无关仓库。
-8. **综合证据。** 每条结论标为 `代码证据`、`论文笔记`、`历史记录` 或 `Codex 推断`。每个 MindFlow 来源引用绝对文件路径和 heading。矛盾笔记并列展示，不静默裁决。若没有证据，原样说明 `MindFlow 中未找到相关证据`，然后使用现有代码证据继续，或询问下一来源；绝不编造 citation。
-9. **按需查询 Zotero。** 只有用户或当前证据需要原文、metadata 或 citekey 时才查询；不执行 library synchronization。
-10. **结束时保持只读。** 可给出可选 writeback proposal，但未获得本次明确批准时不修改 MindFlow。
+   将首项替换为实际 vault entrypoints，将末项替换为 repository profile；wrapper 文件作为 validator 返回的精确文件逐个读取，不把 `Projects/` 加入递归搜索。默认排除 `Projects/**`、`.git/`、`.website/`、`.worktrees/`、`assets/`、checkpoints、models、datasets、logs、caches、builds、`Private/`、`Meetings/` 和 `Workbench/logs/`。仅当任务明确需要历史决策时，才移除 `!Meetings/**` 并加入 `Meetings`；还必须同时移除 `!**/logs/**` 与 `!Workbench/logs/**`，并加入 `Workbench/logs`。
+7. **排序候选。** 优先级依次为：profile 或笔记的显式链接；精确 title / arXiv ID / DOI / Zotero citekey；frontmatter alias / tag；正文匹配。先读 5–8 篇最高相关笔记；只沿已有证据支持的 wikilink 跟进一跳，总数最多 12 篇。broken link 要跳过并点名。
+8. **保持源码通道边界。** 从当前 repository 开始；只有显式 dependency、当前代码的直接 reference，或用户点名另一 repository 时，才检查另一个代码仓。不得为了补齐背景扫描无关仓库。
+9. **综合证据。** 每条结论标为 `代码证据`、`论文笔记`、`历史记录` 或 `Codex 推断`。每个 MindFlow 来源引用绝对文件路径和 heading。矛盾笔记并列展示，不静默裁决。若没有证据，原样说明 `MindFlow 中未找到相关证据`，然后使用现有代码证据继续，或询问下一来源；绝不编造 citation。
+10. **按需查询 Zotero。** 只有用户或当前证据需要原文、metadata 或 citekey 时才查询；不执行 library synchronization。
+11. **结束时保持只读。** 可给出可选 writeback proposal，但未获得本次明确批准时不修改 MindFlow。
 
 ## Guard
 
@@ -77,7 +78,8 @@ description: 当任务涉及研究、架构、实验设计、方法选择、论�
 - [ ] 每个 MindFlow 引用包含绝对路径与 heading，结论使用四类 evidence labels。
 - [ ] 没有证据时使用固定 no-evidence 声明，且没有伪造来源。
 - [ ] 未经明确批准没有写回；获批写回仅修改批准目标并保留原有手写内容。
-- [ ] 维护者做运行时行为验证时，读取并执行 [references/smoke-tests.md](references/smoke-tests.md) 的十案例矩阵。
+- [ ] validator 的 profile、wrapper、Project channels 保持分离；没有递归扫描 `Projects/` 或 `code/`。
+- [ ] 维护者做运行时行为验证时，读取并执行 [references/smoke-tests.md](references/smoke-tests.md) 的十五案例矩阵。
 
 ## Examples
 
