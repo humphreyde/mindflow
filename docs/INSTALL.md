@@ -72,7 +72,7 @@ find -H .agents/skills -mindepth 3 -maxdepth 3 -name SKILL.md | wc -l
 
 若任一环境出现零个或多个条目、非 canonical realpath 或复制的 entrypoint，先确认 user-level path 仍是上面创建的精确 symlink，再删除该 symlink、把全局 `AGENTS.md` 恢复为安装前的原始内容并停止；不得继续使用未经验证的 discovery 布局。
 
-MVP 中 `pi` 仍位于 MindFlow 外部。`Projects/` 下的共享兼容文件刻意推迟到第一个代码仓库迁移时再由单独批准的任务处理。
+`pi` 的 canonical code path 仍位于 `/Users/limx/project/pi`。MindFlow 使用 project wrapper，并以 `Projects/pi/code/pi -> /Users/limx/project/pi` 的绝对 symlink 接入；这不是物理移动。
 
 ## Step 3: Start Codex and Verify a Skill
 
@@ -99,7 +99,14 @@ Codex 应先读取对应 `SKILL.md`，再按其中的 Steps、Guard 和 Verify �
 3. Select the cloned `MindFlow` directory.
 4. Trust the vault when prompted if you want to enable community plugins.
 
-Templates、attachments 和 link format 已在 `.obsidian/` 中预配置。[Obsidian Git](https://github.com/Vinzent03/obsidian-git) 可选，用于在 UI 中查看版本控制状态。
+### Local Obsidian setup
+
+- `.obsidian/templates.json` 的 `folder` 应为 `Templates`。
+- `.obsidian/app.json` 是 local-only 配置；`userIgnoreFilters` 只排除 wrapper 的 `code/`、`worklog/`、`.git/`，并为暂未迁移的 direct-root repository 保留精确兼容项。
+- `Projects/<workspace>/main.md` 与 `engineering.md` 应可在 Obsidian 搜索；code tree 不应进入索引。
+- Paper 的 canonical generation template 位于 `skills/1-literature/paper-digest/references/paper-note-template.md`，不在 `Templates/` 下另建副本。
+
+[Obsidian Git](https://github.com/Vinzent03/obsidian-git) 可选，用于在 UI 中查看版本控制状态。
 
 ## Optional: Published Website (Quartz)
 

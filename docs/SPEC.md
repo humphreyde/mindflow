@@ -58,15 +58,15 @@ Researcher 默认独立工作。Supervisor 随时可以 drop in 给指令或讨�
 MindFlow 中的内容分为三类：
 
 - **Knowledge Assets**（`Papers/`、`Topics/`、`Ideas/`、`Reports/`、`Experiments/`）：完成或由 skill 生成的产出物，Supervisor-Researcher 共享
-- **Code Repositories**（`Projects/`）：独立版本管理的代码仓库，不纳入 vault 发布与索引
-- **Researcher Working State**（`Workbench/`）：过程产物——议程、记忆、队列、日志，以及 `PARA/Projects/` 中的项目研究 profile 与状态页
+- **Project Workspaces**（`Projects/`）：独立 notes repositories；代码位于各 wrapper 的 `code/<repo>`，不纳入 vault 发布
+- **Researcher Working State**（`Workbench/`）：过程产物——议程、记忆、队列、日志、repository profiles 与 PARA control notes
 
 ```
 MindFlow/
 │
 ├── Papers/              # 论文笔记（YYMM-ShortTitle.md）
 ├── Ideas/               # 研究 idea（status: raw → developing → validated → archived）
-├── Projects/            # 独立版本管理的代码仓库（不纳入 vault 发布与索引）
+├── Projects/            # 独立 project notes repositories；代码位于 code/<repo>
 ├── Topics/              # 文献调研 / 跨论文分析报告
 ├── Reports/             # Researcher 生成的报告
 ├── Experiments/         # 实验设计、运行记录与结果（由 skill 按需生成）
@@ -76,7 +76,7 @@ MindFlow/
 │   ├── _index.md        #   索引页：domain 列表 + cross-domain insights
 │   ├── {CamelCase}.md   #   各 domain 的认知地图
 │
-├── Templates/           # Obsidian 模板（Paper.md, Idea.md, ...）
+├── Templates/           # Obsidian 模板（Project.md, Idea.md, ...）；Paper 模板由 paper-digest 持有
 │
 ├── skills/              # Skill 定义（详见 §4.3）
 │   ├── 1-literature/    #   文献技能
@@ -98,7 +98,8 @@ MindFlow/
 ├── Workbench/           # Researcher 工作状态（Supervisor 可随时查看和编辑）
 │   ├── agenda.md        #   研究议程
 │   ├── memory/          #   蒸馏后的记忆（patterns, insights, ...）
-│   ├── PARA/Projects/   #   项目研究 profile 与状态页（{repo_key}.md）
+│   ├── RepositoryProfiles/ # 稳定 repository identity 与检索入口
+│   ├── PARA/Projects/   #   outcome-driven Project control notes
 │   ├── queue.md         #   待办队列（Reading, Review, Questions, Experiments）
 │   ├── logs/            #   每日操作日志（YYYY-MM-DD.md）
 │   └── evolution/       #   演化记录（changelog.md）
@@ -111,7 +112,15 @@ MindFlow/
 
 Codex 是默认 runtime：从仓库根目录启动时读取 `AGENTS.md`，并通过 `.agents/skills` 发现 canonical `skills/`。可选的其他 agent compatibility 不改变这两个默认入口。
 
-`Projects/` 中每个代码仓库都是独立 Git root，不能假设 MindFlow 的父级 instructions 会跨越 nested Git root 自动生效。当前 `Projects/CLAUDE.md` convention 与直接代码仓库根布局冲突；在迁移第一个仓库之前，必须由另一个明确批准的任务添加 Codex-first `Projects/AGENTS.md`、修订 Claude compatibility，并更新 narrow shared-file exception。MVP 保持 `pi` 为外部仓库，相关共享兼容文件推迟到首次迁移处理。
+`Projects/<workspace>/` 是独立 notes Git root，不能假设 MindFlow 的父级 instructions 会跨越 nested Git root 自动生效。每个 wrapper 自己提供 `AGENTS.md`，代码仓位于 `code/<repo>`；`worklog/` 与 `code/` 不进入 notes repository。`pi` 的 canonical code path 仍是 `/Users/limx/project/pi`，wrapper 只通过绝对 symlink 接入。
+
+### Project context
+
+- `Workbench/RepositoryProfiles/<repo_key>.md` 保存稳定 repository identity。vault `entrypoints` 相对 MindFlow root 解析。
+- `workspace_root` 指向现存、非 symlink 的 `Projects/<workspace>`；profile `workspace_entrypoints` 相对该 wrapper 解析。
+- wrapper 默认上下文只包含 `main.md`、`engineering.md` 与显式 profile entrypoints；拒绝 absolute path、`..`、symlink escape、目录以及 `code/`、`worklog/`、`.git/`，并且从不递归扫描代码。
+- validator 输出保持四条通道：profile `workspace_context`、selected `project_path`、defaults-only `project_workspace_context`、`project_knowledge_entrypoints`。profile explicit workspace files 不进入 Project workspace lane。
+- Repository profile 不等于 PARA Project；Project 通过 `repo_refs` 引用 profile，并必须有 outcome 与 completion criteria。
 
 ## 4. Key Concepts
 
@@ -124,9 +133,10 @@ Codex 是默认 runtime：从仓库根目录启动时读取 `AGENTS.md`，并通
 
 | 类型 | 目录 | 命名规则 | 模板 |
 |:-----|:-----|:---------|:-----|
-| 论文笔记 | `Papers/` | `YYMM-ShortTitle.md`（YYMM 取自 date_publish） | `Templates/Paper.md` |
+| 论文笔记 | `Papers/` | `YYMM-ShortTitle.md`（YYMM 取自 date_publish） | `skills/1-literature/paper-digest/references/paper-note-template.md` |
 | 研究 Idea | `Ideas/` | 描述性名称 | `Templates/Idea.md` |
-| 项目研究 profile / 状态页 | `Workbench/PARA/Projects/` | `{repo_key}.md` | （profile schema 由 `mindflow-context` 校验） |
+| Repository profile | `Workbench/RepositoryProfiles/` | `{repo_key}.md` | `Templates/RepositoryProfile.md` |
+| PARA Project | `Workbench/PARA/Projects/` | `{project_key}.md` | `Templates/Project.md` |
 | 文献调研 | `Topics/` | `{Topic}-Survey.md` | （无固定模板；结构由 `literature-survey` skill 根据侦察到的 survey paper 提炼） |
 | 会议 | `Meetings/` | `YYYY-MM-DD-Description.md` | `Templates/Meeting.md` |
 | 报告 | `Reports/` | 描述性名称 | `Templates/Report.md` |

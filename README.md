@@ -45,12 +45,13 @@ Install MindFlow from: https://github.com/liqing-ustc/mindflow/blob/main/docs/IN
 | `DomainMaps/` | 核心认知地图，每个 domain 一个文件 | `_index.md` 为索引 |
 | `Ideas/` | 研究灵感与评估 | 自由命名 |
 | `Topics/` | 文献调研与分析报告 | 主题名称 |
-| `Projects/` | 独立版本管理的代码仓库；不纳入 vault 发布与索引 | repository name |
+| `Projects/` | 独立 project notes repositories；代码统一位于各 wrapper 的 `code/<repo>`，不纳入 vault 发布 | project workspace |
 | `Reports/` | 生成的报告 | — |
 | `Experiments/` | 实验设计、运行记录与结果（由 skill 按需生成） | — |
 | `Meetings/` | 会议记录 | `YYYY-MM-DD-Description.md` |
 | `Workbench/` | 研究工作状态（agenda、日志、记忆） | — |
-| `Workbench/PARA/Projects/` | 项目研究 profile 与状态页 | `{repo_key}.md` |
+| `Workbench/RepositoryProfiles/` | 稳定 repository identity 与有界检索入口 | `{repo_key}.md` |
+| `Workbench/PARA/Projects/` | 有明确 outcome 与 completion criteria 的 Project control notes | `{project_key}.md` |
 | `skills/` | 15 个 AI 研究技能的唯一源码目录 | — |
 | `.agents/skills` | Codex repo-scoped skill 发现入口（指向 `../skills`） | symlink |
 | `Templates/` | Obsidian 模板 | — |
@@ -60,7 +61,7 @@ Install MindFlow from: https://github.com/liqing-ustc/mindflow/blob/main/docs/IN
 
 | Template | Purpose |
 |----------|---------|
-| Paper | 论文笔记（含 YAML frontmatter、Mind Map、Connections） |
+| Paper | 由 `skills/1-literature/paper-digest/references/paper-note-template.md` 生成；不在 `Templates/` 维护副本 |
 | Idea | 研究灵感（status: raw → developing → validated → archived） |
 | Project | 项目追踪（status: planning → active → paused → completed） |
 | Topic | 主题综述/文献对比（含论文对比表格） |
@@ -97,6 +98,13 @@ $idea-evaluate Ideas/example.md # 评估已有 idea
 $experiment-design Ideas/example.md # 生成实验方案到 Experiments/
 $mindflow-context 分析当前项目的 action chunking 设计
 ```
+
+## Workspace Model
+
+- Repository identity 保存在 `Workbench/RepositoryProfiles/`；它不等于 PARA Project。
+- PARA Project 只有在存在明确 outcome 与 completion criteria 时创建。
+- 每个 `Projects/<workspace>/` 是独立 notes Git repository，代码位于 `code/<repo>`。已有外部代码仓优先通过绝对 symlink 接入，物理移动需另行批准。
+- `Papers/`、`Topics/`、`DomainMaps/`、`Ideas/` 和 `Experiments/` 继续作为 vault-root typed knowledge assets，不复制到 Project wrapper。
 
 #### Optional compatibility: Claude Code
 
