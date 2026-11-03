@@ -396,6 +396,8 @@ skills/6-orchestration/mindflow-context
 
 `mindflow-context` 已采用该模式；其余四项在 B2 执行。canonical skill 必须从自身 resolved path 推导 MindFlow 根目录，不能假定当前工作目录正好是 vault root。写入型 skill 的默认目标只允许是 resolved MindFlow；配置默认 `git_commit=false`、`git_push=false`。
 
+本机 discovery links 的 canonical target 必须位于主检出 `/Users/limx/mindflow`；不得指向 `.worktrees/` 下的临时检出。B2 的 repository implementation 和隔离验证可以在 worktree 完成，但真实全局 cutover 必须等待对应 commits 经单独授权合入主检出。
+
 ### 7.2 Daily pipeline coverage
 
 MindFlow `daily-papers` 是单一入口，并在一次流程中覆盖：
@@ -534,7 +536,7 @@ Authors/concepts 图谱、自动 Dashboard/MOC 和导航页属于后续设计，
 3. B1 先生成 dry-run manifest 和 human-readable report；用户在唯一一次内容确认门确认写集后，再执行 overlaps、old-only Papers、auxiliary content 和 assets。
 4. B1 可按风险拆成多个本地 commit，但已批准范围内不逐 commit 请求确认；只有 fatal blocker、范围扩大或无法保护用户内容时中断。
 5. B1 全部验证通过后才进入 B2。先在 repository 与临时环境修正并验证 canonical skills，再处理全局 discovery path。
-6. B2 将旧全局 skills 原样归档并写 archive manifest，再原子化建立 allowlist links；任一验证失败即停止并恢复本轮已经切换的精确条目。
+6. B2 先在 worktree 完成 repository implementation 与隔离测试；经单独授权合入主检出后，才将旧全局 skills 原样归档并写 archive manifest，再原子化建立指向 `/Users/limx/mindflow` 的 allowlist links。任一验证失败即停止并恢复本轮已经切换的精确条目。
 7. 迁移完成后，旧 notes 保持原位并进入只读观察期；不删除、不改 remote、不自动归档。
 8. merge、push、旧 notes 删除和代码仓物理移动仍是独立授权边界；已明确批准的 `pi` symlink scaffold 不等于物理移动。全局 skill cutover 只在 B2 implementation plan 获批后执行，不由设计批准自动触发。
 
