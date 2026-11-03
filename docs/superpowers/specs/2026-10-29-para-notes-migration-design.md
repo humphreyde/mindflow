@@ -1,7 +1,7 @@
 # MindFlow PARA Notes Migration Design
 
 > **Date**: 2026-10-29
-> **Status**: Plan A approved 2026-11-03 and split into A1/A2; Plan B pending a separate implementation plan
+> **Status**: Full design approved in chat 2026-11-03; Plan A is split into A1/A2, and Plan B into B1/B2; written-spec review and implementation plans remain pending
 > **Decision**: 将 MindFlow 建成个人 PARA 研究工作区；每个 project workspace 使用独立 notes-repo wrapper，代码仓统一位于 `Projects/<project>/code/`；旧 `notes` 选择性迁移，Zotero 保持独立
 > **Source vault**: `/Users/limx/notes`
 > **Target vault**: `/Users/limx/mindflow`
@@ -19,6 +19,7 @@ MindFlow 已有 `Papers/`、`Topics/`、`DomainMaps/`、`Ideas/`、`Experiments/
 - 新 `MindFlow/Papers` 有 182 篇根级论文笔记。
 - 两库明确重合 7 个论文身份，对应旧库 8 个文件；仅旧库有 26 个身份；新库内部未发现相同 arXiv ID 或规范化标题重复。
 - 旧 assets 有 382 个文件、约 87 MB；新 assets 有 114 个文件、约 72 MB。全量复制会引入未引用附件和命名冲突。
+- 旧 `DailyPapers`、`GitHubTrending`、`ResearchSources`、`ResearchNotes` 分别有 1、1、10、1 个 Markdown；这些内容已获批按知识类型迁移，而不是继续保留第二套写入工作流。
 
 现有 MindFlow Paper 全部直接位于 `Papers/` 根目录。大量论文跨多个研究域，WAM 典型地同时属于 World Model、VLA 和 manipulation。将 Paper 物理拆成 `Papers/VLA/`、`Papers/WAM/` 会强迫单归属，并破坏现有 skills、wikilinks、Quartz 路径和 Giscus pathname。
 
@@ -32,6 +33,7 @@ MindFlow 已有 `Papers/`、`Topics/`、`DomainMaps/`、`Ideas/`、`Experiments/
 6. **来源与判断分离。** 官方论文/DOI/arXiv 是论文事实的来源；Zotero 是本地条目和附件来源；MindFlow 是研究解读和知识关联来源。
 7. **可回滚、可审计。** 源仓只读；每个迁移对象记录 identity、source path、SHA-256、decision、destination 和验证状态。
 8. **不推断未知个人结构。** 只建立已有充分证据的 Area；其他生活或工作 Areas 由用户以后明确增加。
+9. **Skill 与知识库一起可迁移。** MindFlow 保存 canonical skills；每台电脑只通过可验证、可回滚的 bootstrap 建立 Codex 全局软链接，不复制出第二份可漂移实现。
 
 ## 3. Target Architecture
 
@@ -338,8 +340,11 @@ Manifest 先以 dry-run 生成。存在 ambiguous identity、目标路径冲突�
 - `GR00T-Series-Survey.md`、`Pi-Series-Survey.md` 等人工综合：进入 `Topics/`。
 - `Pi06 Base Model.md` concept：吸收到 Pi 系列 Topic 或相关 Paper/DomainMap 的明确 section；不伪装成 Paper。
 - 自动生成的 VLA/world model/_inbox MOC：不迁移，由 Base、TagPage 和 Resource index 替代。
-- 242 个 author entities、199 个 concept entities、导航/代码笔记：本阶段不迁移；后续作为独立图谱项目评估。
-- `DailyPapers`、`ResearchNotes`、`ResearchSources`、`GitHubTrending` 等旧 notes 其他目录：不在本 Paper migration plan 中批量搬运，后续按知识类型和 PARA lifecycle 单独盘点。
+- `DailyPapers`：迁入 `Workbench/daily/`；日报按目标日期保留，历史状态合并到该目录的 `.history.json`，不得重置现有 MindFlow 历史。
+- `GitHubTrending`：迁入 `Workbench/trending/`；保留周榜日期和来源，不把它伪装成 Paper 或 Topic。
+- `ResearchSources`：保留 `Sources/` 与 `Insights/` 的相对结构迁入顶层 `ResearchSources/`，以便来源正文与可复用洞察继续分离。
+- `ResearchNotes`：按知识类型迁入 `ResearchSources/Insights/`；当前 `Dyna2部署的一些know-how.md` 作为 source-backed insight 处理，不建立第二个 `ResearchNotes/` 根目录。
+- 242 个 author entities、199 个 concept entities、自动 Dashboard/MOC 和导航页仍不迁移；它们需要独立图谱设计，不能因本次范围扩展被顺带复制。
 
 ### 6.4 Merge policy
 
@@ -361,13 +366,70 @@ Manifest 先以 dry-run 生成。存在 ambiguous identity、目标路径冲突�
 - 旧 concept link 仅在 MindFlow 有明确目标时重写；否则保留可读纯文本并进入 dead-link report。
 - 最终迁移对象不得残留 `PaperNotes/` 路径、旧 assets 路径或不存在的 wikilink。
 
+### 6.6 Auxiliary-content merge policy
+
+- 对 `DailyPapers`、`GitHubTrending`、`ResearchSources` 和 `ResearchNotes` 同样生成 manifest 项，记录 source SHA-256、目标路径、link rewrite 和状态。
+- 目标文件不存在时可按既定路由导入；目标文件存在时先比较语义和来源，只有无冲突的独有内容才可合并。
+- 文件名相同、identity 不明、现有 MindFlow 手写内容无法安全分离，或引用资产缺失时，对应项标记 `blocked`；不得用时间戳或自动重命名掩盖冲突。
+- `DailyPapers/.history.json` 以稳定论文 identity 合并并保持有效 JSON；不得把旧历史整体覆盖到 MindFlow，也不得把历史文件当临时文件删除。
+- `GitHubTrending` 中的 repository URL 是条目 identity；`ResearchSources` 中的 URL、访问日期和原始标题继续作为 provenance，迁移不把二手内容提升为论文事实来源。
+
 ## 7. Skill and Workflow Cutover
 
-- MindFlow 内新的论文阅读和笔记生成使用 canonical `paper-digest`。
-- `paper-digest` 更新 schema、分类、稳定 identity 与可选只读 Zotero lookup，但保持单篇目标和最小写入边界。
-- 旧全局 `paper-reader` 在迁移期间视为 legacy；不得让它与 `paper-digest` 同时向两个 vault 生成新笔记。
-- 修改、禁用或删除全局 `paper-reader` 属于仓库外 integration，需在 MindFlow 迁移验证后单独执行；本阶段只记录 cutover requirement，不改全局 skill。
-- `daily-papers` 同名冲突和旧 notes 自动 commit/push 配置不在本迁移实现中处理；在正式切换 daily pipeline 前单独解决。
+### 7.1 Canonical ownership
+
+MindFlow 保存以下 canonical skills：
+
+```text
+skills/1-literature/paper-digest
+skills/1-literature/daily-papers
+skills/1-literature/github-trending
+skills/1-literature/research-insights
+skills/6-orchestration/mindflow-context
+```
+
+每台电脑的 Codex discovery path 只保存软链接：
+
+```text
+~/.codex/skills/<name> -> <MindFlow clone>/skills/<category>/<name>
+```
+
+`mindflow-context` 已采用该模式；其余四项在 B2 执行。canonical skill 必须从自身 resolved path 推导 MindFlow 根目录，不能假定当前工作目录正好是 vault root。写入型 skill 的默认目标只允许是 resolved MindFlow；配置默认 `git_commit=false`、`git_push=false`。
+
+### 7.2 Daily pipeline coverage
+
+MindFlow `daily-papers` 是单一入口，并在一次流程中覆盖：
+
+1. `fetch`：抓取 HuggingFace Daily/Trending 与 arXiv，评分、去重并写 `Workbench/daily/.candidates.json` 与 `.history.json`。
+2. `review`：根据候选做轻量分流；对入选论文读取完整 digest 后写有证据的点评。
+3. `notes`：调用 canonical `paper-digest`，将新论文笔记写入 `Papers/`，已存在笔记默认只读复用。
+4. `summary/log`：写 `Workbench/daily/YYYY-MM-DD.md` 并追加 `Workbench/logs/YYYY-MM-DD.md`。
+
+这属于功能覆盖，不逐字段复制旧 `enrich_papers.py`。旧流程对全部候选批量富化 affiliation、method、figure、caption、section header 和 real-world 标记；新流程只对入选精读论文执行完整 `paper-digest`，日报中的机构、方法和关键数字从可追溯的完整笔记获得。不得为了形式兼容恢复对全部候选的高成本批量富化。
+
+### 7.3 Legacy retirement
+
+以下旧全局 skills 在成功验证新流程后移入 `~/.codex/skills-legacy/<date>/`，不删除：
+
+- `paper-reader`
+- `daily-papers`、`daily-papers-fetch`、`daily-papers-review`、`daily-papers-notes`
+- 旧 `github-trending`
+- 旧 `research-insights`
+- `author-graph` 与 `generate-mocs`；对应实体/MOC 尚未迁移，因此先停用，待后续图谱设计提供 MindFlow-compatible replacement
+
+同名 skill 必须先比较 committed content 与本机 worktree 状态；legacy archive 记录原路径、类型、SHA-256 或 tree hash 和恢复目标。未完成 B2 前，旧 pipeline 仍是当前全局入口，不能声称已切换。
+
+### 7.4 Bootstrap contract
+
+仓库提供从 MindFlow clone 内运行的 bootstrap。脚本以自身路径解析 vault root，并维护固定 allowlist，不扫描任意目录：
+
+- 目标已是指向同一 canonical skill 的软链接：no-op。
+- 目标缺失：建立相对当前电脑 clone 的绝对软链接。
+- 目标是普通目录、文件或指向其他位置的软链接：停止并报告冲突；未经明确迁移步骤不得覆盖。
+- canonical source 缺失、名称不一致或 skill validation 失败：不创建链接。
+- 重复运行必须幂等；失败不得留下半切换状态。
+
+新电脑只需 clone MindFlow、验证运行时依赖并执行 bootstrap。project code repositories、Zotero library 和私有本地配置不由 skill bootstrap 同步；repository profile 的本地路径失效时保持显式 stale 状态。
 
 ## 8. Implementation Decomposition
 
@@ -384,15 +446,24 @@ Manifest 先以 dry-run 生成。存在 ambiguous identity、目标路径冲突�
 - 更新 `paper-digest`、README、SPEC 和相关文档。
 - 对现有 182 篇 Paper 生成 classification/identity audit；只自动补写确定性字段，ambiguous 项进入 review report。
 
-### Plan B: Legacy Paper Migration
+### Plan B1: Legacy Knowledge Migration
 
-- 生成并冻结 migration manifest。
-- 合并 7 个重合身份，路由 26 个仅旧身份。
-- 迁移实际引用的 assets，重写 links，生成迁移报告。
+- 生成并冻结覆盖 PaperNotes、DailyPapers、GitHubTrending、ResearchSources 和 ResearchNotes 的 migration manifest。
+- 在唯一一次内容确认门中展示自动迁移、语义合并、跳过和 blocked 项；确认后不再按 commit 请求批准。
+- 合并 7 个重合 Paper identity，路由 26 个仅旧 identity，并按 6.3/6.6 路由其他已批准内容。
+- 只迁移实际引用的 assets，重写 links，生成迁移报告。
 - 验证 source 零修改、target 无 duplicate identity、无 legacy path、无 broken migrated assets/wikilinks。
 - 进入观察期；不删除旧 notes。
 
-Authors/concepts 图谱和其他 notes 目录属于后续设计，不与 Plan A/B 混在一次批量改写中。
+### Plan B2: Skill Cutover and Cross-machine Bootstrap
+
+- 修正 canonical skills 的 vault-root 解析、默认写入路径和 git automation 默认值。
+- 为 `daily-papers` 的 fetch、review、paper note、daily note、history 和 log 六类产物建立集成测试。
+- 迁入并适配 `github-trending` 与 `research-insights`，验证它们只写 MindFlow 目标目录。
+- 实现并测试 allowlist bootstrap、legacy archive manifest 和精确 rollback。
+- 在新 skills 全部通过后才切换全局软链接；失败保持旧入口可恢复，不留下混合状态。
+
+Authors/concepts 图谱、自动 Dashboard/MOC 和导航页属于后续设计，不与 Plan A/B 混在一次批量改写中。
 
 ## 9. Validation Strategy
 
@@ -414,6 +485,9 @@ Authors/concepts 图谱和其他 notes 目录属于后续设计，不与 Plan A/
 - 迁移对象无 `PaperNotes/`、旧 assets 路径、未知 tag、未解析模板占位符。
 - 目标已有手写段落、frontmatter 和 assets 保留。
 - `/Users/limx/notes` 的 HEAD、tracked diff 和任务前记录一致；现有用户修改不被触碰。
+- `DailyPapers`、`GitHubTrending`、`ResearchSources`、`ResearchNotes` 的每个纳入项均有唯一 manifest decision；未批准的 author/concept/MOC 不出现在目标写集。
+- 合并后的 `.history.json` 可解析、按稳定 identity 去重，并同时保留两侧不冲突的历史记录。
+- `Workbench/daily/`、`Workbench/trending/`、`ResearchSources/Sources/` 和 `ResearchSources/Insights/` 中的迁移结果不残留旧 vault 绝对路径。
 
 ### 9.3 PARA behavior
 
@@ -444,16 +518,27 @@ Authors/concepts 图谱和其他 notes 目录属于后续设计，不与 Plan A/
 - profile validator self-test 和 live vault check 通过。
 - Quartz 只运行配置/路径相关 regression tests 和 TypeScript check；完整可视化 build 不是本迁移门禁。
 
+### 9.6 Skill cutover and bootstrap
+
+- 在临时 vault 与 fixture upstream 上完整验证 `fetch -> review -> paper note -> daily note -> history -> log`，六类产物内容和计数一致；测试不得依赖实时网络结果。
+- `paper-digest`、`daily-papers`、`github-trending`、`research-insights` 从非 vault cwd 启动时仍解析到同一 canonical MindFlow root。
+- 写入型 skill 不写 `/Users/limx/notes`，不自动 commit/push，不覆盖已有手写内容。
+- bootstrap 对正确链接 no-op，对缺失目标创建链接，对真实目录、普通文件、错误链接、缺失 source 和 validation failure 均 fail closed。
+- 全局链接逐一通过 `readlink` 和 canonical realpath 校验；skill validator 在 source 与 link 两个入口得到相同结果。
+- rollback 只移除 bootstrap manifest 精确记录且仍匹配预期 target 的链接；目标已漂移时停止，不做宽泛删除。
+
 ## 10. Rollout and Recovery
 
 1. 先完成 Plan A，确认 wrapper layout、PARA/dashboard/schema/Base 不改变现有知识路径或 `/Users/limx/project/pi` canonical path。
 2. 对现有 Papers 运行只读 audit；人工确认 ambiguous 列表后才允许确定性 backfill。
-3. Plan B 先生成 dry-run manifest，再逐批执行 overlaps、old-only notes、assets。
-4. 每批独立 commit、验证和 review；范围内本地 commit 无需逐个请求用户批准。
-5. 迁移完成后，旧 notes 保持原位并进入只读观察期；不删除、不改 remote、不自动归档。
-6. merge、push、旧 notes 删除、全局 skill cutover 和代码仓物理移动仍是独立授权边界；已明确批准的 `pi` symlink scaffold 不等于物理移动。
+3. B1 先生成 dry-run manifest 和 human-readable report；用户在唯一一次内容确认门确认写集后，再执行 overlaps、old-only Papers、auxiliary content 和 assets。
+4. B1 可按风险拆成多个本地 commit，但已批准范围内不逐 commit 请求确认；只有 fatal blocker、范围扩大或无法保护用户内容时中断。
+5. B1 全部验证通过后才进入 B2。先在 repository 与临时环境修正并验证 canonical skills，再处理全局 discovery path。
+6. B2 将旧全局 skills 原样归档并写 archive manifest，再原子化建立 allowlist links；任一验证失败即停止并恢复本轮已经切换的精确条目。
+7. 迁移完成后，旧 notes 保持原位并进入只读观察期；不删除、不改 remote、不自动归档。
+8. merge、push、旧 notes 删除和代码仓物理移动仍是独立授权边界；已明确批准的 `pi` symlink scaffold 不等于物理移动。全局 skill cutover 只在 B2 implementation plan 获批后执行，不由设计批准自动触发。
 
-若某批验证失败，回退目标分支对应 commit 即可；源仓从未修改，不需要恢复源内容。
+B1 失败时只回退 MindFlow 目标分支对应 commit；源仓从未修改，不需要恢复源内容。B2 回滚只依据 archive/bootstrap manifest 恢复精确路径：删除仍指向记录 target 的新软链接，恢复 hash 未漂移的 legacy directory；任一目标发生人工修改时停止并报告，绝不递归清理 `~/.codex/skills`。
 
 ## 11. Success Criteria
 
@@ -461,8 +546,10 @@ Authors/concepts 图谱和其他 notes 目录属于后续设计，不与 Plan A/
 - 所有 project workspace 遵循 `Projects/<project>/code/<repo>` wrapper；现有外部 repo 可通过可验证 symlink 接入，未来新 repo 直接 clone 到 `code/`。
 - VLA、WAM 等分类无需物理子目录即可通过 metadata、Topic、DomainMap 和 Base 稳定访问。
 - 旧 PaperNotes 的 7 个重合身份得到内容保护合并，26 个仅旧身份得到明确路由，不复制自动 MOC 或未引用 assets。
+- `DailyPapers`、`GitHubTrending`、`ResearchSources` 和 `ResearchNotes` 按知识类型进入 MindFlow canonical 路径；author/concept/MOC 保持范围外。
 - Zotero 能作为可选本地 source 使用，但不成为 MindFlow taxonomy 或写入自动化的控制面。
-- 新论文工作流只面向 MindFlow canonical schema；旧 notes 不再继续产生新的论文 split-brain。
+- `daily-papers` 功能覆盖 fetch/review/notes，入选论文由 `paper-digest` 写入 `Papers/`，日报、历史和日志全部写入 MindFlow；旧 notes 不再继续产生新的论文 split-brain。
+- canonical skills 可随 MindFlow clone 跨电脑复用；bootstrap 幂等、冲突 fail closed、legacy 可精确恢复。
 - 旧 notes 零修改且保留可恢复来源；任何删除、merge、push、全局 skill 改动都未被本设计默认授权。
 
 ## 12. Evidence Used
@@ -472,5 +559,8 @@ Authors/concepts 图谱和其他 notes 目录属于后续设计，不与 Plan A/
 - `docs/superpowers/specs/2026-10-28-cross-repo-mindflow-context-design.md`：profile、read-only knowledge lane 和 Zotero independent 边界；其中 direct-root 决策由本设计的 wrapper 决策取代。
 - `references/tags.md`：现有 canonical tag taxonomy。
 - `skills/1-literature/paper-digest/SKILL.md` 与 `references/paper-note-template.md`：当前扁平 Paper 路径、schema、去重和写入规则。
+- `skills/1-literature/daily-papers/SKILL.md` 与 `fetch_and_score.py`：MindFlow 的抓取、分流、digest、日报、历史和日志协议。
+- 当前全局 skill inventory：旧 `paper-reader`、三段式 daily skills、`github-trending`、`research-insights` 仍为普通目录；仅 `mindflow-context` 已链接到 MindFlow canonical skill。
+- `/Users/limx/notes/{DailyPapers,GitHubTrending,ResearchSources,ResearchNotes}` 的只读 inventory：分别有 1、1、10、1 个 Markdown，作为 B1 路由与 manifest 数量依据。
 - `DomainMaps/VLA.md`、`DomainMaps/WorldModel.md`、`Topics/WorldActionModel-Survey.md`：WAM 跨 VLA/World Model 的知识证据。
 - 当前只读 inventory：旧 notes 与 MindFlow 的数量、identity、schema、link 和 asset 差异。
