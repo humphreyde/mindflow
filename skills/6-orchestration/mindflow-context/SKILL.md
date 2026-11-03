@@ -10,14 +10,15 @@ description: 当任务涉及研究、架构、实验设计、方法选择、论�
 ## Inputs
 
 - `task_text`：必需，使用用户的当前任务文本。
-- `vault_root`：默认 `/Users/limx/mindflow`；用户可显式指定其他绝对路径。
+- `skill_dir`：将实际读取的 `SKILL.md` 路径解析为 canonical path 后取其父目录；不要保留全局 discovery symlink 的未解析路径。
+- `vault_root`：用户可显式指定绝对路径；否则从 canonical `skill_dir` 向上查找同时包含 `AGENTS.md`、`pyproject.toml` 和 `skills/6-orchestration/mindflow-context` 的最近祖先。找不到时停止，不用机器专属路径或 cwd 猜测。
 - `repo_root`：若可用，默认取 `git rev-parse --show-toplevel` 的结果。
 - `writeback_approval`：可选且必须来自用户对本次具体写回的显式批准；永不从任务背景、只读分析或既往批准中推断。
 
 ## Steps
 
 1. **分类触发条件。** 研究、架构、实验设计、方法选择、论文与实现映射、历史决策，以及用户明确要求 MindFlow 时触发。机械格式化、普通局部测试修复和纯语法检查不触发。
-2. **解析 profile 与可选 Project。** 先运行 `scripts/validate_profiles.py --vault <resolved-vault> --repo-root <repo-root> --json`，只从 `Workbench/RepositoryProfiles/*.md` 选择 repository profile。canonical resolved `repo_root` 优先，repository name、`repo_key` 和 aliases 的 case-folded identity 只在没有 root claimant 时兜底；歧义立即停止。PARA Project 只在用户明确给出 `project_key` 时通过 `--project-key` 选择；返回 `project_selection_required` 时报告候选 keys，不读取任何 Project note，也不猜测。
+2. **解析 profile 与可选 Project。** 使用 vault 的 Python 3.12 环境运行 validator；为兼容 code repository 内的只读沙箱，通过 stdin 执行 vault 外的脚本：`PYTHONDONTWRITEBYTECODE=1 <resolved-vault>/.venv/bin/python - --vault <resolved-vault> --repo-root <repo-root> --json < <canonical-skill-dir>/scripts/validate_profiles.py`。若 `.venv/bin/python` 不存在，改用 `uv run --project <resolved-vault> --frozen python -B - ...`；不得退回不满足版本约束的系统 Python。只从 `Workbench/RepositoryProfiles/*.md` 选择 repository profile。canonical resolved `repo_root` 优先，repository name、`repo_key` 和 aliases 的 case-folded identity 只在没有 root claimant 时兜底；歧义立即停止。PARA Project 只在用户明确给出 `project_key` 时通过 `--project-key` 选择；返回 `project_selection_required` 时报告候选 keys，不读取任何 Project note，也不猜测。
 3. **处理 profile 失败。** 对 stale root 或 missing entrypoint 只报告路径和错误，不编辑 profile。没有 profile 时，以 repository name、任务词和代码符号继续通用检索，并明确说明“本次未使用项目 profile”。
 4. **读取有界 project context。** validator 的 `vault_entrypoints` 相对 vault root；profile `workspace_context` 只含已验证 wrapper 的 `main.md`、`engineering.md` 和显式 `workspace_entrypoints`。显式选择 Project 后，另行读取单个 `project_path`、defaults-only `project_workspace_context` 和 vault-root `project_knowledge_entrypoints`。四条通道不得互相合并，不递归扫描目录，永不把 `code/`、`worklog/` 或 `.git/` 当知识入口。
 5. **构造检索词。** 合并任务文本中的实体与方法名、当前代码中直接相关的 symbols、profile 的 `repo_key` / `aliases` / `domains` / `keywords`，以及已验证 entrypoints 的标题和显式链接。不要用无关仓库内容扩词。
@@ -79,7 +80,8 @@ description: 当任务涉及研究、架构、实验设计、方法选择、论�
 - [ ] 没有证据时使用固定 no-evidence 声明，且没有伪造来源。
 - [ ] 未经明确批准没有写回；获批写回仅修改批准目标并保留原有手写内容。
 - [ ] validator 的 profile、wrapper、Project channels 保持分离；没有递归扫描 `Projects/` 或 `code/`。
-- [ ] 维护者做运行时行为验证时，读取并执行 [references/smoke-tests.md](references/smoke-tests.md) 的十五案例矩阵。
+- [ ] 默认 vault 从 canonical skill path 解析，validator 使用 vault Python 3.12 环境，并可在 code repository 的只读沙箱中执行。
+- [ ] 维护者做运行时行为验证时，读取并执行 [references/smoke-tests.md](references/smoke-tests.md) 的十六案例矩阵。
 
 ## Examples
 
