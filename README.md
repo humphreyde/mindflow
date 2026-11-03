@@ -99,6 +99,33 @@ $experiment-design Ideas/example.md # 生成实验方案到 Experiments/
 $mindflow-context 分析当前项目的 action chunking 设计
 ```
 
+### Canonical Codex skill links
+
+在新电脑上，先把 MindFlow clone 到长期使用的主检出路径并安装锁定依赖；不要把临时 worktree 当作全局 skill 目标：
+
+```bash
+uv sync --frozen
+uv run --frozen python -B scripts/bootstrap_codex_skills.py plan --codex-home /absolute/path/to/.codex
+```
+
+检查 plan 只包含固定 allowlist，且每个 action 与现有安装相符后，再执行：
+
+```bash
+uv run --frozen python -B scripts/bootstrap_codex_skills.py apply \
+  --codex-home /absolute/path/to/.codex \
+  --archive-date YYYY-MM-DD
+```
+
+脚本把既有 allowlisted skill 精确归档到 `.codex/skills-legacy/YYYY-MM-DD/`，写入包含 hash 的 `manifest.json`，再让 `.codex/skills/<name>` 指向本 MindFlow 的 canonical skill。验证时检查 `readlink`、resolved target 与各 skill validator。需要恢复时使用同一 manifest：
+
+```bash
+uv run --frozen python -B scripts/bootstrap_codex_skills.py rollback \
+  --codex-home /absolute/path/to/.codex \
+  --manifest /absolute/path/to/.codex/skills-legacy/YYYY-MM-DD/manifest.json
+```
+
+该流程只管理 allowlisted Codex skill。Project 代码仓、Zotero library、credentials 和机器私有路径不会随 MindFlow 同步。
+
 ## Workspace Model
 
 - Repository identity 保存在 `Workbench/RepositoryProfiles/`；它不等于 PARA Project。
