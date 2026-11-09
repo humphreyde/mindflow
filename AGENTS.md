@@ -22,6 +22,18 @@ Multimodal Understanding: VLM, Video LLM, Video Understanding, Visual Reasoning
 AI Agent: LLM Agent, Computer-use Agent, GUI Agent, Agentic RL
 Embodied AI: VLA, World Model, World Action Model, Spatial Intelligence, Robot Manipulation & Locomotion, RL
 
+### 当前具身智能主线
+
+面向真实世界通用机器人的**分层具身智能（Hierarchical Physical Intelligence）**：结合 VLA / WAM 的语义决策与策略学习、WBT / WBC 的全身运动生成和动态执行，并通过 world model、imitation learning、RL 与真实反馈实现持续的 Robot Self-Improvement（RSI）。
+
+- **High-level intelligence**：VLA / WAM、长时记忆、任务分解、vision-language-conditioned planning and control。
+- **Whole-body motion**：BeyondMimic、SuperMimic、motion imitation / motion prior、Whole-Body Tracking（WBT）、whole-body trajectory generation；关注从 human motion 或 generated motion 到机器人参考轨迹的接口。
+- **Dynamic execution**：Whole-Body Control（WBC）、平衡与接触约束、全身协调、sim-to-real、高频闭环控制；关注如何把参考运动转化为 dynamically feasible 的真机行为。
+- **Robot Self-Improvement（RSI）**：failure data、reward / progress modeling、RECAP / ACP、human-in-the-loop、自动数据闭环，以及可扩展的 policy improvement loop；重点关注机器人如何从真实执行、失败与人类反馈中持续提升，而不只是离线训练一次。
+- **重点场景**：humanoid loco-manipulation、mobile manipulation、cloth / deformable-object manipulation；场景是验证通用方法的载体，不限定研究边界。
+
+其中，WBT 更偏向“生成或跟踪什么运动”的 reference-motion interface，WBC 更偏向“如何在动力学、平衡、接触与任务约束下可靠执行”。BeyondMimic 与 SuperMimic 是重点关注的 whole-body tracking / control 路线，但不把训练库覆盖率等同于 OOD generalization，也不把 proprioceptive dynamics world model 与视觉生成式 WAM 混为一谈。
+
 ## 研究原则
 
 Owner 的研究品味——做研究相关工作时与之对齐：

@@ -13,6 +13,7 @@ assert SPEC is not None and SPEC.loader is not None
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 run_fixture_pipeline = MODULE.run_fixture_pipeline
+score_paper = MODULE.score_paper
 
 
 class DailyPipelineContractTests(unittest.TestCase):
@@ -46,6 +47,19 @@ class DailyPipelineContractTests(unittest.TestCase):
         self.assertIn("daily-papers", log)
         self.assertEqual(result.fetched, result.read + result.skipped)
         self.assertEqual((result.fetched, result.read, result.skipped), (2, 1, 1))
+
+    def test_whole_body_and_robot_self_improvement_match_research_profile(self) -> None:
+        whole_body = {
+            "title": "Scalable Whole-Body Tracking for Humanoid Robots",
+            "abstract": "A motion imitation system for loco-manipulation.",
+        }
+        self_improvement = {
+            "title": "Robot Self-Improvement from Real-World Failures",
+            "abstract": "Online policy improvement with human feedback.",
+        }
+
+        self.assertGreaterEqual(score_paper(whole_body), 3)
+        self.assertGreaterEqual(score_paper(self_improvement), 3)
 
 
 if __name__ == "__main__":

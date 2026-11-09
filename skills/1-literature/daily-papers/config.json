@@ -16,7 +16,20 @@
     "spatial intelligence", "spatial reasoning",
     "diffusion policy", "imitation learning",
     "manipulation", "grasping", "navigation", "affordance",
-    "sim-to-real", "sim2real", "locomotion"
+    "sim-to-real", "sim2real", "locomotion",
+
+    "hierarchical physical intelligence",
+    "humanoid robot", "humanoid locomotion", "bipedal locomotion",
+    "whole-body control", "whole body control",
+    "whole-body tracking", "whole body tracking",
+    "whole-body motion", "whole body motion",
+    "motion tracking", "motion imitation", "motion prior", "motion retargeting",
+    "loco-manipulation", "locomanipulation", "mobile manipulation",
+
+    "robot self-improvement", "self-improving robot",
+    "autonomous robot learning", "lifelong robot learning",
+    "failure-driven learning", "online policy improvement",
+    "human-in-the-loop robot learning"
   ],
   "arxiv_categories": ["cs.CV", "cs.AI", "cs.LG", "cs.RO", "cs.CL"],
   "min_score": 2,
